@@ -1,11 +1,5 @@
-<!--
-  Hit RUN to see this project in action!
 
-  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
--->
-<!-- Challenge: Design a website for a vegan/vegetarian restaurant. Showcase the restaurant’s approach (such as farm-to-table, preparation processes, and sustainability) to the food served in the restaurant. -->
-
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8" />
@@ -25,44 +19,53 @@
       id="homeImage"
       style="position: relative"
     />
-  <h1 style="text-align:center">Frequently Asked Questions:</h1>
+    <h1 style="text-align:center">Frequently Asked Questions:</h1>
 
+    <div class="faq-container">
       <h2>
-        <button class="faqButton"> What are your operating hours?</button> 
-        <div class = "faqAnswer">
+        <button class="faqButton">What are your operating hours?</button>
+        <div class="faqAnswer">
           <p>Tuesday through Thursday, we are open from 11am to 5pm, and we are open from 12pm to 7pm on weekends. Please note that we are closed on federal holidays and Mondays.</p>
         </div>
-        </h2>
-    
-    <h2>
-      <button class="faqButton">Can I make reservations?</button>
-      <div class = "faqAnswer">
-        <p>Yes, we do. Please visit our contact page. <a href=\"../../contact/contact.html\">Contact Link </a>
-        </p> "reservation-response", "reservationQuestionHead
-      </div>
-    </h2>
+      </h2>
+
+      <h2>
+        <button class="faqButton">Can I make reservations?</button>
+        <div class="faqAnswer">
+          <p>Yes, we do. Please visit our contact page. <a href="../../contact/contact.html">Contact Link</a></p>
+        </div>
+      </h2>
 
       <h2>
         <button class="faqButton">Do you deliver?</button>
-        <div class = "faqAnswer">
+        <div class="faqAnswer">
           <p>In order to preserve the freshness of our food, we do not offer delivery services. However, you are more than welcome to order takeout!</p>
         </div>
       </h2>
-    
-    <div id="paymentQuestionHead">
-      <h2>What methods of payment do you accept?<button class="faqButton" onclick='toggleFAQResponses("We accept credit cards, cash, and checks.", "payment-response", "paymentQuestionHead")'>+</button></h2>
+
+      <h2>
+        <button class="faqButton">What methods of payment do you accept?</button>
+        <div class="faqAnswer">
+          <p>We accept credit cards, cash, and checks.</p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">Can we customize what we order based on food allergies or dietary restrictions?</button>
+        <div class="faqAnswer">
+          <p>Absolutely. At Flourish, your needs are always our priority. Simply tell your server about your food preferences, and our chefs will be happy to accommodate!</p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">How do you handle food quality complaints?</button>
+        <div class="faqAnswer">
+          <p>At the restaurant, you can explain your complaints to your server or to the manager. Alternatively, you could contact us by visiting our contact page!</p>
+        </div>
+      </h2>
     </div>
 
-    <div id="allergyQuestionHead">
-      <h2>Can we customize what we order based on food allergies or dietary restrictions?<button class="faqButton" onclick='toggleFAQResponses("Absolutely. At Flourish, your needs are always our priority. Simply tell your server about your food preferences, and our chefs will be happy to accommodate!", "allergies-response", "allergyQuestionHead")'>+</button></h2>
-    </div>
-<div id="foodQualityQuestionHead">
-  <h2>How do you handle food quality complaints?<button class="faqButton" onclick='toggleFAQResponses("At the restaurant, you can explain your complaints to your server or to the manager. Alternatively, you could contact us by visiting our contact page!", "complaints-response", "foodQualityQuestionHead")'>+</button></h2>
-</div>
-  <h1>Do you have any other questions? Contact us using the information found in the "contact" page!</h1>
-
-  <br>
- 
-
+    <h1>Do you have any other questions? Contact us using the information found in the "contact" page!</h1>
+    <br>
   </body>
 </html>
