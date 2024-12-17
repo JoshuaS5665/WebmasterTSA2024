@@ -33,11 +33,12 @@ function changeImages(beginning) {
   }, 4000);
 }
 
-var acc = document.getElementsByClassName("faqButton");
-var i;
+document.addEventListener('DOMContentLoaded', function() {
+  var acc = document.getElementsByClassName("faqButton");
+  var i;
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function () {
+  for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function () {
     this.classList.toggle("active");
     var panel = this.nextElementSibling;
     if (panel.style.maxHeight) {
@@ -46,7 +47,8 @@ for (i = 0; i < acc.length; i++) {
       panel.style.maxHeight = panel.scrollHeight + "px";
     }
   });
-}
+  }
+});
 
 /*function createFAQResponses(response, responseID, containerID) {
   let FAQResponse;
