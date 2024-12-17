@@ -1,0 +1,63 @@
+<!--
+  Hit RUN to see this project in action!
+
+  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
+-->
+<!-- Challenge: Design a website for a vegan/vegetarian restaurant. Showcase the restaurant’s approach (such as farm-to-table, preparation processes, and sustainability) to the food served in the restaurant. -->
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Replit</title>
+    <link href="../../style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body onload='loadHead("../public/partials/head.html")'>
+    <script type="text/javascript" src="../script.js"></script>
+    <div id="header"></div>
+    <div id="aboutOwners">
+      <h1 style="text-decoration: underline">About the Owners</h1>
+      <p>
+        The owners of Flourish are two passionate individuals who have sought to
+        create an eco-friendly, enjoyable dining experience!
+      </p>
+      <img
+        src="../images/shah.png"
+        alt="Joshua Shah"
+        width="135vh"
+        height="150vh"
+        style="display: block"
+        <p
+          style="
+            display: inline-block;
+            position: relative;
+            top: -50px;
+            border: 5px solid black; 
+          "
+        >
+          This is totally Joshua Shah
+        </p>
+    
+    </div>
+
+    <h1 style="text-align: center; text-decoration: underline">
+      Our Contact Page
+    </h1>
+
+    <form style="text-align: center" action="contactResponse.html" method="post">
+      <label for="first-name">First Name:</label>
+      <input type="text" id="firstNameInput" required />
+      <br />
+
+      <label for="last-name">Last Name:</label>
+      <input type="text" id="lastNameInput" required /><br />
+
+      <label for="email-address">Email Address:</label>
+      <input type="email" id="emailInput" required /> <br />
+
+      <button type="submit" id="submit">Submit</button>
+    </form>
+  </body>
+</html>

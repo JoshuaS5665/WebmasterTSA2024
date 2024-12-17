@@ -1,0 +1,405 @@
+/* Reset and General Styles */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  /* background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+  background-color: #C4A484;*/
+  font-family: Arial, sans-serif;
+  height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+#homeImage {
+  width: 100%;
+  height: 65%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 1s ease-in-out;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #32372b;
+  display: flex;
+  justify-content: center;
+  height: 10%;
+  font-family: "Bodoni Moda", serif;
+  align-items: center;
+  /* Center navbar items horizontally */
+}
+
+
+
+/* Links inside the navbar */
+.navbar a,
+.dropbtn {
+  float: none;
+  /* Remove float */
+  font-size: 25px;
+  color: white;
+  padding: 14px 16px;
+  text-decoration: none;
+  display: inline-block;
+  /* Make sure links align horizontally */
+  text-align: center;
+}
+
+/* Hover effect for navbar items */
+.navbar a:hover {
+  background-color: #21251d;
+}
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown button */
+.dropdown,
+.dropbtn {
+  font-size: 25px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+/* Dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Main Section */
+main {
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.title {
+  color: #FFFFFF;
+  font-family: Baskerville, serif;
+  font-size: 4rem;
+  position: relative;
+  /*top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
+}
+
+.subscript {
+  color: #000000;
+  font-family: "Brush Script MT", cursive;
+  font-size: 2rem;
+  position: relative;
+  /*top: 100%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .navbar a,
+  .dropbtn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .dropdown-content {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+  }
+}
+
+.faqButton {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+.active, .faqButton:hover {
+  background-color: #ccc;
+}
+
+.faqAnswer {
+  padding: 0 18px;
+  background-color: white;
+  display: none;
+  overflow: hidden;
+}
+
+.other-seasons {
+  border: 5px solid black;
+  margin: 0;
+  padding: 5px 10px;
+  display: block;
+  text-decoration: none;
+}
+
+texarea {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.button-group .other-seasons {
+  background-color: white;
+  color: black;
+  padding: 10px 24px;
+  /* Some padding */
+  cursor: pointer;
+  /* Pointer/hand icon */
+  float: left;
+  margin: 10px;
+  /* Float the buttons side by side */
+}
+
+.button-group {
+  /*align-items: cen;*/
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-group:after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.button-group a {
+  text-align: center;
+  padding: 5px 5px;
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  background-color: white;
+}
+
+/*.menuCenter {
+  text-align: center;
+  font-family: 'longhand-lp', 'sans-serif';
+  font-style: normal;
+  font-weight: 400;
+}*/
+
+ul {
+  list-style-type: none;
+}
+
+/*.menuCenter {
+  text-align: center;
+  font-family: "Indie Flower", cursive;
+  font-weight: 400;
+  font-style: normal;
+}*/
+
+.shadows-into-light-regular {
+  font-family: "Shadows Into Light", serif;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 800px;
+}
+
+.menuHeaders {
+  font-family: "Rye", serif;
+  font-weight: 4;
+  font-style: normal;
+  align-items: center;
+}
+
+.menuCenter {
+  font-family: "Libre Caslon Display", serif;
+  font-optical-sizing: auto;
+  font-size: 20px;
+  font-style: normal;
+  text-align: center;
+  line-height: 50px;
+  align-items: center;
+
+}
+
+a {
+  text-decoration: none;
+  color: green;
+}
+
+hr {
+  color: black;
+  border-style: dotted;
+}
+
+.contact {
+  display: flex;
+  width: 50%;
+}
+
+.contact div {
+  flex: 1;
+  margin: 20px;
+}
+
+.contact div:left {
+  margin-right: 50px;
+}
+
+.contact div:right {
+  margin-right: 50px;
+}
+
+input {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.homeButtons {
+  background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
+  /*color: white;*/
+  width: 30vw;
+  height: 10vh;
+  padding: 0px;
+  font-size: 3vw;
+  margin-left: 35vw;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-bottom: 5vh;
+}
+
+.menuDropdown {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*margin-left: -380px;
+  margin-top: 20px;*/
+
+}
+
+.verticalMenuList.hidden {
+  display: none;
+}
+
+#menuButton:hover .verticalMenuList {
+  display: block;
+}
+
+.verticalMenuList {
+  list-style-type: none;
+  max-width: 200px;
+  background-color: rgba(50, 55, 43, 0.9);
+  position: absolute;
+  z-index: 10;
+  margin-left: 0px;
+  margin-top: 200px;
+  visibility: hidden;
+}
+
+.verticalMenuList li a {
+  color: white;
+  padding-bottom: 10px;
+  text-align: right;
+  font-size: 20px;
+  background-color: rgba(50, 55, 43, 0.7);
+}
+
+.verticalMenuList.hover {
+  background-color: #ffffff;
+}
+
+
+.navbar #menuButton:hover .menuDropdown .verticalMenuList li a {
+  visibility: visible;
+  background-color: rgba(50, 55, 43, 0);
+}
+
+.navbar #menuButton:hover .menuDropdown .verticalMenuList {
+  background-color: rgba(50, 55, 43, 0.9);
+  visibility: visible;
+}
+
+.navbar #menuButton:hover .menuDropdown .verticalMenuList li a:hover {
+  background-color: #21251d;
+}
+
+.great-vibes-regular {
+  font-family: "Great Vibes", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#faqButton {
+  background-color: #32372b;
+  color: white;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
