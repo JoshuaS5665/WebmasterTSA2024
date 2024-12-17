@@ -176,11 +176,25 @@ main {
   background-color: #ccc;
 }
 
+.faqButton:after {
+  content: '\02795';
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796";
+}
+
 .faqAnswer {
   padding: 0 18px;
   background-color: white;
-  display: none;
+  display: block;
   overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
 }
 
 .other-seasons {
@@ -379,7 +393,7 @@ input {
   font-style: normal;
 }
 
-#faqButton {
+/*#faqButton {
   background-color: #32372b;
   color: white;
 }
