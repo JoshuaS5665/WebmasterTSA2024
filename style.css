@@ -162,7 +162,7 @@ main {
 
 .faqButton {
   font-family: "Libre Caslon Display", serif;
-  font-weight: 222px;
+  font-size: 19px;
   background-color: #eee;
   color: #444;
   cursor: pointer;
@@ -191,7 +191,8 @@ main {
 }
 
 .faqAnswer {
-  font-family: "Libre Caslon Display", serif;;
+  font-family: "Libre Caslon Display", serif;
+  font-size: 19px;
   padding: 0 18px;
   background-color: white;
   display: block;
