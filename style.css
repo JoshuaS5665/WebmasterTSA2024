@@ -424,12 +424,14 @@ input {
 
 .our-mission-container-1 {
   display: flex;
-  height: 100vh;
+  height: 95vh;
+  margin-bottom: -5vh;
 }
 
 .our-mission-container-3 {
   display: flex;
-  height: 100vh;
+  height: 95vh;
+  margin-top: -5vh;
 }
 
 .text-section-3 {
@@ -494,8 +496,10 @@ input {
 
 .our-mission-container-2 {
   display: flex;
-  height: 100vh;
+  height: 95vh;
   flex-direction: row-reverse;
+  margin-top: -5vh;
+  margin-bottom: -5vh;
 }
 
 .text-section-2 {
