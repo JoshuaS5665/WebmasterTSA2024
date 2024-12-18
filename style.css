@@ -495,7 +495,6 @@ input {
 .our-mission-container-2 {
   display: flex;
   height: 100vh;
-  flex-direction: row-reverse;
 }
 
 .text-section-2 {
@@ -506,12 +505,14 @@ input {
   align-items: center;
   padding: 60px;
   box-sizing: border-box;
+  order: 2;
 }
 
 .image-section-2 {
   flex: 1;
   background: url("../images/our-mission-2.jpg") no-repeat center center;
   background-size: cover;
+  order: 1;
 }
 
 @media (max-width: 768px) {
