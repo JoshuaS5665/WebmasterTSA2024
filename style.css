@@ -279,7 +279,7 @@ ul {
 }
 
 .menuCenter {
-  font-family: "Libre Caslon Display", serif;
+  font-family: "Bodoni Moda", serif;
   font-optical-sizing: auto;
   font-size: 20px;
   font-style: normal;
@@ -324,7 +324,7 @@ input {
 
 .homeButtons {
   background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
-  /*color: white;*/
+  background-color: #C4A484;
   width: 30vw;
   height: 10vh;
   padding: 0px;
@@ -401,26 +401,7 @@ input {
   background-color: #32372b;
   color: white;
 }
-
-/* width */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
+*/
 
 .our-mission-container-1 {
   display: flex;
@@ -526,4 +507,14 @@ input {
   .image-section-2 {
     height: 50vh;
   }
+}
+
+.footer {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #32372b;
+  color: white;
+  text-align: center;
 }

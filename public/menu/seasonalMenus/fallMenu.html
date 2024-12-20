@@ -1,20 +1,25 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Fall Menu</title>
+    <title>Flourish | Fall Menu</title>
     <link href="../../../style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body onload='loadHead("../../../partials/head.html")'>
+  <body
+    onload='loadHead("../../../partials/head.html"), loadFooter("../../../partials/footer.html")'
+  >
     <script type="text/javascript" src="../../../script.js"></script>
     <div id="header"></div>
 
-    <h1 style="text-align: center">Fall Menu</h1>
+    <h1 style="text-align: center; font-family: Rye, serif">Fall Menu</h1>
     <div
       class="button-group"
       style="
@@ -25,13 +30,13 @@
         margin-top: 10px;
       "
     >
-        <a href="fallMenu.html">View Fall Menu</a>
-        <a href="winterMenu.html">View Winter Menu</a>
-        <a href="springMenu.html">View Spring Menu</a>
+      <a href="fallMenu.html">View Fall Menu</a>
+      <a href="winterMenu.html">View Winter Menu</a>
+      <a href="springMenu.html">View Spring Menu</a>
     </div>
 
     <div class="menuCenter">
-      <div style = "align-items: center" class="menuHeaders">Starters</div>
+      <div style="align-items: center" class="menuHeaders">Starters</div>
       <ul>
         <li>
           <strong>Butternut Squash & Apple Soup</strong> - $12<br />
@@ -204,5 +209,6 @@
         </li>
       </ul>
     </div>
+    <div id="footer"></div>
   </body>
 </html>

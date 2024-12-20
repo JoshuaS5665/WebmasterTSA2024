@@ -33,20 +33,20 @@ function changeImages(beginning) {
   }, 4000);
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener("DOMContentLoaded", function () {
   var acc = document.getElementsByClassName("faqButton");
   var i;
 
   for (i = 0; i < acc.length; i++) {
     acc[i].addEventListener("click", function () {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.maxHeight) {
+        panel.style.maxHeight = null;
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+      }
+    });
   }
 });
 
@@ -78,3 +78,13 @@ function toggleFAQResponses(response, responseID, containerID) {
   }
   
 }*/
+
+function loadFooter(url) {
+  const footer = document.getElementById("footer");
+  fetch(url)
+    .then((response) => response.text())
+    .then((data) => {
+      footer.innerHTML = data;
+      console.log("Footer Function is Running");
+    });
+}

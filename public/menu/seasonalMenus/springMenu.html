@@ -1,25 +1,37 @@
 <!doctype html>
 <html>
   <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Spring Menu</title>
+    <title>Flourish | Spring Menu</title>
     <link href="../../../style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body onload='loadHead("../../../partials/head.html")'>
+  <body
+    onload='loadHead("../../../partials/head.html"), loadFooter("../../../partials/footer.html")'
+  >
     <script type="text/javascript" src="../../../script.js"></script>
-    <div
-      id="header"
-    ></div>
+    <div id="header"></div>
 
-    <h1 style="text-align: center; ">Spring Menu</h1>
-    <div class="button-group" style="width: 100%; display:flex; justify-content:center; gap:10px; margin-top:10px;">
+    <h1 style="text-align: center; font-family: Rye, serif">Spring Menu</h1>
+    <div
+      class="button-group"
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      "
+    >
       <a href="summerMenu.html">View Summer Menu</a>
-        <a href="fallMenu.html">View Fall Menu</a>
+      <a href="fallMenu.html">View Fall Menu</a>
       <a href="winterMenu.html">View Winter Menu</a>
     </div>
 
@@ -187,5 +199,6 @@
         </li>
       </ul>
     </div>
+    <div id="footer"></div>
   </body>
 </html>
