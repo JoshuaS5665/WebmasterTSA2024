@@ -343,7 +343,7 @@ input {
 }
 
 .dropdown-content {
-  display: block;
+  display: none;
   position: absolute;
   background-color: #32372b;
   min-width: 160px;
