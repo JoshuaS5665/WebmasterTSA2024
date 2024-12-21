@@ -91,7 +91,11 @@ function loadFooter(url) {
 
 function setMinimumDate() { 
   const date = new Date(); 
-  const year = String(date.getFullYear().padStart(2, '0')); 
+  const year = String(date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
-  
+  const day = String(date.getDate().padStart(2, '0'));
+  const minimumDate = `${year}-${month}-${day}`;
+  console.log(minimumDate);
+  const dateInput = document.getElementById("dateInput");
+  dateInput.setAttribute("min", minimumDate); 
 }
