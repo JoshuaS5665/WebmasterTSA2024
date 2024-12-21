@@ -257,10 +257,8 @@ texarea {
   font-weight: 400;
 }*/
 
-ul, .footer ul {
+ul {
   list-style-type: none;
-  padding: 0;
-  margin: 0;
 }
 
 /*.menuCenter {
