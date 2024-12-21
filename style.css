@@ -336,33 +336,38 @@ input {
 }
 
 .menuDropdown {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  /*margin-left: -380px;
-  margin-top: 20px;*/
-
-}
-
-.verticalMenuList.hidden {
+  position: absolute;
   display: none;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
 }
 
-#menuButton:hover .verticalMenuList {
+.dropdown:hover .menuDropdown {
   display: block;
 }
 
 .verticalMenuList {
   list-style-type: none;
-  max-width: 200px;
-  background-color: rgba(50, 55, 43, 0.9);
-  position: absolute;
-  z-index: 10;
-  margin-left: 0px;
-  margin-top: 200px;
-  visibility: hidden;
+  margin: 0;
+  padding: 0;
+  background-color: #32372b;
+  min-width: 160px;
+}
+
+.verticalMenuList li {
+  width: 100%;
+}
+
+.verticalMenuList li a {
+  padding: 12px 16px;
+  display: block;
+  text-align: left;
+  color: white;
+}
+
+.verticalMenuList li a:hover {
+  background-color: #21251d;
 }
 
 .verticalMenuList li a {
