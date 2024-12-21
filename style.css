@@ -37,6 +37,8 @@ body {
   height: 10%;
   font-family: "Bodoni Moda", serif;
   align-items: center;
+  position: relative;
+  z-index: 9999;
   /* Center navbar items horizontally */
 }
 
