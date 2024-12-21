@@ -342,16 +342,20 @@ input {
   display: inline-block;
 }
 
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
 .dropdown-content {
   display: none;
   position: absolute;
   background-color: #32372b;
-  min-width: 200px;
+  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 9999;
   top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
 }
 
 .dropdown-content a {
@@ -359,8 +363,8 @@ input {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: center;
-  font-size: 18px;
+  text-align: left;
+  font-size: 16px;
 }
 
 .dropdown-content a:hover {
