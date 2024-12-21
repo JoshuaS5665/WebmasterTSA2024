@@ -570,3 +570,14 @@ input {
 .footer div {
   margin: 5%
 }
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-family: Bodoni Moda, serif;
+}
+
+.footer li {
+  margin: 10px 0;
+  font-family: Bodoni Moda, serif;
+}
