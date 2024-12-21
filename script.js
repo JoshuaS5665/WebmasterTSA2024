@@ -89,4 +89,6 @@ function loadFooter(url) {
     });
 }
 
-function setMinimumDate() { const date = new Date(); const minimumDate = date.getFullYear + "-" + (date.getMonth() + 1) + "-" + date.getDate(); console.log(minimumDate); const dateInput = document.getElementById("dateInput"); dateInput.setAttribute("min", minimumDate); }
+function setMinimumDate() { 
+  
+}
