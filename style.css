@@ -469,16 +469,23 @@ input {
 }
 
 @media (max-width: 768px) {
+  .our-mission-container-1,
+  .our-mission-container-2,
   .our-mission-container-3 {
     flex-direction: column;
+    height: auto;
+    min-height: 100vh;
   }
-  .text-section-3, .image-section-3 {
+  .text-section-1,
+  .text-section-2,
+  .text-section-3,
+  .image-section-1,
+  .image-section-2,
+  .image-section-3 {
     flex: none;
     width: 100%;
-    height: 50vh;
-  }
-  .image-section-3 {
-    height: 50vh;
+    min-height: 50vh;
+    padding: 30px;
   }
 }
 
