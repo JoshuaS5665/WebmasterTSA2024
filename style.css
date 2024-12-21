@@ -336,14 +336,13 @@ input {
 }
 
 .menuDropdown {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  z-index: 2;
-  /*margin-left: -380px;
-  margin-top: 20px;*/
-
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  background-color: rgba(50, 55, 43, 0.9);
 }
 
 .verticalMenuList.hidden {
