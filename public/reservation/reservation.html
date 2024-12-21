@@ -48,10 +48,10 @@
         </select>
         <br />
         <label>What date is the reservation?</label>
-        <input type="date" min="" />
+        <input id="dateInput" onclick="setMinimumDate()" type="date" min=" " />
         <br />
         <label>What time is the reservation?</label>
-        <input type="time" step="300" />
+        <input type="time" step="300" min="9:00" max="21:00" />
       </form>
     </div>
     <div id="footer" style="margin-bottom: 10%"></div>
