@@ -340,14 +340,9 @@ input {
   position: absolute;
   top: 100%;
   left: 0;
-  background-color: #32372b;
+  background-color: rgba(50, 55, 43, 0.9);
   min-width: 160px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 1000;
-}
-
-#menuButton {
-  position: relative;
 }
 
 #menuButton:hover .menuDropdown {
@@ -359,7 +354,6 @@ input {
   padding: 12px 16px;
   text-decoration: none;
   display: block;
-  text-align: left;
 }
 
 .menuDropdown a:hover {
