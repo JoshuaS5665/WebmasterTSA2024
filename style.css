@@ -171,7 +171,8 @@ main {
   color: #444;
   cursor: pointer;
   padding: 18px;
-  width: 100%;
+  width: 90%;
+  margin: 0 5%;
   text-align: left;
   border: none;
   outline: none;
@@ -203,6 +204,8 @@ main {
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.2s ease-out;
+  width: 90%;
+  margin: 0 5%;
 }
 
 .other-seasons {
