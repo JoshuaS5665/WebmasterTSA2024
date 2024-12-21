@@ -30,7 +30,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: hidden;
+  overflow: visible;
   background-color: #32372b;
   display: flex;
   justify-content: center;
