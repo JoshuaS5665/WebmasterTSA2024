@@ -362,7 +362,7 @@ input {
   z-index: 10;
   margin-left: 0px;
   margin-top: 200px;
-  visibility: hidden;
+  display: none;
 }
 
 .verticalMenuList li a {
@@ -375,22 +375,23 @@ input {
 
 .verticalMenuList.hover {
   background-color: #ffffff;
+  display: block;
 }
 
 
 .navbar #menuButton:hover .menuDropdown .verticalMenuList li a {
-  visibility: visible;
+  display: block;
   background-color: rgba(50, 55, 43, 0);
 }
 
 .navbar #menuButton:hover .menuDropdown .verticalMenuList {
   background-color: rgba(50, 55, 43, 0.9);
-  visibility: visible;
+  display: block;
 }
 
 .navbar #menuButton:hover .menuDropdown .verticalMenuList li a:hover {
   background-color: #21251d;
-  visibility: visible;
+  display: block;
 }
 
 .great-vibes-regular {
