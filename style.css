@@ -336,13 +336,28 @@ input {
 }
 
 .menuDropdown {
-  position: absolute;
   display: none;
+  position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
-  min-width: 160px;
   background-color: rgba(50, 55, 43, 0.9);
+  min-width: 160px;
+  z-index: 1000;
+}
+
+#menuButton:hover .menuDropdown {
+  display: block;
+}
+
+.menuDropdown a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.menuDropdown a:hover {
+  background-color: #21251d;
 }
 
 .verticalMenuList.hidden {
