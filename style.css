@@ -343,12 +343,11 @@ input {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: rgba(50, 55, 43, 0.95);
+  background-color: #32372b;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1000;
-  top: 100%;
-  left: 0;
+  z-index: 1;
+  margin-top: 0;
 }
 
 .dropdown-content a {
