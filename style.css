@@ -340,6 +340,7 @@ input {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  z-index: 2;
   /*margin-left: -380px;
   margin-top: 20px;*/
 
@@ -389,6 +390,7 @@ input {
 
 .navbar #menuButton:hover .menuDropdown .verticalMenuList li a:hover {
   background-color: #21251d;
+  visibility: visible;
 }
 
 .great-vibes-regular {
@@ -517,4 +519,10 @@ input {
   background-color: #32372b;
   color: white;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer div {
+  margin: 5%
 }
