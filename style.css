@@ -343,23 +343,19 @@ input {
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%;
-  left: 0;
   background-color: rgba(50, 55, 43, 0.95);
-  min-width: 200px;
+  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 100;
-  border-radius: 0 0 4px 4px;
+  z-index: 1;
 }
 
 .dropdown-content a {
   color: white;
-  padding: 15px 20px;
+  padding: 12px 16px;
   text-decoration: none;
   display: block;
   text-align: left;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  transition: background-color 0.2s ease;
 }
 
 .dropdown-content a:hover {
