@@ -66,11 +66,10 @@ body {
 /* Dropdown container */
 .dropdown {
   position: relative;
-  display: none;
+  display: inline-block;
 }
 
 /* Dropdown button */
-.dropdown,
 .dropbtn {
   font-size: 25px;
   border: none;
@@ -80,6 +79,7 @@ body {
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+  cursor: pointer;
 }
 
 /* Dropdown content */
