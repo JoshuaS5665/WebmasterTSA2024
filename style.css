@@ -190,21 +190,17 @@ main {
 
   .navbar a,
   .dropbtn {
-    width: 100%;
     padding: 15px;
     font-size: 18px;
   }
 
-  .dropdown {
-    width: 100%;
-  }
-
   .dropdown-content {
-    position: static;
-    width: 100%;
-    box-shadow: none;
+    position: absolute;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     opacity: 1;
     visibility: visible;
+    margin: auto;
   }
 }
 
