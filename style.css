@@ -348,7 +348,12 @@ input {
   cursor: pointer;
   border-radius: 5px;
   margin-bottom: 5vh;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.homeButtons:hover {
+  background-color: #A88B68;
+  transform: scale(1.05);
 }
 
 .dropdown {
