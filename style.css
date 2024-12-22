@@ -360,21 +360,19 @@ input {
 }
 
 .homeButtons {
-  background-image: url(http://www.transparenttextures.com/patterns/wood-pattern.png);
-  background-color: #C4A484;
   width: 30vw;
   height: 10vh;
   padding: 0px;
   font-size: 3vw;
   margin-left: 35vw;
   cursor: pointer;
-  border-radius: 5px;
   margin-bottom: 5vh;
   transition: all 0.3s ease;
 }
 
 .homeButtons:hover {
   background-color: #A88B68;
+  transition: all 0.3s ease;
 }
 
 .dropdown {
