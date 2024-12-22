@@ -6,8 +6,99 @@
     <title>Replit</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
   </head>
-<body>
-  <p>OUR ABOUT PAGE</p>
-</body>
-</html>
 
+  <body
+    onload='loadHead("../partials/head.html"), changeImages("../../"), loadFooter("../partials/footer.html")'
+  >
+    <script type="text/javascript" src="../script.js" defer></script>
+
+    <div id="header"></div>
+
+    <img
+      src="../../public/images/homeImage1.jpg"
+      alt="Vegan Dining"
+      id="homeImage"
+      style="position: relative"
+    />
+    <h1 style="text-align: center; font-family: Bodoni Moda, serif">Frequently Asked Questions:</h1>
+
+    <div class="faq-container">
+      <h2>
+        <button class="faqButton">What are your operating hours?</button>
+        <div class="faqAnswer">
+          <p>
+            Tuesday through Thursday, we are open from 3pm to 10pm, and we are
+            open from 3pm to 11pm on weekends. Our kitchen closes at 9:30pm on
+            weekdays and 10:30pm on weekends. Please note that we are closed on
+            federal holidays and Mondays.
+          </p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">Can I make reservations?</button>
+        <div class="faqAnswer">
+          <p>
+            Yes, you can. Reservations can be placed             directly through our reservation page. For parties of 8 or more, we offer a 15% discount. However, for parties of 20 or more, please contact us directly through our contact page so we can properly accommodate seating for your party.
+            <a href="../../contact/contact.html">Contact Link |</a>
+            <a href="../../reservation/reservation.html">Reservation Link</a>
+          </p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">Do you deliver?</button>
+        <div class="faqAnswer">
+          <p>
+            In order to preserve the freshness of our food, we do not offer
+            delivery services. However, you are more than welcome to order
+            takeout!
+          </p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">
+          What methods of payment do you accept?
+        </button>
+        <div class="faqAnswer">
+          <p>We accept credit cards, cash, and checks.</p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">
+          Can we customize what we order based on food allergies or dietary
+          restrictions?
+        </button>
+        <div class="faqAnswer">
+          <p>
+            Absolutely. At Flourish, your needs are always our priority. Simply
+            tell your server about your food preferences, and our chefs will be
+            happy to accommodate!
+          </p>
+        </div>
+      </h2>
+
+      <h2>
+        <button class="faqButton">
+          How do you handle food quality complaints?
+        </button>
+        <div class="faqAnswer">
+          <p>
+            At the restaurant, you can express your complaints to your server or
+            to the manager. Alternatively, you could contact us by visiting our
+            contact page!
+          </p>
+        </div>
+      </h2>
+    </div>
+
+    <h3 style = "font-family: Bodoni Moda, serif; text-align: center;">
+      Any other questions? Contact us by entering your question directly in the Contact Page <a href="../../contact/contact.html">Contact Page</a>, or by contacting us directly using the information in the footer.
+    </h3>
+    <br />
+
+    <div id="footer"></div>
+  </body>
+</html>
