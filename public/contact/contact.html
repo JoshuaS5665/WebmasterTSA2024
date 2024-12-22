@@ -72,6 +72,8 @@
         <div class="asterisk">*</div></label
       >
       <input
+        class = "form-control"
+        oninvalid="this.setCustomValidity('Please enter a first name.')" oninput="setCustomValidity('')"
         type="text"
         style="
           font-family:
@@ -80,6 +82,7 @@
         "
         id="firstNameInput"
         required
+        placeholder="John"
       />
       <br />
 
@@ -94,6 +97,8 @@
         <div class="asterisk">*</div></label
       >
       <input
+        class = "form-control"
+        oninvalid="this.setCustomValidity('Please enter a last name.')" oninput="setCustomValidity('')"
         type="text"
         style="
           font-family:
@@ -102,6 +107,7 @@
         "
         id="lastNameInput"
         required
+        placeholder="Doe"
       /><br />
 
       <label
@@ -115,6 +121,8 @@
         <div class="asterisk">*</div></label
       >
       <input
+        class = "form-control"
+        oninvalid="this.setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')"
         type="email"
         style="
           font-family:
@@ -131,6 +139,8 @@
         <div class="asterisk">*</div></label
       >
       <input
+        class = "form-control"
+        oninvalid="this.setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')"
         type="tel"
         style="
           font-family:
@@ -139,6 +149,7 @@
         "
         id="phoneInput"
         required
+        placeholder="(123)-456-7890"
       />
       <br />
       <p class="asterisk">* denotes required.</p>
