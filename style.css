@@ -375,25 +375,21 @@ hr {
 
 .contact-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
   padding: 40px;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   gap: 40px;
 }
 
 .contact-info {
-  width: 100%;
-  text-align: center;
+  flex: 1;
   padding: 20px;
 }
 
 .contact-form {
-  width: 100%;
-  max-width: 500px;
+  flex: 1;
   padding: 20px;
-  margin: 0 auto;
 }
 
 .contact-form form {
