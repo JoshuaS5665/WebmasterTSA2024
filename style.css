@@ -35,6 +35,13 @@ body {
   display: block;
 }
 
+#aboutUsImage {
+  width: 100%;
+  height: 45vh;
+  object-fit: cover;
+  display: block;
+}
+
 .fade-out {
   opacity: 0;
 }
