@@ -53,7 +53,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: auto; /* Enable horizontal scrolling */
+  overflow: visible; /* Enable horizontal scrolling */
   background-color: #32372b;
   display: flex;
   justify-content: center;
