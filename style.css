@@ -353,7 +353,6 @@ input {
 
 .homeButtons:hover {
   background-color: #A88B68;
-  transform: scale(1.05);
 }
 
 .dropdown {
