@@ -507,6 +507,29 @@ input {
   display: block;
 }
 
+.form-control {
+  width: 100%;
+  max-width: 300px;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: #C4A484;
+  box-shadow: 0 0 5px rgba(196, 164, 132, 0.3);
+}
+
+.form-control::placeholder {
+  color: #999;
+  opacity: 0.8;
+}
+
+
 .great-vibes-regular {
   font-family: "Great Vibes", cursive;
   font-weight: 400;
