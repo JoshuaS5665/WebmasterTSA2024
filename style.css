@@ -178,22 +178,47 @@ main {
 /* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
-    justify-content: flex-start;
-    padding: 0 10px;
-    overflow-x: hidden;
+    flex-direction: column;
+    padding: 0;
+    height: auto;
+    align-items: stretch;
+  }
+
+  .navbar li {
+    width: 100%;
+    text-align: center;
   }
 
   .navbar a,
   .dropbtn {
-    white-space: nowrap;
-    padding: 14px 12px;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dropdown {
+    width: 100%;
   }
 
   .dropdown-content {
     position: static;
     width: 100%;
     box-shadow: none;
-    text-align: center;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+
+  .dropdown-content a {
+    padding: 12px;
+    background-color: #21251d;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
 }
 
