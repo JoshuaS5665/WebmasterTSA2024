@@ -99,22 +99,29 @@ body {
 
 /* Dropdown content */
 .dropdown-content {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #32372b;
   min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-  z-index: 1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 10000;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
   text-align: center;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 /* Links inside the dropdown */
 .dropdown-content a {
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
   text-align: center;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
 }
 
 /* Add a grey background color to dropdown links on hover */
@@ -124,7 +131,8 @@ body {
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
-  display: block;
+  opacity: 1;
+  visibility: visible;
 }
 
 /* Main Section */
