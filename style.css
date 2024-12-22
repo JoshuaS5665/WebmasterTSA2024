@@ -530,12 +530,42 @@ input {
 .form-control {
   width: 100%;
   max-width: 300px;
-  padding: 8px 12px;
+  padding: 12px 16px;
   margin: 8px 0;
   border: 2px solid #32372b;
   border-radius: 4px;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  font-family: "Bodoni Moda", serif;
+  transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+button[type="submit"] {
+  background-color: #32372b;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  font-family: "Bodoni Moda", serif;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #C4A484;
+  transform: translateY(-2px);
+}
+
+.contact-info h1 {
+  color: #32372b;
+  margin-bottom: 30px;
+}
+
+.contact-info p {
+  line-height: 1.6;
+  color: #32372b;
 }
 
 .form-control:focus {
