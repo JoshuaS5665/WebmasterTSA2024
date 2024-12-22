@@ -680,7 +680,16 @@ input {
 
 .asterisk {
   display: inline;
-  font-size: 10px;
-  color: red;
-  top: -20px;
+  font-size: 14px;
+  color: #d63031;
+  margin-left: 4px;
+  font-family: "Bodoni Moda", serif;
+  font-style: italic;
+}
+
+input:required:invalid + .asterisk::after {
+  content: " This field is required";
+  font-size: 12px;
+  color: #d63031;
+  margin-left: 8px;
 }
