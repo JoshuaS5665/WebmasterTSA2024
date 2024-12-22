@@ -781,9 +781,3 @@ button[type="submit"]:hover:before {
   font-style: italic;
 }
 
-input:required:invalid + .asterisk::after {
-  content: " This field is required";
-  font-size: 12px;
-  color: #d63031;
-  margin-left: 8px;
-}
