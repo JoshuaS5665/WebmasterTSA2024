@@ -349,11 +349,15 @@ a {
 
 a[download] {
   color: #32372b;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border: 2px solid transparent;
 }
 
 a[download]:hover {
   color: #A88B68;
+  border: 2px solid #A88B68;
+  border-radius: 4px;
 }
 
 hr {
