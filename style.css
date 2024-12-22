@@ -585,6 +585,12 @@ input {
   color: white;
   text-decoration: none;
   font-family: Bodoni Moda, serif;
+  transition: background-color 0.3s ease;
+  padding: 5px;
+}
+
+.footer a:hover {
+  background-color: #21251d;
 }
 
 .footer li {
