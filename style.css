@@ -677,3 +677,39 @@ input {
   color: red;
   top: -20px;
 }
+
+input:invalid {
+  border-color: #C4A484;
+}
+
+/* Custom validation message styling */
+input::-webkit-validation-bubble-message {
+  display: none;
+}
+
+input:required:invalid {
+  background-image: linear-gradient(to right, rgba(196, 164, 132, 0.1), rgba(196, 164, 132, 0.1));
+}
+
+/* Remove default validation popup in Firefox */
+input:invalid {
+  box-shadow: none;
+}
+
+/* Custom validation message */
+input:required:invalid::before {
+  content: "Please fill out this field";
+  position: absolute;
+  background: #32372b;
+  color: white;
+  padding: 8px;
+  border-radius: 4px;
+  font-family: "Bodoni Moda", serif;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+input:required:invalid:focus::before {
+  opacity: 1;
+}
