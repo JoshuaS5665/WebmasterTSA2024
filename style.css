@@ -51,7 +51,7 @@ body {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  overflow: visible;
+  overflow: auto; /* Enable horizontal scrolling */
   background-color: #32372b;
   display: flex;
   justify-content: center;
@@ -174,16 +174,17 @@ main {
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .navbar {
-    flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
+    padding: 0 10px;
+    overflow-x: auto; /* Enable horizontal scrolling */
   }
 
   .navbar a,
   .dropbtn {
-    width: 100%;
-    text-align: center;
+    white-space: nowrap;
+    padding: 14px 12px;
   }
 
   .dropdown-content {
@@ -780,4 +781,3 @@ button[type="submit"]:hover:before {
   font-family: "Bodoni Moda", serif;
   font-style: italic;
 }
-
