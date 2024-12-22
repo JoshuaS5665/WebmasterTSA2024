@@ -373,22 +373,42 @@ hr {
   border-style: dotted;
 }
 
-.contact {
+.contact-container {
   display: flex;
-  width: 50%;
+  justify-content: space-between;
+  padding: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
 }
 
-.contact div {
+.contact-info {
   flex: 1;
-  margin: 20px;
+  padding: 20px;
 }
 
-.contact div:left {
-  margin-right: 50px;
+.contact-form {
+  flex: 1;
+  padding: 20px;
 }
 
-.contact div:right {
-  margin-right: 50px;
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form label {
+  font-family: "Bodoni Moda", serif;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .contact-container {
+    flex-direction: column;
+    padding: 20px;
+  }
 }
 
 input {

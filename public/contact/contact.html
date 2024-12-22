@@ -1,9 +1,3 @@
-<!--
-  Hit RUN to see this project in action!
-
-  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
--->
-<!-- Challenge: Design a website for a vegan/vegetarian restaurant. Showcase the restaurant’s approach (such as farm-to-table, preparation processes, and sustainability) to the food served in the restaurant. -->
 
 <!doctype html>
 <html>
@@ -45,118 +39,79 @@
       </p>
     </div>
 
-    <h1
-      style="
-        text-align: center;
-        font-family:
-          Bodoni Moda,
-          serif;
-      "
-    >
-      Contact Us
-    </h1>
+    <div class="contact-container">
+      <div class="contact-info">
+        <h1
+          style="
+            font-family:
+              Bodoni Moda,
+              serif;
+          "
+        >
+          Contact Us
+        </h1>
+        <p style="font-family: Bodoni Moda, serif; font-size: 18px;">
+          We'd love to hear from you! Whether you have questions about our menu, 
+          want to make a special request, or just want to share your experience, 
+          please feel free to reach out using the form.
+        </p>
+        <p style="font-family: Bodoni Moda, serif; font-size: 18px;">
+          <strong>Phone:</strong> (412)-510-4038<br>
+          <strong>Email:</strong> info@flourishrestaurant.com<br>
+          <strong>Address:</strong> 123 Flourish Drive
+        </p>
+      </div>
 
-    <form
-      style="text-align: center"
-      action="contactResponse.html"
-      method="post"
-    >
-      <label
-        for="first-name"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        >First Name:
-        <div class="asterisk">*</div></label
-      >
-      <input
-        class = "form-control"
-        oninvalid="this.setCustomValidity('Please enter a first name.')" oninput="setCustomValidity('')"
-        type="text"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        id="firstNameInput"
-        required
-        placeholder="John"
-      />
-      <br />
+      <div class="contact-form">
+        <form action="contactResponse.html" method="post">
+          <label for="first-name">First Name:<div class="asterisk">*</div></label>
+          <input
+            class="form-control"
+            oninvalid="this.setCustomValidity('Please enter a first name')" 
+            oninput="setCustomValidity('')"
+            type="text"
+            id="firstNameInput"
+            required
+            placeholder="John"
+          />
 
-      <label
-        for="last-name"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        >Last Name:
-        <div class="asterisk">*</div></label
-      >
-      <input
-        class = "form-control"
-        oninvalid="this.setCustomValidity('Please enter a last name.')" oninput="setCustomValidity('')"
-        type="text"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        id="lastNameInput"
-        required
-        placeholder="Doe"
-      /><br />
+          <label for="last-name">Last Name:<div class="asterisk">*</div></label>
+          <input
+            class="form-control"
+            oninvalid="this.setCustomValidity('Please enter a last name')" 
+            oninput="setCustomValidity('')"
+            type="text"
+            id="lastNameInput"
+            required
+            placeholder="Doe"
+          />
 
-      <label
-        for="email-address"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        >Email Address:
-        <div class="asterisk">*</div></label
-      >
-      <input
-        class = "form-control"
-        oninvalid="this.setCustomValidity('Please enter a valid email address.')" oninput="setCustomValidity('')"
-        type="email"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        id="emailInput"
-        required
-        placeholder="johndoe@example.com"
-      />
-      <br />
-      <label
-        >Phone Number:
-        <div class="asterisk">*</div></label
-      >
-      <input
-        class = "form-control"
-        oninvalid="this.setCustomValidity('Please enter a valid phone number.')" oninput="setCustomValidity('')"
-        type="tel"
-        style="
-          font-family:
-            Bodoni Moda,
-            serif;
-        "
-        id="phoneInput"
-        required
-        placeholder="(123)-456-7890"
-      />
-      <br />
-      <p class="asterisk">* denotes required.</p>
-      <br />
-      <button type="submit" id="submit">Submit</button>
-    </form>
-    <br />
+          <label for="email-address">Email Address:<div class="asterisk">*</div></label>
+          <input
+            class="form-control"
+            oninvalid="this.setCustomValidity('Please enter a valid email address')" 
+            oninput="setCustomValidity('')"
+            type="email"
+            id="emailInput"
+            required
+            placeholder="johndoe@example.com"
+          />
+
+          <label>Phone Number:<div class="asterisk">*</div></label>
+          <input
+            class="form-control"
+            oninvalid="this.setCustomValidity('Please enter a valid phone number')" 
+            oninput="setCustomValidity('')"
+            type="tel"
+            id="phoneInput"
+            required
+            placeholder="(123)-456-7890"
+          />
+          <p class="asterisk">* denotes required.</p>
+          <button type="submit" id="submit">Submit</button>
+        </form>
+      </div>
+    </div>
     <div id="footer"></div>
   </body>
 </html>
