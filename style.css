@@ -716,3 +716,22 @@ input:required:invalid + .asterisk::after {
   color: #d63031;
   margin-left: 8px;
 }
+
+input:invalid {
+  border-color: #d63031;
+}
+
+input:invalid:focus {
+  box-shadow: 0 0 5px rgba(214, 48, 49, 0.3);
+}
+
+::-webkit-validation-bubble-message {
+  color: #32372b;
+  background: #fff;
+  border: 2px solid #d63031;
+  border-radius: 4px;
+  padding: 8px;
+  font-family: "Great Vibes", cursive;
+  font-size: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
