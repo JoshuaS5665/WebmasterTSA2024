@@ -99,7 +99,7 @@ function validateContactInfo() {
   }
 
   if (isValid) {
-    document.querySelector('form').submit();
+    window.location.href = 'contactResponse.html';
   }
 }
 
