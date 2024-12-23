@@ -816,7 +816,6 @@ button[type="submit"]:hover:before {
 
 .social-link {
   padding: 8px;
-  border-radius: 50%;
   transition: transform 0.3s ease, background-color 0.3s ease;
   display: flex;
   align-items: center;
@@ -824,6 +823,6 @@ button[type="submit"]:hover:before {
 }
 
 .social-link:hover {
-  transform: translateY(-3px);
-  background-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.05);
 }
