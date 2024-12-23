@@ -12,10 +12,25 @@
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
     <div id="aboutOwners">
-      <h1 class="great-vibes-regular" style="font-size: 50px; text-align: center; color: #32372B; margin-top: 5vh;">
+      <h1
+        class="great-vibes-regular"
+        style="
+          font-size: 50px;
+          text-align: center;
+          color: #32372b;
+          margin-top: 5vh;
+        "
+      >
         Contact Us
       </h1>
-      <p style="font-family: 'Bodoni Moda', serif; font-size: 20px; text-align: center; margin: 2vh 15vw;">
+      <p
+        style="
+          font-family: &quot;Bodoni Moda&quot;, serif;
+          font-size: 20px;
+          text-align: center;
+          margin: 2vh 15vw;
+        "
+      >
         The owners of Flourish are two passionate individuals who have sought to
         create an eco-friendly, enjoyable dining experience! For more
         information on the restaurant's history, please visit our
@@ -32,67 +47,87 @@
               serif;
           "
         >
-          Contact Us
+          Contact Information
         </h1>
-        <p style="font-family: Bodoni Moda, serif; font-size: 18px;">
-          We'd love to hear from you! Whether you have questions about our menu, 
-          want to make a special request, or just want to share your experience, 
+        <p
+          style="
+            font-family:
+              Bodoni Moda,
+              serif;
+            font-size: 18px;
+          "
+        >
+          We'd love to hear from you! Whether you have questions about our menu,
+          want to make a special request, or just want to share your experience,
           please feel free to reach out using the form.
         </p>
-        <p style="font-family: Bodoni Moda, serif; font-size: 18px;">
-          <strong>Phone:</strong> (412)-510-4038<br>
-          <strong>Email:</strong> info@flourishrestaurant.com<br>
+        <p
+          style="
+            font-family:
+              Bodoni Moda,
+              serif;
+            font-size: 18px;
+          "
+        >
+          <strong>Phone:</strong> (412)-510-4038<br />
+          <strong>Email:</strong> info@flourishrestaurant.com<br />
           <strong>Address:</strong> 123 Flourish Drive
         </p>
       </div>
 
       <div class="contact-form">
         <form action="contactResponse.html" method="post">
-          <label for="first-name">First Name:<div class="asterisk">*</div></label>
+          <label for="first-name"
+            >First Name:
+            <div class="asterisk">*</div></label
+          >
           <input
             class="form-control"
-            oninvalid="this.setCustomValidity('Please enter a first name')" 
-            oninput="setCustomValidity('')"
             type="text"
             id="firstNameInput"
-            required
+            
             placeholder="John"
           />
 
-          <label for="last-name">Last Name:<div class="asterisk">*</div></label>
+          <label for="last-name"
+            >Last Name:
+            <div class="asterisk">*</div></label
+          >
           <input
             class="form-control"
-            oninvalid="this.setCustomValidity('Please enter a last name')" 
-            oninput="setCustomValidity('')"
             type="text"
             id="lastNameInput"
-            required
+            
             placeholder="Doe"
           />
 
-          <label for="email-address">Email Address:<div class="asterisk">*</div></label>
+          <label for="email-address"
+            >Email Address:
+            <div class="asterisk">*</div></label
+          >
           <input
             class="form-control"
-            oninvalid="this.setCustomValidity('Please enter a valid email address')" 
-            oninput="setCustomValidity('')"
             type="email"
             id="emailInput"
-            required
+            
             placeholder="johndoe@example.com"
           />
 
-          <label>Phone Number:<div class="asterisk">*</div></label>
+          <label
+            >Phone Number:
+            <div class="asterisk">*</div></label
+          >
           <input
             class="form-control"
-            oninvalid="this.setCustomValidity('Please enter a valid phone number')" 
-            oninput="setCustomValidity('')"
             type="tel"
             id="phoneInput"
-            required
+            
             placeholder="(123)-456-7890"
           />
           <p class="asterisk">* denotes required.</p>
-          <button type="submit" id="submit">Submit</button>
+          <button type="submit" id="submit" onclick="validateContactInfo()">
+            Submit
+          </button>
         </form>
       </div>
     </div>

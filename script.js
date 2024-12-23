@@ -50,34 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-/*function createFAQResponses(response, responseID, containerID) {
-  let FAQResponse;
-  const container = document.getElementById(containerID);
-  FAQResponse = document.createElement("h3");
-  FAQResponse.innerHTML = response;
-  FAQResponse.className = "faqresponse";
-  FAQResponse.id = responseID;
-  if (container) {
-    container.appendChild(FAQResponse);
-  } else {
-    console.error("Cannot find it");
-  }
-}
 
-function deleteFAQResponses(container, child) {
-  container.removeChild(child);
-}
-
-function toggleFAQResponses(response, responseID, containerID) {
-  let child = document.getElementById(responseID);
-  let container = document.getElementById(containerID);
-  if (child) {
-    deleteFAQResponses(container, child);
-  } else {
-    createFAQResponses(response, responseID, containerID);
-  }
-  
-}*/
 
 function loadFooter(url) {
   const footer = document.getElementById("footer");
@@ -89,13 +62,14 @@ function loadFooter(url) {
     });
 }
 
-function setMinimumDate() { 
-  const date = new Date(); 
+function setMinimumDate() {
+  const date = new Date();
   const year = String(date.getFullYear());
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   const minimumDate = `${year}-${month}-${day}`;
   console.log(minimumDate);
   const dateInput = document.getElementById("dateInput");
-  dateInput.setAttribute("min", minimumDate); 
+  dateInput.setAttribute("min", minimumDate);
 }
+
