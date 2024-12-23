@@ -792,14 +792,18 @@ button[type="submit"]:hover:before {
 }
 
 .error-message {
-  color: #d63031;
+  color: #32372b;
   font-size: 14px;
   margin-top: 5px;
   font-family: "Bodoni Moda", serif;
+  background-color: rgba(196, 164, 132, 0.2);
+  padding: 8px 12px;
+  border-radius: 4px;
+  border-left: 3px solid #C4A484;
   animation: fadeIn 0.3s ease-in;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(-5px); }
   to { opacity: 1; transform: translateY(0); }
 }
