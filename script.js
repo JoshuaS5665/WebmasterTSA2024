@@ -62,6 +62,64 @@ function loadFooter(url) {
     });
 }
 
+function validateContactInfo() {
+  event.preventDefault();
+  const firstNameInput = document.getElementById("firstNameInput");
+  const lastNameInput = document.getElementById("lastNameInput");
+  const emailInput = document.getElementById("emailInput");
+  const phoneInput = document.getElementById("phoneInput");
+  let isValid = true;
+
+  if (!firstNameInput.value.trim()) {
+    showError(firstNameInput, 'Please enter your first name');
+    isValid = false;
+  } else {
+    hideError(firstNameInput);
+  }
+
+  if (!lastNameInput.value.trim()) {
+    showError(lastNameInput, 'Please enter your last name');
+    isValid = false;
+  } else {
+    hideError(lastNameInput);
+  }
+
+  if (!emailInput.value.trim()) {
+    showError(emailInput, 'Please enter your email');
+    isValid = false;
+  } else {
+    hideError(emailInput);
+  }
+
+  if (!phoneInput.value.trim()) {
+    showError(phoneInput, 'Please enter your phone number');
+    isValid = false;
+  } else {
+    hideError(phoneInput);
+  }
+
+  if (isValid) {
+    document.querySelector('form').submit();
+  }
+}
+
+function showError(input, message) {
+  const errorDiv = input.nextElementSibling;
+  if (!errorDiv || !errorDiv.classList.contains('error-message')) {
+    const div = document.createElement('div');
+    div.className = 'error-message';
+    div.textContent = message;
+    input.parentNode.insertBefore(div, input.nextSibling);
+  }
+}
+
+function hideError(input) {
+  const errorDiv = input.nextElementSibling;
+  if (errorDiv && errorDiv.classList.contains('error-message')) {
+    errorDiv.remove();
+  }
+}
+
 function setMinimumDate() {
   const date = new Date();
   const year = String(date.getFullYear());
