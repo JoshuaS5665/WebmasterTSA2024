@@ -796,10 +796,10 @@ button[type="submit"]:hover:before {
   font-size: 14px;
   margin-top: 5px;
   font-family: "Bodoni Moda", serif;
-  background-color: rgba(196, 164, 132, 0.2);
+  background-color: rgba(50, 55, 43, 0.2);
   padding: 8px 12px;
   border-radius: 4px;
-  border-left: 3px solid #C4A484;
+  border-left: 3px solid #32372b;
   animation: fadeIn 0.3s ease-in;
 }
 
