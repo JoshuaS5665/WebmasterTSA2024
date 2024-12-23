@@ -76,61 +76,56 @@
       </div>
 
       <div class="contact-form">
-        <form action="contactResponse.html" method="post" class="styled-form">
-          <div class="form-group">
-            <label for="first-name">
-              First Name
-              <div class="asterisk">*</div>
-            </label>
-            <input
-              class="form-control"
-              type="text"
-              id="firstNameInput"
-              placeholder="John"
-            />
-          </div>
+        <form action="contactResponse.html" method="post">
+          <label for="first-name"
+            >First Name:
+            <div class="asterisk">*</div></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            id="firstNameInput"
+            
+            placeholder="John"
+          />
 
-          <div class="form-group">
-            <label for="last-name">
-              Last Name
-              <div class="asterisk">*</div>
-            </label>
-            <input
-              class="form-control"
-              type="text"
-              id="lastNameInput"
-              placeholder="Doe"
-            />
-          </div>
+          <label for="last-name"
+            >Last Name:
+            <div class="asterisk">*</div></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            id="lastNameInput"
+            
+            placeholder="Doe"
+          />
 
-          <div class="form-group">
-            <label for="email-address">
-              Email Address
-              <div class="asterisk">*</div>
-            </label>
-            <input
-              class="form-control"
-              type="email"
-              id="emailInput"
-              placeholder="johndoe@example.com"
-            />
-          </div>
+          <label for="email-address"
+            >Email Address:
+            <div class="asterisk">*</div></label
+          >
+          <input
+            class="form-control"
+            type="email"
+            id="emailInput"
+            
+            placeholder="johndoe@example.com"
+          />
 
-          <div class="form-group">
-            <label>
-              Phone Number
-              <div class="asterisk">*</div>
-            </label>
-            <input
-              class="form-control"
-              type="tel"
-              id="phoneInput"
-              placeholder="(123)-456-7890"
-            />
-          </div>
-          
-          <p class="required-note">* denotes required field</p>
-          <button type="submit" id="submit" onclick="validateContactInfo()" class="submit-button">
+          <label
+            >Phone Number:
+            <div class="asterisk">*</div></label
+          >
+          <input
+            class="form-control"
+            type="tel"
+            id="phoneInput"
+            
+            placeholder="(123)-456-7890"
+          />
+          <p class="asterisk">* denotes required.</p>
+          <button type="submit" id="submit" onclick="validateContactInfo()">
             Submit
           </button>
         </form>
