@@ -832,7 +832,7 @@ button[type="submit"]:hover:before {
 
 .social-icons {
   display: flex;
-  gap: 15px;
+  gap: 8px;
   justify-content: center;
 }
 
