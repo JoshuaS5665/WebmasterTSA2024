@@ -804,6 +804,44 @@ button[type="submit"]:hover:before {
   background-color: #21251d;
 }
 
+.button-group[onclick="openJobInquiries()"] {
+  text-align: center;
+  padding: 8px 16px;
+  border: 2px solid white;
+  background-color: transparent;
+  color: white;
+  font-family: "Bodoni Moda", serif;
+  font-size: 16px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  cursor: pointer;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.button-group[onclick="openJobInquiries()"]:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.button-group[onclick="openJobInquiries()"]:hover {
+  color: #32372b;
+}
+
+.button-group[onclick="openJobInquiries()"]:hover:before {
+  left: 0;
+}
+
 .asterisk {
   display: inline;
   font-size: 14px;
