@@ -125,9 +125,17 @@
             placeholder="(123)-456-7890"
           />
           <p class="asterisk">* denotes required.</p>
-          <button type="submit" id="submit" onclick="validateContactInfo()">
-            Submit
-          </button>
+          <div class="form-buttons">
+            <button type="submit" id="submit" onclick="validateContactInfo()">
+              Submit
+            </button>
+            <button type="button" id="cancelBtn" onclick="window.location.href='../index.html'">
+              Cancel
+            </button>
+          </div>
+          <div id="thankYouMessage" style="display: none; text-align: center; margin-top: 20px;">
+            Thanks for submitting!
+          </div>
         </form>
       </div>
     </div>

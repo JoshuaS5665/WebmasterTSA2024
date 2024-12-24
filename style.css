@@ -672,6 +672,19 @@ button[type="submit"]:hover:before {
   }
 }
 
+.form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+#thankYouMessage {
+  font-family: "Bodoni Moda", serif;
+  font-size: 18px;
+  color: #32372b;
+}
+
 .text-section-1 {
   flex: 1;
   display: flex;

@@ -99,7 +99,16 @@ function validateContactInfo() {
   }
 
   if (isValid) {
-    window.location.href = 'contactResponse.html';
+    const form = document.querySelector('.contact-form form');
+    const thankYouMessage = document.getElementById('thankYouMessage');
+    const submitBtn = document.getElementById('submit');
+    const cancelBtn = document.getElementById('cancelBtn');
+    
+    form.style.opacity = '0.5';
+    form.style.pointerEvents = 'none';
+    thankYouMessage.style.display = 'block';
+    submitBtn.style.display = 'none';
+    cancelBtn.textContent = 'Exit';
   }
 }
 
