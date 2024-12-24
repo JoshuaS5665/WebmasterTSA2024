@@ -757,20 +757,6 @@ button[type="submit"]:hover:before {
   justify-content: space-between;
   flex-wrap: wrap;
   padding: 2rem;
-  flex-direction: column;
-}
-
-.footerTop {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2rem;
-}
-
-.footer > div:not(.footerTop) {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
 }
 
 .footer div {
