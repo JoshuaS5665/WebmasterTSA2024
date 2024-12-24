@@ -101,6 +101,7 @@ function validateContactInfo() {
     const thankYouMessage = document.getElementById('thankYouMessage');
     const submitBtn = document.getElementById('submit');
     const cancelBtn = document.getElementById('cancelBtn');
+    const inputs = document.querySelectorAll('.form-control');
     
     // Show thank you message
     thankYouMessage.style.display = 'block';
@@ -109,11 +110,16 @@ function validateContactInfo() {
     submitBtn.style.display = 'none';
     cancelBtn.textContent = 'Exit';
     
-    // Clear form inputs but keep form visible
-    firstNameInput.value = '';
-    lastNameInput.value = '';
-    emailInput.value = '';
-    phoneInput.value = '';
+    // Disable all inputs
+    inputs.forEach(input => {
+      input.disabled = true;
+      input.style.opacity = '0.6';
+    });
+
+    // Update cancel button behavior
+    cancelBtn.onclick = function() {
+      window.location.href = '../index.html';
+    };
   }
 }
 
