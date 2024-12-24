@@ -566,7 +566,8 @@ button[type="submit"] {
   overflow: hidden;
   z-index: 1;
   cursor: pointer;
-  margin-top: 20px;
+  margin: 20px auto;
+  display: block;
 }
 
 button[type="submit"]:before {
