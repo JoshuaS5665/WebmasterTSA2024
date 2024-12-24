@@ -63,7 +63,6 @@ function loadFooter(url) {
 }
 
 function validateContactInfo() {
-  event.preventDefault();
   const firstNameInput = document.getElementById("firstNameInput");
   const lastNameInput = document.getElementById("lastNameInput");
   const emailInput = document.getElementById("emailInput");
