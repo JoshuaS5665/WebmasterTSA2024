@@ -131,3 +131,10 @@ function setMinimumDate() {
   dateInput.setAttribute("min", minimumDate);
 }
 
+function openJobInquiries() {
+  document.getElementById("jobInquiryForm").style.display = "block";
+}
+
+function closeJobInquiries() {
+  document.getElementById("jobInquiryForm").style.display = "none";
+}

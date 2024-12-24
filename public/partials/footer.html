@@ -15,14 +15,15 @@
   </head>
   <body>
     <div class="footer">
-      <div style="width: 100%; text-align: center; margin-bottom: 2rem;">
+      <h1 class = "footerlogofooter" style="width: 100%; text-align: center; margin-bottom: 2rem;">
         <img src="/public/images/flourishLogo.png" alt="LOGO" width="250wh"/>
-      </div>
+      </h1>
       <div id="FooterLeft">
         <h2 style="font-family: Bodoni Moda, serif;">Contact</h2>
         <p style="font-family: Bodoni Moda, serif;">
           info@flourishrestaurant.com <br />
           (412)-510-4038
+          <button class="button-group" onclick="openJobInquiries()">Job Inquiries</button>
         </p>
       </div>
       <div id="footerLeft">
@@ -77,6 +78,37 @@
           </a>
         </div>
       </div>
+    </div>
+    <div class = "form-popup" id="jobInquiryForm">
+      <form action="action_page.php" class="form-container">
+        <h1>Contact us for job opportunities!</h1>
+        <label for="email-address"
+          >Email Address:
+          <div class="asterisk">*</div></label
+        >
+        <input
+          class="form-control"
+          type="email"
+          id="emailInput"
+
+          placeholder="johndoe@example.com"
+        />
+
+        <label
+          >Phone Number:
+          <div class="asterisk">*</div></label
+        >
+        <input
+          class="form-control"
+          type="tel"
+          id="phoneInput"
+
+          placeholder="(123)-456-7890"
+        />
+        <button type="submit" id="submit" onclick="validateContactInfo()">
+          Submit
+        </button>
+        <button type="button" class="btn cancel" onclick="closeJobInquiries()"></button>
     </div>
   </body>
 </html>
