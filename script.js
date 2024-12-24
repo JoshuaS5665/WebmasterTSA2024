@@ -29,8 +29,8 @@ function changeImages(beginning) {
         x = 0;
       }
       homeImage.classList.remove("fade-out");
-    }, 1000);
-  }, 4000);
+    }, 2000);
+  }, 6000);
 }
 
 document.addEventListener("DOMContentLoaded", function () {
