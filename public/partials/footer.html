@@ -83,8 +83,8 @@ style = "align-items: center" onclick="openJobInquiries()">Job Inquiries</button
     </div>
     <div class = "form-popup" id="jobInquiryForm">
       <form action="../../index.html" class="form-container" method="post">
-        <h1>Contact us for job opportunities!</h1>
-        <label for="email-address"
+        <h1 style = "font-family: Bodoni Moda, serif; text-align: center">Contact us for job opportunities!</h1>
+        <label style = "font-family: Bodoni Moda, serif" for="email-address"
           >Email Address:
           <div class="asterisk">*</div></label
         >
@@ -96,7 +96,7 @@ style = "align-items: center" onclick="openJobInquiries()">Job Inquiries</button
           placeholder="johndoe@example.com"
         />
 
-        <label
+        <label style = "font-family: Bodoni Moda, serif" for="phone-number"
           >Phone Number:
           <div class="asterisk">*</div></label
         >
@@ -107,7 +107,7 @@ style = "align-items: center" onclick="openJobInquiries()">Job Inquiries</button
 
           placeholder="(123)-456-7890"
         />
-        <p class="asterisk">* denotes required.</p>
+        <p class="asterisk">* denotes required.</p> <br/>
         <button type="submit" id="submit" onclick="validateJobInquiry()">
           Submit
         </button>
