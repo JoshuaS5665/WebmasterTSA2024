@@ -98,16 +98,22 @@ function validateContactInfo() {
   }
 
   if (isValid) {
-    const form = document.querySelector('.contact-form form');
     const thankYouMessage = document.getElementById('thankYouMessage');
     const submitBtn = document.getElementById('submit');
     const cancelBtn = document.getElementById('cancelBtn');
     
-    form.style.opacity = '0.5';
-    form.style.pointerEvents = 'none';
+    // Show thank you message
     thankYouMessage.style.display = 'block';
+    
+    // Update button states
     submitBtn.style.display = 'none';
     cancelBtn.textContent = 'Exit';
+    
+    // Clear form inputs but keep form visible
+    firstNameInput.value = '';
+    lastNameInput.value = '';
+    emailInput.value = '';
+    phoneInput.value = '';
   }
 }
 
