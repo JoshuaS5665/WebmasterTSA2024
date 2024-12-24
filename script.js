@@ -141,6 +141,8 @@ function validateJobInquiry() {
   }
 
   if (isValid) {
+    emailInput.value = '';
+    phoneInput.value = '';
     closeJobInquiries();
     window.location.href = 'index.html';
   }
@@ -163,5 +165,10 @@ function openJobInquiries() {
 }
 
 function closeJobInquiries() {
-  document.getElementById("jobInquiryForm").style.display = "none";
+  const form = document.getElementById("jobInquiryForm");
+  const emailInput = document.getElementById("emailInput");
+  const phoneInput = document.getElementById("phoneInput");
+  emailInput.value = '';
+  phoneInput.value = '';
+  form.style.display = "none";
 }
