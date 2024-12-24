@@ -905,7 +905,7 @@ button[type="submit"]:hover:before {
   left: 50%;
   transform: translate(-50%, -50%);
   border: 3px solid #32372b;
-  z-index: 9;
+  z-index: 10000;
   transition: opacity 0.5s ease, visibility 0.5s ease;
 }
 
