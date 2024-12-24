@@ -923,8 +923,8 @@ button[type="submit"]:hover:before {
 }
 
 .form-container {
-  max-width:300px;
-  padding: 10px;
+  max-width: 500px;
+  padding: 20px;
   background-color: white;
 }
 
