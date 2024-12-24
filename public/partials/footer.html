@@ -80,7 +80,7 @@
       </div>
     </div>
     <div class = "form-popup" id="jobInquiryForm">
-      <form action="action_page.php" class="form-container">
+      <form action="../../index.html" class="form-container" method="post">
         <h1>Contact us for job opportunities!</h1>
         <label for="email-address"
           >Email Address:
@@ -105,10 +105,11 @@
 
           placeholder="(123)-456-7890"
         />
+        <p class="asterisk">* denotes required.</p>
         <button type="submit" id="submit" onclick="validateContactInfo()">
           Submit
         </button>
-        <button type="button" class="btn cancel" onclick="closeJobInquiries()"></button>
+        <button type="button" class="btn cancel" onclick="closeJobInquiries()">Cancel</button>
     </div>
   </body>
 </html>
