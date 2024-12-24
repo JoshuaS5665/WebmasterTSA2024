@@ -120,6 +120,33 @@ function hideError(input) {
   }
 }
 
+function validateJobInquiry() {
+  event.preventDefault();
+  const emailInput = document.getElementById("emailInput");
+  const phoneInput = document.getElementById("phoneInput");
+  let isValid = true;
+
+  if (!emailInput.value.trim()) {
+    showError(emailInput, 'Please enter your email');
+    isValid = false;
+  } else {
+    hideError(emailInput);
+  }
+
+  if (!phoneInput.value.trim()) {
+    showError(phoneInput, 'Please enter your phone number');
+    isValid = false;
+  } else {
+    hideError(phoneInput);
+  }
+
+  if (isValid) {
+    closeJobInquiries();
+    window.location.href = 'index.html';
+  }
+}
+
+
 function setMinimumDate() {
   const date = new Date();
   const year = String(date.getFullYear());
