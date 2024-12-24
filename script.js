@@ -161,7 +161,8 @@ function setMinimumDate() {
 }
 
 function openJobInquiries() {
-  document.getElementById("jobInquiryForm").style.display = "block";
+  const form = document.getElementById("jobInquiryForm");
+  form.classList.add("visible");
 }
 
 function closeJobInquiries() {
@@ -170,5 +171,5 @@ function closeJobInquiries() {
   const phoneInput = document.getElementById("phoneInput");
   emailInput.value = '';
   phoneInput.value = '';
-  form.style.display = "none";
+  form.classList.remove("visible");
 }
