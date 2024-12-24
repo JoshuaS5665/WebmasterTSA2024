@@ -915,13 +915,10 @@ button[type="submit"]:hover:before {
 }
 
 .form-popup.visible ~ * {
-  filter: blur(5px);
-  transition: filter 0.5s ease;
   pointer-events: none;
 }
 
 .form-popup.visible ~ .form-popup {
-  filter: none;
   pointer-events: auto;
 }
 
