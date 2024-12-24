@@ -19,5 +19,5 @@ app.get("/winterMenu", (req, res) => {
 });
 
 app.use((req, res, next) => {
-  res.status(404).send("Page not found");
+  res.status(404).sendFile(__dirname + "/public/404/404.html");
 });
