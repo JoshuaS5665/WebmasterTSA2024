@@ -78,6 +78,10 @@ app.get("/reservation", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/reservation.html");
 });
 
+app.get("/reservation.html", (req, res) => {
+  res.redirect(301, "/reservation");
+});
+
 app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/public/404/404.html");
 });
