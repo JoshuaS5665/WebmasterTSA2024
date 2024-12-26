@@ -7,7 +7,7 @@
     <link href="../../style.css" rel="stylesheet" type="text/css" />
   </head>
   <body
-    onload='loadHead("../public/partials/head.html"), loadFooter("../public/partials/footer.html")'
+    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'
   >
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
@@ -85,7 +85,6 @@
             class="form-control"
             type="text"
             id="firstNameInput"
-            
             placeholder="John"
           />
 
@@ -97,7 +96,6 @@
             class="form-control"
             type="text"
             id="lastNameInput"
-            
             placeholder="Doe"
           />
 
@@ -109,7 +107,6 @@
             class="form-control"
             type="email"
             id="emailInput"
-            
             placeholder="johndoe@example.com"
           />
 
@@ -121,7 +118,6 @@
             class="form-control"
             type="tel"
             id="phoneInput"
-            
             placeholder="(123)-456-7890"
           />
           <p class="asterisk">* denotes required.</p>
@@ -129,11 +125,18 @@
             <button type="submit" id="submit" onclick="validateContactInfo()">
               Submit
             </button>
-            <button type="button" id="cancelBtn" onclick="window.location.href='../index.html'">
+            <button
+              type="button"
+              id="cancelBtn"
+              onclick="window.location.href='../index.html'"
+            >
               Cancel
             </button>
           </div>
-          <div id="thankYouMessage" style="display: none; text-align: center; margin-top: 20px;">
+          <div
+            id="thankYouMessage"
+            style="display: none; text-align: center; margin-top: 20px"
+          >
             Thanks for submitting!
           </div>
         </form>

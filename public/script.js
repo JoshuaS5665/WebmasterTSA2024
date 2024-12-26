@@ -19,13 +19,13 @@ function changeImages(beginning) {
     setTimeout(() => {
       homeImage.classList.add("fade-out");
       if (x == 0) {
-        homeImage.src = `${beginning}public/images/homeImage1.jpg`;
+        homeImage.src = `${beginning}images/homeImage1.jpg`;
         x++;
       } else if (x == 1) {
-        homeImage.src = `${beginning}public/images/homeImage2.jpg`;
+        homeImage.src = `${beginning}images/homeImage2.jpg`;
         x++;
       } else {
-        homeImage.src = `${beginning}public/images/homeImage3.jpg`;
+        homeImage.src = `${beginning}images/homeImage3.jpg`;
         x = 0;
       }
       homeImage.classList.remove("fade-out");
@@ -50,8 +50,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
-
 function loadFooter(url) {
   const footer = document.getElementById("footer");
   fetch(url)
@@ -70,64 +68,64 @@ function validateContactInfo() {
   let isValid = true;
 
   if (!firstNameInput.value.trim()) {
-    showError(firstNameInput, 'Please enter your first name');
+    showError(firstNameInput, "Please enter your first name");
     isValid = false;
   } else {
     hideError(firstNameInput);
   }
 
   if (!lastNameInput.value.trim()) {
-    showError(lastNameInput, 'Please enter your last name');
+    showError(lastNameInput, "Please enter your last name");
     isValid = false;
   } else {
     hideError(lastNameInput);
   }
 
   if (!emailInput.value.trim()) {
-    showError(emailInput, 'Please enter your email');
+    showError(emailInput, "Please enter your email");
     isValid = false;
   } else {
     hideError(emailInput);
   }
 
   if (!phoneInput.value.trim()) {
-    showError(phoneInput, 'Please enter your phone number');
+    showError(phoneInput, "Please enter your phone number");
     isValid = false;
   } else {
     hideError(phoneInput);
   }
 
   if (isValid) {
-    const thankYouMessage = document.getElementById('thankYouMessage');
-    const submitBtn = document.getElementById('submit');
-    const cancelBtn = document.getElementById('cancelBtn');
-    const inputs = document.querySelectorAll('.form-control');
-    
+    const thankYouMessage = document.getElementById("thankYouMessage");
+    const submitBtn = document.getElementById("submit");
+    const cancelBtn = document.getElementById("cancelBtn");
+    const inputs = document.querySelectorAll(".form-control");
+
     // Show thank you message
-    thankYouMessage.style.display = 'block';
-    
+    thankYouMessage.style.display = "block";
+
     // Update button states
-    submitBtn.style.display = 'none';
-    cancelBtn.textContent = 'Exit';
-    
+    submitBtn.style.display = "none";
+    cancelBtn.textContent = "Exit";
+
     // Disable all inputs
-    inputs.forEach(input => {
+    inputs.forEach((input) => {
       input.disabled = true;
-      input.style.opacity = '0.6';
+      input.style.opacity = "0.6";
     });
 
     // Update cancel button behavior
-    cancelBtn.onclick = function() {
-      window.location.href = '../index.html';
+    cancelBtn.onclick = function () {
+      window.location.href = "../index.html";
     };
   }
 }
 
 function showError(input, message) {
   const errorDiv = input.nextElementSibling;
-  if (!errorDiv || !errorDiv.classList.contains('error-message')) {
-    const div = document.createElement('div');
-    div.className = 'error-message';
+  if (!errorDiv || !errorDiv.classList.contains("error-message")) {
+    const div = document.createElement("div");
+    div.className = "error-message";
     div.textContent = message;
     input.parentNode.insertBefore(div, input.nextSibling);
   }
@@ -135,7 +133,7 @@ function showError(input, message) {
 
 function hideError(input) {
   const errorDiv = input.nextElementSibling;
-  if (errorDiv && errorDiv.classList.contains('error-message')) {
+  if (errorDiv && errorDiv.classList.contains("error-message")) {
     errorDiv.remove();
   }
 }
@@ -147,27 +145,26 @@ function validateJobInquiry() {
   let isValid = true;
 
   if (!emailInput.value.trim()) {
-    showError(emailInput, 'Please enter your email');
+    showError(emailInput, "Please enter your email");
     isValid = false;
   } else {
     hideError(emailInput);
   }
 
   if (!phoneInput.value.trim()) {
-    showError(phoneInput, 'Please enter your phone number');
+    showError(phoneInput, "Please enter your phone number");
     isValid = false;
   } else {
     hideError(phoneInput);
   }
 
   if (isValid) {
-    emailInput.value = '';
-    phoneInput.value = '';
+    emailInput.value = "";
+    phoneInput.value = "";
     closeJobInquiries();
-    window.location.href = 'index.html';
+    window.location.href = "index.html";
   }
 }
-
 
 function setMinimumDate() {
   const date = new Date();
@@ -189,7 +186,7 @@ function closeJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
-  emailInput.value = '';
-  phoneInput.value = '';
+  emailInput.value = "";
+  phoneInput.value = "";
   form.classList.remove("visible");
 }
