@@ -42,11 +42,7 @@
         <br />
         <label>What date is the reservation?<div class="asterisk">*</div></label>
         <select id="dateInput" novalidate></select>
-        <br />
-        <label for="timeSelect">What time is the reservation?<div class="asterisk">*</div></label>
-        <select name="timeSelect" id="timeSelect" disabled novalidate>
-          <option value="">Select a date first</option>
-        </select>
+        
         <p class="asterisk">* denotes required.</p>
         <button type="submit">Submit</button>
       </form>
@@ -57,46 +53,7 @@
       const timeSelect = document.getElementById('timeSelect');
       const dateInput = document.getElementById('dateInput');
 
-      function updateTimeDropdown() {
-        timeSelect.innerHTML = '';
-        
-        if (!dateInput.value) {
-          timeSelect.disabled = true;
-          timeSelect.innerHTML = '<option value="">Select a date first</option>';
-          return;
-        }
-
-        const date = new Date(dateInput.value);
-        const day = date.getDay();
-        
-        if (day === 1) {
-          timeSelect.disabled = true;
-          timeSelect.innerHTML = '<option value="">Closed on Mondays</option>';
-          return;
-        }
-
-        timeSelect.disabled = false;
-        const opening = 15;
-        const closing = (day >= 2 && day <= 4) ? 21.5 : 22.5;
-
-        let currentHour = opening;
-        while (currentHour < closing) {
-          const hour = Math.floor(currentHour);
-          const isHalfHour = currentHour % 1 !== 0;
-          let minute = isHalfHour ? 30 : 0;
-          
-          while (minute < 60) {
-            if (hour >= Math.floor(closing) && minute >= (closing % 1) * 60) break;
-            const ampm = hour >= 12 ? 'PM' : 'AM';
-            const displayHour = hour % 12 || 12;
-            const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
-            const option = new Option(timeString, timeString);
-            timeSelect.add(option);
-            minute += 5;
-          }
-          currentHour = minute >= 60 ? hour + 1 : hour + 0.5;
-        }
-      }
+      
 
       function validateReservation(event) {
         event.preventDefault();
@@ -119,12 +76,7 @@
           hideError(dateInput);
         }
 
-        if (!timeSelect.value) {
-          showError(timeSelect, 'Please select a time');
-          isValid = false;
-        } else {
-          hideError(timeSelect);
-        }
+        
 
         if (isValid) {
           window.location.href = 'reservation2.html';
