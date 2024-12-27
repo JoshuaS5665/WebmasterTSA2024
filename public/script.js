@@ -162,22 +162,22 @@ function validateJobInquiry() {
 }
 
 function setMinimumDate() {
-  const date = new Date();
   const dateInput = document.getElementById("dateInput");
-  dateInput.valueAsDate = date;
-  
-  dateInput.addEventListener('change', function() {
-    const selectedDate = new Date(this.value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    
-    if (selectedDate < today) {
-      showError(dateInput, 'Please select today or a future date');
-      this.value = '';
-    } else {
-      hideError(dateInput);
-    }
-  });
+  if (!dateInput.hasListener) {
+    dateInput.addEventListener('change', function() {
+      const selectedDate = new Date(this.value);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      
+      if (selectedDate < today) {
+        showError(dateInput, 'Please select today or a future date');
+        this.value = '';
+      } else {
+        hideError(dateInput);
+      }
+    });
+    dateInput.hasListener = true;
+  }
 }
 
 function openJobInquiries() {
