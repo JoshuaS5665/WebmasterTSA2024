@@ -66,21 +66,52 @@
         />
         <br />
         <label for="timeSelect">What time is the reservation?</label>
-        <select name="timeSelect" id="timeSelect" required>
-          <script>
-            const timeSelect = document.getElementById('timeSelect');
-            const opening = 9; // 9 AM
-            const closing = 21; // 9 PM
+        <select name="timeSelect" id="timeSelect" required disabled>
+          <option value="">Select a date first</option>
+        </select>
+        <script>
+          const timeSelect = document.getElementById('timeSelect');
+          const dateInput = document.getElementById('dateInput');
+
+          function updateTimeDropdown() {
+            timeSelect.innerHTML = ''; // Clear existing options
             
-            for(let hour = opening; hour <= closing; hour++) {
-              for(let minute = 0; minute < 60; minute += 5) {
-                const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+            if (!dateInput.value) {
+              timeSelect.disabled = true;
+              timeSelect.innerHTML = '<option value="">Select a date first</option>';
+              return;
+            }
+
+            const date = new Date(dateInput.value);
+            const day = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            
+            if (day === 1) { // Monday
+              timeSelect.disabled = true;
+              timeSelect.innerHTML = '<option value="">Closed on Mondays</option>';
+              return;
+            }
+
+            timeSelect.disabled = false;
+            const opening = 15; // 3 PM
+            const closing = (day >= 2 && day <= 4) ? 21.5 : 22.5; // 9:30 PM or 10:30 PM
+
+            for (let hour = opening; hour < closing; hour++) {
+              const isHalfHour = hour % 1 !== 0;
+              const fullHour = Math.floor(hour);
+              const minutes = isHalfHour ? 30 : 0;
+              
+              for (let minute = minutes; minute < 60; minute += 5) {
+                if (hour >= closing) break;
+                const timeString = `${fullHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
                 const option = new Option(timeString, timeString);
                 timeSelect.add(option);
               }
             }
-          </script>
-        </select>
+          }
+
+          dateInput.addEventListener('change', updateTimeDropdown);
+          updateTimeDropdown(); // Initial call
+        </script>
         <button type="submit">Submit</button>
       </form>
     </div>
