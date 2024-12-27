@@ -65,6 +65,7 @@ function validateContactInfo() {
   const lastNameInput = document.getElementById("lastNameInput");
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
+  const contactForm = document.querySelector(".contact-form");
   let isValid = true;
 
   if (!firstNameInput.value.trim()) {
@@ -96,28 +97,19 @@ function validateContactInfo() {
   }
 
   if (isValid) {
-    const thankYouMessage = document.getElementById("thankYouMessage");
-    const submitBtn = document.getElementById("submit");
-    const cancelBtn = document.getElementById("cancelBtn");
-    const inputs = document.querySelectorAll(".form-control");
+    // Replace form with thank you message
+    const thankYouContent = `
+      <div style="text-align: center; padding: 40px;">
+        <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
+        <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Your message has been received. We will contact you soon.</p>
+      </div>
+    `;
+    contactForm.innerHTML = thankYouContent;
 
-    // Show thank you message
-    thankYouMessage.style.display = "block";
-
-    // Update button states
-    submitBtn.style.display = "none";
-    cancelBtn.textContent = "Exit";
-
-    // Disable all inputs
-    inputs.forEach((input) => {
-      input.disabled = true;
-      input.style.opacity = "0.6";
-    });
-
-    // Update cancel button behavior
-    cancelBtn.onclick = function () {
-      window.location.href = "../index.html";
-    };
+    // Redirect after 2 seconds
+    setTimeout(() => {
+      window.location.href = "/";
+    }, 2000);
   }
 }
 
