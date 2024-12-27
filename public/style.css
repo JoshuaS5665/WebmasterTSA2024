@@ -785,7 +785,7 @@ button[type="submit"]:hover:before {
     text-align: center;
     padding: 1rem;
   }
-  
+
   .footer div {
     width: 100%;
     margin: 1rem 0;
@@ -1004,4 +1004,57 @@ button[type="submit"]:hover:before {
 
 .btn.cancel:hover:before {
   left: 0;
+}
+
+.reservationForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  font-family: "Bodoni Moda", serif;
+}
+
+.reservationForm form {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+}
+
+.reservationForm label {
+  display: block;
+  margin: 20px 0 10px;
+  font-size: 18px;
+  color: #32372b;
+}
+
+.reservationForm select,
+.reservationForm input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Bodoni Moda", serif;
+}
+
+.reservationForm button {
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  color: #32372b;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-size: 18px;
+  font-family: "Bodoni Moda", serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reservationForm button:hover {
+  background-color: #32372b;
+  color: white;
 }
