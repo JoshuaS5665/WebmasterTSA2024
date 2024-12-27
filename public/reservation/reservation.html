@@ -103,7 +103,9 @@
               
               while (minute < 60) {
                 if (hour >= Math.floor(closing) && minute >= (closing % 1) * 60) break;
-                const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                const ampm = hour >= 12 ? 'PM' : 'AM';
+                const displayHour = hour % 12 || 12;
+                const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
                 const option = new Option(timeString, timeString);
                 timeSelect.add(option);
                 minute += 5;
