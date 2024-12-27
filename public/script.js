@@ -111,26 +111,7 @@ function validateContactInfo() {
 }
 
 function resetContactForm() {
-  const contactForm = document.querySelector('.contact-form');
-  contactForm.innerHTML = `
-    <form onsubmit="return false">
-      <label for="first-name">First Name:<div class="asterisk">*</div></label>
-      <input class="form-control" type="text" id="firstNameInput" placeholder="John" />
-      <label for="last-name">Last Name:<div class="asterisk">*</div></label>
-      <input class="form-control" type="text" id="lastNameInput" placeholder="Doe" />
-      <label for="email-address">Email Address:<div class="asterisk">*</div></label>
-      <input class="form-control" type="email" id="emailInput" placeholder="johndoe@example.com" />
-      <label>Phone Number:<div class="asterisk">*</div></label>
-      <input class="form-control" type="tel" id="phoneInput" placeholder="(123)-456-7890" />
-      <p class="asterisk">* denotes required.</p>
-      <div class="form-buttons">
-        <button type="submit" id="submit" onclick="validateContactInfo()">Submit</button>
-      </div>
-      <div id="thankYouMessage" style="display: none; text-align: center; margin-top: 20px">
-        Thanks for submitting!
-      </div>
-    </form>
-  `;
+  window.location.href = '/contact/contact.html';
 }
 
 function showError(input, message) {
