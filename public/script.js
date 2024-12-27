@@ -102,14 +102,10 @@ function validateContactInfo() {
       <div style="text-align: center; padding: 40px;">
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Your message has been received. We will contact you soon.</p>
+        <a href="/" style="display: inline-block; margin-top: 20px; font-family: 'Bodoni Moda', serif;">Return to Home</a>
       </div>
     `;
     contactForm.innerHTML = thankYouContent;
-
-    // Redirect after 2 seconds
-    setTimeout(() => {
-      window.location.href = "/";
-    }, 2000);
   }
 }
 
