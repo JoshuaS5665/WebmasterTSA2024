@@ -110,9 +110,7 @@ function validateContactInfo() {
   }
 }
 
-function resetContactForm() {
-  window.location.href = '/contact/contact.html';
-}
+
 
 function showError(input, message) {
   const errorDiv = input.nextElementSibling;
@@ -153,20 +151,13 @@ function validateJobInquiry() {
   }
 
   if (isValid) {
-    // Replace form content with thank you message
-    const thankYouContent = `
+    formContainer.innerHTML = `
       <div style="text-align: center; padding: 40px; position: relative;">
         <span class="close-btn" onclick="closeJobInquiries()">&times;</span>
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Thank you for your interest! We will contact you soon.</p>
       </div>
     `;
-    formContainer.innerHTML = thankYouContent;
-    
-    // After 2 seconds, close the form
-    setTimeout(() => {
-      closeJobInquiries();
-    }, 2000);
   }
 }
 
