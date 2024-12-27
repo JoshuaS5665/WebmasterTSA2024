@@ -56,8 +56,22 @@
           required
         />
         <br />
-        <label>What time is the reservation?</label>
-        <input type="time" step="300" min="9:00" max="21:00" required />
+        <label for="timeSelect">What time is the reservation?</label>
+        <select name="timeSelect" id="timeSelect" required>
+          <script>
+            const timeSelect = document.getElementById('timeSelect');
+            const opening = 9; // 9 AM
+            const closing = 21; // 9 PM
+            
+            for(let hour = opening; hour <= closing; hour++) {
+              for(let minute = 0; minute < 60; minute += 5) {
+                const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                const option = new Option(timeString, timeString);
+                timeSelect.add(option);
+              }
+            }
+          </script>
+        </select>
         <button type="submit">Submit</button>
       </form>
     </div>
