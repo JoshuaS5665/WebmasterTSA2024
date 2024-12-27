@@ -70,6 +70,7 @@ function validateContactInfo() {
   const lastNameInput = document.getElementById("lastNameInput");
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
+  const dateInput = document.getElementById("dateInput");
   const contactForm = document.querySelector(".contact-form");
   let isValid = true;
 
@@ -103,6 +104,23 @@ function validateContactInfo() {
   } else {
     hideError(phoneInput);
   }
+
+  if (!dateInput.value) {
+    showError(dateInput, 'Please select a date');
+    isValid = false;
+  } else {
+    const selectedDate = new Date(dateInput.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate < today) {
+      showError(dateInput, 'Please select today or a future date');
+      isValid = false;
+    } else {
+      hideError(dateInput);
+    }
+  }
+
 
   if (isValid) {
     // Replace form with thank you message
@@ -176,20 +194,7 @@ function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
   if (!dateInput.hasListener) {
     dateInput.addEventListener('input', function() {
-      if (!this.value) {
-        showError(dateInput, 'Please select a date');
-      } else {
-        const selectedDate = new Date(this.value);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-        
-        if (selectedDate < today) {
-          showError(dateInput, 'Please select today or a future date');
-          this.value = '';
-        } else {
-          hideError(dateInput);
-        }
-      }
+      // Removed date validation here, it's now handled in validateContactInfo
     });
     dateInput.hasListener = true;
   }
