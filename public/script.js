@@ -100,7 +100,7 @@ function validateContactInfo() {
     // Replace form with thank you message
     const thankYouContent = `
       <div style="text-align: center; padding: 40px; position: relative;">
-        <span class="close-btn" onclick="closeThankYou()">&times;</span>
+        <span class="close-btn" onclick="resetContactForm()">&times;</span>
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Your message has been received. We will contact you soon.</p>
         <a href="/" style="display: inline-block; margin-top: 20px; font-family: 'Bodoni Moda', serif;">Return to Home</a>
@@ -110,8 +110,27 @@ function validateContactInfo() {
   }
 }
 
-function closeThankYou() {
-  window.location.href = '/contact/contact.html';
+function resetContactForm() {
+  const contactForm = document.querySelector('.contact-form');
+  contactForm.innerHTML = `
+    <form onsubmit="return false">
+      <label for="first-name">First Name:<div class="asterisk">*</div></label>
+      <input class="form-control" type="text" id="firstNameInput" placeholder="John" />
+      <label for="last-name">Last Name:<div class="asterisk">*</div></label>
+      <input class="form-control" type="text" id="lastNameInput" placeholder="Doe" />
+      <label for="email-address">Email Address:<div class="asterisk">*</div></label>
+      <input class="form-control" type="email" id="emailInput" placeholder="johndoe@example.com" />
+      <label>Phone Number:<div class="asterisk">*</div></label>
+      <input class="form-control" type="tel" id="phoneInput" placeholder="(123)-456-7890" />
+      <p class="asterisk">* denotes required.</p>
+      <div class="form-buttons">
+        <button type="submit" id="submit" onclick="validateContactInfo()">Submit</button>
+      </div>
+      <div id="thankYouMessage" style="display: none; text-align: center; margin-top: 20px">
+        Thanks for submitting!
+      </div>
+    </form>
+  `;
 }
 
 function showError(input, message) {
