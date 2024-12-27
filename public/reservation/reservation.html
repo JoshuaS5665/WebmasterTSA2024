@@ -95,17 +95,20 @@
             const opening = 15; // 3 PM
             const closing = (day >= 2 && day <= 4) ? 21.5 : 22.5; // 9:30 PM or 10:30 PM
 
-            for (let hour = opening; hour < closing; hour++) {
-              const isHalfHour = hour % 1 !== 0;
-              const fullHour = Math.floor(hour);
-              const minutes = isHalfHour ? 30 : 0;
+            let currentHour = opening;
+            while (currentHour < closing) {
+              const hour = Math.floor(currentHour);
+              const isHalfHour = currentHour % 1 !== 0;
+              let minute = isHalfHour ? 30 : 0;
               
-              for (let minute = minutes; minute < 60; minute += 5) {
-                if (hour >= closing) break;
-                const timeString = `${fullHour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+              while (minute < 60) {
+                if (hour >= Math.floor(closing) && minute >= (closing % 1) * 60) break;
+                const timeString = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
                 const option = new Option(timeString, timeString);
                 timeSelect.add(option);
+                minute += 5;
               }
+              currentHour = minute >= 60 ? hour + 1 : hour + 0.5;
             }
           }
 
