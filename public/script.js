@@ -100,7 +100,7 @@ function validateContactInfo() {
     // Replace form with thank you message
     const thankYouContent = `
       <div style="text-align: center; padding: 40px; position: relative;">
-        <span class="close-btn" onclick="location.reload()">&times;</span>
+        <span class="close-btn" onclick="closeThankYou()">&times;</span>
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Your message has been received. We will contact you soon.</p>
         <a href="/" style="display: inline-block; margin-top: 20px; font-family: 'Bodoni Moda', serif;">Return to Home</a>
@@ -108,6 +108,10 @@ function validateContactInfo() {
     `;
     contactForm.innerHTML = thankYouContent;
   }
+}
+
+function closeThankYou() {
+  window.location.href = '/contact/contact.html';
 }
 
 function showError(input, message) {
