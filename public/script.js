@@ -100,6 +100,7 @@ function validateContactInfo() {
     // Replace form with thank you message
     const thankYouContent = `
       <div style="text-align: center; padding: 40px; position: relative;">
+        <span class="close-btn" onclick="resetContactForm()">&times;</span>
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Your message has been received. We will contact you soon.</p>
         <a href="/" style="display: inline-block; margin-top: 20px; font-family: 'Bodoni Moda', serif;">Return to Home</a>
@@ -178,20 +179,9 @@ function openJobInquiries() {
 
 function closeJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
+  const emailInput = document.getElementById("emailInput");
+  const phoneInput = document.getElementById("phoneInput");
+  emailInput.value = "";
+  phoneInput.value = "";
   form.classList.remove("visible");
-  const formContainer = form.querySelector(".form-container");
-  formContainer.innerHTML = `
-    <span class="close-btn" onclick="closeJobInquiries()">&times;</span>
-    <h1 style="font-family: Bodoni Moda, serif; text-align: center">We're always hiring!</h1>
-    <h2 style="font-family: Bodoni Moda, serif; text-align: center">Contact us for job opportunities!</h2>
-    <label style="font-family: Bodoni Moda, serif" for="email-address">Email Address:<div class="asterisk">*</div></label>
-    <input class="form-control" type="email" id="emailInput" placeholder="johndoe@example.com"/>
-    <br/>
-    <label style="font-family: Bodoni Moda, serif" for="phone-number">Phone Number:<div class="asterisk">*</div></label>
-    <input class="form-control" type="tel" id="phoneInput" placeholder="(123)-456-7890"/>
-    <br/>
-    <p class="asterisk">* denotes required.</p><br/>
-    <button type="submit" id="submit" onclick="validateJobInquiry()">Submit</button>
-    <button type="button" class="btn cancel" onclick="closeJobInquiries()">Cancel</button>
-  `;
 }

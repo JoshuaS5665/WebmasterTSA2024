@@ -1,0 +1,66 @@
+<!--
+  Hit RUN to see this project in action!
+
+  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
+-->
+<!-- Challenge: Design a website for a vegan/vegetarian restaurant. Showcase the restaurant’s approach (such as farm-to-table, preparation processes, and sustainability) to the food served in the restaurant. -->
+
+<!doctype html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flourish | Reservations</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body
+    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'
+  >
+    <script type="text/javascript" src="../script.js"></script>
+    <div id="header"></div>
+
+    <div class="reservationForm">
+      <form style="margin: 100px">
+        <label for="numberPeople">How many people is the party?</label>
+        <select name="numberPeople" id="numberPeople">
+          <option value="onePerson">1 Person</option>
+          <option value="twoPersons">2 People</option>
+          <option value="threePersons">3 People</option>
+          <option value="fourPersons">4 People</option>
+          <option value="fivePersons">5 People</option>
+          <option value="sixPersons">6 People</option>
+          <option value="sevenPersons">7 People</option>
+          <option value="eightPersons">8 People</option>
+          <option value="ninePersons">9 People</option>
+          <option value="tenPersons">10 People</option>
+          <option value="elevenPersons">11 People</option>
+          <option value="twelvePersons">12 People</option>
+          <option value="thirteenPersons">13 People</option>
+          <option value="fourteenPersons">14 People</option>
+          <option value="fifteenPersons">15 People</option>
+        </select>
+        <br />
+        <label>What date is the reservation?</label>
+        <input
+          id="dateInput"
+          onclick="setMinimumDate()"
+          type="date"
+          min=" "
+          required
+        />
+        <br />
+        <label>What time is the reservation?</label>
+        <input type="time" step="300" min="9:00" max="21:00" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+    <div id="footer" style="margin-bottom: 10%"></div>
+  </body>
+</html>
