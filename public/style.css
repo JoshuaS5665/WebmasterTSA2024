@@ -927,6 +927,20 @@ button[type="submit"]:hover:before {
   visibility: visible;
 }
 
+.close-btn {
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #32372b;
+}
+
+.close-btn:hover {
+  color: #666;
+}
+
 .form-popup.visible ~ * {
   pointer-events: none;
 }
