@@ -207,9 +207,9 @@ function openJobInquiries() {
 
 function closeJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
-  const emailInput = document.getElementById("emailInput");
-  const phoneInput = document.getElementById("phoneInput");
-  emailInput.value = "";
-  phoneInput.value = "";
+  const emailInput = document.getElementById("jobEmailInput");
+  const phoneInput = document.getElementById("jobPhoneInput");
+  if (emailInput) emailInput.value = "";
+  if (phoneInput) phoneInput.value = "";
   form.classList.remove("visible");
 }
