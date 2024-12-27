@@ -157,8 +157,8 @@ function hideError(input) {
 
 function validateJobInquiry() {
   event.preventDefault();
-  const emailInput = document.getElementById("emailInput");
-  const phoneInput = document.getElementById("phoneInput");
+  const emailInput = document.getElementById("jobEmailInput");
+  const phoneInput = document.getElementById("jobPhoneInput");
   const formContainer = document.querySelector(".form-container");
   let isValid = true;
 
