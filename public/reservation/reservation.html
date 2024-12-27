@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
   <head>
@@ -42,7 +41,7 @@
         </select>
         <br />
         <label>What date is the reservation?<div class="asterisk">*</div></label>
-        <input id="dateInput" onclick="setMinimumDate()" type="date" novalidate/>
+        <select id="dateInput" novalidate></select>
         <br />
         <label for="timeSelect">What time is the reservation?<div class="asterisk">*</div></label>
         <select name="timeSelect" id="timeSelect" disabled novalidate>
@@ -158,7 +157,29 @@
         element.style.borderColor = '#32372b';
       }
 
-      dateInput.addEventListener('change', updateTimeDropdown);
+      function populateDateDropdown() {
+        const dateInput = document.getElementById("dateInput");
+        const today = new Date();
+        const oneMonthFromNow = new Date();
+        oneMonthFromNow.setMonth(today.getMonth() + 1);
+        
+        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        
+        for (let d = new Date(today); d <= oneMonthFromNow; d.setDate(d.getDate() + 1)) {
+          if (d.getDay() !== 1) { // Skip Mondays
+            const option = document.createElement('option');
+            const dateStr = d.toISOString().split('T')[0];
+            option.value = dateStr;
+            option.text = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+            dateInput.appendChild(option);
+          }
+        }
+
+        dateInput.addEventListener('change', updateTimeDropdown);
+      }
+
+      window.addEventListener('load', populateDateDropdown);
       updateTimeDropdown();
     </script>
   </body>
