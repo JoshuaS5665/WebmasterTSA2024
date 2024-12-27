@@ -1,44 +1,29 @@
-<!--
-  Hit RUN to see this project in action!
-
-  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
--->
-<!-- Challenge: Design a website for a vegan/vegetarian restaurant. Showcase the restaurant’s approach (such as farm-to-table, preparation processes, and sustainability) to the food served in the restaurant. -->
 
 <!doctype html>
 <html>
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flourish | Reservations</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body
-    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'
-  >
+  <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'>
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
 
-    <img
-      src="../images/homeImage1.jpg"
-      alt="Restaurant Interior"
-      id="homeImage"
-      style="position: relative"
-    />
+    <img src="../images/homeImage1.jpg" alt="Restaurant Interior" id="homeImage" style="position: relative"/>
     <h1 style="text-align: center; font-family: Bodoni Moda, serif; color: #32372b; margin: 40px 0">
       MAKE A RESERVATION
     </h1>
     <div class="reservationForm">
-      <form action="reservation2.html" method="GET">
-        <label for="numberPeople">How many people are in the party?</label>
+      <form onsubmit="return validateReservation(event)">
+        <label for="numberPeople">How many people are in the party?<div class="asterisk">*</div></label>
         <select name="numberPeople" id="numberPeople">
+          <option value="">Select number of people</option>
           <option value="onePerson">1 Person</option>
           <option value="twoPersons">2 People</option>
           <option value="threePersons">3 People</option>
@@ -56,70 +41,125 @@
           <option value="fifteenPersons">15 People</option>
         </select>
         <br />
-        <label>What date is the reservation?</label>
-        <input
-          id="dateInput"
-          onclick="setMinimumDate()"
-          type="date"
-          min=" "
-          required
-        />
+        <label>What date is the reservation?<div class="asterisk">*</div></label>
+        <input id="dateInput" onclick="setMinimumDate()" type="date" min=" "/>
         <br />
-        <label for="timeSelect">What time is the reservation?</label>
-        <select name="timeSelect" id="timeSelect" required disabled>
+        <label for="timeSelect">What time is the reservation?<div class="asterisk">*</div></label>
+        <select name="timeSelect" id="timeSelect" disabled>
           <option value="">Select a date first</option>
         </select>
-        <script>
-          const timeSelect = document.getElementById('timeSelect');
-          const dateInput = document.getElementById('dateInput');
-
-          function updateTimeDropdown() {
-            timeSelect.innerHTML = ''; // Clear existing options
-            
-            if (!dateInput.value) {
-              timeSelect.disabled = true;
-              timeSelect.innerHTML = '<option value="">Select a date first</option>';
-              return;
-            }
-
-            const date = new Date(dateInput.value);
-            const day = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
-            
-            if (day === 1) { // Monday
-              timeSelect.disabled = true;
-              timeSelect.innerHTML = '<option value="">Closed on Mondays</option>';
-              return;
-            }
-
-            timeSelect.disabled = false;
-            const opening = 15; // 3 PM
-            const closing = (day >= 2 && day <= 4) ? 21.5 : 22.5; // 9:30 PM or 10:30 PM
-
-            let currentHour = opening;
-            while (currentHour < closing) {
-              const hour = Math.floor(currentHour);
-              const isHalfHour = currentHour % 1 !== 0;
-              let minute = isHalfHour ? 30 : 0;
-              
-              while (minute < 60) {
-                if (hour >= Math.floor(closing) && minute >= (closing % 1) * 60) break;
-                const ampm = hour >= 12 ? 'PM' : 'AM';
-                const displayHour = hour % 12 || 12;
-                const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
-                const option = new Option(timeString, timeString);
-                timeSelect.add(option);
-                minute += 5;
-              }
-              currentHour = minute >= 60 ? hour + 1 : hour + 0.5;
-            }
-          }
-
-          dateInput.addEventListener('change', updateTimeDropdown);
-          updateTimeDropdown(); // Initial call
-        </script>
+        <p class="asterisk">* denotes required.</p>
         <button type="submit">Submit</button>
       </form>
     </div>
     <div id="footer" style="margin-bottom: 10%"></div>
+
+    <script>
+      const timeSelect = document.getElementById('timeSelect');
+      const dateInput = document.getElementById('dateInput');
+
+      function updateTimeDropdown() {
+        timeSelect.innerHTML = '';
+        
+        if (!dateInput.value) {
+          timeSelect.disabled = true;
+          timeSelect.innerHTML = '<option value="">Select a date first</option>';
+          return;
+        }
+
+        const date = new Date(dateInput.value);
+        const day = date.getDay();
+        
+        if (day === 1) {
+          timeSelect.disabled = true;
+          timeSelect.innerHTML = '<option value="">Closed on Mondays</option>';
+          return;
+        }
+
+        timeSelect.disabled = false;
+        const opening = 15;
+        const closing = (day >= 2 && day <= 4) ? 21.5 : 22.5;
+
+        let currentHour = opening;
+        while (currentHour < closing) {
+          const hour = Math.floor(currentHour);
+          const isHalfHour = currentHour % 1 !== 0;
+          let minute = isHalfHour ? 30 : 0;
+          
+          while (minute < 60) {
+            if (hour >= Math.floor(closing) && minute >= (closing % 1) * 60) break;
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+            const displayHour = hour % 12 || 12;
+            const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
+            const option = new Option(timeString, timeString);
+            timeSelect.add(option);
+            minute += 5;
+          }
+          currentHour = minute >= 60 ? hour + 1 : hour + 0.5;
+        }
+      }
+
+      function validateReservation(event) {
+        event.preventDefault();
+        const numberPeople = document.getElementById('numberPeople');
+        const dateInput = document.getElementById('dateInput');
+        const timeSelect = document.getElementById('timeSelect');
+        let isValid = true;
+
+        if (!numberPeople.value) {
+          showError(numberPeople, 'Please select number of people');
+          isValid = false;
+        } else {
+          hideError(numberPeople);
+        }
+
+        if (!dateInput.value) {
+          showError(dateInput, 'Please select a date');
+          isValid = false;
+        } else {
+          hideError(dateInput);
+        }
+
+        if (!timeSelect.value) {
+          showError(timeSelect, 'Please select a time');
+          isValid = false;
+        } else {
+          hideError(timeSelect);
+        }
+
+        if (isValid) {
+          window.location.href = 'reservation2.html';
+        }
+        return false;
+      }
+
+      function showError(element, message) {
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.style.color = 'red';
+        errorDiv.style.fontSize = '14px';
+        errorDiv.textContent = message;
+        
+        // Remove any existing error message
+        const existingError = element.nextElementSibling;
+        if (existingError && existingError.className === 'error-message') {
+          existingError.remove();
+        }
+        
+        element.parentNode.insertBefore(errorDiv, element.nextSibling);
+        element.style.borderColor = 'red';
+      }
+
+      function hideError(element) {
+        const errorDiv = element.nextElementSibling;
+        if (errorDiv && errorDiv.className === 'error-message') {
+          errorDiv.remove();
+        }
+        element.style.borderColor = '#32372b';
+      }
+
+      dateInput.addEventListener('change', updateTimeDropdown);
+      updateTimeDropdown();
+    </script>
   </body>
 </html>
