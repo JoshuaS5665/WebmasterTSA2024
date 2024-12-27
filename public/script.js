@@ -130,7 +130,7 @@ function validateJobInquiry() {
   event.preventDefault();
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
-  const form = document.getElementById("jobInquiryForm");
+  const formContainer = document.querySelector(".form-container");
   let isValid = true;
 
   if (!emailInput.value.trim()) {
@@ -148,27 +148,17 @@ function validateJobInquiry() {
   }
 
   if (isValid) {
-    // Create thank you message
-    const thankYouDiv = document.createElement("div");
-    thankYouDiv.textContent = "Thank you for your interest! We will contact you soon.";
-    thankYouDiv.style.textAlign = "center";
-    thankYouDiv.style.marginTop = "20px";
-    thankYouDiv.style.fontFamily = "Bodoni Moda, serif";
+    // Replace form content with thank you message
+    const thankYouContent = `
+      <div style="text-align: center; padding: 40px;">
+        <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
+        <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Thank you for your interest! We will contact you soon.</p>
+      </div>
+    `;
+    formContainer.innerHTML = thankYouContent;
     
-    // Add message to form
-    form.appendChild(thankYouDiv);
-    
-    // Disable inputs
-    emailInput.disabled = true;
-    phoneInput.disabled = true;
-    
-    // After 2 seconds, reset and close form
+    // After 2 seconds, close the form
     setTimeout(() => {
-      emailInput.value = "";
-      phoneInput.value = "";
-      emailInput.disabled = false;
-      phoneInput.disabled = false;
-      form.removeChild(thankYouDiv);
       closeJobInquiries();
     }, 2000);
   }
