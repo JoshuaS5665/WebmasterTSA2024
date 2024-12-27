@@ -60,6 +60,11 @@ function loadFooter(url) {
     });
 }
 
+function validateEmail(email) {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(email);
+}
+
 function validateContactInfo() {
   const firstNameInput = document.getElementById("firstNameInput");
   const lastNameInput = document.getElementById("lastNameInput");
@@ -84,6 +89,9 @@ function validateContactInfo() {
 
   if (!emailInput.value.trim()) {
     showError(emailInput, "Please enter your email");
+    isValid = false;
+  } else if (!validateEmail(emailInput.value.trim())) {
+    showError(emailInput, "Please enter a valid email address");
     isValid = false;
   } else {
     hideError(emailInput);
@@ -138,6 +146,9 @@ function validateJobInquiry() {
 
   if (!emailInput.value.trim()) {
     showError(emailInput, "Please enter your email");
+    isValid = false;
+  } else if (!validateEmail(emailInput.value.trim())) {
+    showError(emailInput, "Please enter a valid email address");
     isValid = false;
   } else {
     hideError(emailInput);

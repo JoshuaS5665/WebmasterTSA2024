@@ -22,7 +22,7 @@
     <div class="reservationForm">
       <form onsubmit="return validateReservation(event)">
         <label for="numberPeople">How many people are in the party?<div class="asterisk">*</div></label>
-        <select name="numberPeople" id="numberPeople">
+        <select name="numberPeople" id="numberPeople" novalidate>
           <option value="">Select number of people</option>
           <option value="onePerson">1 Person</option>
           <option value="twoPersons">2 People</option>
@@ -45,7 +45,7 @@
         <input id="dateInput" onclick="setMinimumDate()" type="date" novalidate/>
         <br />
         <label for="timeSelect">What time is the reservation?<div class="asterisk">*</div></label>
-        <select name="timeSelect" id="timeSelect" disabled>
+        <select name="timeSelect" id="timeSelect" disabled novalidate>
           <option value="">Select a date first</option>
         </select>
         <p class="asterisk">* denotes required.</p>
