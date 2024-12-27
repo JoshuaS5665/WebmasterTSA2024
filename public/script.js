@@ -142,6 +142,7 @@ function validateJobInquiry() {
   event.preventDefault();
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
+  const form = document.getElementById("jobInquiryForm");
   let isValid = true;
 
   if (!emailInput.value.trim()) {
@@ -159,10 +160,29 @@ function validateJobInquiry() {
   }
 
   if (isValid) {
-    emailInput.value = "";
-    phoneInput.value = "";
-    closeJobInquiries();
-    window.location.href = "index.html";
+    // Create thank you message
+    const thankYouDiv = document.createElement("div");
+    thankYouDiv.textContent = "Thank you for your interest! We will contact you soon.";
+    thankYouDiv.style.textAlign = "center";
+    thankYouDiv.style.marginTop = "20px";
+    thankYouDiv.style.fontFamily = "Bodoni Moda, serif";
+    
+    // Add message to form
+    form.appendChild(thankYouDiv);
+    
+    // Disable inputs
+    emailInput.disabled = true;
+    phoneInput.disabled = true;
+    
+    // After 2 seconds, reset and close form
+    setTimeout(() => {
+      emailInput.value = "";
+      phoneInput.value = "";
+      emailInput.disabled = false;
+      phoneInput.disabled = false;
+      form.removeChild(thankYouDiv);
+      closeJobInquiries();
+    }, 2000);
   }
 }
 
