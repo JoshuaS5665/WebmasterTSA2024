@@ -136,7 +136,7 @@
       function showError(element, message) {
         const errorDiv = document.createElement('div');
         errorDiv.className = 'error-message';
-        errorDiv.style.color = 'red';
+        errorDiv.style.color = '#32372b';
         errorDiv.style.fontSize = '14px';
         errorDiv.textContent = message;
         
@@ -147,7 +147,7 @@
         }
         
         element.parentNode.insertBefore(errorDiv, element.nextSibling);
-        element.style.borderColor = 'red';
+        element.style.borderColor = '#32372b';
       }
 
       function hideError(element) {
