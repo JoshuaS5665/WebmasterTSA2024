@@ -163,13 +163,21 @@ function validateJobInquiry() {
 
 function setMinimumDate() {
   const date = new Date();
-  const year = String(date.getFullYear());
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const minimumDate = `${year}-${month}-${day}`;
   const dateInput = document.getElementById("dateInput");
-  dateInput.setAttribute("min", minimumDate);
   dateInput.valueAsDate = date;
+  
+  dateInput.addEventListener('change', function() {
+    const selectedDate = new Date(this.value);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    
+    if (selectedDate < today) {
+      showError(dateInput, 'Please select today or a future date');
+      this.value = '';
+    } else {
+      hideError(dateInput);
+    }
+  });
 }
 
 function openJobInquiries() {
