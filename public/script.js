@@ -164,8 +164,10 @@ function validateJobInquiry() {
 function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
   if (!dateInput.hasListener) {
-    dateInput.addEventListener('blur', function() {
-      if (this.value) {
+    dateInput.addEventListener('input', function() {
+      if (!this.value) {
+        showError(dateInput, 'Please select a date');
+      } else {
         const selectedDate = new Date(this.value);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
