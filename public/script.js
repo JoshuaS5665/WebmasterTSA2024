@@ -164,16 +164,18 @@ function validateJobInquiry() {
 function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
   if (!dateInput.hasListener) {
-    dateInput.addEventListener('change', function() {
-      const selectedDate = new Date(this.value);
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
-      if (selectedDate < today) {
-        showError(dateInput, 'Please select today or a future date');
-        this.value = '';
-      } else {
-        hideError(dateInput);
+    dateInput.addEventListener('blur', function() {
+      if (this.value) {
+        const selectedDate = new Date(this.value);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        
+        if (selectedDate < today) {
+          showError(dateInput, 'Please select today or a future date');
+          this.value = '';
+        } else {
+          hideError(dateInput);
+        }
       }
     });
     dateInput.hasListener = true;
