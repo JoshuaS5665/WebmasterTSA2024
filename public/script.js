@@ -142,7 +142,7 @@ function validateJobInquiry() {
   event.preventDefault();
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
-  const formContainer = document.querySelector(".form-container");
+  const form = document.getElementById("jobInquiryForm");
   let isValid = true;
 
   if (!emailInput.value.trim()) {
@@ -160,26 +160,28 @@ function validateJobInquiry() {
   }
 
   if (isValid) {
-    // Store original content
-    const originalContent = formContainer.innerHTML;
-    
     // Create thank you message
-    const thankYouMessage = document.createElement("div");
-    thankYouMessage.innerHTML = `
-      <h1 style="font-family: Bodoni Moda, serif; text-align: center">Thank You!</h1>
-      <p style="font-family: Bodoni Moda, serif; text-align: center; font-size: 18px;">Thank you for your interest! We will contact you soon.</p>
-    `;
+    const thankYouDiv = document.createElement("div");
+    thankYouDiv.textContent = "Thank you for your interest! We will contact you soon.";
+    thankYouDiv.style.textAlign = "center";
+    thankYouDiv.style.marginTop = "20px";
+    thankYouDiv.style.fontFamily = "Bodoni Moda, serif";
     
-    // Replace form content with thank you message
-    formContainer.innerHTML = '';
-    formContainer.appendChild(thankYouMessage);
+    // Add message to form
+    form.appendChild(thankYouDiv);
     
-    // After 2 seconds, close form and restore original content
+    // Disable inputs
+    emailInput.disabled = true;
+    phoneInput.disabled = true;
+    
+    // After 2 seconds, reset and close form
     setTimeout(() => {
-      closeJobInquiries();
-      formContainer.innerHTML = originalContent;
       emailInput.value = "";
       phoneInput.value = "";
+      emailInput.disabled = false;
+      phoneInput.disabled = false;
+      form.removeChild(thankYouDiv);
+      closeJobInquiries();
     }, 2000);
   }
 }
