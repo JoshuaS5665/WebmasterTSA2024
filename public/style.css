@@ -1151,9 +1151,9 @@ button[type="submit"]:hover:before {
 
 .table-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 5%;
-  padding: 20px;
+  padding: 5%;
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
@@ -1161,30 +1161,47 @@ button[type="submit"]:hover:before {
 
 .table-button {
   width: 100%;
-  min-width: 120px;
-  height: 50px;
+  min-width: 140px;
+  height: 60px;
   padding: 4px;
   background-color: transparent;
   color: #32372b;
   border: 2px solid #32372b;
-  border-radius: 4px;
-  font-size: 13px;
+  border-radius: 0;
+  font-size: 14px;
   font-family: "Bodoni Moda", serif;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: normal;
   word-wrap: break-word;
-  line-height: 1.1;
+  line-height: 1.2;
   overflow: hidden;
   text-overflow: ellipsis;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.table-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #32372b;
+  transition: all 0.3s ease;
+  z-index: -1;
 }
 
 .table-button:hover {
-  background-color: #32372b;
   color: white;
+}
+
+.table-button:hover::before {
+  left: 0;
 }
 
 @media (max-width: 768px) {
