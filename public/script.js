@@ -4,7 +4,10 @@ function loadHead(url) {
     .then((response) => response.text())
     .then((data) => {
       header.innerHTML = data;
-      console.log(url + "Function is Running");
+      console.log("Header loaded successfully");
+    })
+    .catch((error) => {
+      console.error('Error loading header:', error, url);
     });
 }
 
