@@ -1,38 +1,38 @@
+
 <!doctype html>
 <html>
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flourish | Reservations</title>
+    <title>Flourish | Table Selection</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
   </head>
-
-  <body
-    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html"), updateTableButtons()'
-  >
+  <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html"), updateTableButtons()'>
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
-    <h1
-      style="
-        text-align: center;
-        font-family:
-          Bodoni Moda,
-          serif;
-        color: #32372b;
-        margin: 40px 0;
-      "
-    >
-      MAKE A RESERVATION
+    <h1 style="text-align: center; font-family: Bodoni Moda, serif; color: #32372b; margin: 40px 0;">
+      SELECT YOUR TABLE
     </h1>
-    <div class="reservationForm3">
-      
+    <img src="../images/layoutdone.png" alt="Restaurant Layout" style="width: 100%; max-width: 800px; display: block; margin: 20px auto;" />
+    <div class="table-grid">
+      <button onclick="bookTable(1)" class="table-button">Table 1 (4 seats)</button>
+      <button onclick="bookTable(2)" class="table-button">Table 2 (2 seats)</button>
+      <button onclick="bookTable(3)" class="table-button">Table 3 (2 seats)</button>
+      <button onclick="bookTable(4)" class="table-button">Table 4 (2 seats)</button>
+      <button onclick="bookTable(5)" class="table-button">Table 5 (4 seats)</button>
+      <button onclick="bookTable(6)" class="table-button">Table 6 (4 seats)</button>
+      <button onclick="bookTable(7)" class="table-button">Table 7 (6 seats)</button>
+      <button onclick="bookTable(8)" class="table-button">Table 8 (4 seats)</button>
+      <button onclick="bookTable(9)" class="table-button">Table 9 (2 seats)</button>
+      <button onclick="bookTable(10)" class="table-button">Table 10 (2 seats)</button>
+      <button onclick="bookTable(11)" class="table-button">Table 11 (4 seats)</button>
+      <button onclick="bookTable(12)" class="table-button">Table 12 (4 seats)</button>
+      <button onclick="bookTable(13)" class="table-button">Table 13 (2 seats)</button>
+      <button onclick="bookTable(14)" class="table-button">Table 14 (2 seats)</button>
     </div>
-    <div id="footer" style="margin-bottom: 10%"></div>
+    <div id="footer"></div>
   </body>
 </html>
