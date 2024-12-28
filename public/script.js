@@ -307,7 +307,9 @@ function initializeTimeSlots() {
   for (let time = startTime; time < endTime; time += 0.5) {
     const hour = Math.floor(time);
     const minute = (time % 1) * 60;
-    const timeStr = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    const period = hour >= 12 ? 'PM' : 'AM';
+    const displayHour = hour > 12 ? hour - 12 : hour;
+    const timeStr = `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
     const option = document.createElement('option');
     option.value = timeStr;
     
