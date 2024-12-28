@@ -40,6 +40,10 @@ app.get("/contact", (req, res) => {
   res.sendFile(__dirname + "/public/contact/contact.html");
 });
 
+app.get("/contactResponse", (req, res) => {
+  res.sendFile(__dirname + "/public/contact/contactResponse.html");
+});
+
 app.get("/contact.html", (req, res) => {
   res.redirect(301, "/contact");
 });
