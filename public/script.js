@@ -1,20 +1,18 @@
 function loadHead(url) {
   const header = document.getElementById("header");
-  fetch(url, { cache: 'no-store' })
-    .then(response => {
+  fetch(url)
+    .then((response) => {
       if (!response.ok) {
-        console.error('Response not ok:', response.status, url);
-        throw new Error(`Failed to load header: ${response.status}`);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
       return response.text();
     })
-    .then(data => {
+    .then((data) => {
       header.innerHTML = data;
       console.log("Header loaded successfully");
     })
-    .catch(error => {
-      console.error('Header loading error:', error, 'URL:', url);
-      header.innerHTML = '<p>Error loading header</p>';
+    .catch((error) => {
+      console.error('Error loading header:', error);
     });
 }
 
@@ -63,17 +61,18 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadFooter(url) {
   const footer = document.getElementById("footer");
   fetch(url)
-    .then(response => {
-      if (!response.ok) throw new Error(`Failed to load footer: ${response.status}`);
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
       return response.text();
     })
-    .then(data => {
+    .then((data) => {
       footer.innerHTML = data;
       console.log("Footer loaded successfully");
     })
-    .catch(error => {
-      console.error('Footer loading error:', error);
-      footer.innerHTML = '<p>Error loading footer</p>';
+    .catch((error) => {
+      console.error('Error loading footer:', error);
     });
 }
 
@@ -156,35 +155,33 @@ const TABLE_CAPACITIES = {
 };
 
 function updateTableButtons() {
-  const peopleInParty = getPeopleInParty();
-  const numberMap = {
-    'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
-    'fivePersons': 5, 'sixPersons': 6, 'sevenPersons': 7, 'eightPersons': 8,
-    'ninePersons': 9, 'tenPersons': 10, 'elevenPersons': 11, 'twelvePersons': 12,
-    'thirteenPersons': 13, 'fourteenPersons': 14, 'fifteenPersons': 15
-  };
-  
-  const numPeople = peopleInParty ? numberMap[peopleInParty] || 0 : 0;
-  
-  Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
-    const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
-    if (button) {
-      if (numPeople > TABLE_CAPACITIES[tableNum]) {
-        button.disabled = true;
-        button.style.backgroundColor = '#cccccc';
-        button.style.opacity = '0.5';
-        button.style.cursor = 'not-allowed';
-      } else {
-        button.disabled = false;
-        button.style.backgroundColor = 'transparent';
-        button.style.opacity = '1';
-        button.style.cursor = 'pointer';
+  document.addEventListener('DOMContentLoaded', function() {
+    const peopleInParty = getPeopleInParty();
+    const numberMap = {
+      'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
+      'fivePersons': 5, 'sixPersons': 6
+    };
+    
+    const numPeople = peopleInParty ? numberMap[peopleInParty] || 0 : 0;
+    
+    Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
+      const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
+      if (button) {
+        if (numPeople > TABLE_CAPACITIES[tableNum]) {
+          button.style.backgroundColor = '#cccccc';
+          button.style.pointerEvents = 'none';
+          button.style.opacity = '0.5';
+        } else {
+          button.style.backgroundColor = 'transparent';
+          button.style.pointerEvents = 'auto';
+          button.style.opacity = '1';
+        }
       }
-    }
+    });
   });
 }
 
-// Call updateTableButtons when page loads
+// Call updateTableButtons when the page loads
 window.onload = function() {
   updateTableButtons();
 };
