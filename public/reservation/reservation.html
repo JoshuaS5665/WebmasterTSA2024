@@ -38,19 +38,30 @@
       MAKE A RESERVATION
     </h1>
     <div class="reservationForm">
-      <form onsubmit="return validateReservation(event)">
-        <label for="numberPeople"
-          >How many people are in the party? Please note that for parties of 7 or more, you will need to contact us directly through our contact page. <a href="/contact">Contact Link</a>
+      <form
+        onsubmit="return validateReservation(event)"
+        action="/reservation/second"
+        method="post"
+      >
+        <label for="numberPeople" style="text-align: center"
+          >How many people are in the party? Please note that for parties of 7
+          or more, you will need to contact us directly through our contact
+          page. <a href="/contact">Contact Link</a>
           <div class="asterisk">*</div></label
         >
-        <select name="numberPeople" id="numberPeople" onchange="getPeopleInParty()" novalidate>
+        <select
+          name="numberPeople"
+          id="numberPeople"
+          onchange="getPeopleInParty()"
+          novalidate
+        >
           <option value="">Select number of people</option>
-          <option value="onePerson">1 Person</option>
-          <option value="twoPersons">2 People</option>
-          <option value="threePersons">3 People</option>
-          <option value="fourPersons">4 People</option>
-          <option value="fivePersons">5 People</option>
-          <option value="sixPersons">6 People</option>
+          <option value="1">1 Person</option>
+          <option value="2">2 People</option>
+          <option value="3">3 People</option>
+          <option value="4">4 People</option>
+          <option value="5">5 People</option>
+          <option value="6">6 People</option>
         </select>
         <br />
         <label
@@ -60,7 +71,7 @@
         <select id="dateInput" novalidate></select>
 
         <p class="asterisk">* denotes required.</p>
-        <button type="submit">Submit</button>
+        <button type="submit" onclick="getPeopleInParty">Submit</button>
       </form>
     </div>
     <div id="footer" style="margin-bottom: 10%"></div>
@@ -88,10 +99,13 @@
         } else {
           const selectedDate = new Date(dateInput.value);
           const dayOfWeek = selectedDate.getDay();
-          
+
           // Check if it's Monday (1)
           if (dayOfWeek === 1) {
-            showError(dateInput, "We are closed on Mondays. Please select another day");
+            showError(
+              dateInput,
+              "We are closed on Mondays. Please select another day",
+            );
             isValid = false;
           } else {
             hideError(dateInput);
@@ -99,8 +113,8 @@
         }
 
         if (isValid) {
-          localStorage.setItem('peopleInParty', numberPeople.value);
-          localStorage.setItem('selectedDate', dateInput.value);
+          localStorage.setItem("peopleInParty", numberPeople.value);
+          localStorage.setItem("selectedDate", dateInput.value);
           window.location.href = "reservation2.html";
         }
         return false;

@@ -139,18 +139,19 @@ const TABLE_CAPACITIES = {
 };
 
 function updateTableButtons() {
-  const peopleInParty = getPeopleInParty();
+  const peopleInParty = localStorage.getItem("peopleInParty");
   const numberMap = {
     'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
-    'fivePersons': 5, 'sixPersons': 6, 'sevenPersons': 7, 'eightPersons': 8,
-    'ninePersons': 9, 'tenPersons': 10, 'elevenPersons': 11, 'twelvePersons': 12,
-    'thirteenPersons': 13, 'fourteenPersons': 14, 'fifteenPersons': 15
+    'fivePersons': 5, 'sixPersons': 6
   };
   
-  const numPeople = peopleInParty ? numberMap[peopleInParty] || 0 : 0;
-  
+  const numPeople = peopleInParty ?
+    Number(peopleInParty): 0;
+  console.log(numPeople);
   Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
-    const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
+    /*const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);*/
+    console.log(tableNum);
+    const button = document.getElementById(tableNum);
     if (button) {
       if (numPeople > TABLE_CAPACITIES[tableNum]) {
         button.disabled = true;

@@ -4,6 +4,7 @@ const app = express();
 const PORT = 80;
 
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 app.listen(PORT, () => {
@@ -90,17 +91,16 @@ app.get("/reservation.html", (req, res) => {
 });
 
 app.post("/reservation/second", (req, res) => {
-  console.log("POST req is running");
-  res.sendFile(__dirname + "/public/reservation/reservation2.html");
+  console.log(req.body);
 });
 
-app.get("/reservation/second", (req, res) => {
-  res.redirect(301, "/reservation");
-});
+//app.get("/reservation/second", (req, res) => {
+// res.redirect(301, "/reservation");
+//});
 
-app.get("/reservation/reservation2.html", (req, res) => {
-  res.redirect(301, "/reservation/");
-});
+//app.get("/reservation/reservation2.html", (req, res) => {
+// res.redirect(301, "/reservation/");
+//});
 
 app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/public/404/404.html");

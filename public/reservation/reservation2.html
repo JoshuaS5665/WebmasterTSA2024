@@ -1,40 +1,116 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flourish | Select Table</title>
-  <link href="../style.css" rel="stylesheet" type="text/css">
-</head>
-<body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'>
-  <script type="text/javascript" src="../script.js"></script>
-  <div id="header"></div>
-  
-  <h1 style="text-align: center; font-family: Bodoni Moda, serif; color: #32372b; margin: 40px 0;">
-    MAKE A RESERVATION
-  </h1>
-  <h2>
-    <img src="../images/layoutdone.png" alt="layoutdone" id="layoutdone" style="position: relative; margin-top: 0vh; width: 100%" />
-  </h2>
-  
-  <div class="table-buttons-container">
-    <button onclick="bookTable(1)" class="table-button">Book Table 1</button>
-    <button onclick="bookTable(2)" class="table-button">Book Table 2</button>
-    <button onclick="bookTable(3)" class="table-button">Book Table 3</button>
-    <button onclick="bookTable(4)" class="table-button">Book Table 4</button>
-    <button onclick="bookTable(5)" class="table-button">Book Table 5</button>
-    <button onclick="bookTable(6)" class="table-button">Book Table 6</button>
-    <button onclick="bookTable(7)" class="table-button">Book Table 7</button>
-    <button onclick="bookTable(8)" class="table-button">Book Table 8</button>
-    <button onclick="bookTable(9)" class="table-button">Book Table 9</button>
-    <button onclick="bookTable(10)" class="table-button">Book Table 10</button>
-    <button onclick="bookTable(11)" class="table-button">Book Table 11</button>
-    <button onclick="bookTable(12)" class="table-button">Book Table 12</button>
-    <button onclick="bookTable(13)" class="table-button">Book Table 13</button>
-    <button onclick="bookTable(14)" class="table-button">Book Table 14</button>
-  </div>
-  
-  <div id="footer" style="margin-bottom: 10%"></div>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flourish | Select Table</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body
+    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'
+  >
+    <script type="text/javascript" src="../script.js"></script>
+    <div id="header"></div>
+
+    <h1
+      style="
+        text-align: center;
+        font-family:
+          Bodoni Moda,
+          serif;
+        color: #32372b;
+        margin: 40px 0;
+      "
+    >
+      MAKE A RESERVATION
+    </h1>
+    <h2>
+      <img
+        src="../images/layoutdone.png"
+        alt="layoutdone"
+        id="layoutdone"
+        style="position: relative; margin-top: 0vh; width: 100%"
+      />
+    </h2>
+
+    <div class="table-buttons-container" onload="updateTableButtons()">
+      <button onclick="bookTable(1)" id="1" class="table-button">
+        Book Table 1
+      </button>
+      <button onclick="bookTable(2)" id="2" class="table-button">
+        Book Table 2
+      </button>
+      <button onclick="bookTable(3)" id="3" class="table-button">
+        Book Table 3
+      </button>
+      <button onclick="bookTable(4)" id="4" class="table-button">
+        Book Table 4
+      </button>
+      <button onclick="bookTable(5)" id="5" class="table-button">
+        Book Table 5
+      </button>
+      <button onclick="bookTable(6)" id="6" class="table-button">
+        Book Table 6
+      </button>
+      <button onclick="bookTable(7)" id="7" class="table-button">
+        Book Table 7
+      </button>
+      <button onclick="bookTable(8)" id="8" class="table-button">
+        Book Table 8
+      </button>
+      <button onclick="bookTable(9)" id="9" class="table-button">
+        Book Table 9
+      </button>
+      <button onclick="bookTable(10)" id="10" class="table-button">
+        Book Table 10
+      </button>
+      <button onclick="bookTable(11)" id="11" class="table-button">
+        Book Table 11
+      </button>
+      <button onclick="bookTable(12)" id="12" class="table-button">
+        Book Table 12
+      </button>
+      <button onclick="bookTable(13)" id="13" class="table-button">
+        Book Table 13
+      </button>
+      <button onclick="bookTable(14)" id="14" class="table-button">
+        Book Table 14
+      </button>
+    </div>
+
+    <div id="footer" style="margin-bottom: 10%"></div>
+    <script>
+      console.log(localStorage.getItem("peopleInParty"));
+      console.log("hello world");
+
+      function updateTableButtons() {
+        const peopleInParty = localStorage.getItem("peopleInParty");
+        const numberMap = {
+          'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
+          'fivePersons': 5, 'sixPersons': 6
+        };
+
+        const numPeople = peopleInParty ?
+          Number(peopleInParty): 0;
+        console.log(numPeople);
+        Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
+          /*const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);*/
+          console.log(tableNum);
+          const button = document.getElementById(tableNum);
+          if (button) {
+            if (numPeople > TABLE_CAPACITIES[tableNum]) {
+              button.disabled = true;
+              button.style.opacity = '0.5';
+              button.style.cursor = 'not-allowed';
+            } else {
+              button.disabled = false;
+              button.style.opacity = '1';
+              button.style.cursor = 'pointer';
+            }
+          }
+        });
+      }
+      updateTableButtons();
+    </script>
+  </body>
 </html>
