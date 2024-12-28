@@ -104,9 +104,9 @@ function validateContactInfo() {
   }
 
   if (isValid) {
-    document.forms[0].submit();
-    return false;
+    window.location.href = "/contact/contactResponse";
   }
+  return isValid;
 }
 
 
