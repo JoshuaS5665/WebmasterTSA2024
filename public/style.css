@@ -1183,6 +1183,7 @@ button[type="submit"]:hover:before {
   justify-content: center;
   word-wrap: break-word;
   line-height: 1.2;
+  border-radius: 0;
 }
 
 .table-button::before {
