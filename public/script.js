@@ -148,6 +148,38 @@ function showError(input, message) {
   }
 }
 
+const TABLE_CAPACITIES = {
+  1: 4,
+  2: 2,
+  3: 2,
+  4: 2,
+  5: 4,
+  6: 4,
+  7: 6,
+  8: 4,
+  9: 2,
+  10: 2,
+  11: 4,
+  12: 4,
+  13: 2,
+  14: 2
+};
+
+function updateTableButtons() {
+  const peopleInParty = getPeopleInParty();
+  const numPeople = peopleInParty ? parseInt(peopleInParty.match(/\d+/)[0]) : 0;
+  
+  Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
+    const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
+    if (button && numPeople > TABLE_CAPACITIES[tableNum]) {
+      button.disabled = true;
+      button.style.opacity = '0.5';
+      button.style.cursor = 'not-allowed';
+    }
+  });
+}
+
+
 function hideError(input) {
   const errorDiv = input.nextElementSibling;
   if (errorDiv && errorDiv.classList.contains("error-message")) {
