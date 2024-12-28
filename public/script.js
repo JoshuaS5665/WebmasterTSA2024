@@ -266,5 +266,5 @@ function getPeopleInParty() {
 }
 
 function bookTable(tableNumber) {
-  window.location.href = '/';
+  window.location.href = "bookTable.html";
 }
