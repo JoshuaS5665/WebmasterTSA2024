@@ -1163,18 +1163,23 @@ button[type="submit"]:hover:before {
   width: 100%;
   min-width: 120px;
   height: 50px;
-  padding: 8px;
+  padding: 4px;
   background-color: transparent;
   color: #32372b;
   border: 2px solid #32372b;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 13px;
   font-family: "Bodoni Moda", serif;
   cursor: pointer;
   transition: all 0.3s ease;
   white-space: normal;
   word-wrap: break-word;
-  line-height: 1.2;
+  line-height: 1.1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .table-button:hover {
