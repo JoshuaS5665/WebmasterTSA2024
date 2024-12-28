@@ -323,11 +323,18 @@ function initializeTimeSlots() {
 function validateTimeSelection(event) {
   event.preventDefault();
   const timeSelect = document.getElementById('reservationTime');
+  let isValid = true;
+
   if (!timeSelect.value) {
-    showError(timeSelect, 'Please select a time');
-    return false;
+    showError(timeSelect, 'Please select a reservation time');
+    isValid = false;
+  } else {
+    hideError(timeSelect);
   }
-  localStorage.setItem('selectedTime', timeSelect.value);
-  window.location.href = "reservation3.html";
+
+  if (isValid) {
+    localStorage.setItem('selectedTime', timeSelect.value);
+    window.location.href = "reservation3.html";
+  }
   return false;
 }
