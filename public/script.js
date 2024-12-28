@@ -274,7 +274,10 @@ function initializeTimeSlots() {
   if (!select) return;
   
   const date = localStorage.getItem('selectedDate');
-  if (!date) return;
+  if (!date) {
+    console.error('No date selected');
+    return;
+  }
 
   select.innerHTML = '<option value="">Select time</option>';
   
