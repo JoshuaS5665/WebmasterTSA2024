@@ -17,9 +17,9 @@
       SELECT YOUR RESERVATION TIME
     </h1>
     <div class="reservationForm3">
-      <form onsubmit="return validateTimeSelection(event)">
+      <form onsubmit="return validateTimeSelection(event)" novalidate>
         <label for="reservationTime">Select a time:<div class="asterisk">*</div></label>
-        <select id="reservationTime" name="reservationTime" required>
+        <select id="reservationTime" name="reservationTime" required oninvalid="this.setCustomValidity('Please select a reservation time')" oninput="setCustomValidity('')">
           <option value="">Select time</option>
         </select>
         <button type="submit">Continue</button>
