@@ -1,10 +1,18 @@
 function loadHead(url) {
   const header = document.getElementById("header");
   fetch(url)
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
     .then((data) => {
       header.innerHTML = data;
-      console.log(url + "Function is Running");
+      console.log("Header loaded successfully");
+    })
+    .catch((error) => {
+      console.error('Error loading header:', error);
     });
 }
 
@@ -53,10 +61,18 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadFooter(url) {
   const footer = document.getElementById("footer");
   fetch(url)
-    .then((response) => response.text())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.text();
+    })
     .then((data) => {
       footer.innerHTML = data;
-      console.log("Footer Function is Running");
+      console.log("Footer loaded successfully");
+    })
+    .catch((error) => {
+      console.error('Error loading footer:', error);
     });
 }
 
