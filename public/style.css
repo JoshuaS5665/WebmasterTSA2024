@@ -1169,12 +1169,8 @@ button[type="submit"]:hover:before {
   font-size: 16px;
   text-decoration: none;
   transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
   cursor: pointer;
   margin-top: 10px;
-  display: inline-block;
   width: 100%;
   min-width: 140px;
   height: 60px;
@@ -1186,24 +1182,9 @@ button[type="submit"]:hover:before {
   border-radius: 0px;
 }
 
-.table-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: #32372b;
-  transition: all 0.3s ease;
-  z-index: -1;
-}
-
 .table-button:hover {
+  background-color: #32372b;
   color: white;
-}
-
-.table-button:hover::before {
-  left: 0;
 }
 
 @media (max-width: 768px) {
