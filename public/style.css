@@ -1162,7 +1162,7 @@ button[type="submit"]:hover:before {
 
 .table-button {
   text-align: center;
-  padding: 5px;
+  padding: 10px 15px;
   border: 2px solid #32372b;
   background-color: transparent;
   color: #32372b;
