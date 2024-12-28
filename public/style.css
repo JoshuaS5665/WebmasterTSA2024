@@ -1157,8 +1157,10 @@ button[type="submit"]:hover:before {
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+  justify-content: center;
   justify-items: center;
   align-items: center;
+  place-items: center;
 }
 
 .table-button {
