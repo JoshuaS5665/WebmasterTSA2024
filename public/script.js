@@ -105,6 +105,7 @@ function validateContactInfo() {
 
   if (isValid) {
     window.location.href = "/contact/contactResponse";
+    return false;
   }
 }
 
