@@ -154,16 +154,23 @@ function updateTableButtons() {
     if (button) {
       if (numPeople > TABLE_CAPACITIES[tableNum]) {
         button.disabled = true;
+        button.style.backgroundColor = '#cccccc';
         button.style.opacity = '0.5';
         button.style.cursor = 'not-allowed';
       } else {
         button.disabled = false;
+        button.style.backgroundColor = 'transparent';
         button.style.opacity = '1';
         button.style.cursor = 'pointer';
       }
     }
   });
 }
+
+// Call updateTableButtons when page loads
+window.onload = function() {
+  updateTableButtons();
+};
 
 
 function hideError(input) {
