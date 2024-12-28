@@ -68,7 +68,9 @@
           >What date is the reservation?
           <div class="asterisk">*</div></label
         >
-        <select id="dateInput" novalidate></select>
+        <select id="dateInput" novalidate>
+          <option value="">Select a date</option>
+        </select>
 
         <p class="asterisk">* denotes required.</p>
         <button type="submit" onclick="getPeopleInParty">Submit</button>
@@ -163,6 +165,12 @@
           "December",
         ];
 
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Select a date";
+        dateInput.innerHTML = ''; // Clear existing options
+        dateInput.appendChild(defaultOption);
+        
         for (
           let d = new Date(today);
           d <= oneMonthFromNow;
