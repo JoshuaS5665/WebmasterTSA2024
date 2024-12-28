@@ -257,3 +257,7 @@ function getPeopleInParty() {
   console.log(peopleInParty);
   return peopleInParty;
 }
+
+function bookTable(tableNumber) {
+  window.location.href = '/';
+}
