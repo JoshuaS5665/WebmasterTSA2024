@@ -215,6 +215,11 @@ function closeJobInquiries() {
 }
 
 function getPeopleInParty() {
-  var peopleInParty = getText(numberPeople);
-  console.log(peopleInParty);
+  const numberPeople = document.getElementById('numberPeople');
+  if (numberPeople) {
+    const peopleInParty = numberPeople.value;
+    console.log(peopleInParty);
+    return peopleInParty;
+  }
+  return null;
 }
