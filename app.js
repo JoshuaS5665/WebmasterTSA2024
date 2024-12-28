@@ -41,7 +41,7 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/contact/contactResponse", (req, res) => {
-  res.sendFile(__dirname + "/public/contact/contactResponse.html");
+  res.status(200).sendFile(__dirname + "/public/contact/contactResponse.html");
   console.log("Contact response route hit");
 });
 
