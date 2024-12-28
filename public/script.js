@@ -171,10 +171,16 @@ function updateTableButtons() {
   
   Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
     const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
-    if (button && numPeople > TABLE_CAPACITIES[tableNum]) {
-      button.disabled = true;
-      button.style.opacity = '0.5';
-      button.style.cursor = 'not-allowed';
+    if (button) {
+      if (numPeople > TABLE_CAPACITIES[tableNum]) {
+        button.disabled = true;
+        button.style.opacity = '0.5';
+        button.style.cursor = 'not-allowed';
+      } else {
+        button.disabled = false;
+        button.style.opacity = '1';
+        button.style.cursor = 'pointer';
+      }
     }
   });
 }
