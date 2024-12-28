@@ -43,7 +43,7 @@
           >How many people are in the party?
           <div class="asterisk">*</div></label
         >
-        <select name="numberPeople" id="numberPeople" novalidate>
+        <select name="numberPeople" id="numberPeople" onchange="getPeopleInParty()" novalidate>
           <option value="">Select number of people</option>
           <option value="onePerson">1 Person</option>
           <option value="twoPersons">2 People</option>
