@@ -97,19 +97,7 @@
           showError(dateInput, "Please select a date");
           isValid = false;
         } else {
-          const selectedDate = new Date(dateInput.value);
-          const dayOfWeek = selectedDate.getDay();
-
-          // Check if it's Monday (1)
-          if (dayOfWeek === 1) {
-            showError(
-              dateInput,
-              "We are closed on Mondays. Please select Tuesday through Sunday.",
-            );
-            isValid = false;
-          } else {
-            hideError(dateInput);
-          }
+          hideError(dateInput);
         }
 
         if (isValid) {
