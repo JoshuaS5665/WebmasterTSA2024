@@ -10,12 +10,20 @@
     <title>Flourish | Table Selection</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
   </head>
-  <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html"), updateTableButtons()'>
+  <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html"), updateTableButtons(), initializeTimeSlots()'>
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
     <h1 style="text-align: center; font-family: Bodoni Moda, serif; color: #32372b; margin: 40px 0;">
-      SELECT YOUR TABLE
+      SELECT YOUR TABLE AND TIME
     </h1>
+    <div class="reservationForm3">
+      <form onsubmit="return validateTimeSelection(event)">
+        <label for="reservationTime">Select a time:<div class="asterisk">*</div></label>
+        <select id="reservationTime" name="reservationTime" required>
+          <option value="">Select time</option>
+        </select>
+      </form>
+    </div>
     <img src="../images/layoutdone.png" alt="Restaurant Layout" style="width: 100%; max-width: 800px; display: block; margin: 20px auto;" />
     <div class="table-grid">
       <button onclick="bookTable(1)" class="table-button">Table 1 (4 seats)</button>
