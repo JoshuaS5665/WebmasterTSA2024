@@ -1,10 +1,3 @@
-<!--
-  Hit RUN to see this project in action!
-
-  This project will auto-refresh as you edit the HTML, CSS and JS. See README.md for more info (including how to disable auto-refresh and install packages).
--->
-<!-- Challenge: Design a website for a vegan/vegetarian restaurant. Showcase the restaurant’s approach (such as farm-to-table, preparation processes, and sustainability) to the food served in the restaurant. -->
-
 <!doctype html>
 <html>
   <head>
@@ -37,87 +30,9 @@
     >
       MAKE A RESERVATION
     </h1>
-    <h2>
-      <img
-        src="../images/layoutdone.png"
-        alt="layoutdone"
-        id="layoutdone"
-        style="position: relative; margin-top: 0vh; width: 100%"
-      />
-    </h2>
-    <div class="reservationForm2">
-      <div class="table-grid">
-        <button onclick="bookTable(1)" class="table-button">Book Table 1</button>
-        <button onclick="bookTable(2)" class="table-button">Book Table 2</button>
-        <button onclick="bookTable(3)" class="table-button">Book Table 3</button>
-        <button onclick="bookTable(4)" class="table-button">Book Table 4</button>
-        <button onclick="bookTable(5)" class="table-button">Book Table 5</button>
-        <button onclick="bookTable(6)" class="table-button">Book Table 6</button>
-        <button onclick="bookTable(7)" class="table-button">Book Table 7</button>
-        <button onclick="bookTable(8)" class="table-button">Book Table 8</button>
-        <button onclick="bookTable(9)" class="table-button">Book Table 9</button>
-        <button onclick="bookTable(10)" class="table-button">Book Table 10</button>
-        <button onclick="bookTable(11)" class="table-button">Book Table 11</button>
-        <button onclick="bookTable(12)" class="table-button">Book Table 12</button>
-        <button onclick="bookTable(13)" class="table-button">Book Table 13</button>
-        <button onclick="bookTable(14)" class="table-button">Book Table 14</button>
-      </div>
+    <div class="reservationForm3">
+      
     </div>
     <div id="footer" style="margin-bottom: 10%"></div>
   </body>
 </html>
-
-<!--<form style="margin: 100px">
-        <label for="timeSelect">What time is the reservation?</label>
-        <select name="timeSelect" id="timeSelect">
-        </select>
-        <script>
-          const timeSelect = document.getElementById('timeSelect');
-          const dateInput = document.getElementById('dateInput');
-
-          function updateTimeDropdown() {
-            timeSelect.innerHTML = ''; // Clear existing options
-
-            if (!dateInput.value) {
-              timeSelect.disabled = true;
-              timeSelect.innerHTML = '<option value="">Select a date first</option>';
-              return;
-            }
-
-            const date = new Date(dateInput.value);
-            const day = date.getDay(); // 0 = Sunday, 1 = Monday, etc.
-
-            if (day === 1) { // Monday
-              timeSelect.disabled = true;
-              timeSelect.innerHTML = '<option value="">Closed on Mondays</option>';
-              return;
-            }
-
-            timeSelect.disabled = false;
-            const opening = 15; // 3 PM
-            const closing = (day >= 2 && day <= 4) ? 21.5 : 22.5; // 9:30 PM or 10:30 PM
-
-            let currentHour = opening;
-            while (currentHour < closing) {
-              const hour = Math.floor(currentHour);
-              const isHalfHour = currentHour % 1 !== 0;
-              let minute = isHalfHour ? 30 : 0;
-
-              while (minute < 60) {
-                if (hour >= Math.floor(closing) && minute >= (closing % 1) * 60) break;
-                const ampm = hour >= 12 ? 'PM' : 'AM';
-                const displayHour = hour % 12 || 12;
-                const timeString = `${displayHour}:${minute.toString().padStart(2, '0')} ${ampm}`;
-                const option = new Option(timeString, timeString);
-                timeSelect.add(option);
-                minute += 5;
-              }
-              currentHour = minute >= 60 ? hour + 1 : hour + 0.5;
-            }
-          }
-
-          dateInput.addEventListener('change', updateTimeDropdown);
-          updateTimeDropdown(); // Initial call
-        </script>
-        <button type="submit">Submit</button>
-      </form>-->
