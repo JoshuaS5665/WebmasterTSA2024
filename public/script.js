@@ -279,8 +279,9 @@ function initializeTimeSlots() {
   select.innerHTML = '<option value="">Select time</option>';
   
   const selectedDay = new Date(date).getDay();
-  let startTime = 15; // 3 PM
+  const startTime = 15; // 3 PM
   let endTime;
+  let kitchenCloseTime;
   
   // Closed on Mondays (day 1)
   if (selectedDay === 1) {
@@ -288,9 +289,16 @@ function initializeTimeSlots() {
     return;
   }
   
-  // Friday-Sunday (5,6,0): 3PM-11PM
-  // Tuesday-Thursday (2,3,4): 3PM-10PM
-  endTime = (selectedDay >= 5 || selectedDay === 0) ? 23 : 22;
+  // Set times based on day of week
+  // Friday-Sunday (5,6,0): 3PM-11PM, kitchen closes at 10:30PM
+  // Tuesday-Thursday (2,3,4): 3PM-10PM, kitchen closes at 9:30PM
+  if (selectedDay >= 5 || selectedDay === 0) {
+    endTime = 23; // 11 PM
+    kitchenCloseTime = 22.5; // 10:30 PM
+  } else {
+    endTime = 22; // 10 PM
+    kitchenCloseTime = 21.5; // 9:30 PM
+  }
   
   // Generate time slots in 30-minute increments
   for (let time = startTime; time < endTime; time += 0.5) {
@@ -299,7 +307,14 @@ function initializeTimeSlots() {
     const timeStr = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
     const option = document.createElement('option');
     option.value = timeStr;
-    option.textContent = timeStr;
+    
+    // Add note for times after kitchen closes
+    if (time >= kitchenCloseTime) {
+      option.textContent = `${timeStr} (Kitchen Closed)`;
+    } else {
+      option.textContent = timeStr;
+    }
+    
     select.appendChild(option);
   }
 }
