@@ -139,36 +139,31 @@ const TABLE_CAPACITIES = {
 };
 
 function updateTableButtons() {
-  document.addEventListener('DOMContentLoaded', function() {
-    const peopleInParty = getPeopleInParty();
-    const numberMap = {
-      'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
-      'fivePersons': 5, 'sixPersons': 6
-    };
-    
-    const numPeople = peopleInParty ? numberMap[peopleInParty] || 0 : 0;
-    
-    Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
-      const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
-      if (button) {
-        if (numPeople > TABLE_CAPACITIES[tableNum]) {
-          button.style.backgroundColor = '#cccccc';
-          button.style.pointerEvents = 'none';
-          button.style.opacity = '0.5';
-        } else {
-          button.style.backgroundColor = 'transparent';
-          button.style.pointerEvents = 'auto';
-          button.style.opacity = '1';
-        }
+  const peopleInParty = getPeopleInParty();
+  const numberMap = {
+    'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
+    'fivePersons': 5, 'sixPersons': 6, 'sevenPersons': 7, 'eightPersons': 8,
+    'ninePersons': 9, 'tenPersons': 10, 'elevenPersons': 11, 'twelvePersons': 12,
+    'thirteenPersons': 13, 'fourteenPersons': 14, 'fifteenPersons': 15
+  };
+  
+  const numPeople = peopleInParty ? numberMap[peopleInParty] || 0 : 0;
+  
+  Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
+    const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
+    if (button) {
+      if (numPeople > TABLE_CAPACITIES[tableNum]) {
+        button.disabled = true;
+        button.style.opacity = '0.5';
+        button.style.cursor = 'not-allowed';
+      } else {
+        button.disabled = false;
+        button.style.opacity = '1';
+        button.style.cursor = 'pointer';
       }
-    });
+    }
   });
 }
-
-// Call updateTableButtons when the page loads
-window.onload = function() {
-  updateTableButtons();
-};
 
 
 function hideError(input) {
