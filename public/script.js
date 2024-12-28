@@ -70,8 +70,6 @@ function validateContactInfo() {
   const lastNameInput = document.getElementById("lastNameInput");
   const emailInput = document.getElementById("emailInput");
   const phoneInput = document.getElementById("phoneInput");
-  const dateInput = document.getElementById("dateInput");
-  const contactForm = document.querySelector(".contact-form");
   let isValid = true;
 
   if (!firstNameInput.value.trim()) {
@@ -104,23 +102,6 @@ function validateContactInfo() {
   } else {
     hideError(phoneInput);
   }
-
-  if (!dateInput.value) {
-    showError(dateInput, 'Please select a date');
-    isValid = false;
-  } else {
-    const selectedDate = new Date(dateInput.value);
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    if (selectedDate < today) {
-      showError(dateInput, 'Please select today or a future date');
-      isValid = false;
-    } else {
-      hideError(dateInput);
-    }
-  }
-
 
   if (isValid) {
     window.location.href = "contactResponse.html";
