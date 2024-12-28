@@ -1111,3 +1111,29 @@ button[type="submit"]:hover:before {
   background-color: #32372b;
   color: white;
 }
+
+.table-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.table-button {
+  padding: 15px;
+  background-color: transparent;
+  color: #32372b;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-size: 18px;
+  font-family: "Bodoni Moda", serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.table-button:hover {
+  background-color: #32372b;
+  color: white;
+}
