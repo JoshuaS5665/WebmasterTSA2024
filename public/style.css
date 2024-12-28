@@ -1168,18 +1168,18 @@ button[type="submit"]:hover:before {
   background-color: transparent;
   color: #32372b;
   font-family: "Bodoni Moda", serif;
-  font-size: 16px;
+  font-size: clamp(14px, 2vw, 16px);
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  width: 160px;
-  height: 60px;
+  width: clamp(120px, 15vw, 160px);
+  height: clamp(50px, 8vw, 60px);
   display: flex;
   align-items: center;
   justify-content: center;
   word-wrap: break-word;
   line-height: 1.2;
-  white-space: nowrap;
+  white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
 }
