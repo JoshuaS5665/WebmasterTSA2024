@@ -1150,14 +1150,14 @@ button[type="submit"]:hover:before {
 }
 
 .table-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 15px;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 10px;
   padding: 20px;
-  width: 90%;
-  max-width: 800px;
+  width: 100%;
   margin: 0 auto;
-  justify-items: center;
+  justify-content: center;
+  overflow-x: auto;
 }
 
 .table-button {
