@@ -307,7 +307,7 @@ function validateTimeSelection(event) {
 
   if (isValid) {
     localStorage.setItem('selectedTime', timeSelect.value);
-    window.location.href = "reservation3.html";
+    window.location.href = "reservationConfirmation.html";
   }
   return false;
 }
