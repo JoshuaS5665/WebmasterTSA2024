@@ -1112,6 +1112,43 @@ button[type="submit"]:hover:before {
   color: white;
 }
 
+.reservationForm3 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  font-family: "Bodoni Moda", serif;
+}
+
+.reservationForm3 select,
+.reservationForm3 input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 20px;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: "Bodoni Moda", serif;
+}
+
+.reservationForm3 button {
+  width: 100%;
+  padding: 15px;
+  background-color: transparent;
+  color: #32372b;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-size: 18px;
+  font-family: "Bodoni Moda", serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.reservationForm3 button:hover {
+  background-color: #32372b;
+  color: white;
+}
+
 .table-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));

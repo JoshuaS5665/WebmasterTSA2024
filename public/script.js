@@ -268,3 +268,41 @@ function getPeopleInParty() {
 function bookTable(tableNumber) {
   window.location.href = "bookTable.html";
 }
+
+function initializeTimeSlots() {
+  const select = document.getElementById('reservationTime');
+  const date = localStorage.getItem('selectedDate');
+  if (!date) return;
+
+  const selectedDay = new Date(date).getDay();
+  let startTime = 15; // 3 PM
+  let endTime = (selectedDay >= 5) ? 23 : 22; // 11 PM weekends, 10 PM weekdays
+  
+  if (selectedDay === 1) { // Monday
+    select.innerHTML = '<option value="">Closed on Mondays</option>';
+    return;
+  }
+
+  while (startTime < endTime) {
+    const hour = Math.floor(startTime);
+    const minute = (startTime % 1) * 60;
+    const timeStr = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+    const option = document.createElement('option');
+    option.value = timeStr;
+    option.textContent = `${timeStr}`;
+    select.appendChild(option);
+    startTime += 0.5; // Add 30 minutes
+  }
+}
+
+function validateTimeSelection(event) {
+  event.preventDefault();
+  const timeSelect = document.getElementById('reservationTime');
+  if (!timeSelect.value) {
+    showError(timeSelect, 'Please select a time');
+    return false;
+  }
+  localStorage.setItem('selectedTime', timeSelect.value);
+  window.location.href = "bookTable.html";
+  return false;
+}
