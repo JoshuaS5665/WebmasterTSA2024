@@ -213,3 +213,8 @@ function closeJobInquiries() {
   if (phoneInput) phoneInput.value = "";
   form.classList.remove("visible");
 }
+
+function getPeopleInParty() {
+  var peopleInParty = getText(numberPeople);
+  console.log(peopleInParty);
+}
