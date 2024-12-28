@@ -73,7 +73,6 @@
         event.preventDefault();
         const numberPeople = document.getElementById("numberPeople");
         const dateInput = document.getElementById("dateInput");
-        const timeSelect = document.getElementById("timeSelect");
         let isValid = true;
 
         if (!numberPeople.value) {
@@ -87,7 +86,16 @@
           showError(dateInput, "Please select a date");
           isValid = false;
         } else {
-          hideError(dateInput);
+          const selectedDate = new Date(dateInput.value);
+          const dayOfWeek = selectedDate.getDay();
+          
+          // Check if it's Monday (1)
+          if (dayOfWeek === 1) {
+            showError(dateInput, "We are closed on Mondays. Please select another day");
+            isValid = false;
+          } else {
+            hideError(dateInput);
+          }
         }
 
         if (isValid) {
