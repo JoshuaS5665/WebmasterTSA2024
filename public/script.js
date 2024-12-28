@@ -1,8 +1,11 @@
 function loadHead(url) {
   const header = document.getElementById("header");
-  fetch(url)
+  fetch(url, { cache: 'no-store' })
     .then(response => {
-      if (!response.ok) throw new Error(`Failed to load header: ${response.status}`);
+      if (!response.ok) {
+        console.error('Response not ok:', response.status, url);
+        throw new Error(`Failed to load header: ${response.status}`);
+      }
       return response.text();
     })
     .then(data => {
@@ -10,7 +13,7 @@ function loadHead(url) {
       console.log("Header loaded successfully");
     })
     .catch(error => {
-      console.error('Header loading error:', error);
+      console.error('Header loading error:', error, 'URL:', url);
       header.innerHTML = '<p>Error loading header</p>';
     });
 }
