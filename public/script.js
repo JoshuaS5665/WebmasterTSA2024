@@ -327,6 +327,6 @@ function validateTimeSelection(event) {
     return false;
   }
   localStorage.setItem('selectedTime', timeSelect.value);
-  window.location.href = "bookTable.html";
+  window.location.href = "reservation3.html";
   return false;
 }
