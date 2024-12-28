@@ -1182,9 +1182,10 @@ button[type="submit"]:hover:before {
   overflow: hidden;
   text-overflow: ellipsis;
   box-sizing: border-box;
-  padding: 4px 8px;
+  padding: 8px 12px;
   text-rendering: optimizeLegibility;
   font-size: clamp(8px, 2vw, 14px);
+  margin: 2px;
 }
 
 .table-button:hover {
