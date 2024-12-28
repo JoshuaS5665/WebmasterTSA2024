@@ -305,6 +305,9 @@ function initializeTimeSlots() {
   
   // Generate time slots in 30-minute increments
   for (let time = startTime; time < endTime; time += 0.5) {
+    // Skip times after kitchen closes
+    if (time >= kitchenCloseTime) continue;
+    
     const hour = Math.floor(time);
     const minute = (time % 1) * 60;
     const period = hour >= 12 ? 'PM' : 'AM';
@@ -312,14 +315,7 @@ function initializeTimeSlots() {
     const timeStr = `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
     const option = document.createElement('option');
     option.value = timeStr;
-    
-    // Add note for times after kitchen closes
-    if (time >= kitchenCloseTime) {
-      option.textContent = `${timeStr} (Kitchen Closed)`;
-    } else {
-      option.textContent = timeStr;
-    }
-    
+    option.textContent = timeStr;
     select.appendChild(option);
   }
 }
