@@ -1114,26 +1114,48 @@ button[type="submit"]:hover:before {
 
 .table-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 .table-button {
+  width: 100%;
   padding: 15px;
   background-color: transparent;
   color: #32372b;
   border: 2px solid #32372b;
   border-radius: 4px;
-  font-size: 18px;
+  font-size: clamp(14px, 2vw, 18px);
   font-family: "Bodoni Moda", serif;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table-button:hover {
   background-color: #32372b;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .table-grid {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .table-button {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .table-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
