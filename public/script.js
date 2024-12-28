@@ -104,7 +104,7 @@ function validateContactInfo() {
   }
 
   if (isValid) {
-    window.location.href = "contactResponse.html";
+    window.location.href = "/contact/contactResponse.html";
   }
 }
 
