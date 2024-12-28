@@ -1151,36 +1151,37 @@ button[type="submit"]:hover:before {
 
 .table-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 20px;
   padding: 20px;
   width: 90%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 0 auto;
   text-align: center;
   justify-content: center;
   align-items: center;
-  place-content: center;
+  place-items: center;
 }
 
 .table-button {
   text-align: center;
-  padding: 8px 16px;
+  padding: 8px;
   border: 2px solid #32372b;
   background-color: transparent;
   color: #32372b;
   font-family: "Bodoni Moda", serif;
-  font-size: clamp(14px, 2vw, 16px);
+  font-size: min(14px, 3.5vw);
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  width: clamp(120px, 15vw, 160px);
-  height: clamp(50px, 8vw, 60px);
+  width: 100%;
+  max-width: 140px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   word-wrap: break-word;
-  line-height: 1.2;
+  line-height: 1.1;
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis;
