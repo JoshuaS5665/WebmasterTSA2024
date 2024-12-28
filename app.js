@@ -40,7 +40,7 @@ app.get("/contact", (req, res) => {
   res.sendFile(__dirname + "/public/contact/contact.html");
 });
 
-app.get("/contactResponse", (req, res) => {
+app.get("/contact/contactResponse", (req, res) => {
   res.sendFile(__dirname + "/public/contact/contactResponse.html");
 });
 
