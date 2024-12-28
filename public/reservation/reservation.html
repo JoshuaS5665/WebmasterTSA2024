@@ -3,24 +3,46 @@
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Flourish | Reservations</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
   </head>
 
-  <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'>
+  <body
+    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'
+  >
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
 
-    <img src="../images/homeImage1.jpg" alt="Restaurant Interior" id="homeImage" style="position: relative"/>
-    <h1 style="text-align: center; font-family: Bodoni Moda, serif; color: #32372b; margin: 40px 0">
+    <img
+      src="../images/homeImage1.jpg"
+      alt="Restaurant Interior"
+      id="homeImage"
+      style="position: relative"
+    />
+    <h1
+      style="
+        text-align: center;
+        font-family:
+          Bodoni Moda,
+          serif;
+        color: #32372b;
+        margin: 40px 0;
+      "
+    >
       MAKE A RESERVATION
     </h1>
     <div class="reservationForm">
       <form onsubmit="return validateReservation(event)">
-        <label for="numberPeople">How many people are in the party?<div class="asterisk">*</div></label>
+        <label for="numberPeople"
+          >How many people are in the party?
+          <div class="asterisk">*</div></label
+        >
         <select name="numberPeople" id="numberPeople" novalidate>
           <option value="">Select number of people</option>
           <option value="onePerson">1 Person</option>
@@ -40,9 +62,12 @@
           <option value="fifteenPersons">15 People</option>
         </select>
         <br />
-        <label>What date is the reservation?<div class="asterisk">*</div></label>
+        <label
+          >What date is the reservation?
+          <div class="asterisk">*</div></label
+        >
         <select id="dateInput" novalidate></select>
-        
+
         <p class="asterisk">* denotes required.</p>
         <button type="submit">Submit</button>
       </form>
@@ -50,63 +75,59 @@
     <div id="footer" style="margin-bottom: 10%"></div>
 
     <script>
-      const timeSelect = document.getElementById('timeSelect');
-      const dateInput = document.getElementById('dateInput');
-
-      
+      const timeSelect = document.getElementById("timeSelect");
+      const dateInput = document.getElementById("dateInput");
 
       function validateReservation(event) {
         event.preventDefault();
-        const numberPeople = document.getElementById('numberPeople');
-        const dateInput = document.getElementById('dateInput');
-        const timeSelect = document.getElementById('timeSelect');
+        const numberPeople = document.getElementById("numberPeople");
+        const dateInput = document.getElementById("dateInput");
+        const timeSelect = document.getElementById("timeSelect");
         let isValid = true;
 
         if (!numberPeople.value) {
-          showError(numberPeople, 'Please select number of people');
+          showError(numberPeople, "Please select number of people");
           isValid = false;
         } else {
           hideError(numberPeople);
         }
 
         if (!dateInput.value) {
-          showError(dateInput, 'Please select a date');
+          showError(dateInput, "Please select a date");
           isValid = false;
         } else {
           hideError(dateInput);
         }
 
-        
-
         if (isValid) {
-          window.location.href = 'reservation2.html';
+          window.location.href = "reservation2.html";
         }
         return false;
       }
 
       function showError(element, message) {
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.style.color = '#32372b';
-        errorDiv.style.fontSize = '14px';
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error-message";
+        errorDiv.style.color = "#32372b";
+        errorDiv.style.fontSize = "14px";
         errorDiv.textContent = message;
-        
+
         // Remove any existing error message
         const existingError = element.nextElementSibling;
-        if (existingError && existingError.className === 'error-message') {
+        if (existingError && existingError.className === "error-message") {
           existingError.remove();
         }
-        
+
         element.parentNode.insertBefore(errorDiv, element.nextSibling);
-        element.style.borderColor = '#32372b';
+        element.style.borderColor = "#32372b";
       }
 
       function hideError(element) {
         const errorDiv = element.nextElementSibling;
-        if (errorDiv && errorDiv.className === 'error-message') {
+        if (errorDiv && errorDiv.className === "error-message") {
           errorDiv.remove();
         }
-        element.style.borderColor = '#32372b';
+        element.style.borderColor = "#32372b";
       }
 
       function populateDateDropdown() {
@@ -114,24 +135,50 @@
         const today = new Date();
         const oneMonthFromNow = new Date();
         oneMonthFromNow.setMonth(today.getMonth() + 1);
-        
-        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-        
-        for (let d = new Date(today); d <= oneMonthFromNow; d.setDate(d.getDate() + 1)) {
-          if (d.getDay() !== 1) { // Skip Mondays
-            const option = document.createElement('option');
-            const dateStr = d.toISOString().split('T')[0];
+
+        const days = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        for (
+          let d = new Date(today);
+          d <= oneMonthFromNow;
+          d.setDate(d.getDate() + 1)
+        ) {
+          if (d.getDay() !== 1) {
+            // Skip Mondays
+            const option = document.createElement("option");
+            const dateStr = d.toISOString().split("T")[0];
             option.value = dateStr;
             option.text = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
             dateInput.appendChild(option);
           }
         }
 
-        dateInput.addEventListener('change', updateTimeDropdown);
+        dateInput.addEventListener("change", updateTimeDropdown);
       }
 
-      window.addEventListener('load', populateDateDropdown);
+      window.addEventListener("load", populateDateDropdown);
       updateTimeDropdown();
     </script>
   </body>

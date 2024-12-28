@@ -1,8 +1,10 @@
 const express = require("express");
+const morgan = require("morgan");
 const app = express();
 const PORT = 80;
 
 app.use(express.static("public"));
+app.use(morgan("dev"));
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -80,6 +82,19 @@ app.get("/reservation", (req, res) => {
 
 app.get("/reservation.html", (req, res) => {
   res.redirect(301, "/reservation");
+});
+
+app.post("/reservation/second", (req, res) => {
+  console.log("POST req is running");
+  res.sendFile(__dirname + "/public/reservation/reservation2.html");
+});
+
+app.get("/reservation/second", (req, res) => {
+  res.redirect(301, "/reservation");
+});
+
+app.get("/reservation/reservation2.html", (req, res) => {
+  res.redirect(301, "/reservation/");
 });
 
 app.use((req, res, next) => {
