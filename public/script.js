@@ -228,9 +228,13 @@ function closeJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
   const emailInput = document.getElementById("jobEmailInput");
   const phoneInput = document.getElementById("jobPhoneInput");
+  const errorMessages = document.querySelectorAll('.error-message');
+  
   if (emailInput) emailInput.value = "";
   if (phoneInput) phoneInput.value = "";
+  errorMessages.forEach(msg => msg.remove());
   form.classList.remove("visible");
+  form.querySelector('.form-container').innerHTML = form.querySelector('.form-container').innerHTML;
 }
 
 function getPeopleInParty() {
