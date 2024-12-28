@@ -167,7 +167,14 @@ const TABLE_CAPACITIES = {
 
 function updateTableButtons() {
   const peopleInParty = getPeopleInParty();
-  const numPeople = peopleInParty ? parseInt(peopleInParty.match(/\d+/)[0]) : 0;
+  const numberMap = {
+    'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
+    'fivePersons': 5, 'sixPersons': 6, 'sevenPersons': 7, 'eightPersons': 8,
+    'ninePersons': 9, 'tenPersons': 10, 'elevenPersons': 11, 'twelvePersons': 12,
+    'thirteenPersons': 13, 'fourteenPersons': 14, 'fifteenPersons': 15
+  };
+  
+  const numPeople = peopleInParty ? numberMap[peopleInParty] || 0 : 0;
   
   Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
     const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);
