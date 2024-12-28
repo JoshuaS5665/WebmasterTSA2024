@@ -101,10 +101,10 @@
           const dayOfWeek = selectedDate.getDay();
 
           // Check if it's Monday (1)
-          if (dayOfWeek === 1) {
+          if (dayOfWeek === 0) {
             showError(
               dateInput,
-              "We are closed on Mondays. Please select Tuesday through Sunday.",
+              "We are closed on Sundays. Please select Monday through Saturday.",
             );
             isValid = false;
           } else {
@@ -180,8 +180,8 @@
           d <= oneMonthFromNow;
           d.setDate(d.getDate() + 1)
         ) {
-          if (d.getDay() !== 1) {
-            // Skip Mondays
+          if (d.getDay() !== 0) {
+            // Skip Sundays
             const option = document.createElement("option");
             const dateStr = d.toISOString().split("T")[0];
             option.value = dateStr;
