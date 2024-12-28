@@ -1167,7 +1167,7 @@ button[type="submit"]:hover:before {
   background-color: transparent;
   color: #32372b;
   font-family: "Bodoni Moda", serif;
-  font-size: min(12px, 2.5vw);
+  font-size: min(10px, 1.8vw);
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -1176,12 +1176,13 @@ button[type="submit"]:hover:before {
   display: flex;
   align-items: center;
   justify-content: center;
-  word-break: break-word;
-  line-height: 0.9;
+  word-break: normal;
+  line-height: 1;
   white-space: normal;
   overflow: hidden;
   box-sizing: border-box;
-  padding: 2px;
+  padding: 4px;
+  text-rendering: optimizeLegibility;
 }
 
 .table-button:hover {
