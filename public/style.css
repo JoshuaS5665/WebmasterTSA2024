@@ -1151,12 +1151,14 @@ button[type="submit"]:hover:before {
 
 .table-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 5%;
-  padding: 5%;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  padding: 20px;
   width: 90%;
   max-width: 1200px;
   margin: 0 auto;
+  justify-items: center;
+  align-items: center;
 }
 
 .table-button {
@@ -1170,16 +1172,16 @@ button[type="submit"]:hover:before {
   text-decoration: none;
   transition: all 0.3s ease;
   cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-  min-width: 140px;
+  width: 160px;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   word-wrap: break-word;
   line-height: 1.2;
-  border-radius: 0px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .table-button:hover {
