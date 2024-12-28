@@ -1178,11 +1178,13 @@ button[type="submit"]:hover:before {
   justify-content: center;
   word-break: normal;
   line-height: 1;
-  white-space: normal;
+  white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
   box-sizing: border-box;
-  padding: 4px;
+  padding: 4px 8px;
   text-rendering: optimizeLegibility;
+  font-size: clamp(8px, 2vw, 14px);
 }
 
 .table-button:hover {
