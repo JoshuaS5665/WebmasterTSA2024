@@ -179,7 +179,8 @@ body {
 }
 
 /* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
+.dropbtn:hover + .dropdown-content,
+.dropdown-content:hover {
   opacity: 1;
   visibility: visible;
 }
@@ -518,7 +519,8 @@ input {
   background-color: #21251d;
 }
 
-.dropdown:hover .dropdown-content {
+.dropbtn:hover + .dropdown-content,
+.dropdown-content:hover {
   opacity: 1;
   visibility: visible;
 }
