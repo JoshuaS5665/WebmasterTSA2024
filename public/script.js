@@ -5,7 +5,21 @@ function loadHead(url) {
     .then((data) => {
       header.innerHTML = data;
       console.log(url + "Function is Running");
+      highlightCurrentPage();
     });
+}
+
+function highlightCurrentPage() {
+  const currentPath = window.location.pathname;
+  const navLinks = document.querySelectorAll('.navbar a:not(.dropbtn)');
+  
+  navLinks.forEach(link => {
+    const linkPath = link.getAttribute('href');
+    if (currentPath === linkPath || 
+        (linkPath !== '/' && currentPath.startsWith(linkPath))) {
+      link.classList.add('active');
+    }
+  });
 }
 
 function changeImages(beginning) {
