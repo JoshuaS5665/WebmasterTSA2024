@@ -239,42 +239,12 @@ function validateJobInquiry() {
   }
 }
 
-function updateTimeDropdown() {
-  const dateInput = document.getElementById("dateInput");
-  const timeSelect = document.getElementById("timeSelect");
-  if (!dateInput || !timeSelect) return;
-  
-  const selectedDate = new Date(dateInput.value);
-  const day = selectedDate.getDay();
-  
-  // Clear existing options
-  timeSelect.innerHTML = '<option value="">Select a time</option>';
-  
-  // Skip if Monday (day === 1) or no date selected
-  if (day === 1 || !dateInput.value) {
-    timeSelect.innerHTML = '<option value="">Closed on Mondays</option>';
-    return;
-  }
-  
-  // Add time slots
-  const isWeekend = day === 0 || day === 5 || day === 6;
-  const closeTime = isWeekend ? 23 : 22;
-  
-  for (let hour = 15; hour < closeTime; hour++) {
-    for (let minute of ['00', '30']) {
-      const timeStr = `${hour > 12 ? hour - 12 : hour}:${minute} ${hour >= 12 ? 'PM' : 'AM'}`;
-      const option = document.createElement('option');
-      option.value = timeStr;
-      option.textContent = timeStr;
-      timeSelect.appendChild(option);
-    }
-  }
-}
-
 function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
   if (!dateInput.hasListener) {
-    dateInput.addEventListener('input', updateTimeDropdown);
+    dateInput.addEventListener('input', function() {
+      // Removed date validation here, it's now handled in validateContactInfo
+    });
     dateInput.hasListener = true;
   }
 }
