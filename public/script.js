@@ -44,9 +44,8 @@ function changeImages(beginning) {
   let x = 0;
 
   setInterval(() => {
-    homeImage.classList.toggle("fade-out");
+    homeImage.classList.add("fade-out");
     setTimeout(() => {
-      homeImage.classList.add("fade-out");
       if (x == 0) {
         homeImage.src = `${beginning}images/homeImage1.jpg`;
         x++;
@@ -57,8 +56,10 @@ function changeImages(beginning) {
         homeImage.src = `${beginning}images/homeImage3.jpg`;
         x = 0;
       }
-      homeImage.classList.remove("fade-out");
-    }, 2000);
+      setTimeout(() => {
+        homeImage.classList.remove("fade-out");
+      }, 50);
+    }, 500);
   }, 6000);
 }
 
