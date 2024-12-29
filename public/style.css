@@ -96,7 +96,8 @@ body {
   transition: transform 0.3s ease;
 }
 
-.navbar a:not(.dropbtn):hover::after {
+.navbar a:not(.dropbtn):hover::after,
+.navbar a:not(.dropbtn).active::after {
   transform: scaleX(1);
   transform-origin: left;
 }
