@@ -15,14 +15,14 @@ body {
   box-sizing: border-box;
 }
 
-body {
+.content-wrapper {
   opacity: 1;
   transition: opacity 0.3s ease;
   background-color: #fff;
 }
 
-body.fade-out {
-  opacity: 100;
+.content-wrapper.fade-out {
+  opacity: 0;
 }
 
 #homeImage {

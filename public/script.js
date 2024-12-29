@@ -12,7 +12,15 @@ function loadHead(url) {
 function smoothPageTransition(e) {
   if (e.target.tagName === 'A' && !e.target.hasAttribute('download')) {
     e.preventDefault();
-    document.body.classList.add('fade-out');
+    const header = document.getElementById('header');
+    const footer = document.getElementById('footer');
+    const content = document.querySelectorAll('body > *:not(#header):not(#footer)');
+    
+    content.forEach(el => {
+      el.classList.add('content-wrapper');
+      el.classList.add('fade-out');
+    });
+
     setTimeout(() => {
       window.location.href = e.target.href;
     }, 300);
