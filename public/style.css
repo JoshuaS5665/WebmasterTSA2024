@@ -16,14 +16,13 @@ body {
 }
 
 body {
-  animation: fadeIn 0.5s ease-in;
   opacity: 1;
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.3s ease;
+  background-color: #fff;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+body.fade-out {
+  opacity: 0;
 }
 
 #homeImage {

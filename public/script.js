@@ -12,10 +12,10 @@ function loadHead(url) {
 function smoothPageTransition(e) {
   if (e.target.tagName === 'A' && !e.target.hasAttribute('download')) {
     e.preventDefault();
-    document.body.style.opacity = '0';
+    document.body.classList.add('fade-out');
     setTimeout(() => {
       window.location.href = e.target.href;
-    }, 400);
+    }, 300);
   }
 }
 
