@@ -80,19 +80,6 @@ body {
   /* Make sure links align horizontally */
   text-align: center;
   transition: background-color 0.3s ease;
-  position: relative;
-}
-
-.navbar a.active::after,
-.navbar a:not(.dropbtn):hover::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: white;
-  bottom: 5px;
-  left: 0;
-  transform: scaleX(1);
 }
 
 /* Hover effect for navbar items */
