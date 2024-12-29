@@ -9,6 +9,18 @@ function loadHead(url) {
     });
 }
 
+function smoothPageTransition(e) {
+  if (e.target.tagName === 'A' && !e.target.hasAttribute('download')) {
+    e.preventDefault();
+    document.body.style.opacity = '0';
+    setTimeout(() => {
+      window.location.href = e.target.href;
+    }, 300);
+  }
+}
+
+document.addEventListener('click', smoothPageTransition);
+
 function markCurrentPage() {
   const currentPath = window.location.pathname;
   const navLinks = document.querySelectorAll('.navbar a');
