@@ -84,6 +84,7 @@ body {
 
 .navbar a:not(.dropbtn) {
   position: relative;
+  transition: background-color 0.3s ease;
 }
 
 .navbar a:not(.dropbtn)::after {
@@ -97,6 +98,11 @@ body {
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.3s ease;
+}
+
+.navbar a:not(.dropbtn):hover,
+.navbar a:not(.dropbtn).active {
+  background-color: #21251d;
 }
 
 .navbar a:not(.dropbtn):hover::after,
