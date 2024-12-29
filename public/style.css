@@ -27,7 +27,7 @@ body {
 
 .main-content.fade-out {
   opacity: 0;
-  transition: opacity 0.3s ease-out;
+  transition: opacity 0.8s ease-out;
 }
 
 #homeImage {

@@ -21,7 +21,7 @@ function smoothPageTransition(e) {
 
     setTimeout(() => {
       window.location.href = e.target.href;
-    }, 300);
+    }, 800);
   }
 }
 
