@@ -27,7 +27,12 @@ function smoothPageTransition(e) {
 
 window.addEventListener('DOMContentLoaded', () => {
   const content = document.querySelectorAll('body > *:not(#header):not(#footer)');
-  content.forEach(el => el.classList.add('main-content'));
+  content.forEach(el => {
+    el.classList.add('main-content');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      el.style.opacity = '1';
+    }));
+  });
 });
 
 document.addEventListener('click', smoothPageTransition);
