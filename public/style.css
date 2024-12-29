@@ -22,7 +22,7 @@ body {
 }
 
 body.fade-out {
-  opacity: 100;
+  opacity: 0;
 }
 
 #homeImage {
