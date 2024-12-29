@@ -11,11 +11,16 @@ function loadHead(url) {
 
 function markCurrentPage() {
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.navbar a:not(.dropbtn)');
+  const navLinks = document.querySelectorAll('.navbar a');
   
   navLinks.forEach(link => {
-    if (currentPath === link.getAttribute('href')) {
+    const linkPath = link.getAttribute('href');
+    // Check if current path starts with the link path (for nested routes)
+    if (linkPath !== '/' && currentPath.startsWith(linkPath) || 
+        (linkPath === '/' && currentPath === '/')) {
       link.classList.add('active');
+    } else {
+      link.classList.remove('active');
     }
   });
 }
