@@ -15,7 +15,7 @@ function smoothPageTransition(e) {
     document.body.style.opacity = '0';
     setTimeout(() => {
       window.location.href = e.target.href;
-    }, 300);
+    }, 400);
   }
 }
 
