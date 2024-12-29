@@ -33,31 +33,31 @@ body {
 #homeImage {
   width: 100%;
   height: auto;
-  max-height: 65vh;
   display: block;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
+  object-fit: contain;
 }
 
 #menuHomeImage {
   width: 100%;
   height: auto;
-  max-height: 45vh;
   display: block;
+  object-fit: contain;
 }
 
 #avocado {
   width: 100%;
   height: auto;
-  max-height: 45vh;
   display: block;
+  object-fit: contain;
 }
 
 #aboutUsImage {
   width: 100%;
   height: auto;
-  max-height: 45vh;
   display: block;
+  object-fit: contain;
 }
 
 .fade-out {
@@ -1280,7 +1280,7 @@ button[type="submit"]:hover:before {
   height: 90px;
   border-radius: 50%;
   margin-bottom: 16px;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @media (max-width: 768px) {
