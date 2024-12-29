@@ -1212,3 +1212,35 @@ button[type="submit"]:hover:before {
     font-size: 12px;
   }
 }
+
+.testimonial {
+  border: 2px solid #ccc;
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 16px;
+  margin: 16px 0;
+}
+
+.testimonial::after {
+  content:"";
+  clear:both;
+  display:table;
+}
+
+.testimonial img {
+  float: left;
+  margin-right: 16px;
+  border-radius: 50%;
+}
+
+@media (max-width: 500px) {
+  .testimonial {
+    text-align: center;
+  }
+
+  .testimonial img {
+    float: none;
+    margin: auto;
+    display: block;
+  }
+}

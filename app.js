@@ -91,11 +91,7 @@ app.get("/reservation.html", (req, res) => {
 });
 
 app.post("/reservation/second", (req, res) => {
-  console.log(req.body);
-});
-
-app.get("/reservation/second", (req, res) => {
-  res.redirect(301, "/reservation");
+  res.sendFile(__dirname + "/public/reservation/reservation2.html");
 });
 
 //app.get("/reservation/reservation2.html", (req, res) => {
