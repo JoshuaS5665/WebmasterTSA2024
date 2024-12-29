@@ -5,19 +5,7 @@ function loadHead(url) {
     .then((data) => {
       header.innerHTML = data;
       console.log(url + "Function is Running");
-      highlightCurrentPage();
     });
-}
-
-function highlightCurrentPage() {
-  const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.navbar a:not(.dropbtn)');
-  
-  navLinks.forEach(link => {
-    if (currentPath === link.getAttribute('href')) {
-      link.classList.add('active');
-    }
-  });
 }
 
 function changeImages(beginning) {
