@@ -1286,3 +1286,7 @@ button[type="submit"]:hover:before {
     display: block;
   }
 }
+
+.footer-container {
+  color: black;
+}
