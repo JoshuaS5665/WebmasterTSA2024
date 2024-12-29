@@ -82,12 +82,12 @@ body {
   position: relative;
 }
 
-.navbar a:not(.dropbtn) {
+.navbar a, .dropbtn {
   position: relative;
   transition: background-color 0.3s ease;
 }
 
-.navbar a:not(.dropbtn)::after {
+.navbar a::after, .dropbtn::after {
   content: '';
   position: absolute;
   width: 100%;
@@ -100,13 +100,13 @@ body {
   transition: transform 0.3s ease;
 }
 
-.navbar a:not(.dropbtn):hover,
-.navbar a:not(.dropbtn).active {
+.navbar a:hover, .navbar a.active,
+.dropbtn:hover, .dropbtn.active {
   background-color: #21251d;
 }
 
-.navbar a:not(.dropbtn):hover::after,
-.navbar a:not(.dropbtn).active::after {
+.navbar a:hover::after, .navbar a.active::after,
+.dropbtn:hover::after, .dropbtn.active::after {
   transform: scaleX(1);
   transform-origin: left;
 }
