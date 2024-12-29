@@ -32,32 +32,32 @@ body {
 
 #homeImage {
   width: 100%;
-  height: auto;
+  height: 65vh;
   display: block;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 #menuHomeImage {
   width: 100%;
-  height: auto;
+  height: 45vh;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 #avocado {
   width: 100%;
-  height: auto;
+  height: 45vh;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 #aboutUsImage {
   width: 100%;
-  height: auto;
+  height: 45vh;
   display: block;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .fade-out {
