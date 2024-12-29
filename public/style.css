@@ -82,23 +82,14 @@ body {
   position: relative;
 }
 
-.navbar a:not(.dropbtn)::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 5px;
-  left: 0;
-  background-color: white;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+.navbar a:not(.dropbtn) {
+  position: relative;
+  transition: background-color 0.3s ease;
 }
 
-.navbar a:not(.dropbtn):hover::after,
-.navbar a:not(.dropbtn).active::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.navbar a:not(.dropbtn):hover,
+.navbar a:not(.dropbtn).active {
+  background-color: #21251d;
 }
 
 /* Dropdown container */
