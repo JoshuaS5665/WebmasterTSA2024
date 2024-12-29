@@ -12,12 +12,10 @@ function loadHead(url) {
 function smoothPageTransition(e) {
   if (e.target.tagName === 'A' && !e.target.hasAttribute('download')) {
     e.preventDefault();
-    const header = document.getElementById('header');
-    const footer = document.getElementById('footer');
     const content = document.querySelectorAll('body > *:not(#header):not(#footer)');
     
     content.forEach(el => {
-      el.classList.add('content-wrapper');
+      el.classList.add('main-content');
       el.classList.add('fade-out');
     });
 
@@ -26,6 +24,11 @@ function smoothPageTransition(e) {
     }, 300);
   }
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  const content = document.querySelectorAll('body > *:not(#header):not(#footer)');
+  content.forEach(el => el.classList.add('main-content'));
+});
 
 document.addEventListener('click', smoothPageTransition);
 
