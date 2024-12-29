@@ -1258,15 +1258,17 @@ button[type="submit"]:hover:before {
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 30px;
   padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .testimonial {
   border: 2px solid #ccc;
   background-color: #eee;
   border-radius: 5px;
-  padding: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1278,12 +1280,18 @@ button[type="submit"]:hover:before {
   height: 90px;
   border-radius: 50%;
   margin-bottom: 16px;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {
   .testimonials-grid {
     grid-template-columns: 1fr;
-    gap: 16px;
+    gap: 20px;
+    padding: 15px;
+  }
+  
+  .testimonial {
+    padding: 20px;
   }
 }
 
