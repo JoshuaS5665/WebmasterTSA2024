@@ -255,13 +255,32 @@ function validateJobInquiry() {
   }
 }
 
-function setMinimumDate() {
+function populateDates() {
   const dateInput = document.getElementById("dateInput");
-  if (!dateInput.hasListener) {
-    dateInput.addEventListener('input', function() {
-      // Removed date validation here, it's now handled in validateContactInfo
+  if (!dateInput) return;
+
+  dateInput.innerHTML = '<option value="">Select a date</option>';
+  
+  const today = new Date();
+  for (let i = 1; i <= 30; i++) {
+    const date = new Date();
+    date.setDate(today.getDate() + i);
+    
+    // Skip Mondays as restaurant is closed
+    if (date.getDay() === 1) continue;
+    
+    const dateStr = date.toISOString().split('T')[0];
+    const displayDate = date.toLocaleDateString('en-US', { 
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
     });
-    dateInput.hasListener = true;
+    
+    const option = document.createElement('option');
+    option.value = dateStr;
+    option.textContent = displayDate;
+    dateInput.appendChild(option);
   }
 }
 
