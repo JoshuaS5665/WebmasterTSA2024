@@ -122,6 +122,11 @@ body {
   transform-origin: left;
 }
 
+.navbar a.active,
+.dropbtn.active {
+  background-color: #32372b;
+}
+
 /* Dropdown container */
 .dropdown {
   position: relative;
