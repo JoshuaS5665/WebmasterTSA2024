@@ -1174,17 +1174,25 @@ button[type="submit"]:hover:before {
   align-items: center;
   margin: 50px auto;
   font-family: "Bodoni Moda", serif;
+  width: 100%;
+  max-width: 600px;
+  padding: 0 20px;
+}
+
+.reservationForm3 form {
+  width: 100%;
 }
 
 .reservationForm3 select,
 .reservationForm3 input {
   width: 100%;
   padding: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   border: 2px solid #32372b;
   border-radius: 4px;
   font-size: 16px;
   font-family: "Bodoni Moda", serif;
+  min-height: 45px;
 }
 
 .reservationForm3 button {
