@@ -375,7 +375,9 @@ function initializeTimeSlots() {
 }
 
 function validateTimeSelection(event) {
-  event.preventDefault();
+  if (event) {
+    event.preventDefault();
+  }
   const timeSelect = document.getElementById('reservationTime');
   let isValid = true;
 
@@ -384,9 +386,6 @@ function validateTimeSelection(event) {
     isValid = false;
   } else {
     hideError(timeSelect);
-  }
-
-  if (isValid) {
     localStorage.setItem('selectedTime', timeSelect.value);
     window.location.href = "reservationConfirmation.html";
   }
