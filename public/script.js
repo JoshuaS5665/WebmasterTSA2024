@@ -255,32 +255,43 @@ function validateJobInquiry() {
   }
 }
 
-function populateDates() {
+function validateReservation(event) {
+  event.preventDefault();
+  const numberPeople = document.getElementById("numberPeople");
   const dateInput = document.getElementById("dateInput");
-  if (!dateInput) return;
+  let isValid = true;
 
-  dateInput.innerHTML = '<option value="">Select a date</option>';
-  
-  const today = new Date();
-  for (let i = 1; i <= 30; i++) {
-    const date = new Date();
-    date.setDate(today.getDate() + i);
-    
-    // Skip Mondays as restaurant is closed
-    if (date.getDay() === 1) continue;
-    
-    const dateStr = date.toISOString().split('T')[0];
-    const displayDate = date.toLocaleDateString('en-US', { 
-      weekday: 'long', 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
+  if (!numberPeople.value) {
+    showError(numberPeople, "Please select number of people");
+    isValid = false;
+  } else {
+    hideError(numberPeople);
+    localStorage.setItem("peopleInParty", numberPeople.value);
+  }
+
+  if (!dateInput.value) {
+    showError(dateInput, "Please select a date");
+    isValid = false;
+  } else {
+    hideError(dateInput);
+    localStorage.setItem("selectedDate", dateInput.value);
+  }
+
+  if (isValid) {
+    window.location.href = "reservation2.html";
+  }
+  return false;
+}
+
+function setMinimumDate() {
+  const dateInput = document.getElementById("dateInput");
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+  if (!dateInput.hasListener) {
+    dateInput.addEventListener('input', function() {
+      localStorage.setItem('selectedDate', this.value);
     });
-    
-    const option = document.createElement('option');
-    option.value = dateStr;
-    option.textContent = displayDate;
-    dateInput.appendChild(option);
+    dateInput.hasListener = true;
   }
 }
 
