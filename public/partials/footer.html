@@ -1,7 +1,122 @@
-
-<div class="footer-container">
-  <p class="footer-copyright" style="font-family: Bodoni Moda, serif; margin-left: 5%">
-    © 2024 Flourish Fine Dining. All rights reserved.
-  </p>
-</div>
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flourish | About Us</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="footer">
+      <h1 class = "footerlogofooter" style="width: 100%; text-align: center; margin-bottom: 2rem;">
+        <img src="../images/flourishLogo.png" alt="LOGO" width="250wh"/>
+      </h1>
+      <div id="FooterLeft">
+        <h1 style="font-family: Bodoni Moda, serif;">Contact</h1>
+        <p style="font-family: Bodoni Moda, serif;">
+          info@flourishrestaurant.com <br />
+          (412)-510-4038
+          <br/>
+          <button class="button-group" 
+style = "align-items: center" onclick="openJobInquiries()">Job Inquiries</button>
+        </p>
+      </div>
+      <div id="footerLeft">
+        <h1 style="font-family: Bodoni Moda, serif;">Location</h1>
+        <p style="font-family: Bodoni Moda, serif;">123 Flourish Drive</br> Government Complex No. 1</br> Pyongyang, North Korea</p>
+      </div>
+      <div id="footerMiddle" style="list-style-type: none">
+        <li><a href="/" target="_blank">Home</a></li>
+        <li><a href="/about" target="_blank">About Us</a></li>
+        <li><a href="/mission" target="_blank">Our Mission</a></li>
+        <li><a href="/menus" target="_blank">Menus</a></li>
+        <li><a href="/reservation" target="_blank">Reservations</a></li>
+        <li><a href="/contact" target="_blank">Contact</a></li>
+        <li><a href="/faqs" target="_blank">FAQs</a></li>
+      </div>
+      <div id="footerRight">
+        <h1 style="font-family: Bodoni Moda, serif;">Hours</h1>
+        <p style="font-family: Bodoni Moda, serif;">Tues - Thurs: 3pm - 10pm</p>
+        <p style="font-family: Bodoni Moda, serif;">Fri - Sun: 3pm - 11pm</p>
+        <p style="font-family: Bodoni Moda, serif;">Mon: CLOSED</p>
+      </div>
+      <div id="extremeFooterRight">
+        <h1 style="font-family: Bodoni Moda, serif; margin-bottom: 15px;">Socials</h1>
+        <div class="social-icons">
+          <a href="https://www.youtube.com/" class="social-link" target="_blank">
+            <img
+              src="../../images/social media buttons/twitter.png"
+              alt="Twitter"
+              style="width: 35px; height: auto; filter: brightness(0) invert(1); margin: -2.5px"
+            />
+          </a>
+          <a href="https://www.instagram.com/" class="social-link" target="_blank">
+            <img
+              src="../../images/social media buttons/instagram.png"
+              alt="Instagram"
+              style="width: 35px; height: auto; filter: brightness(0) invert(1); margin: -2.5px"
+            />
+          </a>
+          <a href="https://www.facebook.com/" class="social-link" target="_blank">
+            <img
+              src="../../images/social media buttons/facebook.png"
+              alt="Facebook"
+              style="width: 30px; height: auto; filter: brightness(0) invert(1)"
+            />
+          </a>
+          <a href="https://www.tiktok.com/" class="social-link" target="_blank">
+            <img
+              src="../../images/social media buttons/tiktok.png"
+              alt="TikTok"
+              style="width: 35px; height: auto; filter: brightness(0) invert(1); margin: -2.5px"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class = "form-popup" id="jobInquiryForm">
+      <form class="form-container" onsubmit="return false">
+        <span class="close-btn" onclick="closeJobInquiries()">&times;</span>
+        <h1 style = "font-family: Bodoni Moda, serif; text-align: center">We're always hiring!</h1>
+        <h2 style = "font-family: Bodoni Moda, serif; text-align: center">Contact us for job opportunities!</h2>
+        <label style = "font-family: Bodoni Moda, serif" for="email-address"
+          >Email Address:
+          <div class="asterisk">*</div></label
+        >
+        <input
+          class="form-control"
+          type="email"
+          id="jobEmailInput"
+          placeholder="johndoe@example.com"
+        />
+        <br/>
+        <label style = "font-family: Bodoni Moda, serif" for="phone-number"
+          >Phone Number:
+          <div class="asterisk">*</div></label
+        >
+        <input
+          class="form-control"
+          type="tel"
+          id="jobPhoneInput"
+          placeholder="(123)-456-7890"
+        />
+        <br/>
+        <p class="asterisk">* denotes required.</p> <br/>
+        <button type="submit" id="submit" onclick="validateJobInquiry()">
+          Submit
+        </button>
+        <button type="button" class="btn cancel" onclick="closeJobInquiries()">Cancel</button>
+    </div>
+    <div class = "footer-container">
+      <p class = "footer-copyright" style = "font-family: Bodoni Moda, serif; margin-left: 5%">
+        © 2024 Flourish Fine Dining. All rights reserved.
+      </p>
+      </div>
+  </body>
 </html>

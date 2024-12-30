@@ -1,41 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<!doctype html>
+<html>
+  <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flourish | Reservation</title>
+    <title>Flourish | Reservations</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
-</head>
-<body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html"), populateDates()'>
+  </head>
+
+  <body
+    onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'
+  >
     <script type="text/javascript" src="../script.js"></script>
     <div id="header"></div>
+
+    <img
+      src="../images/homeImage1.jpg"
+      alt="Restaurant Interior"
+      id="homeImage"
+      style="position: relative"
+    />
+    <h1
+      style="
+        text-align: center;
+        font-family:
+          Bodoni Moda,
+          serif;
+        color: #32372b;
+        margin: 40px 0;
+      "
+    >
+      MAKE A RESERVATION
+    </h1>
     <div class="reservationForm">
-        <form onsubmit="return validateReservation(event)" novalidate>
-            <label>How many people are in your party?
-                <div class="asterisk">*</div><br>
-                <sub>Please note that for parties of 7 or more, you will need to contact us directly through our contact page. 
-                    <a href="/contact">Contact Link</a>
-                </sub>
-            </label>
-            <select name="numberPeople" id="numberPeople" onchange="getPeopleInParty()" novalidate>
-                <option value="">Select number of people</option>
-                <option value="1">1 Person</option>
-                <option value="2">2 People</option>
-                <option value="3">3 People</option>
-                <option value="4">4 People</option>
-                <option value="5">5 People</option>
-                <option value="6">6 People</option>
-            </select>
-            <br>
-            <label>What date is the reservation?<div class="asterisk">*</div></label>
-            <input type="date" id="dateInput" required>
-            <p class="asterisk">* denotes required.</p>
-            <button type="submit" onclick="getPeopleInParty()">Submit</button>
-        </form>
+      <form
+        onsubmit="return validateReservation(event)"
+        action="/reservation/second"
+        method="post"
+      >
+        <label for="numberPeople" style="text-align: center"
+          >How many people are in the party?<div class="asterisk">*</div><br><sub>Please note that for parties of 7
+          or more, you will need to contact us directly through our contact
+          page. <a href="/contact">Contact Link</a></sub><!--<label>-->
+        <select
+          name="numberPeople"
+          id="numberPeople"
+          onchange="getPeopleInParty()"
+          novalidate
+        >
+          <option value="">Select number of people</option>
+          <option value="1">1 Person</option>
+          <option value="2">2 People</option>
+          <option value="3">3 People</option>
+          <option value="4">4 People</option>
+          <option value="5">5 People</option>
+          <option value="6">6 People</option>
+        </select>
+        <br>
+        <label
+          >What date is the reservation?
+          <div class="asterisk">*</div></label>
+            
+        <select id="dateInput" novalidate>
+          <option value="">Select a date</option>
+        </select>
+
+        <p class="asterisk">* denotes required.</p>
+        <button type="submit" onclick="getPeopleInParty()">Submit</button>
+
+         
+          
+          </form>
     </div>
-    <div id="footer"></div>
-</body>
+    <div id="footer" style="margin-bottom: 10%"></div>
+
+   <script>
+      const timeSelect = document.getElementById("timeSelect");
+      const dateInput = document.getElementById("dateInput");
+
+      function validateReservation(event) {
+        event.preventDefault();
+        const numberPeople = document.getElementById("numberPeople");
+        const dateInput = document.getElementById("dateInput");
+        let isValid = true;
+
+        if (!numberPeople.value) {
+          showError(numberPeople, "Please select number of people");
+          isValid = false;
+        } else {
+          hideError(numberPeople);
+        }
+
+        if (!dateInput.value) {
+          showError(dateInput, "Please select a date");
+          isValid = false;
+        } else {
+          hideError(dateInput);
+        }
+
+        if (isValid) {
+          localStorage.setItem("peopleInParty", numberPeople.value);
+          localStorage.setItem("selectedDate", dateInput.value);
+          window.location.href = "/reservation/reservation2.html";
+        }
+        return false;
+      }
+
+      function showError(element, message) {
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error-message";
+        errorDiv.style.color = "#32372b";
+        errorDiv.style.fontSize = "14px";
+        errorDiv.textContent = message;
+
+        // Remove any existing error message
+        const existingError = element.nextElementSibling;
+        if (existingError && existingError.className === "error-message") {
+          existingError.remove();
+        }
+
+        element.parentNode.insertBefore(errorDiv, element.nextSibling);
+        element.style.borderColor = "#32372b";
+      }
+
+      function hideError(element) {
+        const errorDiv = element.nextElementSibling;
+        if (errorDiv && errorDiv.className === "error-message") {
+          errorDiv.remove();
+        }
+        element.style.borderColor = "#32372b";
+      }
+
+      function populateDateDropdown() {
+        const dateInput = document.getElementById("dateInput");
+        const today = new Date();
+        const oneMonthFromNow = new Date();
+        oneMonthFromNow.setMonth(today.getMonth() + 1);
+
+        const days = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.text = "Select a date";
+        dateInput.innerHTML = ''; // Clear existing options
+        dateInput.appendChild(defaultOption);
+        
+        for (
+          let d = new Date(today);
+          d <= oneMonthFromNow;
+          d.setDate(d.getDate() + 1)
+        ) {
+          if (d.getDay() !== 1) {
+            // Skip Mondays
+            const option = document.createElement("option");
+            const dateStr = d.toISOString().split("T")[0];
+            option.value = dateStr;
+            option.text = `${days[d.getDay()]}, ${months[d.getMonth()]} ${d.getDate()}`;
+            dateInput.appendChild(option);
+          }
+        }
+
+        dateInput.addEventListener("change", updateTimeDropdown);
+      }
+
+      window.addEventListener("load", populateDateDropdown);
+      updateTimeDropdown();
+    </script>
+  </body>
 </html>
