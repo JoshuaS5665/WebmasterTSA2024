@@ -116,11 +116,6 @@ body {
   transition: transform 0.3s ease;
 }
 
-.navbar a:hover, .navbar a.active,
-.dropbtn:hover, .dropbtn.active {
-  background-color: #21251d;
-}
-
 .navbar a:hover::after, .navbar a.active::after,
 .dropbtn:hover::after, .dropbtn.active::after {
   transform: scaleX(1);
