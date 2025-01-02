@@ -97,6 +97,14 @@ app.post("/reservation/second", (req, res) => {
 //app.get("/reservation/reservation2.html", (req, res) => {
 // res.redirect(301, "/reservation/");
 //});
+app.get("/reservation/second", (req, res) => {
+  res.redirect(301, "/reservation/");
+});
+
+app.get("/reservation/final", (req, res) => {
+  console.log("HELLO WORLD");
+  res.sendFile(__dirname + "/public/reservation/bookTable.html");
+});
 
 app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/public/404/404.html");

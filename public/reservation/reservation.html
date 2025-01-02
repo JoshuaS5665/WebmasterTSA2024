@@ -39,7 +39,7 @@
     </h1>
     <div class="reservationForm">
       <form
-        onsubmit="return validateReservation(event)"
+        onsubmit="validateReservation(event)"
         action="/reservation/second"
         method="post"
       >
@@ -84,7 +84,7 @@
       const dateInput = document.getElementById("dateInput");
 
       function validateReservation(event) {
-        event.preventDefault();
+        //event.preventDefault();
         const numberPeople = document.getElementById("numberPeople");
         const dateInput = document.getElementById("dateInput");
         let isValid = true;
@@ -106,7 +106,7 @@
         if (isValid) {
           localStorage.setItem("peopleInParty", numberPeople.value);
           localStorage.setItem("selectedDate", dateInput.value);
-          window.location.href = "/reservation/reservation2.html";
+          //window.location.href = "/reservation/second";
         }
         return false;
       }

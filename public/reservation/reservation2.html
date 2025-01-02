@@ -86,26 +86,29 @@
       function updateTableButtons() {
         const peopleInParty = localStorage.getItem("peopleInParty");
         const numberMap = {
-          'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
-          'fivePersons': 5, 'sixPersons': 6
+          onePerson: 1,
+          twoPersons: 2,
+          threePersons: 3,
+          fourPersons: 4,
+          fivePersons: 5,
+          sixPersons: 6,
         };
 
-        const numPeople = peopleInParty ?
-          Number(peopleInParty): 0;
+        const numPeople = peopleInParty ? Number(peopleInParty) : 0;
         console.log(numPeople);
-        Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
+        Object.keys(TABLE_CAPACITIES).forEach((tableNum) => {
           /*const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);*/
           console.log(tableNum);
           const button = document.getElementById(tableNum);
           if (button) {
             if (numPeople > TABLE_CAPACITIES[tableNum]) {
               button.disabled = true;
-              button.style.opacity = '0.5';
-              button.style.cursor = 'not-allowed';
+              button.style.opacity = "0.5";
+              button.style.cursor = "not-allowed";
             } else {
               button.disabled = false;
-              button.style.opacity = '1';
-              button.style.cursor = 'pointer';
+              button.style.opacity = "1";
+              button.style.cursor = "pointer";
             }
           }
         });

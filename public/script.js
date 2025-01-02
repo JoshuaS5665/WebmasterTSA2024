@@ -10,13 +10,15 @@ function loadHead(url) {
 }
 
 function smoothPageTransition(e) {
-  if (e.target.tagName === 'A' && !e.target.hasAttribute('download')) {
+  if (e.target.tagName === "A" && !e.target.hasAttribute("download")) {
     e.preventDefault();
-    const content = document.querySelectorAll('body > *:not(#header):not(#footer)');
-    
-    content.forEach(el => {
-      el.classList.add('main-content');
-      el.classList.add('fade-out');
+    const content = document.querySelectorAll(
+      "body > *:not(#header):not(#footer)",
+    );
+
+    content.forEach((el) => {
+      el.classList.add("main-content");
+      el.classList.add("fade-out");
     });
 
     setTimeout(() => {
@@ -25,30 +27,36 @@ function smoothPageTransition(e) {
   }
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const content = document.querySelectorAll('body > *:not(#header):not(#footer)');
-  content.forEach(el => {
-    el.classList.add('main-content');
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      el.style.opacity = '1';
-    }));
+window.addEventListener("DOMContentLoaded", () => {
+  const content = document.querySelectorAll(
+    "body > *:not(#header):not(#footer)",
+  );
+  content.forEach((el) => {
+    el.classList.add("main-content");
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        el.style.opacity = "1";
+      }),
+    );
   });
 });
 
-document.addEventListener('click', smoothPageTransition);
+document.addEventListener("click", smoothPageTransition);
 
 function markCurrentPage() {
   const currentPath = window.location.pathname;
-  const navLinks = document.querySelectorAll('.navbar a');
-  
-  navLinks.forEach(link => {
-    const linkPath = link.getAttribute('href');
+  const navLinks = document.querySelectorAll(".navbar a");
+
+  navLinks.forEach((link) => {
+    const linkPath = link.getAttribute("href");
     // Check if current path starts with the link path (for nested routes)
-    if (linkPath !== '/' && currentPath.startsWith(linkPath) || 
-        (linkPath === '/' && currentPath === '/')) {
-      link.classList.add('active');
+    if (
+      (linkPath !== "/" && currentPath.startsWith(linkPath)) ||
+      (linkPath === "/" && currentPath === "/")
+    ) {
+      link.classList.add("active");
     } else {
-      link.classList.remove('active');
+      link.classList.remove("active");
     }
   });
 }
@@ -155,8 +163,6 @@ function validateContactInfo() {
   return isValid;
 }
 
-
-
 function showError(input, message) {
   const errorDiv = input.nextElementSibling;
   if (!errorDiv || !errorDiv.classList.contains("error-message")) {
@@ -181,37 +187,39 @@ const TABLE_CAPACITIES = {
   11: 4,
   12: 4,
   13: 2,
-  14: 2
+  14: 2,
 };
 
 function updateTableButtons() {
   const peopleInParty = localStorage.getItem("peopleInParty");
   const numberMap = {
-    'onePerson': 1, 'twoPersons': 2, 'threePersons': 3, 'fourPersons': 4,
-    'fivePersons': 5, 'sixPersons': 6
+    onePerson: 1,
+    twoPersons: 2,
+    threePersons: 3,
+    fourPersons: 4,
+    fivePersons: 5,
+    sixPersons: 6,
   };
-  
-  const numPeople = peopleInParty ?
-    Number(peopleInParty): 0;
+
+  const numPeople = peopleInParty ? Number(peopleInParty) : 0;
   console.log(numPeople);
-  Object.keys(TABLE_CAPACITIES).forEach(tableNum => {
+  Object.keys(TABLE_CAPACITIES).forEach((tableNum) => {
     /*const button = document.querySelector(`button[onclick="bookTable(${tableNum})"]`);*/
     console.log(tableNum);
     const button = document.getElementById(tableNum);
     if (button) {
       if (numPeople > TABLE_CAPACITIES[tableNum]) {
         button.disabled = true;
-        button.style.opacity = '0.5';
-        button.style.cursor = 'not-allowed';
+        button.style.opacity = "0.5";
+        button.style.cursor = "not-allowed";
       } else {
         button.disabled = false;
-        button.style.opacity = '1';
-        button.style.cursor = 'pointer';
+        button.style.opacity = "1";
+        button.style.cursor = "pointer";
       }
     }
   });
 }
-
 
 function hideError(input) {
   const errorDiv = input.nextElementSibling;
@@ -285,11 +293,11 @@ function validateReservation(event) {
 
 function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
-  const today = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', today);
+  const today = new Date().toISOString().split("T")[0];
+  dateInput.setAttribute("min", today);
   if (!dateInput.hasListener) {
-    dateInput.addEventListener('input', function() {
-      localStorage.setItem('selectedDate', this.value);
+    dateInput.addEventListener("input", function () {
+      localStorage.setItem("selectedDate", this.value);
     });
     dateInput.hasListener = true;
   }
@@ -304,48 +312,49 @@ function closeJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
   const emailInput = document.getElementById("jobEmailInput");
   const phoneInput = document.getElementById("jobPhoneInput");
-  const errorMessages = document.querySelectorAll('.error-message');
-  
+  const errorMessages = document.querySelectorAll(".error-message");
+
   if (emailInput) emailInput.value = "";
   if (phoneInput) phoneInput.value = "";
-  errorMessages.forEach(msg => msg.remove());
+  errorMessages.forEach((msg) => msg.remove());
   form.classList.remove("visible");
-  form.querySelector('.form-container').innerHTML = form.querySelector('.form-container').innerHTML;
+  form.querySelector(".form-container").innerHTML =
+    form.querySelector(".form-container").innerHTML;
 }
 
 function getPeopleInParty() {
-  const peopleInParty = localStorage.getItem('peopleInParty');
+  const peopleInParty = localStorage.getItem("peopleInParty");
   console.log(peopleInParty);
   return peopleInParty;
 }
 
 function bookTable(tableNumber) {
-  window.location.href = "bookTable.html";
+  window.location.href = "/reservation/final";
 }
 
 function initializeTimeSlots() {
-  const select = document.getElementById('reservationTime');
+  const select = document.getElementById("reservationTime");
   if (!select) return;
-  
-  const date = localStorage.getItem('selectedDate');
+
+  const date = localStorage.getItem("selectedDate");
   if (!date) {
-    console.error('No date selected');
+    console.error("No date selected");
     return;
   }
 
   select.innerHTML = '<option value="">Select time</option>';
-  
+
   const selectedDay = new Date(date).getDay();
   const startTime = 15; // 3 PM
   let endTime;
   let kitchenCloseTime;
-  
+
   // Closed on Mondays (day 1)
   if (selectedDay === 1) {
     select.innerHTML = '<option value="">Closed on Mondays</option>';
     return;
   }
-  
+
   // Set times based on day of week
   // Friday-Sunday (5,6,0): 3PM-11PM, kitchen closes at 10:30PM
   // Tuesday-Thursday (2,3,4): 3PM-10PM, kitchen closes at 9:30PM
@@ -356,18 +365,18 @@ function initializeTimeSlots() {
     endTime = 22; // 10 PM
     kitchenCloseTime = 21.5; // 9:30 PM
   }
-  
+
   // Generate time slots in 30-minute increments
   for (let time = startTime; time < endTime; time += 0.5) {
     // Skip times after kitchen closes
     if (time >= kitchenCloseTime) continue;
-    
+
     const hour = Math.floor(time);
     const minute = (time % 1) * 60;
-    const period = hour >= 12 ? 'PM' : 'AM';
+    const period = hour >= 12 ? "PM" : "AM";
     const displayHour = hour > 12 ? hour - 12 : hour;
-    const timeStr = `${displayHour}:${minute.toString().padStart(2, '0')} ${period}`;
-    const option = document.createElement('option');
+    const timeStr = `${displayHour}:${minute.toString().padStart(2, "0")} ${period}`;
+    const option = document.createElement("option");
     option.value = timeStr;
     option.textContent = timeStr;
     select.appendChild(option);
@@ -378,15 +387,15 @@ function validateTimeSelection(event) {
   if (event) {
     event.preventDefault();
   }
-  const timeSelect = document.getElementById('reservationTime');
+  const timeSelect = document.getElementById("reservationTime");
   let isValid = true;
 
   if (!timeSelect.value) {
-    showError(timeSelect, 'Please select a reservation time');
+    showError(timeSelect, "Please select a reservation time");
     isValid = false;
   } else {
     hideError(timeSelect);
-    localStorage.setItem('selectedTime', timeSelect.value);
+    localStorage.setItem("selectedTime", timeSelect.value);
     window.location.href = "reservationConfirmation.html";
   }
   return false;
