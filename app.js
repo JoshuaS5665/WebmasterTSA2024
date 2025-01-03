@@ -90,16 +90,20 @@ app.get("/reservation.html", (req, res) => {
   res.redirect(301, "/reservation");
 });
 
-app.get("/reservation/second", (req, res) => {
+app.post("/reservation/second", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/reservation2.html");
 });
 
-app.get("/reservation/final", (req, res) => {
-  res.sendFile(__dirname + "/public/reservation/bookTable.html");
+//app.get("/reservation/reservation2.html", (req, res) => {
+// res.redirect(301, "/reservation/");
+//});
+app.get("/reservation/second", (req, res) => {
+  res.redirect(301, "/reservation/");
 });
 
-app.get("/reservation/confirmation", (req, res) => {
-  res.sendFile(__dirname + "/public/reservation/reservationConfirmation.html");
+app.get("/reservation/final", (req, res) => {
+  console.log("HELLO WORLD");
+  res.sendFile(__dirname + "/public/reservation/bookTable.html");
 });
 
 app.use((req, res, next) => {
