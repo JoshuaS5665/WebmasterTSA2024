@@ -327,8 +327,7 @@ function getPeopleInParty() {
 }
 
 function bookTable(tableNumber) {
-  localStorage.setItem("selectedTable", tableNumber);
-  window.location.href = "/reservation/bookTable.html";
+  window.location.href = "/reservation/final";
 }
 
 function initializeTimeSlots() {
@@ -395,7 +394,7 @@ function validateTimeSelection(event) {
   } else {
     hideError(timeSelect);
     localStorage.setItem("selectedTime", timeSelect.value);
-    window.location.href = "/reservation/reservationConfirmation.html";
+    window.location.href = "/reservation/confirmation";
   }
   return false;
 }
