@@ -274,7 +274,6 @@ function validateReservation(event) {
     isValid = false;
   } else {
     hideError(numberPeople);
-    localStorage.setItem("peopleInParty", numberPeople.value);
   }
 
   if (!dateInput.value) {
@@ -282,11 +281,12 @@ function validateReservation(event) {
     isValid = false;
   } else {
     hideError(dateInput);
-    localStorage.setItem("selectedDate", dateInput.value);
   }
 
   if (isValid) {
-    window.location.href = "reservation2.html";
+    localStorage.setItem("peopleInParty", numberPeople.value);
+    localStorage.setItem("selectedDate", dateInput.value);
+    window.location.href = "/reservation/second";
   }
   return false;
 }
