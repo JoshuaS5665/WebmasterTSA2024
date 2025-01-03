@@ -285,7 +285,7 @@ function validateReservation() {
   if (isValid) {
     localStorage.setItem("peopleInParty", numberPeople.value);
     localStorage.setItem("selectedDate", dateInput.value);
-    window.location.href = "/reservation/second";
+    window.location.href = "reservation2.html";
     return false;
   }
   return false;
@@ -329,7 +329,8 @@ function getPeopleInParty() {
 }
 
 function bookTable(tableNumber) {
-  window.location.href = "/reservation/final";
+  localStorage.setItem("selectedTable", tableNumber);
+  window.location.href = "bookTable.html";
 }
 
 function initializeTimeSlots() {
