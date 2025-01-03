@@ -1309,7 +1309,7 @@ button[type="submit"]:hover:before {
   height: 90px;
   border-radius: 50%;
   margin-bottom: 16px;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 @media (max-width: 768px) {
