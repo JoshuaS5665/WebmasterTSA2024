@@ -401,5 +401,5 @@ function validateTimeSelection(event) {
 
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
-  window.location.href = "/reservation/reservation2.html";
+  window.location.href = "/reservation/bookTable.html";
 }
