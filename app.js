@@ -90,8 +90,15 @@ app.get("/reservation.html", (req, res) => {
   res.redirect(301, "/reservation");
 });
 
-app.get("/reservation/second", (req, res) => {
+app.post("/reservation/second", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/reservation2.html");
+});
+
+//app.get("/reservation/reservation2.html", (req, res) => {
+// res.redirect(301, "/reservation/");
+//});
+app.get("/reservation/second", (req, res) => {
+  res.redirect(301, "/reservation/");
 });
 
 app.get("/reservation/final", (req, res) => {
