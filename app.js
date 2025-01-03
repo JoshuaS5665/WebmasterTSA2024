@@ -90,7 +90,7 @@ app.get("/reservation.html", (req, res) => {
   res.redirect(301, "/reservation");
 });
 
-app.post("/reservation/second", (req, res) => {
+app.get("/reservation/reservation2", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/reservation2.html");
 });
 
