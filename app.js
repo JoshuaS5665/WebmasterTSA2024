@@ -95,8 +95,11 @@ app.get("/reservation/second", (req, res) => {
 });
 
 app.get("/reservation/final", (req, res) => {
-  console.log("HELLO WORLD");
   res.sendFile(__dirname + "/public/reservation/bookTable.html");
+});
+
+app.get("/reservation/confirmation", (req, res) => {
+  res.sendFile(__dirname + "/public/reservation/reservationConfirmation.html");
 });
 
 app.use((req, res, next) => {

@@ -395,7 +395,12 @@ function validateTimeSelection(event) {
   } else {
     hideError(timeSelect);
     localStorage.setItem("selectedTime", timeSelect.value);
-    window.location.href = "reservationConfirmation.html";
+    window.location.href = "/reservation/confirmation";
   }
   return false;
+}
+
+function bookTable(tableNumber) {
+  localStorage.setItem("selectedTable", tableNumber);
+  window.location.href = "/reservation/final";
 }
