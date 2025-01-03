@@ -38,7 +38,7 @@
       MAKE A RESERVATION
     </h1>
     <div class="reservationForm">
-      <form onsubmit="event.preventDefault(); if(validateReservation()) window.location.href = '/reservation/second';">
+      <form onsubmit="return validateReservation();">
         <label for="numberPeople" style="text-align: center"
           >How many people are in the party?<div class="asterisk">*</div><br><sub>Please note that for parties of 7
           or more, you will need to contact us directly through our contact
@@ -79,8 +79,7 @@
       const timeSelect = document.getElementById("timeSelect");
       const dateInput = document.getElementById("dateInput");
 
-      function validateReservation(event) {
-        event.preventDefault();
+      function validateReservation() {
         const numberPeople = document.getElementById("numberPeople");
         const dateInput = document.getElementById("dateInput");
         let isValid = true;
@@ -103,7 +102,6 @@
           localStorage.setItem("peopleInParty", numberPeople.value);
           localStorage.setItem("selectedDate", dateInput.value);
           window.location.href = "/reservation/second";
-          return false;
         }
         return false;
       }
