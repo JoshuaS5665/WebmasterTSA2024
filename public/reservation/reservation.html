@@ -38,7 +38,7 @@
       MAKE A RESERVATION
     </h1>
     <div class="reservationForm">
-      <form onsubmit="event.preventDefault(); handleReservationSubmit();">
+      <form id="reservationForm">
         <label for="numberPeople" style="text-align: center"
           >How many people are in the party?<div class="asterisk">*</div><br><sub>Please note that for parties of 7
           or more, you will need to contact us directly through our contact
@@ -184,8 +184,20 @@
         dateInput.addEventListener("change", updateTimeDropdown);
       }
 
-      window.addEventListener("load", populateDateDropdown);
-      updateTimeDropdown();
+      window.addEventListener("load", () => {
+        populateDateDropdown();
+        document.getElementById("reservationForm").addEventListener("submit", (e) => {
+          e.preventDefault();
+          const numberPeople = document.getElementById("numberPeople");
+          const dateInput = document.getElementById("dateInput");
+          
+          if (numberPeople.value && dateInput.value) {
+            localStorage.setItem("peopleInParty", numberPeople.value);
+            localStorage.setItem("selectedDate", dateInput.value);
+            window.location.href = "/reservation/second";
+          }
+        });
+      });
     </script>
   </body>
 </html>
