@@ -285,8 +285,10 @@ function validateReservation() {
   if (isValid) {
     localStorage.setItem("peopleInParty", numberPeople.value);
     localStorage.setItem("selectedDate", dateInput.value);
+    window.location.href = "/reservation/second";
+    return false;
   }
-  return isValid;
+  return false;
 }
 
 function setMinimumDate() {
