@@ -80,7 +80,7 @@
       const dateInput = document.getElementById("dateInput");
 
       function validateReservation(event) {
-        //event.preventDefault();
+        event.preventDefault();
         const numberPeople = document.getElementById("numberPeople");
         const dateInput = document.getElementById("dateInput");
         let isValid = true;
@@ -102,7 +102,7 @@
         if (isValid) {
           localStorage.setItem("peopleInParty", numberPeople.value);
           localStorage.setItem("selectedDate", dateInput.value);
-          //window.location.href = "/reservation/second";
+          window.location.href = "/reservation/reservation2";
         }
         return false;
       }
