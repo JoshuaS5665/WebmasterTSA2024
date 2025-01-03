@@ -263,8 +263,7 @@ function validateJobInquiry() {
   }
 }
 
-function validateReservation(event) {
-  event.preventDefault();
+function validateReservation() {
   const numberPeople = document.getElementById("numberPeople");
   const dateInput = document.getElementById("dateInput");
   let isValid = true;
@@ -286,7 +285,7 @@ function validateReservation(event) {
   if (isValid) {
     localStorage.setItem("peopleInParty", numberPeople.value);
     localStorage.setItem("selectedDate", dateInput.value);
-    window.location.href = "/reservation/second";
+    return true;
   }
   return false;
 }
