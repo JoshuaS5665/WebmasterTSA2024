@@ -1363,9 +1363,9 @@ button[type="submit"]:hover:before {
 
 .menu-toggle {
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 12px;
   display: inline-block;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease;
   text-decoration: none !important;
   font-size: 25px;
   position: relative;
@@ -1398,11 +1398,12 @@ button[type="submit"]:hover:before {
 }
 
 .bar1, .bar2, .bar3 {
-  width: 25px;
-  height: 3px;
+  width: 30px;
+  height: 2px;
   background-color: white;
-  margin: 4px 0;
-  transition: 0.4s;
+  margin: 6px 0;
+  transition: 0.3s ease;
+  border-radius: 2px;
 }
 
 .change .bar1 {
