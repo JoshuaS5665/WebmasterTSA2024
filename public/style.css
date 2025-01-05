@@ -1368,16 +1368,18 @@ button[type="submit"]:hover:before {
   transition: background-color 0.3s ease;
   text-decoration: none !important;
   font-size: 25px;
-  position: relative;
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%);
 }
 
 @media (min-width: 769px) {
   .menu-toggle {
     position: absolute;
-    left: 0;
-    transform: none;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
     margin: 0;
     padding: 14px 10px;
     z-index: 10001;
