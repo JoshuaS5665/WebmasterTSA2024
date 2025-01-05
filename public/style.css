@@ -1356,10 +1356,12 @@ button[type="submit"]:hover:before {
 .menu-toggle {
   cursor: pointer;
   padding: 14px 16px;
+  margin: 0;
   display: inline-block;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
   position: static;
+  font-size: 25px;
 }
 
 @media (min-width: 769px) {
