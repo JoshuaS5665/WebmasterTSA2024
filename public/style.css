@@ -1354,13 +1354,20 @@ button[type="submit"]:hover:before {
 }
 
 .menu-toggle {
-  float: left;
   cursor: pointer;
   padding: 14px 16px;
   position: absolute;
   left: 0;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    position: relative;
+    display: inline-block;
+    left: auto;
+  }
 }
 
 .menu-toggle::after {
