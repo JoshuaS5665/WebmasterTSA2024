@@ -1329,6 +1329,8 @@ button[type="submit"]:hover:before {
 .threebarmenu {
   display: inline-block;
   cursor: pointer;
+  align-items: center;
+  justify-content: center;
 }
 
 .bar1, .bar2, .bar3 {
