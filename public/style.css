@@ -85,11 +85,15 @@ body {
 }
 
 .navbar li:first-child {
-  margin-right: auto;
+  position: absolute;
+  left: 0;
 }
 
 .navbar li:not(:first-child) {
   margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 
