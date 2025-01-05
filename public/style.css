@@ -227,6 +227,7 @@ main {
     flex-direction: column;
     padding: 0;
     height: auto;
+    position: relative;
   }
 
   .navbar li {
@@ -247,6 +248,13 @@ main {
     opacity: 1;
     visibility: visible;
     margin: auto;
+  }
+
+  .menu-toggle {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
   }
 }
 
