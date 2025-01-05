@@ -90,16 +90,34 @@ app.get("/reservation.html", (req, res) => {
   res.redirect(301, "/reservation");
 });
 
-app.get("/reservation/second", (req, res) => {
+app.get("/reservationsecond", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/reservation2.html");
+});
+
+app.get("/public/reservation/reservation2.html", (req, res) => {
+  res.redirect(301, "/reservationsecond");
 });
 
 app.get("/reservation/final", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/bookTable.html");
 });
 
+app.get("/public/reservation/bookTable.html", (req, res) => {
+  res.redirect(301, "/reservation/final");
+});
+
 app.get("/reservation/confirmation", (req, res) => {
   res.sendFile(__dirname + "/public/reservation/reservationConfirmation.html");
+});
+app.get("/public/reservation/reservationConfirmation.html", (req, res) => {
+  res.redirect(301, "/reservation/confirmation");
+});
+
+app.post("/", (req, res) => {
+  //const data = req.body;
+  //console.log("This is my data: " + data);
+  //res.json({message: "Your data has been received", data});
+  console.log("HELLO WORLD");
 });
 
 app.use((req, res, next) => {

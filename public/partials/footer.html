@@ -1,4 +1,4 @@
-<!doctype html>
+<!doctype HTML>
 <html lang="en">
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -85,34 +85,36 @@ style = "align-items: center" onclick="openJobInquiries()">Job Inquiries</button
         <span class="close-btn" onclick="closeJobInquiries()">&times;</span>
         <h1 style = "font-family: Bodoni Moda, serif; text-align: center">We're always hiring!</h1>
         <h2 style = "font-family: Bodoni Moda, serif; text-align: center">Contact us for job opportunities!</h2>
-        <label style = "font-family: Bodoni Moda, serif" for="email-address"
-          >Email Address:
-          <div class="asterisk">*</div></label
-        >
-        <input
-          class="form-control"
-          type="email"
-          id="jobEmailInput"
-          placeholder="johndoe@example.com"
-        />
-        <br/>
-        <label style = "font-family: Bodoni Moda, serif" for="phone-number"
-          >Phone Number:
-          <div class="asterisk">*</div></label
-        >
-        <input
-          class="form-control"
-          type="tel"
-          id="jobPhoneInput"
-          placeholder="(123)-456-7890"
-        />
-        <br/>
-        <p class="asterisk">* denotes required.</p> <br/>
-        <button type="submit" id="submit" onclick="validateJobInquiry()">
-          Submit
-        </button>
-        <button type="button" class="btn cancel" onclick="closeJobInquiries()">Cancel</button>
-    </div>
+        <form action="/" method = "post">
+          <label style = "font-family: Bodoni Moda, serif" for="email-address"
+            >Email Address:
+            <div class="asterisk">*</div></label
+          >
+          <input
+            class="form-control"
+            type="email"
+            id="jobEmailInput"
+            placeholder="johndoe@example.com"
+          >
+          <br>
+          <label style = "font-family: Bodoni Moda, serif" for="phone-number"
+            >Phone Number:
+            <div class="asterisk">*</div></label
+          >
+          <input
+            class="form-control"
+            type="tel"
+            id="jobPhoneInput"
+            placeholder="(123)-456-7890"
+          />
+          <br/>
+          <p class="asterisk">* denotes required.</p> <br/>
+          <button type="submit" id="submitInquiry" onclick="validateJobInquiry()">
+            Submit
+          </button>
+          <button type="button" class="btn cancel" onclick="closeJobInquiries()">Cancel</button>
+        </form>
+      </div>
     <div class = "footer-container">
       <p class = "footer-copyright" style = "font-family: Bodoni Moda, serif; margin-left: 5%">
         © 2024-2025 Flourish Fine Dining. All rights reserved.

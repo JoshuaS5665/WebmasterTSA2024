@@ -253,13 +253,12 @@ function validateJobInquiry() {
   }
 
   if (isValid) {
-    formContainer.innerHTML = `
-      <div style="text-align: center; padding: 40px; position: relative;">
+    //validateInquiry();
+    formContainer.innerHTML = `<div style="text-align: center; padding: 40px; position: relative;">
         <span class="close-btn" onclick="closeJobInquiries()">&times;</span>
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Thank you for your interest! We will contact you soon.</p>
-      </div>
-    `;
+      </div>`
   }
 }
 
@@ -405,4 +404,48 @@ function validateTimeSelection(event) {
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
   window.location.href = "/reservation/bookTable.html";
+}
+
+/*document.getElementById("submitInquiry").addEventListener("click", ()=>{
+});*/
+
+//console.log(document.getElementById("submitInquiry"));
+
+function validateInquiry() {
+  console.log("Inquiry function is running...");
+  event.preventDefault();
+  const data = {
+    email: document.getElementById("jobEmailInput").value,
+    phone: document.getElementById("jobPhoneInput").value,
+  };
+  console.log(data);
+  fetch("/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(
+          "Network response was not okay. Please try again later.",
+        );
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Success: " + data);
+    })
+    .catch((err) => {
+      console.log("ERROR: " + err);
+    });
+}
+
+function openthreebarmenu() {
+  document.getElementById("threebarmenu").style.width = "50%";
+}
+
+function closethreebarmenu() {
+  document.getElementById("threebarmenu").style.width = "0";
 }
