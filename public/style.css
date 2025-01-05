@@ -77,13 +77,13 @@ body {
   overflow: visible;
   background-color: #32372b;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   height: 10%;
   font-family: "Bodoni Moda", serif;
   align-items: center;
   position: relative;
   z-index: 9999;
-  /* Center navbar items horizontally */
+  padding-left: 20px;
 }
 
 
