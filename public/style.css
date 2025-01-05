@@ -1368,7 +1368,7 @@ button[type="submit"]:hover:before {
   transition: background-color 0.3s ease;
   text-decoration: none !important;
   font-size: 25px;
-  position: relative;
+  position: absolute;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -1376,7 +1376,7 @@ button[type="submit"]:hover:before {
 @media (min-width: 769px) {
   .menu-toggle {
     position: absolute;
-    left: 0;
+    left: 20px;
     transform: none;
     margin: 0;
     padding: 14px 10px;
