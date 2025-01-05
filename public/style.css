@@ -1455,7 +1455,3 @@ button[type="submit"]:hover:before {
     font-size: 18px;
   }
 }
-
-.navbar a.menu-toggle {
-  float: left;
-}
