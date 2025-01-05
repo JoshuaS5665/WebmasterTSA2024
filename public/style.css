@@ -1354,12 +1354,11 @@ button[type="submit"]:hover:before {
 }
 
 .menu-toggle {
-  display: inline-block;
+  float: left;
   cursor: pointer;
   padding: 14px 16px;
   position: absolute;
   left: 0;
-  margin-left: 15px;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
 }
@@ -1449,4 +1448,8 @@ button[type="submit"]:hover:before {
   .sidenav a {
     font-size: 18px;
   }
+}
+
+.navbar a.menu-toggle {
+  float: left;
 }
