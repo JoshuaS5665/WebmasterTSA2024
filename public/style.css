@@ -1363,9 +1363,8 @@ button[type="submit"]:hover:before {
 
 @media (min-width: 769px) {
   .menu-toggle {
-    float: left;
-    position: absolute;
-    left: 0;
+    position: relative;
+    display: inline-block;
   }
 }
 
