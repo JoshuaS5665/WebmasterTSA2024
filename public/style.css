@@ -1468,6 +1468,17 @@ body.menu-open {
   transition: 0.3s;
   position: relative;
   font-family: "Bodoni Moda", serif;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: menuLinkFadeIn 0.5s ease forwards;
+  animation-delay: calc(var(--item-number) * 0.1s);
+}
+
+@keyframes menuLinkFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .threebarmenu a::after {
