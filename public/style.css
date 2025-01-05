@@ -237,25 +237,40 @@ main {
   .navbar li {
     width: 100%;
     text-align: center;
+    position: relative;
+  }
+
+  .navbar li:first-child {
+    position: relative;
+    left: 0;
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
   .navbar a,
   .dropbtn {
-    padding: 15px;
-    font-size: 18px;
+    padding: 12px;
+    font-size: 16px;
   }
 
   .dropdown-content {
-    position: absolute;
-    width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    width: 100%;
+    box-shadow: none;
     opacity: 1;
     visibility: visible;
-    margin: auto;
+    margin: 0;
+    transform: none;
+    left: 0;
+    background-color: #3c423a;
   }
 
   .menu-toggle {
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
     margin: 0;
   }
 }
