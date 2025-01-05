@@ -1452,7 +1452,10 @@ button[type="submit"]:hover:before {
   backdrop-filter: blur(5px);
   overflow-x: hidden;
   transition: 0.5s;
-  padding-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 body.menu-open {
@@ -1505,10 +1508,9 @@ body.menu-open {
 
 .threebarmenu .closebtn {
   position: absolute;
-  top: 0;
+  top: 20px;
   right: 25px;
   font-size: 36px;
-  margin-left: 50px;
   text-decoration: none !important;
 }
 
