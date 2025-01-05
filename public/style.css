@@ -1359,11 +1359,12 @@ button[type="submit"]:hover:before {
   display: inline-block;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
+  position: static;
 }
 
 @media (min-width: 769px) {
   .menu-toggle {
-    position: relative;
+    position: static;
     display: inline-block;
   }
 }
