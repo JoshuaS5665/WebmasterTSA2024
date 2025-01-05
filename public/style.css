@@ -77,23 +77,13 @@ body {
   overflow: visible;
   background-color: #32372b;
   display: flex;
+  justify-content: center;
   height: 10%;
   font-family: "Bodoni Moda", serif;
   align-items: center;
   position: relative;
   z-index: 9999;
-}
-
-.navbar li:first-child {
-  position: absolute;
-  left: 0;
-}
-
-.navbar li:not(:first-child) {
-  margin: 0 auto;
-  width: 100%;
-  display: flex;
-  justify-content: center;
+  /* Center navbar items horizontally */
 }
 
 
@@ -102,11 +92,13 @@ body {
 .navbar a,
 .dropbtn {
   float: none;
+  /* Remove float */
   font-size: 25px;
   color: white;
-  padding: 14px 8px;
+  padding: 14px 16px;
   text-decoration: none;
   display: inline-block;
+  /* Make sure links align horizontally */
   text-align: center;
   position: relative;
 }
@@ -1367,6 +1359,7 @@ button[type="submit"]:hover:before {
   padding: 14px 16px;
   position: absolute;
   left: 0;
+  margin-left: 15px;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
 }
