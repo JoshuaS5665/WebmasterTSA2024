@@ -1326,7 +1326,7 @@ button[type="submit"]:hover:before {
   color: black;
 }
 
-/*.threebarmenu {
+.threebarmenu {
   display: inline-block;
   cursor: pointer;
 }
@@ -1349,7 +1349,7 @@ button[type="submit"]:hover:before {
 
 .change .bar3 {
   transform: translate(0, -11px) rotate(45deg);
-}*/
+}
 
 .menu-toggle {
   display: inline-block;
