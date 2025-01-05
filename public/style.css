@@ -1356,7 +1356,7 @@ button[type="submit"]:hover:before {
 .menu-toggle {
   cursor: pointer;
   padding: 14px 16px;
-  margin: 0;
+  margin: 0 auto;
   display: inline-block;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
@@ -1368,7 +1368,6 @@ button[type="submit"]:hover:before {
   .menu-toggle {
     position: absolute;
     left: 0;
-    display: inline-block;
     margin: 0;
     padding: 14px 10px;
     z-index: 10001;
