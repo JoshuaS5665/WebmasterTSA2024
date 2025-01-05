@@ -252,8 +252,6 @@ main {
 
   .menu-toggle {
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
     margin: 0;
   }
 }
@@ -1374,7 +1372,6 @@ button[type="submit"]:hover:before {
 
 @media (max-width: 768px) {
   .menu-toggle {
-    position: relative;
     padding: 14px 10px;
     margin: 0;
   }
@@ -1382,7 +1379,6 @@ button[type="submit"]:hover:before {
 
 @media (min-width: 769px) {
   .menu-toggle {
-    position: relative;
     left: 0;
     margin: 0;
     padding: 14px 10px;
