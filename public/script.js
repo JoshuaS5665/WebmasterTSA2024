@@ -444,8 +444,10 @@ function validateInquiry() {
 
 function openthreebarmenu() {
   document.getElementById("threebarmenu").style.width = "50%";
+  document.body.classList.add('menu-open');
 }
 
 function closethreebarmenu() {
   document.getElementById("threebarmenu").style.width = "0";
+  document.body.classList.remove('menu-open');
 }
