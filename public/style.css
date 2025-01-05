@@ -108,23 +108,9 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.navbar a::after, .dropbtn::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  bottom: 5px;
-  left: 0;
-  background-color: white;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-}
-
-.navbar a:hover::after, .navbar a.active::after,
-.dropbtn:hover::after, .dropbtn.active::after {
-  transform: scaleX(1);
-  transform-origin: left;
+.navbar a:hover, .navbar a.active,
+.dropbtn:hover, .dropbtn.active {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .navbar a.active,
@@ -1411,16 +1397,17 @@ button[type="submit"]:hover:before {
 }
 
 .threebarmenu a {
-  padding: 8px 8px 8px 32px;
+  padding: 14px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: white;
   display: block;
-  transition: 0.3s;
+  transition: background-color 0.3s ease;
+  font-family: "Bodoni Moda", serif;
 }
 
 .threebarmenu a:hover {
-  color: #f1f1f1;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .threebarmenu .closebtn {
