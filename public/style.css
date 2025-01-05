@@ -96,15 +96,15 @@ body {
 .navbar a,
 .dropbtn {
   float: none;
-  font-size: 20px;
+  /* Remove float */
+  font-size: 25px;
   color: white;
-  padding: 14px 20px;
+  padding: 14px 16px;
   text-decoration: none;
   display: inline-block;
+  /* Make sure links align horizontally */
   text-align: center;
   position: relative;
-  white-space: nowrap;
-  margin: 0 5px;
 }
 
 .navbar a, .dropbtn {
