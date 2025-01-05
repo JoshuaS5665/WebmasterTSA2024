@@ -1487,6 +1487,11 @@ button[type="submit"]:hover:before {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  text-decoration: none !important;
+}
+
+.threebarmenu .closebtn::after {
+  display: none;
 }
 
 @media screen and (max-height: 450px) {
