@@ -1359,6 +1359,11 @@ button[type="submit"]:hover:before {
   padding: 14px 16px;
   position: relative;
   transition: background-color 0.3s ease;
+  text-decoration: none !important;
+}
+
+.menu-toggle::after {
+  display: none;
 }
 
 .bar1, .bar2, .bar3 {
@@ -1401,6 +1406,25 @@ button[type="submit"]:hover:before {
   color: #818181;
   display: block;
   transition: 0.3s;
+  position: relative;
+}
+
+.threebarmenu a::after {
+  content: '';
+  position: absolute;
+  width: 80%;
+  height: 2px;
+  bottom: 5px;
+  left: 32px;
+  background-color: white;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.threebarmenu a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .threebarmenu a:hover {
