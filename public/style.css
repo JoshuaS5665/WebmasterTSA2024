@@ -1368,21 +1368,21 @@ button[type="submit"]:hover:before {
   transition: background-color 0.3s ease;
   text-decoration: none !important;
   font-size: 25px;
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 10001;
 }
 
 @media (min-width: 769px) {
   .menu-toggle {
-    position: absolute;
-    left: 20px;
+    position: fixed;
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     margin: 0;
     padding: 14px 10px;
-    z-index: 10001;
   }
 
   .navbar {
