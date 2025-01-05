@@ -1357,7 +1357,9 @@ button[type="submit"]:hover:before {
   display: inline-block;
   cursor: pointer;
   padding: 14px 16px;
-  position: relative;
+  position: absolute;
+  left: 0;
+  margin-left: 15px;
   transition: background-color 0.3s ease;
   text-decoration: none !important;
 }
