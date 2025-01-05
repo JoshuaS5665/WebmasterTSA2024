@@ -1373,12 +1373,22 @@ button[type="submit"]:hover:before {
   transform: translateX(-50%);
 }
 
+@media (max-width: 768px) {
+  .menu-toggle {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    z-index: 10001;
+  }
+}
+
 @media (min-width: 769px) {
   .menu-toggle {
-    position: absolute;
+    position: fixed;
     left: 20px;
     transform: none;
-    margin: 0;
+    top: 10px;
     padding: 14px 10px;
     z-index: 10001;
   }
