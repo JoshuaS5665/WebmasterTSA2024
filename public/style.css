@@ -99,15 +99,14 @@ body {
 .navbar a,
 .dropbtn {
   float: none;
-  /* Remove float */
-  font-size: 25px;
+  font-size: clamp(16px, 2vw, 25px);
   color: white;
-  padding: 14px 16px;
+  padding: 14px 20px;
   text-decoration: none;
   display: inline-block;
-  /* Make sure links align horizontally */
   text-align: center;
   position: relative;
+  white-space: nowrap;
 }
 
 .navbar a, .dropbtn {
@@ -229,7 +228,7 @@ main {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .navbar {
     flex-direction: column;
     padding: 0;
