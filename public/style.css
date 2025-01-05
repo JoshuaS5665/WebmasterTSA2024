@@ -1364,7 +1364,9 @@ button[type="submit"]:hover:before {
 
 @media (max-width: 768px) {
   .menu-toggle {
-    position: static;
+    position: relative;
+    display: inline-block;
+    left: auto;
   }
 }
 
