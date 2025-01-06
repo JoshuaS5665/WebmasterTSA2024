@@ -173,10 +173,10 @@ body {
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 850px) {
   .dropdown-content {
     min-width: 60px;
-    max-width: 120px;
+    max-width: 100px;
     left: 50%;
     transform: translateX(-50%);
   }
