@@ -444,13 +444,15 @@ function validateInquiry() {
 
 function openthreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  menu.classList.add('visible');
+  requestAnimationFrame(() => {
+    menu.style.transform = 'translateX(0)';
+  });
   document.body.classList.add('menu-open');
 }
 
 function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  menu.classList.remove('visible');
+  menu.style.transform = 'translateX(-100%)';
   document.body.classList.remove('menu-open');
 }
 
