@@ -1480,13 +1480,16 @@ button[type="submit"]:hover:before {
 
 @media (max-width: 850px) {
   .threebarmenu {
-    transform: translateY(-100%);
+    left: 0 !important;
+    top: -100%;
     width: 100% !important;
     height: 100vh;
+    transform: none;
+    transition: top 0.3s ease;
   }
   
   .threebarmenu.visible {
-    transform: translateY(0);
+    top: 0;
   }
 }
 

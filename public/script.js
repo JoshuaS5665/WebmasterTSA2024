@@ -460,12 +460,11 @@ window.addEventListener('resize', () => {
   
   if (!isMenuOpen) return;
   
-  menu.style.transition = 'none';
-  if (window.innerWidth <= 768) {
-    menu.style.width = "100%";
-    menu.style.height = "100vh";
+  if (window.innerWidth <= 850) {
+    menu.style.transform = 'translateY(0)';
+    menu.style.width = '100%';
   } else {
-    menu.style.height = "100%";
-    menu.style.width = "50%";
+    menu.style.transform = 'translateX(0)';
+    menu.style.width = '50%';
   }
 });
