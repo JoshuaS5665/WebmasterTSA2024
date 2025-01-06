@@ -1038,6 +1038,10 @@ button[type="submit"]:hover:before {
   overflow-y: auto;
 }
 
+.form-popup .form-container {
+  pointer-events: auto;
+}
+
 .form-popup.visible {
   pointer-events: auto;
 }
