@@ -533,8 +533,8 @@ input {
   visibility: hidden;
   position: absolute;
   background-color: #32372b;
-  min-width: 120px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 10000;
   top: 100%;
   left: 50%;
@@ -1462,16 +1462,16 @@ button[type="submit"]:hover:before {
   .threebarmenu {
     height: 0;
     width: 100% !important;
+    right: auto;
     transition: height 0.3s ease-in-out;
   }
 }
 
 @media (min-width: 769px) {
   .threebarmenu {
-    height: 100vh !important;
+    height: 100% !important;
     width: 0;
     transition: width 0.3s ease-in-out;
-    left: 0;
   }
 }
 
