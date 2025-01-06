@@ -1027,14 +1027,8 @@ button[type="submit"]:hover:before {
   right: 0;
   top: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: none;
   z-index: 10000;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .form-popup .form-container {
@@ -1054,11 +1048,13 @@ button[type="submit"]:hover:before {
 }
 
 .form-popup .form-container {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: white;
   padding: 20px;
   border: 3px solid #32372b;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-popup.visible {
