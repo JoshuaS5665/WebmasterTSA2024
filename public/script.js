@@ -450,6 +450,7 @@ function openthreebarmenu() {
   } else {
     menu.style.width = "50%";
     menu.style.height = "100%";
+    menu.style.left = "0";
   }
   document.body.classList.add('menu-open');
 }
