@@ -1024,26 +1024,22 @@ button[type="submit"]:hover:before {
   opacity: 0;
   visibility: hidden;
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10000;
   transition: opacity 0.5s ease, visibility 0.5s ease;
+  background: white;
+  border: 3px solid #32372b;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 500px;
 }
 
 .form-popup .form-container {
   position: relative;
-  max-width: 500px;
-  width: 90%;
+  width: 100%;
   padding: 20px;
-  border: 3px solid #32372b;
-  background: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 20px;
 }
 
 .form-popup.visible {
