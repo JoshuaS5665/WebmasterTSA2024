@@ -1,11 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
+const cors = require("cors");
 const PORT = 80;
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
+app.use(cors);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
