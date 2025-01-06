@@ -443,11 +443,23 @@ function validateInquiry() {
 }
 
 function openthreebarmenu() {
-  document.getElementById("threebarmenu").style.height = "100vh";
+  const menu = document.getElementById("threebarmenu");
+  if (window.innerWidth <= 768) {
+    menu.style.height = "100vh";
+    menu.style.width = "100%";
+  } else {
+    menu.style.width = "50%";
+    menu.style.height = "100%";
+  }
   document.body.classList.add('menu-open');
 }
 
 function closethreebarmenu() {
-  document.getElementById("threebarmenu").style.height = "0";
+  const menu = document.getElementById("threebarmenu");
+  if (window.innerWidth <= 768) {
+    menu.style.height = "0";
+  } else {
+    menu.style.width = "0";
+  }
   document.body.classList.remove('menu-open');
 }

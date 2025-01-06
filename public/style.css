@@ -1442,21 +1442,29 @@ button[type="submit"]:hover:before {
 }
 
 .threebarmenu {
-  height: 0;
-  width: 100%;
+  height: 100%;
+  width: 0;
   position: fixed;
   z-index: 100000;
   top: 0;
-  left: 0;
+  right: 0;
   background-color: rgba(50, 55, 43, 0.98);
   backdrop-filter: blur(5px);
   overflow-x: hidden;
-  transition: height 0.3s ease-in-out;
+  transition: 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 0;
+}
+
+@media (max-width: 768px) {
+  .threebarmenu {
+    height: 0;
+    width: 100%;
+    right: auto;
+    transition: height 0.3s ease-in-out;
+  }
 }
 
 body.menu-open {
