@@ -444,26 +444,13 @@ function validateInquiry() {
 
 function openthreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  if (window.innerWidth <= 768) {
-    menu.style.height = "100vh";
-    menu.style.width = "100%";
-  } else {
-    menu.style.width = "50%";
-    menu.style.height = "100%";
-    menu.style.left = "0";
-  }
+  menu.classList.add('visible');
   document.body.classList.add('menu-open');
 }
 
 function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  if (window.innerWidth <= 768) {
-    menu.style.height = "0";
-    menu.style.width = "100%";
-  } else {
-    menu.style.width = "0";
-    menu.style.height = "100%";
-  }
+  menu.classList.remove('visible');
   document.body.classList.remove('menu-open');
 }
 

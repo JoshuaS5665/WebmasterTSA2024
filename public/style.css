@@ -1467,11 +1467,30 @@ button[type="submit"]:hover:before {
   background-color: rgba(50, 55, 43, 0.98);
   backdrop-filter: blur(5px);
   overflow-x: hidden;
-  transition: 0.3s ease-in-out;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateX(-100%);
+}
+
+.threebarmenu.visible {
+  transform: translateX(0);
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .threebarmenu {
+    transform: translateY(-100%);
+    width: 100% !important;
+    height: 0;
+  }
+  
+  .threebarmenu.visible {
+    transform: translateY(0);
+    height: 100vh;
+  }
 }
 
 @media (max-width: 768px) {
