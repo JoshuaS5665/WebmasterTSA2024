@@ -1044,7 +1044,10 @@ button[type="submit"]:hover:before {
   width: 90%;
   border: 2px solid #32372b;
   border-radius: 8px;
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .form-popup .form-container {
