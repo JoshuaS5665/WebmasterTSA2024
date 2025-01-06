@@ -443,11 +443,11 @@ function validateInquiry() {
 }
 
 function openthreebarmenu() {
-  document.getElementById("threebarmenu").style.width = "100%";
+  document.getElementById("threebarmenu").style.height = "100vh";
   document.body.classList.add('menu-open');
 }
 
 function closethreebarmenu() {
-  document.getElementById("threebarmenu").style.width = "0";
+  document.getElementById("threebarmenu").style.height = "0";
   document.body.classList.remove('menu-open');
 }
