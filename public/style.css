@@ -1027,19 +1027,22 @@ button[type="submit"]:hover:before {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-popup .form-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   background: white;
-  padding: 20px;
+  padding: 30px;
   max-width: 500px;
   width: 90%;
   border: 2px solid #32372b;
+  border-radius: 8px;
+  position: relative;
+  margin: auto;
 }
 
 .form-popup.visible {
