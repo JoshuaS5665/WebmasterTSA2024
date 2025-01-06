@@ -1028,6 +1028,7 @@ button[type="submit"]:hover:before {
   top: 0;
   bottom: 0;
   z-index: 10000;
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .form-popup.visible {
@@ -1044,6 +1045,7 @@ button[type="submit"]:hover:before {
   border: 2px solid #32372b;
   width: 90%;
   max-width: 500px;
+  z-index: 10001;
 }
 
 .form-popup .form-container {

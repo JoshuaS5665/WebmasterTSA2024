@@ -304,6 +304,7 @@ function setMinimumDate() {
 
 function openJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
+  form.style.display = "block";
   form.classList.add("visible");
 }
 
@@ -317,8 +318,7 @@ function closeJobInquiries() {
   if (phoneInput) phoneInput.value = "";
   errorMessages.forEach((msg) => msg.remove());
   form.classList.remove("visible");
-  form.querySelector(".form-container").innerHTML =
-    form.querySelector(".form-container").innerHTML;
+  form.style.display = "none";
 }
 
 function getPeopleInParty() {
