@@ -457,7 +457,25 @@ function openthreebarmenu() {
 
 function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  menu.style.height = window.innerWidth <= 768 ? "0" : "100%";
-  menu.style.width = window.innerWidth <= 768 ? "100%" : "0";
+  if (window.innerWidth <= 768) {
+    menu.style.height = "0";
+    menu.style.width = "100%";
+  } else {
+    menu.style.width = "0";
+    menu.style.height = "100%";
+  }
   document.body.classList.remove('menu-open');
 }
+
+window.addEventListener('resize', () => {
+  const menu = document.getElementById("threebarmenu");
+  menu.style.transition = 'none';
+  if (window.innerWidth <= 768) {
+    menu.style.width = "100%";
+    menu.style.height = "0";
+  } else {
+    menu.style.height = "100%";
+    menu.style.width = "0";
+  }
+  setTimeout(() => menu.style.transition = '0.3s ease-in-out', 100);
+});
