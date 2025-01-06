@@ -1021,20 +1021,21 @@ button[type="submit"]:hover:before {
 }
 
 .form-popup {
-  display: none;
+  display: flex;
   position: fixed;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: transparent;
   z-index: 99999;
-}
-
-.form-popup.visible {
-  display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+  overflow-y: auto;
 }
 
 .form-popup .form-container {
@@ -1068,12 +1069,8 @@ button[type="submit"]:hover:before {
 
 .form-popup .form-container {
   position: relative;
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
   width: 100%;
-  max-width: 500px;
-  margin: 20px;
+  padding: 20px;
 }
 
 .form-popup.visible {
