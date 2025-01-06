@@ -457,10 +457,7 @@ function openthreebarmenu() {
 
 function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  if (window.innerWidth <= 768) {
-    menu.style.height = "0";
-  } else {
-    menu.style.width = "0";
-  }
+  menu.style.height = window.innerWidth <= 768 ? "0" : "100%";
+  menu.style.width = window.innerWidth <= 768 ? "100%" : "0";
   document.body.classList.remove('menu-open');
 }

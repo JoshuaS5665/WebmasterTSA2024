@@ -1461,9 +1461,17 @@ button[type="submit"]:hover:before {
 @media (max-width: 768px) {
   .threebarmenu {
     height: 0;
-    width: 100%;
+    width: 100% !important;
     right: auto;
     transition: height 0.3s ease-in-out;
+  }
+}
+
+@media (min-width: 769px) {
+  .threebarmenu {
+    height: 100% !important;
+    width: 0;
+    transition: width 0.3s ease-in-out;
   }
 }
 
