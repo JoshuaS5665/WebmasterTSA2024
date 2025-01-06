@@ -1,12 +1,16 @@
 function loadHead(url) {
   const header = document.getElementById("header");
-  fetch(url)
-    .then((response) => response.text())
+  fetch(url, { cache: 'no-store' })
+    .then((response) => {
+      if (!response.ok) throw new Error('Failed to load header');
+      return response.text();
+    })
     .then((data) => {
       header.innerHTML = data;
-      console.log(url + "Function is Running");
+      console.log("Header loaded successfully");
       markCurrentPage();
-    });
+    })
+    .catch(err => console.error('Error loading header:', err));
 }
 
 function smoothPageTransition(e) {
