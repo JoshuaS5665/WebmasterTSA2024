@@ -1082,18 +1082,15 @@ button[type="submit"]:hover:before {
   color: #666;
 }
 
-.form-popup.visible ~ * {
-  pointer-events: none;
-}
-
-.form-popup.visible ~ .form-popup {
-  pointer-events: auto;
+.form-popup.visible {
+  backdrop-filter: none;
 }
 
 .form-container {
   max-width: 500px;
   padding: 20px;
   background-color: white;
+  box-shadow: none;
 }
 
 .form-container input[type=email],
