@@ -1021,7 +1021,7 @@ button[type="submit"]:hover:before {
 }
 
 .form-popup {
-  display: none;
+  display: flex;
   position: fixed;
   left: 0;
   right: 0;
@@ -1029,12 +1029,16 @@ button[type="submit"]:hover:before {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99999;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .form-popup.visible {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  opacity: 1;
+  visibility: visible;
 }
 
 .form-popup .form-container {
@@ -1044,10 +1048,13 @@ button[type="submit"]:hover:before {
   width: 90%;
   border: 2px solid #32372b;
   border-radius: 8px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.form-popup.visible .form-container {
+  transform: translateY(0);
 }
 
 .form-popup .form-container {
