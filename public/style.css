@@ -1024,12 +1024,26 @@ button[type="submit"]:hover:before {
   opacity: 0;
   visibility: hidden;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 3px solid #32372b;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
   z-index: 10000;
   transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.form-popup .form-container {
+  position: relative;
+  max-width: 500px;
+  width: 90%;
+  margin: 20px;
+  border: 3px solid #32372b;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .form-popup.visible {
