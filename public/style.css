@@ -1029,6 +1029,9 @@ button[type="submit"]:hover:before {
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 99999;
+}
+
+.form-popup.visible {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1042,11 +1045,6 @@ button[type="submit"]:hover:before {
   border: 2px solid #32372b;
   border-radius: 8px;
   position: relative;
-  margin: auto;
-}
-
-.form-popup.visible {
-  display: block;
 }
 
 .form-popup .form-container {
