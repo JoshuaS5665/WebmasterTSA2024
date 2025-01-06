@@ -1442,7 +1442,7 @@ button[type="submit"]:hover:before {
 }
 
 .threebarmenu {
-  height: 100%;
+  height: 100vh;
   width: 0;
   position: fixed;
   z-index: 100000;
@@ -1451,11 +1451,12 @@ button[type="submit"]:hover:before {
   background-color: rgba(50, 55, 43, 0.98);
   backdrop-filter: blur(5px);
   overflow-x: hidden;
-  transition: 0.5s;
+  transition: 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-start;
+  padding-top: 60px;
+  width: 0;
 }
 
 body.menu-open {

@@ -443,7 +443,7 @@ function validateInquiry() {
 }
 
 function openthreebarmenu() {
-  document.getElementById("threebarmenu").style.width = "50%";
+  document.getElementById("threebarmenu").style.width = "100%";
   document.body.classList.add('menu-open');
 }
 
