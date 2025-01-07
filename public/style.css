@@ -1409,15 +1409,7 @@ button[type="submit"]:hover:before {
 }
 
 .footer-container {
-  background-color: #32372b;
-  padding: 10px 0;
-  text-align: center;
-}
-
-.footer-copyright {
-  color: white;
-  margin: 0;
-  text-align: center;
+  color: black;
 }
 
 .threebarmenu {
