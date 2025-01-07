@@ -899,10 +899,20 @@ button[type="submit"]:hover:before {
   .footer div {
     width: 100%;
     margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .footer p, .footer h1, .footer li {
+    text-align: center;
+    width: 100%;
   }
 
   .social-icons {
     margin-top: 1rem;
+    justify-content: center;
   }
 }
 
