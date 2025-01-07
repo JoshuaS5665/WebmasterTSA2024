@@ -42,7 +42,7 @@ body {
   height: 45vh;
   display: block;
   object-fit: cover;
-  transform: rotate(90deg);
+  transform: rotate(180deg);
 }
 
 #avocado {
