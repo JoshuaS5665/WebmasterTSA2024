@@ -878,7 +878,8 @@ button[type="submit"]:hover:before {
   align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding: 2rem;
+  padding: 2rem 2rem 0 2rem;
+  margin: 0;
 }
 
 .footer div {
