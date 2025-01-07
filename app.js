@@ -1,15 +1,13 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
-const cors = require("cors");
 const PORT = 80;
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-app.use(cors);
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
 });
 
@@ -115,6 +113,9 @@ app.get("/public/reservation/reservationConfirmation.html", (req, res) => {
   res.redirect(301, "/reservation/confirmation");
 });
 
+app.get("/sources", (req, res) => {
+  res.sendFile(__dirname + "/public/requirements/sources.html");
+});
 app.post("/", (req, res) => {
   //const data = req.body;
   //console.log("This is my data: " + data);
