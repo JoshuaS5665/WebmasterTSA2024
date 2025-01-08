@@ -128,6 +128,17 @@
             placeholder="(123)-456-7890"
             novalidate
           />
+
+          <label>Question:</label>
+          <textarea
+            class="form-control"
+            type="text"
+            id="questionInput"
+            placeholder="Please enter your question here."
+            maxlength="200"
+            maxwidth="50"
+          ></textarea>
+
           <p class="asterisk">* denotes required.</p>
           <div class="form-buttons">
             <button type="submit" id="submit" onclick="validateContactInfo()">
