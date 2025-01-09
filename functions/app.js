@@ -1,5 +1,6 @@
 const express = require("express");
 const morgan = require("morgan");
+const serverless = require("serverless-http");
 const app = express();
 const PORT = 80;
 
@@ -126,3 +127,5 @@ app.post("/", (req, res) => {
 app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/public/404/404.html");
 });
+
+module.exports.handler = serverless(app);
