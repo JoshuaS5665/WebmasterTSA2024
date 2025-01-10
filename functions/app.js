@@ -14,6 +14,7 @@ app.listen(PORT, "0.0.0.0", () => {
 });
 
 app.get("/", (req, res) => {
+  console.log(__dirname + "/../../public/faq/faqs.html");
   res.status(200).sendFile(__dirname + "/../public/index.html");
   console.log("Home get req is working");
 });
@@ -40,7 +41,7 @@ app.get("/about.html", (req, res) => {
 });
 
 app.get("/contact", (req, res) => {
-  res.sendFile(__dirname + "/public/contact/contact.html");
+  res.sendFile(__dirname + "../public/contact/contact.html");
 });
 
 app.get("/contact/contactResponse", (req, res) => {
