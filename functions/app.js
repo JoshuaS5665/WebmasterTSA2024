@@ -2,6 +2,7 @@ const express = require("express");
 const morgan = require("morgan");
 const serverless = require("serverless-http");
 const app = express();
+const router = express.Router();
 const PORT = 80;
 
 app.use(express.static("public"));
@@ -128,4 +129,5 @@ app.use((req, res, next) => {
   res.status(404).sendFile(__dirname + "/public/404/404.html");
 });
 
+app.use("/.netlify/functions/app", router);
 module.exports.handler = serverless(app);
