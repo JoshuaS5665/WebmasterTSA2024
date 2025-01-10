@@ -24,7 +24,7 @@ app.get("/index.html", (req, res) => {
 });
 
 app.get("/faqs", (req, res) => {
-  res.sendFile(__dirname + "../public/faq/faqs.html");
+  res.sendFile(__dirname + "../../public/faq/faqs.html");
 });
 
 app.get("/faqs.html", (req, res) => {
