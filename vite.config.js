@@ -2,6 +2,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite';
 
 export default defineConfig({
+  input: "./public/index.html",
   plugins: [],
   server: {
     host: '0.0.0.0',
