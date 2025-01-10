@@ -1,8 +1,8 @@
 function loadHead(url) {
   const header = document.getElementById("header");
-  fetch(url, { cache: 'no-store' })
+  fetch(url, { cache: "no-store" })
     .then((response) => {
-      if (!response.ok) throw new Error('Failed to load header');
+      if (!response.ok) throw new Error("Failed to load header");
       return response.text();
     })
     .then((data) => {
@@ -10,7 +10,7 @@ function loadHead(url) {
       console.log("Header loaded successfully");
       markCurrentPage();
     })
-    .catch(err => console.error('Error loading header:', err));
+    .catch((err) => console.error("Error loading header:", err));
 }
 
 function smoothPageTransition(e) {
@@ -262,7 +262,7 @@ function validateJobInquiry() {
         <span class="close-btn" onclick="closeJobInquiries()">&times;</span>
         <h2 style="font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 20px;">Thank You!</h2>
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; color: #32372b;">Thank you for your interest! We will contact you soon.</p>
-      </div>`
+      </div>`;
   }
 }
 
@@ -448,27 +448,27 @@ function validateInquiry() {
 
 function openthreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  menu.classList.add('visible');
-  document.body.classList.add('menu-open');
+  menu.classList.add("visible");
+  document.body.classList.add("menu-open");
 }
 
 function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
-  menu.classList.remove('visible');
-  document.body.classList.remove('menu-open');
+  menu.classList.remove("visible");
+  document.body.classList.remove("menu-open");
 }
 
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   const menu = document.getElementById("threebarmenu");
-  const isMenuOpen = document.body.classList.contains('menu-open');
-  
+  const isMenuOpen = document.body.classList.contains("menu-open");
+
   if (!isMenuOpen) return;
-  
+
   if (window.innerWidth <= 850) {
-    menu.style.transform = 'translateY(0)';
-    menu.style.width = '100%';
+    menu.style.transform = "translateY(0)";
+    menu.style.width = "100%";
   } else {
-    menu.style.transform = 'translateX(0)';
-    menu.style.width = '50%';
+    menu.style.transform = "translateX(0)";
+    menu.style.width = "50%";
   }
 });
