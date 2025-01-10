@@ -1,19 +1,19 @@
-import { resolve } from 'path'
-import { defineConfig } from 'vite';
+import { resolve } from "path";
+import { defineConfig } from "vite";
 
 export default defineConfig({
-  input: "./public/index.html",
+  root: "public",
   plugins: [],
   server: {
-    host: '0.0.0.0',
+    host: "0.0.0.0",
     port: 3000,
     strictPort: true,
-    hmr: false
+    hmr: false,
   },
-  lib:{
-    entry: resolve(__dirname, 'app.js'),
-      name: 'MyLib',
-      // the proper extensions will be added
-      fileName: 'my-lib',
-  }
-})
+  lib: {
+    entry: resolve(__dirname, "app.js"),
+    name: "MyLib",
+    // the proper extensions will be added
+    fileName: "my-lib",
+  },
+});
