@@ -47,7 +47,7 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/contact/contactResponse", (req, res) => {
-  res.sendFile(path.join(__dirname, "../public/contact/contactResponse.html"));
+  res.sendFile(path.join(__dirname, "/public/contact/contactResponse.html"));
 });
 
 // Menu routes
