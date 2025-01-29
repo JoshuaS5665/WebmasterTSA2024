@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Replit - Vegan Dining</title>
+    <link href="../style.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body onload='loadHead("./partials/head.html"), changeImages("/")'>
+    <script src="script.js" type="text/javascript"></script>
+
+    <div id="header">
+      <noscript>
+        <p>Please enable JavaScript to view the navigation bar.</p>
+      </noscript>
+    </div>
+
+    <img
+      src="public/images/homeImage1.jpg"
+      alt="Vegan Dining"
+      id="homeImage"
+      style="position: relative"
+    />
+<!--
+    <main>
+      <h1 class="title">Welcome to Our Vegan & Vegetarian Fine Dining</h1>
+      <h2 class="subscript">Experience Plant-Based Excellence</h2>
+    </main>-->
+
+    <!--<script type="module" src="script.js"></script>-->
+
+    <div>
+      <h1
+        class="title"
+        style="text-align: center; color: green; margin-top: 20vh"
+      >
+        Welcome to Our Vegan & Vegetarian Fine Dining
+      </h1>
+      <h2 class="great-vibes-regular" style="text-align: center; margin-top: 5vh">
+        Experience Plant-Based Excellence
+      </h2>
+      <a href="public/menu/seasonalMenus/winterMenu.html"
+        ><button class="homeButtons">Check out our Menus!</button></a
+      >
+    </div>
+
+    <img
+      src="public/images/homeImage4.jpg"
+      alt="Plant Based Excellence"
+      style="width: 100vw; height: 100vh"
+    />
+    <div class="title">
+      <h4
+        style="
+          position: relative;
+          text-align: center;
+          margin-top: 5vh;
+          color: green;
+        "
+      >
+        Changing the World,<br>
+        One Dish at a Time
+      </h2>
+    </div>
+    <div
+      class="subscript"
+    >
+      <h2 class = "great-vibes-regular" style="position: relative; text-align: center; margin-top:5vh">Prioritizing Eco-Friendliness</h2>
+    </div>
+
+    <a href="public/mission/mission.html"><button class="homeButtons">Explore our Mission</button></a>
+  </body>
+</html>
