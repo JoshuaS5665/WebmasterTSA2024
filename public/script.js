@@ -472,3 +472,98 @@ window.addEventListener("resize", () => {
     menu.style.width = "50%";
   }
 });
+
+function formatCreditCard(e) {
+  let input = e.target;
+  let value = input.value.replace(/\D/g, "");
+  let formattedValue = "";
+
+  for (let i = 0; i < value.length; i++) {
+    if (i > 0 && i % 4 === 0) {
+      formattedValue += " ";
+    }
+    formattedValue += value[i];
+  }
+
+  input.value = formattedValue;
+}
+
+document
+  .getElementById("creditCardInput")
+  .addEventListener("input", formatCreditCard);
+
+function formatExpDate(e) {
+  let input = e.target;
+  let value = input.value.replace(/\D/g, "");
+  let formattedValue = "";
+
+  if (value.length > 0) {
+    formattedValue = value.substring(0, 2);
+    if (value.length > 2) {
+      formattedValue += "/" + value.substring(2, 4);
+    }
+  }
+
+  input.value = formattedValue;
+}
+
+document
+  .getElementById("expdateInput")
+  .addEventListener("input", formatExpDate);
+document
+  .getElementById("phoneInput")
+  .addEventListener("input", formatPhoneNumber);
+
+function validateContactInfo() {
+  const firstName = document.getElementById("firstNameInput").value;
+  const lastName = document.getElementById("lastNameInput").value;
+  const creditCard = document.getElementById("creditCardInput").value;
+  const expDate = document.getElementById("expdateInput").value;
+  const securityCode = document.getElementById("securityCodeInput").value;
+  const email = document.getElementById("emailInput").value;
+  const phone = document.getElementById("phoneInput").value;
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const phoneRegex = /^\(\d{3}\)-\d{3}-\d{4}$/;
+  const creditCardRegex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
+  const expDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
+  const securityCodeRegex = /^\d{3,4}$/;
+
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address");
+    return false;
+  }
+
+  if (!phoneRegex.test(phone)) {
+    alert("Please enter a valid phone number in format (123)-456-7890");
+    return false;
+  }
+
+  if (!creditCardRegex.test(creditCard)) {
+    alert("Please enter a valid 16-digit credit card number");
+    return false;
+  }
+
+  if (!expDateRegex.test(expDate)) {
+    alert("Please enter a valid expiration date in format MM/YY");
+    return false;
+  }
+
+  if (!securityCodeRegex.test(securityCode)) {
+    alert("Please enter a valid security code (3-4 digits)");
+    return false;
+  }
+
+  alert("Form submitted successfully!");
+  return true;
+}
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function generateConfirmation() {
+  document.getElementById("confirmation").innerHTML = getRandomNumber(
+    999,
+    99999,
+  );
+}
