@@ -1,14 +1,15 @@
 const express = require("express");
-const morgan = require("morgan");
-const serverless = require("serverless-http");
+
+//const serverless = require("serverless-http");
 const app = express();
-const router = express.Router();
+//const morgan = require("Morgan");
+//const router = express.Router();
 const PORT = 80;
 const path = require("path");
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
@@ -113,5 +114,5 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/public/404/404.html"));
 });
 
-app.use("/.netlify/functions/app", router);
-module.exports.handler = serverless(app);
+//app.use("/.netlify/functions/app", router);
+//module.exports.handler = serverless(app);
