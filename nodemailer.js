@@ -1,22 +1,31 @@
 const nodemailer = require("nodemailer"); 
 const express = require("express");
-const morgan = require("morgan");
+//const morgan = require("morgan");
 const app = express(); 
-const port = 3000;
+const port = 80;
 app.listen(port, ()=>{
     console.log(`Server is listening on port ${port}`); 
 });
 
-app.use(morgan("dev")); 
+//app.use(morgan("dev")); 
 app.use(express.urlencoded({extended:true})); 
 
-app.get("/index.html", (req, res) =>{
+/*app.get("/index.html", (req, res) =>{
     res.sendFile(__dirname + "/index.html"); 
 });
 
 app.get("/index2.html", (req, res) =>{
     res.sendFile(__dirname + "/index2.html"); 
-})
+})*/
+app.get("/contact/contactResponse", (req, res) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName; 
+    const email = req.body.email; 
+    const phone = req.body.phoneNumber;
+    const question = req.body.question; 
+    
+  res.sendFile(path.join(__dirname, "/public/contact/contactResponse.html"));
+});
 
 app.post("/index2.html", (req, res) =>{
      const firstName = req.body.firstName;

@@ -26,7 +26,7 @@
       </h1>
       <p
         style="
-          font-family: &quot;Bodoni Moda&quot;, serif;
+          font-family: Bodoni Moda, serif;
           font-size: 20px;
           text-align: center;
           margin: 2vh 15vw;
@@ -79,7 +79,7 @@
       <div class="contact-form">
         <form
           action="/contact/contactResponse"
-          method="POST"
+          method="get"
           onsubmit="event.preventDefault(); return validateContactInfo();"
         >
           <label for="first-name"
@@ -90,6 +90,7 @@
             class="form-control"
             type="text"
             id="firstNameInput"
+            name="firstName"
             placeholder="John"
             novalidate
           />
@@ -102,6 +103,7 @@
             class="form-control"
             type="text"
             id="lastNameInput"
+            name="lastName"
             placeholder="Doe"
             novalidate
           />
@@ -114,6 +116,7 @@
             class="form-control"
             type="text"
             id="emailInput"
+            name="email"
             placeholder="johndoe@example.com"
             novalidate
           />
@@ -126,6 +129,7 @@
             class="form-control"
             type="text"
             id="phoneInput"
+            name="phoneNumber"
             placeholder="(123)-456-7890"
             novalidate
           />
@@ -135,6 +139,7 @@
             class="form-control"
             type="text"
             id="questionInput"
+            name="question"
             placeholder="Please enter your question here."
             maxlength="200"
             maxwidth="50"
