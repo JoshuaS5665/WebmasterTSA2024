@@ -1,68 +1,120 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Flourish | FAQs</title>
-     <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width" />
+    <title>Flourish | Order Menu</title>
     <link href="../style.css" rel="stylesheet" type="text/css" />
-  </head>
-
-  <body
-    onload='loadHead("../partials/head.html"), changeImages("../"), loadFooter("../partials/footer.html")'
-  >
-    <script type="text/javascript" src="../script.js" defer></script>
-
+    <style>
+        .menu-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .menu-item {
+            background: #fff;
+            border: 2px solid #32372b;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .menu-item h3 {
+            color: #32372b;
+            font-family: "Rye", serif;
+            margin-bottom: 10px;
+        }
+        .add-to-cart {
+            background: #32372b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: "Bodoni Moda", serif;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+        .add-to-cart:hover {
+            background: #4a5440;
+        }
+        .price {
+            font-size: 1.2em;
+            color: #32372b;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body onload='loadHead("/partials/head.html"), loadFooter("/partials/footer.html")'>
     <div id="header"></div>
-<h1>Online Ordering Menu</h1>
+    <script src="../script.js"></script>
 
-<form action="/takeout/orderconfirmation" method="POST">
-  <h2>Starters</h2>
-  <ul>
-    <li><input type="checkbox" name="starter" value="Cajun-Spiced Sweet Potato Bisque">Cajun-Spiced Sweet Potato Bisque ($12)</li>
-    <li><input type="checkbox" name="starter" value="New England-Style Roasted Root Vegetable Salad">New England-Style Roasted Root Vegetable Salad ($14)</li>
-    <li><input type="checkbox" name="starter" value="Caribbean-Inspired Roasted Plantain & Black Bean Salad">Caribbean-Inspired Roasted Plantain & Black Bean Salad ($13)</li>
-    <li><input type="checkbox" name="starter" value="Smoky Pecan & Corn Chowder">Smoky Pecan & Corn Chowder ($15)</li>
-    <li><input type="checkbox" name="starter" value="Crispy Fried Okra with Spicy Remoulade">Crispy Fried Okra with Spicy Remoulade ($12)</li>
-    <li><input type="checkbox" name="starter" value="Southwestern Roasted Corn & Avocado Salad">Southwestern Roasted Corn & Avocado Salad ($13)</li>
-    <li><input type="checkbox" name="starter" value="Jalapeño & Vegan Cheddar-Stuffed Mushrooms">Jalapeño & Vegan Cheddar-Stuffed Mushrooms ($14)</li>
-  </ul>
-  <h2>Entrees</h2>
-  <ul>
-    <li><input type="checkbox" name="entree" value="Vegan Lentil Curry">Vegan Lentil Curry ($18)</li>
-    <li><input type="checkbox" name="entree" value="Vegan Black Bean & Sweet Potato Enchiladas">Vegan Black Bean & Sweet Potato Enchiladas ($19)</li>
-  <div class="card-deck">
-    <div class="card">
-      <img class="card-img-top" src="shah2.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Vegan Lentil Curry</h5>
-        <p class="card-text">A flavorful and nutritious curry made with red lentils, onions, garlic, ginger, and a blend of spices. Served with a side of rice or naan.</p>
-        <input type="checkbox" name="entree" value="Vegan Lentil Curry">
-      </div>
+    <h1 style="text-align: center; font-family: Rye, serif; color: #32372b; margin-top: 5vh">ORDER MENU</h1>
+    
+    <div id="cart-display" style="text-align: right; padding: 20px; max-width: 1200px; margin: 0 auto; font-family: 'Bodoni Moda', serif;">
+        <h3 style="color: #32372b;">Your Cart:</h3>
+        <div id="current-cart" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
     </div>
-    <div class="card">
-      <img class="card-img-top" src="shah2.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Vegan Black Bean & Sweet Potato Enchiladas</h5>
-        <p class="card-text">Tortillas filled with black beans, roasted sweet potatoes, and a blend of spices, covered in a spicy tomato sauce and melted vegan cheese. Served with a side of rice or naan.</p>
-        <input type="checkbox" name="entree" value="Vegan Black Bean & Sweet Potato Enchiladas">
-      </div>
+
+    <div class="menu-section">
+        <h2 style="font-family: Rye, serif; color: #32372b;">Main Dishes</h2>
+        <div class="menu-item">
+            <h3>Garden Fresh Bowl</h3>
+            <p>Fresh seasonal vegetables with quinoa and our signature dressing</p>
+            <p class="price">$18</p>
+            <button class="add-to-cart" onclick="addToCart('Garden Fresh Bowl', 18)">Add to Cart</button>
+        </div>
+        
+        <div class="menu-item">
+            <h3>Mushroom Risotto</h3>
+            <p>Creamy arborio rice with wild mushrooms and truffle oil</p>
+            <p class="price">$22</p>
+            <button class="add-to-cart" onclick="addToCart('Mushroom Risotto', 22)">Add to Cart</button>
+        </div>
+
+        <div class="menu-item">
+            <h3>Grilled Eggplant</h3>
+            <p>Grilled eggplant with vegan mint yogurt sauce and pomegranate seeds</p>
+            <p class="price">$21</p>
+            <button class="add-to-cart" onclick="addToCart('Grilled Eggplant', 21)">Add to Cart</button>
+        </div>
+
+        <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Sides</h2>
+        <div class="menu-item">
+            <h3>Crispy Roasted Potatoes</h3>
+            <p>Golden roasted potatoes with rosemary and garlic</p>
+            <p class="price">$9</p>
+            <button class="add-to-cart" onclick="addToCart('Crispy Roasted Potatoes', 9)">Add to Cart</button>
+        </div>
+
+        <div class="menu-item">
+            <h3>Grilled Asparagus</h3>
+            <p>Fresh asparagus grilled with lemon and olive oil</p>
+            <p class="price">$10</p>
+            <button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>
+        </div>
+
+        <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Drinks</h2>
+        <div class="menu-item">
+            <h3>Minted Watermelon Cooler</h3>
+            <p>Fresh watermelon juice with mint and lime</p>
+            <p class="price">$8</p>
+            <button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>
+        </div>
     </div>
-    <div class="card">
-      <img class="card-img-top" src="shah2.png" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">Vegan Chickpea & Spinach Curry</h5>
-        <p class="card-text">A flavorful and nutritious curry made with chickpeas, spinach, onions, garlic, and a blend of spices. Served with a side of rice or naan.</p>
-        <input type="checkbox" name="entree" value="Vegan Chickpea & Spinach Curry">
-      </div>
+
+    <div class="button-group" style="margin: 30px 0;">
+        <a href="paymentform.html">Proceed to Payment</a>
     </div>
-  </ul>
-  <h2>Desserts</h2>
-  <ul>
-    <li><input type="checkbox" name="dessert" value="Chocolate Chip Cookies">Chocolate Chip Cookies ($6)</li>
-    <li><input type="checkbox" name="dessert" value="Berry Sorbet">Berry Sorbet ($7)</li>
-  </ul>
-  <button type="submit">Place Order</button>
-</form>
+
+    <div id="footer"></div>
 </body>
 </html>

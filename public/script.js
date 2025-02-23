@@ -333,7 +333,7 @@ function getPeopleInParty() {
 
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
-  window.location.href = "bookTable.html";
+  window.location.href = "/reservation/bookTable.html";
 }
 
 function initializeTimeSlots() {
@@ -387,6 +387,70 @@ function initializeTimeSlots() {
   }
 }
 
+function addToCart(itemName, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({name: itemName, price: price});
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Show on-screen notification
+    const notification = document.createElement('div');
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.left = '50%';
+    notification.style.transform = 'translateX(-50%)';
+    notification.style.backgroundColor = '#32372b';
+    notification.style.color = 'white';
+    notification.style.padding = '15px 30px';
+    notification.style.borderRadius = '5px';
+    notification.style.zIndex = '1000';
+    notification.style.fontFamily = 'Bodoni Moda, serif';
+    notification.textContent = 'Added ' + itemName + ' to cart!';
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 2 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => notification.remove(), 500);
+    }, 2000);
+
+    // Update cart display
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    const cartDisplay = document.getElementById('current-cart');
+    if (!cartDisplay) return;
+    
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        cartDisplay.innerHTML = '<p style="text-align: center;">No items in cart</p>';
+        return;
+    }
+    
+    let html = '<ul style="list-style: none; padding: 0;">';
+    cart.forEach((item, index) => {
+        html += `
+            <li style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 8px; border-bottom: 1px solid #eee;">
+                <span>${item.name} - $${item.price}</span>
+                <button onclick="removeFromCart(${index})" 
+                    style="background: #32372b; 
+                    color: white; 
+                    border: none; 
+                    padding: 5px 10px; 
+                    border-radius: 4px; 
+                    cursor: pointer; 
+                    font-family: 'Bodoni Moda', serif;">Remove</button>
+            </li>`;
+    });
+    html += '</ul>';
+    cartDisplay.innerHTML = html;
+}
+
+// Add this line to update cart on page load
+document.addEventListener('DOMContentLoaded', updateCartDisplay);
+
 function validateTimeSelection(event) {
   if (event) {
     event.preventDefault();
@@ -408,6 +472,212 @@ function validateTimeSelection(event) {
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
   window.location.href = "/reservation/bookTable.html";
+}
+
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+}
+
+function loadCart() {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartDiv = document.getElementById('cart-items');
+    let subtotal = 0;
+
+    if (!cartDiv) return;
+    cartDiv.innerHTML = '';
+
+    cartItems.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            <div class="cart-item-details">
+                <h3>${item.name}</h3>
+                <p>$${item.price}</p>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartDiv.appendChild(itemDiv);
+        subtotal += item.price;
+    });
+
+    updateTotals(subtotal);
+}
+
+function updateTotals(subtotal) {
+    const subtotalElem = document.getElementById('subtotal');
+    const taxElem = document.getElementById('tax');
+    const tipElem = document.getElementById('tipAmount');
+    const finalTotalElem = document.getElementById('finalTotal');
+    
+    if (!subtotalElem) return;
+    
+    const tax = subtotal * 0.07;
+    const currentTip = parseFloat(tipElem.textContent) || 0;
+    const final = subtotal + tax + currentTip;
+    
+    subtotalElem.textContent = subtotal.toFixed(2);
+    taxElem.textContent = tax.toFixed(2);
+    finalTotalElem.textContent = final.toFixed(2);
+    
+    localStorage.setItem('finalTotal', final.toFixed(2));
+}
+
+function selectTip(percentage) {
+    const buttons = document.querySelectorAll('.tip-btn');
+    const customTipDiv = document.querySelector('.custom-tip');
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    
+    buttons.forEach(btn => btn.classList.remove('selected'));
+    
+    if (percentage === 'custom') {
+        customTipDiv.style.display = 'block';
+        buttons[6].classList.add('selected');
+        const customInput = document.getElementById('customTipInput');
+        if (customInput.value) {
+            updateCustomTip();
+        }
+    } else {
+        customTipDiv.style.display = 'none';
+        // Find button index based on order in HTML
+        const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
+        buttons[percentageMap[percentage]].classList.add('selected');
+        const tipAmount = (subtotal * (percentage/100));
+        document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
+        updateTotals(subtotal);
+    }
+}
+
+function removeCartItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const removedItem = cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    const newSubtotal = subtotal - removedItem[0].price;
+    
+    updateCartDisplay();
+    updateTotals(newSubtotal);
+    loadCart();
+}
+
+function updateCustomTip() {
+    const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
+    document.getElementById('tipAmount').textContent = customTip.toFixed(2);
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    updateTotals(subtotal);
+}
+
+// Credit card input formatting
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.getElementById('phoneInput');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = `(${value}`;
+                } else if (value.length <= 6) {
+                    value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+                } else {
+                    value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+                }
+            }
+            e.target.value = value;
+        });
+    }
+    
+    const creditCardInput = document.getElementById('creditCardInput');
+    if (creditCardInput) {
+        creditCardInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            e.target.value = formattedValue;
+        });
+    }
+
+    // Expiration date formatting
+    const expDateInput = document.getElementById('expdateInput');
+    if (expDateInput) {
+        expDateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+    }
+});
+
+
+function validatePayment(event) {
+  event.preventDefault();
+  const firstNameInput = document.getElementById("firstNameInput");
+  const lastNameInput = document.getElementById("lastNameInput");
+  const creditCardInput = document.getElementById("creditCardInput");
+  const expdateInput = document.getElementById("expdateInput");
+  const securityCodeInput = document.getElementById("securityCodeInput");
+  let isValid = true;
+
+  // Remove existing error messages
+  const existingErrors = document.querySelectorAll('.error-message');
+  existingErrors.forEach(error => error.remove());
+
+  if (!firstNameInput.value.trim()) {
+    showError(firstNameInput, "Please enter your first name");
+    isValid = false;
+  } else {
+    hideError(firstNameInput);
+  }
+
+  if (!lastNameInput.value.trim()) {
+    showError(lastNameInput, "Please enter your last name");
+    isValid = false;
+  } else {
+    hideError(lastNameInput);
+  }
+
+  if (!phoneInput.value.trim()) {
+    showError(phoneInput, "Please enter your phone number");
+    isValid = false;
+  } else {
+    hideError(phoneInput);
+  }
+
+  if (!creditCardInput.value.trim()) {
+    showError(creditCardInput, "Please enter your card number");
+    isValid = false;
+  } else {
+    hideError(creditCardInput);
+  }
+
+  if (!expdateInput.value.trim()) {
+    showError(expdateInput, "Please enter expiration date");
+    isValid = false;
+  } else {
+    hideError(expdateInput);
+  }
+
+  if (!securityCodeInput.value.trim()) {
+    showError(securityCodeInput, "Please enter security code");
+    isValid = false;
+  } else {
+    hideError(securityCodeInput);
+  }
+
+  if (isValid) {
+    localStorage.removeItem('cart');
+    window.location.href = 'orderconfirmation.html';
+  }
+  return false;
 }
 
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
@@ -472,98 +742,3 @@ window.addEventListener("resize", () => {
     menu.style.width = "50%";
   }
 });
-
-function formatCreditCard(e) {
-  let input = e.target;
-  let value = input.value.replace(/\D/g, "");
-  let formattedValue = "";
-
-  for (let i = 0; i < value.length; i++) {
-    if (i > 0 && i % 4 === 0) {
-      formattedValue += " ";
-    }
-    formattedValue += value[i];
-  }
-
-  input.value = formattedValue;
-}
-
-document
-  .getElementById("creditCardInput")
-  .addEventListener("input", formatCreditCard);
-
-function formatExpDate(e) {
-  let input = e.target;
-  let value = input.value.replace(/\D/g, "");
-  let formattedValue = "";
-
-  if (value.length > 0) {
-    formattedValue = value.substring(0, 2);
-    if (value.length > 2) {
-      formattedValue += "/" + value.substring(2, 4);
-    }
-  }
-
-  input.value = formattedValue;
-}
-
-document
-  .getElementById("expdateInput")
-  .addEventListener("input", formatExpDate);
-document
-  .getElementById("phoneInput")
-  .addEventListener("input", formatPhoneNumber);
-
-function validateContactInfo() {
-  const firstName = document.getElementById("firstNameInput").value;
-  const lastName = document.getElementById("lastNameInput").value;
-  const creditCard = document.getElementById("creditCardInput").value;
-  const expDate = document.getElementById("expdateInput").value;
-  const securityCode = document.getElementById("securityCodeInput").value;
-  const email = document.getElementById("emailInput").value;
-  const phone = document.getElementById("phoneInput").value;
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const phoneRegex = /^\(\d{3}\)-\d{3}-\d{4}$/;
-  const creditCardRegex = /^\d{4}\s\d{4}\s\d{4}\s\d{4}$/;
-  const expDateRegex = /^(0[1-9]|1[0-2])\/\d{2}$/;
-  const securityCodeRegex = /^\d{3,4}$/;
-
-  if (!emailRegex.test(email)) {
-    alert("Please enter a valid email address");
-    return false;
-  }
-
-  if (!phoneRegex.test(phone)) {
-    alert("Please enter a valid phone number in format (123)-456-7890");
-    return false;
-  }
-
-  if (!creditCardRegex.test(creditCard)) {
-    alert("Please enter a valid 16-digit credit card number");
-    return false;
-  }
-
-  if (!expDateRegex.test(expDate)) {
-    alert("Please enter a valid expiration date in format MM/YY");
-    return false;
-  }
-
-  if (!securityCodeRegex.test(securityCode)) {
-    alert("Please enter a valid security code (3-4 digits)");
-    return false;
-  }
-
-  alert("Form submitted successfully!");
-  return true;
-}
-
-function getRandomNumber(min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-function generateConfirmation() {
-  document.getElementById("confirmation").innerHTML = getRandomNumber(
-    999,
-    99999,
-  );
-}
