@@ -19,18 +19,22 @@
 <form action="/takeout/orderconfirmation" method="POST">
   <h2>Starters</h2>
   <ul>
-    <li><input type="checkbox" name="starter" value="Cajun-Spiced Sweet Potato Bisque">Cajun-Spiced Sweet Potato Bisque ($12)</li>
-    <li><input type="checkbox" name="starter" value="New England-Style Roasted Root Vegetable Salad">New England-Style Roasted Root Vegetable Salad ($14)</li>
-    <li><input type="checkbox" name="starter" value="Caribbean-Inspired Roasted Plantain & Black Bean Salad">Caribbean-Inspired Roasted Plantain & Black Bean Salad ($13)</li>
+    <li><input type="checkbox" name="starter[0]" value="Pea & Mint Soup">Pea & Mint Soup ($12)</li>
+    <li><input type="checkbox" name="starter[1]" value="Chilled Cucumber & Avocado Gazpacho">Chilled Cucumber & Avocado Gazpacho ($13)</li>
+    <li><input type="checkbox" name="starter[2]" value="Roasted Beet & Orange Carpaccio">Roasted Beet & Orange Carpaccio ($15)</li>
     <li><input type="checkbox" name="starter" value="Smoky Pecan & Corn Chowder">Smoky Pecan & Corn Chowder ($15)</li>
+    <!--
     <li><input type="checkbox" name="starter" value="Crispy Fried Okra with Spicy Remoulade">Crispy Fried Okra with Spicy Remoulade ($12)</li>
     <li><input type="checkbox" name="starter" value="Southwestern Roasted Corn & Avocado Salad">Southwestern Roasted Corn & Avocado Salad ($13)</li>
     <li><input type="checkbox" name="starter" value="Jalapeño & Vegan Cheddar-Stuffed Mushrooms">Jalapeño & Vegan Cheddar-Stuffed Mushrooms ($14)</li>
+    -->
   </ul>
   <h2>Entrees</h2>
   <ul>
-    <li><input type="checkbox" name="entree" value="Vegan Lentil Curry">Vegan Lentil Curry ($18)</li>
-    <li><input type="checkbox" name="entree" value="Vegan Black Bean & Sweet Potato Enchiladas">Vegan Black Bean & Sweet Potato Enchiladas ($19)</li>
+    <li><input type="checkbox" name="entree[0]" value="Lemon & Herb Stuffed Squash Blossoms">Lemon & Herb Stuffed Squash Blossoms ($24)</li>
+    <li><input type="checkbox" name="entree[1]" value="Linguine with Lemon Cream & Zucchini">Linguine with Lemon Cream & Zucchini ($22)</li>
+    <li><input type="checkbox" name="entree[2]" value="Charred Eggplant with Mint Yogurt & Pomegranate">Charred Eggplant with Mint Yogurt & Pomegranate ($21)</li>
+    <li><input type="checkbox" name="entree[3]" value="Wild Mushroom & Herb Stuffed Portobello">Wild Mushroom & Herb Stuffed Portobello ($20)</li>
   <div class="card-deck">
     <div class="card">
       <img class="card-img-top" src="shah2.png" alt="Card image cap">
