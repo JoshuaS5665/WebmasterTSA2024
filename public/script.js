@@ -680,6 +680,28 @@ function validatePayment(event) {
   return false;
 }
 
+function addToQuantity(dishName){
+  let id = dishName + "-input"; 
+  let input = document.getElementById(id); 
+  let value = parseInt(input.value); 
+  value++;
+  input.value = value; 
+}
+ /* console.log("Function is running"); 
+  let value = parseInt(document.getElementById("input").value); 
+  value++; 
+  document.getElementById("input").value = value; */
+
+function subtractToQuantity(dishName){
+  let id = dishName + "-input"; 
+  let input = document.getElementById(id); 
+  let value = parseInt(input.value); 
+  if(value > 0){
+      value --;
+  }
+  input.value = value; 
+}
+
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
 });*/
 
