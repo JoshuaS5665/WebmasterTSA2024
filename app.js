@@ -1,15 +1,14 @@
 const express = require("express");
-
-//const serverless = require("serverless-http");
+const morgan = require("morgan");
+const serverless = require("serverless-http");
 const app = express();
-//const morgan = require("Morgan");
-//const router = express.Router();
+const router = express.Router();
 const PORT = 80;
 const path = require("path");
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-//app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Server is running on port ${PORT}`);
@@ -87,7 +86,7 @@ app.get("/mission", (req, res) => {
 
 // Reservation routes
 app.get("/reservation", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/reservation/reservation.html"));
+  res.sendFile(path.join(__dirname, "/public/reservation/reservationstart.html"));
 });
 
 app.get("/reservationsecond", (req, res) => {
@@ -104,6 +103,19 @@ app.get("/reservation/confirmation", (req, res) => {
   );
 });
 
+// Private Room Reservation routes
+app.get("/reservation/private", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/reservation/reservationstart.html"));
+});
+
+app.get("/reservation/picktime.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/reservation/picktime.html"));
+});
+
+app.get("/reservation/confirmation.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/reservation/confirmation.html"));
+});
+
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));
@@ -114,5 +126,5 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/public/404/404.html"));
 });
 
-//app.use("/.netlify/functions/app", router);
-//module.exports.handler = serverless(app);
+app.use("/.netlify/functions/app", router);
+module.exports.handler = serverless(app);
