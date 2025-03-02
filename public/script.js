@@ -14,6 +14,12 @@ function loadHead(url) {
 }
 
 function smoothPageTransition(e) {
+  // Don't trigger for slideshow navigation arrows
+  if (e.target.classList.contains('slideshow-nav') || 
+      e.target.closest('.slideshow-nav')) {
+    return;
+  }
+
   if (e.target.tagName === "A" && !e.target.hasAttribute("download")) {
     e.preventDefault();
     const content = document.querySelectorAll(
@@ -67,28 +73,130 @@ function markCurrentPage() {
 
 function changeImages(beginning) {
   const homeImage = document.getElementById("homeImage");
-  console.log(homeImage.src);
+  const slideshowImages = [
+    `${beginning}images/homeImage1.jpg`,
+    `${beginning}images/homeImage2.jpg`,
+    `${beginning}images/homeImage3.jpg`
+  ];
 
-  let x = 0;
+  let currentImageIndex = 0;
+  let slideshowInterval;
 
-  setInterval(() => {
+  // Reset any slideshow container styles that might be causing issues
+  const slideshowContainer = document.querySelector(".slideshow-container");
+  if (slideshowContainer) {
+    slideshowContainer.style.borderBottom = "none";
+  }
+
+  // Create dots dynamically
+  const dotsContainer = document.getElementById("slideshow-dots");
+  if (dotsContainer) {
+    // Clear any existing content in dots container
+    dotsContainer.innerHTML = '';
+
+    // Create new dots
+    for (let i = 0; i < slideshowImages.length; i++) {
+      const dot = document.createElement('span');
+      dot.className = i === 0 ? 'slideshow-dot active' : 'slideshow-dot';
+      dot.setAttribute('data-index', i);
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  // Initialize slideshow navigation buttons
+  const prevButton = document.getElementById("slideshow-prev");
+  const nextButton = document.getElementById("slideshow-next");
+  const dots = document.querySelectorAll(".slideshow-dot");
+
+  // Remove all inline styles and let CSS handle the styling
+  dots.forEach(dot => {
+    // Remove any inline styles that might be causing the black line
+    dot.removeAttribute('style');
+  });
+
+  // Function to change image with transition
+  function changeImage(newIndex) {
     homeImage.classList.add("fade-out");
+
     setTimeout(() => {
-      if (x == 0) {
-        homeImage.src = `${beginning}images/homeImage1.jpg`;
-        x++;
-      } else if (x == 1) {
-        homeImage.src = `${beginning}images/homeImage2.jpg`;
-        x++;
-      } else {
-        homeImage.src = `${beginning}images/homeImage3.jpg`;
-        x = 0;
-      }
+      currentImageIndex = newIndex;
+      homeImage.src = slideshowImages[currentImageIndex];
+
+      // Update active dot 
+      dots.forEach((dot, index) => {
+        if (index === currentImageIndex) {
+          dot.classList.add("active");
+          // Don't add any inline styles, let CSS handle it
+        } else {
+          dot.classList.remove("active");
+          // Don't add any inline styles, let CSS handle it
+        }
+      });
+
       setTimeout(() => {
         homeImage.classList.remove("fade-out");
-      }, 50);
-    }, 500);
-  }, 6000);
+      }, 10);
+    }, 250);
+  }
+
+  // Set up automatic slideshow
+  function startSlideshow() {
+    slideshowInterval = setInterval(() => {
+      let newIndex = (currentImageIndex + 1) % slideshowImages.length;
+      changeImage(newIndex);
+    }, 5000);
+  }
+
+  // Add click handlers for navigation buttons
+  if (prevButton) {
+    prevButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Stop event from bubbling up
+      // Clear the interval and restart it
+      clearInterval(slideshowInterval);
+
+      let newIndex = currentImageIndex - 1;
+      if (newIndex < 0) newIndex = slideshowImages.length - 1;
+
+      changeImage(newIndex);
+      startSlideshow();
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Stop event from bubbling up
+      // Clear the interval and restart it
+      clearInterval(slideshowInterval);
+
+      let newIndex = (currentImageIndex + 1) % slideshowImages.length;
+
+      changeImage(newIndex);
+      startSlideshow();
+    });
+  }
+
+  // Add click handlers for dots
+  dots.forEach((dot) => {
+    dot.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Clear the interval and restart it
+      clearInterval(slideshowInterval);
+
+      const index = parseInt(dot.getAttribute("data-index"));
+      if (index !== currentImageIndex) {
+        changeImage(index);
+      }
+
+      startSlideshow();
+    });
+  });
+
+  // Start the slideshow
+  startSlideshow();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -174,7 +282,7 @@ function showError(input, message) {
     div.className = "error-message";
     div.textContent = message;
     div.style.animation = "fadeIn 0.3s ease-in";
-    
+
     // Add professional validation messages
     if (message.includes("required") || message.includes("enter")) {
       div.textContent = "This field is required.";
@@ -191,7 +299,7 @@ function showError(input, message) {
     } else if (message.includes("agree") || message.includes("terms")) {
       div.textContent = "You must agree to the terms to continue.";
     }
-    
+
     input.parentNode.insertBefore(div, input.nextSibling);
   }
 }
@@ -316,43 +424,43 @@ function validateReservation() {
 function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
   if (!dateInput) return;
-  
+
   // Clear any existing options except the default one
   while (dateInput.options.length > 1) {
     dateInput.remove(1);
   }
-  
+
   // Generate dates for the next 30 days
   const today = new Date();
-  
+
   for (let i = 0; i < 30; i++) {
     // Create a new date object for each day to avoid reference issues
     const date = new Date(today);
     date.setDate(today.getDate() + i);
-    
+
     // Skip Mondays since restaurant is closed
     if (date.getDay() === 1) continue;
-    
+
     const formattedDate = date.toISOString().split('T')[0];
     const displayDate = date.toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short', 
       day: 'numeric'
     });
-    
+
     const option = document.createElement('option');
     option.value = formattedDate;
     option.textContent = displayDate;
     dateInput.appendChild(option);
   }
-  
+
   if (!dateInput.hasListener) {
     dateInput.addEventListener("change", function () {
       localStorage.setItem("selectedDate", this.value);
     });
     dateInput.hasListener = true;
   }
-  
+
   // Fix: Log to console for debugging
   console.log("Date dropdown populated with", dateInput.options.length - 1, "dates");
 }
@@ -449,7 +557,7 @@ function addToCart(itemName, price) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push({name: itemName, price: price});
     localStorage.setItem('cart', JSON.stringify(cart));
-    
+
     // Show on-screen notification
     const notification = document.createElement('div');
     notification.style.position = 'fixed';
@@ -463,9 +571,9 @@ function addToCart(itemName, price) {
     notification.style.zIndex = '1000';
     notification.style.fontFamily = 'Bodoni Moda, serif';
     notification.textContent = 'Added ' + itemName + ' to cart!';
-    
+
     document.body.appendChild(notification);
-    
+
     // Remove notification after 2 seconds
     setTimeout(() => {
         notification.style.opacity = '0';
@@ -480,13 +588,13 @@ function addToCart(itemName, price) {
 function updateCartDisplay() {
     const cartDisplay = document.getElementById('current-cart');
     if (!cartDisplay) return;
-    
+
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
         cartDisplay.innerHTML = '<p style="text-align: center;">No items in cart</p>';
         return;
     }
-    
+
     let html = '<ul style="list-style: none; padding: 0;">';
     cart.forEach((item, index) => {
         html += `
@@ -564,20 +672,20 @@ function initializePrivateTimeSlots() {
   const reservationDateDisplay = document.getElementById("reservationDate");
   const partyDetailsDisplay = document.getElementById("partyDetails");
   const occasionDisplay = document.getElementById("occasionDisplay");
-  
+
   if (!select) return;
 
   const date = localStorage.getItem("privateSelectedDate");
   const partySize = localStorage.getItem("privatePartySize");
   const occasion = localStorage.getItem("privateOccasion");
-  
+
   // Display reservation details
   if (reservationDateDisplay) {
     // Fix the date offset issue by creating date object correctly
     const dateObj = new Date(date);
     // Add timezone offset to fix date display
     dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
-    
+
     const formattedDate = dateObj.toLocaleDateString('en-US', {
       weekday: 'long', 
       year: 'numeric', 
@@ -586,11 +694,11 @@ function initializePrivateTimeSlots() {
     });
     reservationDateDisplay.textContent = `Date: ${formattedDate}`;
   }
-  
+
   if (partyDetailsDisplay) {
     partyDetailsDisplay.textContent = `Party Size: ${partySize}`;
   }
-  
+
   if (occasionDisplay && occasion) {
     occasionDisplay.textContent = `Occasion: ${occasion}`;
   }
@@ -603,7 +711,7 @@ function initializePrivateTimeSlots() {
   select.innerHTML = '<option value="">Select time</option>';
 
   const selectedDay = new Date(date).getDay();
-  
+
   // Closed on Mondays (day 1)
   if (selectedDay === 1) {
     select.innerHTML = '<option value="">Closed on Mondays</option>';
@@ -617,7 +725,7 @@ function initializePrivateTimeSlots() {
     // Friday-Sunday: 3PM-11PM (last reservation at 9PM)
     let startHour = 15; // 3 PM
     let endHour; 
-    
+
     if (selectedDay >= 5 || selectedDay === 0) {
       // Friday-Sunday: 3PM-11PM
       endHour = 21; // 9 PM is last reservation (ends at 11 PM)
@@ -625,7 +733,7 @@ function initializePrivateTimeSlots() {
       // Tuesday-Thursday: 3PM-10PM
       endHour = 20; // 8 PM is last reservation (ends at 10 PM)
     }
-    
+
     // Generate time slots in half-hour increments
     for (let hour = startHour; hour <= endHour; hour += 0.5) {
       const intHour = Math.floor(hour);
@@ -633,13 +741,13 @@ function initializePrivateTimeSlots() {
       const period = intHour >= 12 ? "PM" : "AM";
       const displayHour = intHour > 12 ? intHour - 12 : intHour;
       const timeStr = `${displayHour}:${minutes} ${period}`;
-      
+
       // Check if this time slot is already reserved
       const isReserved = reservedTimes.some(reservedTime => {
         // Convert time strings to comparable values
         const reservedHour = convertTimeStringToHours(reservedTime);
         const currentHour = hour;
-        
+
         // A reservation blocks 2 hours in both directions
         // Check if current time would overlap with existing reservation
         // Either: current time is within 2 hours after reserved time
@@ -647,7 +755,7 @@ function initializePrivateTimeSlots() {
         return (currentHour >= reservedHour && currentHour < reservedHour + 2) || 
                (currentHour + 2 > reservedHour && currentHour < reservedHour);
       });
-      
+
       if (!isReserved) {
         const option = document.createElement("option");
         option.value = timeStr;
@@ -655,7 +763,7 @@ function initializePrivateTimeSlots() {
         select.appendChild(option);
       }
     }
-    
+
     if (select.options.length <= 1) {
       // Only the default "Select time" option exists
       const option = document.createElement("option");
@@ -663,7 +771,7 @@ function initializePrivateTimeSlots() {
       option.textContent = "No available times for this date";
       option.disabled = true;
       select.appendChild(option);
-      
+
       // Show no availability message
       const noAvailabilityMessage = document.getElementById("noAvailabilityMessage");
       if (noAvailabilityMessage) {
@@ -683,13 +791,13 @@ function initializePrivateTimeSlots() {
 function convertTimeStringToHours(timeStr) {
   const [timePart, period] = timeStr.split(" ");
   let [hours, minutes] = timePart.split(":").map(Number);
-  
+
   if (period === "PM" && hours < 12) {
     hours += 12;
   } else if (period === "AM" && hours === 12) {
     hours = 0;
   }
-  
+
   return hours + minutes/60;
 }
 
@@ -729,41 +837,41 @@ function validatePrivateTimeSelection(event) {
 function loadPrivateReservationDetails() {
   const summaryDiv = document.getElementById("reservationSummary");
   if (!summaryDiv) return;
-  
+
   // Add a subtle animation to the summary
   summaryDiv.style.opacity = "0";
   summaryDiv.style.transform = "translateY(10px)";
-  
+
   const date = localStorage.getItem("privateSelectedDate");
   const time = localStorage.getItem("privateSelectedTime");
   const partySize = localStorage.getItem("privatePartySize");
   const occasion = localStorage.getItem("privateOccasion");
   const requests = localStorage.getItem("privateSpecialRequests");
-  
+
   if (!date || !time || !partySize) {
     summaryDiv.innerHTML = "<p>Reservation details not found. Please start over.</p>";
     return;
   }
-  
+
   // Animate the summary with a small delay
   setTimeout(() => {
     summaryDiv.style.transition = "all 0.5s ease";
     summaryDiv.style.opacity = "1";
     summaryDiv.style.transform = "translateY(0)";
   }, 200);
-  
+
   // Fix the date offset issue
   const dateObj = new Date(date);
   // Add timezone offset to fix date display
   dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
-  
+
   const formattedDate = dateObj.toLocaleDateString('en-US', {
     weekday: 'long', 
     year: 'numeric', 
     month: 'long', 
     day: 'numeric'
   });
-  
+
   // Calculate end time (2 hours after start time)
   let endTime = "";
   if (time) {
@@ -772,61 +880,61 @@ function loadPrivateReservationDetails() {
       let hour = parseInt(timeParts[1]);
       const minute = parseInt(timeParts[2]);
       const period = timeParts[3];
-      
+
       hour = (hour % 12) + (period === "PM" ? 12 : 0);
       hour = (hour + 2) % 24;
       const newPeriod = hour >= 12 ? "PM" : "AM";
       const displayHour = hour % 12 === 0 ? 12 : hour % 12;
-      
+
       endTime = `${displayHour}:${minute.toString().padStart(2, "0")} ${newPeriod}`;
     }
   }
-  
+
   let html = `
     <p><strong>Date:</strong> ${formattedDate}</p>
     <p><strong>Time:</strong> ${time} - ${endTime}</p>
     <p><strong>Duration:</strong> 2 hours</p>
     <p><strong>Party Size:</strong> ${partySize}</p>
   `;
-  
+
   if (occasion) {
     html += `<p><strong>Occasion:</strong> ${occasion}</p>`;
   }
-  
+
   if (requests) {
     html += `<p><strong>Special Requests:</strong> ${requests}</p>`;
   }
-  
+
   summaryDiv.innerHTML = html;
 }
 
 function finalizePrivateReservation(event) {
   event.preventDefault();
-  
+
   // Get form data
   const firstName = document.getElementById("firstName").value;
   const lastName = document.getElementById("lastName").value;
   const email = document.getElementById("email").value;
   const phone = document.getElementById("phone").value;
   const termsAgreement = document.getElementById("termsAgreement").checked;
-  
+
   // Basic validation
   let isValid = true;
-  
+
   if (!firstName.trim()) {
     showError(document.getElementById("firstName"), "Please enter your first name.");
     isValid = false;
   } else {
     hideError(document.getElementById("firstName"));
   }
-  
+
   if (!lastName.trim()) {
     showError(document.getElementById("lastName"), "Please enter your last name.");
-    isValid = false;
+    isValid =false;
   } else {
     hideError(document.getElementById("lastName"));
   }
-  
+
   if (!email.trim()) {
     showError(document.getElementById("email"), "Please enter your email address.");
     isValid = false;
@@ -836,56 +944,56 @@ function finalizePrivateReservation(event) {
   } else {
     hideError(document.getElementById("email"));
   }
-  
+
   if (!phone.trim()) {
     showError(document.getElementById("phone"), "Please enter your phone number.");
     isValid = false;
   } else {
     hideError(document.getElementById("phone"));
   }
-  
+
   if (!termsAgreement) {
     showError(document.getElementById("termsAgreement").parentNode, "You must agree to the terms to continue.");
     isValid = false;
   } else {
     hideError(document.getElementById("termsAgreement").parentNode);
   }
-  
+
   if (isValid) {
     // Save contact information
     localStorage.setItem("privateReservationName", `${firstName} ${lastName}`);
     localStorage.setItem("privateReservationEmail", email);
     localStorage.setItem("privateReservationPhone", phone);
-    
+
     // Get reservation details for confirmation display
     const date = localStorage.getItem("privateSelectedDate");
     const time = localStorage.getItem("privateSelectedTime");
     const partySize = localStorage.getItem("privatePartySize");
-    
+
     // Store the reservation
     storeReservation(date, time);
-    
+
     // Fix the date offset issue
     const dateObj = new Date(date);
     // Add timezone offset to fix date display
     dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
-    
+
     const formattedDate = dateObj.toLocaleDateString('en-US', {
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
       day: 'numeric'
     });
-    
+
     // Generate confirmation number
     const confirmationNumber = `PVR-${Math.floor(100000 + Math.random() * 900000)}`;
-    
+
     // Create and show confirmation message
     const formContainer = document.querySelector(".reservationForm3");
     formContainer.innerHTML = `
       <div style="text-align: center; padding: 40px;">
         <h2 style="color: #32372b; margin-bottom: 20px;">Private Dining Reservation Confirmed!</h2>
-        
+
         <div style="background-color: rgba(50, 55, 43, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left; font-family: 'Bodoni Moda', serif;">
           <p><strong>Name:</strong> ${firstName} ${lastName}</p>
           <p><strong>Date:</strong> ${formattedDate}</p>
@@ -893,19 +1001,19 @@ function finalizePrivateReservation(event) {
           <p><strong>Party Size:</strong> ${partySize}</p>
           <p><strong>Reference #:</strong> ${confirmationNumber}</p>
         </div>
-        
+
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; margin: 20px 0;">
           A confirmation has been sent to <strong>${email}</strong>.
         </p>
-        
+
         <p style="font-family: 'Bodoni Moda', serif; font-size: 16px; margin: 20px 0; color: #32372b;">
           For any questions about your reservation, please contact us.
         </p>
-        
+
         <button onclick="window.location.href='/'" style="padding: 12px 30px; margin-top: 20px;">Return to Home</button>
       </div>
     `;
-    
+
     // Store reservation data in a more structured way
     const reservationData = {
       name: `${firstName} ${lastName}`,
@@ -919,12 +1027,12 @@ function finalizePrivateReservation(event) {
       confirmationNumber: confirmationNumber,
       timestamp: new Date().toISOString()
     };
-    
+
     // Store reservation history
     let reservationHistory = JSON.parse(localStorage.getItem("reservationHistory")) || [];
     reservationHistory.push(reservationData);
     localStorage.setItem("reservationHistory", JSON.stringify(reservationHistory));
-    
+
     // Clean up localStorage for form data
     setTimeout(() => {
       localStorage.removeItem("privateSelectedDate");
@@ -935,7 +1043,7 @@ function finalizePrivateReservation(event) {
       localStorage.removeItem("privateDuration");
     }, 3000);
   }
-  
+
   return false;
 }
 
@@ -943,18 +1051,18 @@ function finalizePrivateReservation(event) {
 function storeReservation(date, time) {
   // Get existing reservations
   let reservations = JSON.parse(localStorage.getItem("privateRoomReservations")) || {};
-  
+
   // If this date doesn't exist in reservations, create an array for it
   if (!reservations[date]) {
     reservations[date] = [];
   }
-  
+
   // Add the reservation time
   reservations[date].push(time);
-  
+
   // Save back to localStorage
   localStorage.setItem("privateRoomReservations", JSON.stringify(reservations));
-  
+
   // Console log for debugging
   console.log("Reservation stored:", { date, time });
   console.log("All reservations:", reservations);
@@ -1002,17 +1110,17 @@ function updateTotals(subtotal) {
     const taxElem = document.getElementById('tax');
     const tipElem = document.getElementById('tipAmount');
     const finalTotalElem = document.getElementById('finalTotal');
-    
+
     if (!subtotalElem) return;
-    
+
     const tax = subtotal * 0.07;
     const currentTip = parseFloat(tipElem.textContent) || 0;
     const final = subtotal + tax + currentTip;
-    
+
     subtotalElem.textContent = subtotal.toFixed(2);
     taxElem.textContent = tax.toFixed(2);
     finalTotalElem.textContent = final.toFixed(2);
-    
+
     localStorage.setItem('finalTotal', final.toFixed(2));
 }
 
@@ -1020,9 +1128,9 @@ function selectTip(percentage) {
     const buttons = document.querySelectorAll('.tip-btn');
     const customTipDiv = document.querySelector('.custom-tip');
     const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-    
+
     buttons.forEach(btn => btn.classList.remove('selected'));
-    
+
     if (percentage === 'custom') {
         customTipDiv.style.display = 'block';
         buttons[6].classList.add('selected');
@@ -1045,10 +1153,10 @@ function removeCartItem(index) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     const removedItem = cart.splice(index, 1);
     localStorage.setItem('cart', JSON.stringify(cart));
-    
+
     const subtotal = parseFloat(document.getElementById('subtotal').textContent);
     const newSubtotal = subtotal - removedItem[0].price;
-    
+
     updateCartDisplay();
     updateTotals(newSubtotal);
     loadCart();
@@ -1079,7 +1187,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = value;
         });
     }
-    
+
     const creditCardInput = document.getElementById('creditCardInput');
     if (creditCardInput) {
         creditCardInput.addEventListener('input', function(e) {
@@ -1134,16 +1242,6 @@ function validatePayment(event) {
     isValid = false;
   } else {
     hideError(lastNameInput);
-
-// Function to clear all private room reservations
-function clearAllReservations() {
-  if (confirm("u sure?")) {
-    localStorage.removeItem("privateRoomReservations");
-    localStorage.removeItem("reservationHistory");
-    alert("All reservations have been cleared!");
-    console.log("All reservations cleared from localStorage");
-  }
-}
 
   }
 
@@ -1244,3 +1342,13 @@ window.addEventListener("resize", () => {
     menu.style.width = "50%";
   }
 });
+
+// Function to clear all private room reservations
+function clearAllReservations() {
+  if (confirm("u sure?")) {
+    localStorage.removeItem("privateRoomReservations");
+    localStorage.removeItem("reservationHistory");
+    alert("All reservations have been cleared!");
+    console.log("All reservations cleared from localStorage");
+  }
+}
