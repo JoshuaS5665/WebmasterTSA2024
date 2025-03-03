@@ -104,6 +104,27 @@ app.get("/reservation/confirmation", (req, res) => {
   );
 });
 
+app.get("/order", (req, res) =>{
+  res.sendFile(path.join(__dirname, "/public/takeout/ordermenu.html")); 
+});
+
+app.get("/order/payment", (req, res) =>{
+  res.redirect(301, "/order"); 
+});
+
+app.post("/order/payment", (req, res) =>{
+  res.sendFile(path.join(__dirname, "/public/takeout/paymentform.html")); 
+});
+
+app.post("/order/confirmation", (req, res) =>{
+  console.log("POST req to confirm made"); 
+  res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+});
+
+app.get("/order/confirmation", (req, res) =>{
+  res.redirect(301, "/order"); 
+}); 
+
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));

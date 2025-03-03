@@ -178,7 +178,8 @@
         <div>Total: $<span id="finalTotal">0.00</span></div>
       </div>
 
-      <form class="payment-form" onsubmit="return validatePayment(event)">
+      <form class="payment-form" onsubmit="validatePayment(event)" method="post"
+      action="/order/confirmation">
         <div class="form-group">
           <label for="firstNameInput">First Name<span class="asterisk">*</span></label>
           <input type="text" id="firstNameInput" placeholder = "John">

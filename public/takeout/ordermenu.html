@@ -63,63 +63,63 @@
         <h3 style="color: #32372b;">Your Cart:</h3>
         <div id="current-cart" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
     </div>
-
+    <form method="post" action="/order/payment">
     <div class="menu-section">
         <h2 style="font-family: Rye, serif; color: #32372b;">Starters</h2>
         <div class="menu-item">
-            <h3>Pea & Mint Soup</h3>
+            <h3>Pea & Mint Soup</h3><input type="checkbox" name="menu[0]" value="Pea & Mint Soup">
             <p>Fresh English peas with a hint of mint, finished with a drizzle of
                 lemon-infused olive oil.</p>
             <p class="price">$12</p>
-            <button onclick="addToQuantity('Pea & Mint Soup')">+</button><input type="number" value = "0" min="0" id="Pea & Mint Soup-input"><button onclick="subtractToQuantity('Pea & Mint Soup')">-</button>
+            <button onclick="addToQuantity('Pea & Mint Soup')">+</button><input type="number" value = "0" min="0" id="Pea & Mint Soup-input" name="quantity[0]"><button onclick="subtractToQuantity('Pea & Mint Soup')">-</button>
             <!--<button class="add-to-cart" onclick="//addToCart('Garden Fresh Bowl', 18)">Add to Cart</button>-->
         </div>
         
         <div class="menu-item">
-            <h3>Chilled Cucumber & Avocado Gazpacho</h3>
+            <h3>Chilled Cucumber & Avocado Gazpacho</h3><input type="checkbox" name="menu[1]" value="Chilled Cucumber & Avocado Gazpacho">
             <p>Creamy cucumber and avocado chilled soup, garnished with a sprinkle of
                 smoked paprika.</p>
             <p class="price">$13</p>
-            <button onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho')">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho')">-</button>
+            <button onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho')">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho')">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Mushroom Risotto', 22)">Add to Cart</button>-->
         </div>
 
         <div class="menu-item">
-            <h3>Roasted Beet & Orange Carpaccio</h3>
+            <h3>Roasted Beet & Orange Carpaccio</h3><input type="checkbox" name="menu[2]" value="Roasted Beet & Orange Carpaccio">
             <p>Thinly sliced roasted beets and oranges, topped with vegan feta and
                 pistachio dust.</p>
             <p class="price">$15</p>
-            <button onclick="addToQuantity('Roasted Beet & Orange Carpaccio')">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio')">-</button>
+            <button onclick="addToQuantity('Roasted Beet & Orange Carpaccio')">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input" name="quantity[2]"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio')">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Eggplant', 21)">Add to Cart</button>-->
 
         </div>
 
         <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Main Course</h2>
         <div class="menu-item">
-            <h3>Lemon & Herb Stuffed Squash Blossoms</h3>
+            <h3>Lemon & Herb Stuffed Squash Blossoms</h3><input type="checkbox" name="menu[3]" value="Lemon & Herb Stuffed Squash Blossoms">
             <p>Delicate squash blossoms stuffed with lemony herbed tofu ricotta,
                 lightly fried and served with a citrus reduction.</p>
             <p class="price">$24</p>
             <!--<button class="add-to-cart" onclick="addToCart('Crispy Roasted Potatoes', 9)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms')">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms')">-</button>
+            <button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms')">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input" name="quantity[3]"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms')">-</button>
         </div>
 
         <div class="menu-item">
-            <h3>Linguine with Lemon Cream & Zucchini</h3>
+            <h3>Linguine with Lemon Cream & Zucchini</h3><input type="checkbox" name="menu[4]" value="Linguine with Lemon Cream & Zucchini">
             <p> Zucchini ribbons tossed with linguine in a lemon-infused creamy sauce,
                 finished with fresh parsley.</p>
             <p class="price">$22</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini')">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini')">-</button>
+            <button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini')">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input" name="quantity[4]"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini')">-</button>
         </div>
 
         <div class="menu-item">
-            <h3>Charred Eggplant with Mint Yogurt & Pomegranate</h3>
+            <h3>Charred Eggplant with Mint Yogurt & Pomegranate</h3><input type="checkbox" name="menu[5]" value="Charred Eggplant with Mint Yogurt & Pomegranate">
             <p>Grilled eggplant drizzled with a vegan mint yogurt sauce and topped
                 with fresh pomegranate seeds.</p>
             <p class="price">$21</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate')">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate')">-</button>
+            <button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate')">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input" name="quantity[5]"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate')">-</button>
         </div>
 
         <div class="menu-item">
@@ -180,20 +180,21 @@
         </div>
 
         <div class="menu-item">
-            <h3>Raspberry-Chocolate Tart</h3>
-            <p>A rich chocolate ganache tart topped with fresh raspberries and a
-                dusting of cocoa powder.</p>
-            <p class="price">$9</p>
-            <button onclick="addToQuantity('Raspberry-Chocolate Tart')">+</button><input type="number" value = "0" min="0" id="Raspberry-Chocolate Tart-input"><button onclick="subtractToQuantity('Raspberry-Chocolate Tart')">-</button>
+            <h3>Coconut-Mango Panna Cotta</h3>
+            <p>Silky coconut milk panna cotta with fresh mango puree, topped with
+                toasted coconut flakes.</p>
+            <p class="price">$12</p>
+            <button onclick="addToQuantity('Coconut-Mango Panna Cotta')">+</button><input type="number" value = "0" min="0" id="Coconut-Mango Panna Cotta-input"><button onclick="subtractToQuantity('Coconut-Mango Panna Cotta')">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
     </div>
 
-    <div class="button-group" style="margin: 30px 0;">
-        <a href="paymentform.html">Proceed to Payment</a>
+     <div class="button-group" style="margin: 30px 0;">
+        <!--<a href="paymentform.html">Proceed to Payment</a>-->
+        <button type="submit">Proceed to Payment</button>
     </div>
-
+    </form>
     <div id="footer"></div>
 </body>
 </html>
