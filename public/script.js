@@ -680,7 +680,8 @@ function validatePayment(event) {
   return false;
 }
 
-function addToQuantity(dishName){
+function addToQuantity(dishName, event){
+  event.preventDefault(); 
   let id = dishName + "-input"; 
   let input = document.getElementById(id); 
   let value = parseInt(input.value); 
@@ -692,7 +693,8 @@ function addToQuantity(dishName){
   value++; 
   document.getElementById("input").value = value; */
 
-function subtractToQuantity(dishName){
+function subtractToQuantity(dishName, event){
+  event.preventDefault(); 
   let id = dishName + "-input"; 
   let input = document.getElementById(id); 
   let value = parseInt(input.value); 
