@@ -71,7 +71,7 @@
             <p>Fresh English peas with a hint of mint, finished with a drizzle of
                 lemon-infused olive oil.</p>
             <p class="price">$12</p>
-            <button onclick="addToQuantity('Pea & Mint Soup')">+</button><input type="number" value = "0" min="0" id="Pea & Mint Soup-input" name="quantity[0]"><button onclick="subtractToQuantity('Pea & Mint Soup')">-</button>
+            <button onclick="addToQuantity('Pea & Mint Soup', event)">+</button><input type="number" value = "0" min="0" id="Pea & Mint Soup-input" name="quantity[0]"><button onclick="subtractToQuantity('Pea & Mint Soup', event)">-</button>
             <!--<button class="add-to-cart" onclick="//addToCart('Garden Fresh Bowl', 18)">Add to Cart</button>-->
         </div>
         
@@ -80,7 +80,7 @@
             <p>Creamy cucumber and avocado chilled soup, garnished with a sprinkle of
                 smoked paprika.</p>
             <p class="price">$13</p>
-            <button type="button" onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho')">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho')">-</button>
+            <button type="button" onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Mushroom Risotto', 22)">Add to Cart</button>-->
         </div>
 
@@ -89,7 +89,7 @@
             <p>Thinly sliced roasted beets and oranges, topped with vegan feta and
                 pistachio dust.</p>
             <p class="price">$15</p>
-            <button onclick="addToQuantity('Roasted Beet & Orange Carpaccio')">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input" name="quantity[2]"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio')">-</button>
+            <button onclick="addToQuantity('Roasted Beet & Orange Carpaccio', event)">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input" name="quantity[2]"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Eggplant', 21)">Add to Cart</button>-->
 
         </div>
@@ -101,7 +101,7 @@
                 lightly fried and served with a citrus reduction.</p>
             <p class="price">$24</p>
             <!--<button class="add-to-cart" onclick="addToCart('Crispy Roasted Potatoes', 9)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms')">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input" name="quantity[3]"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms')">-</button>
+            <button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input" name="quantity[3]"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">-</button>
         </div>
 
         <div class="menu-item">
@@ -110,7 +110,7 @@
                 finished with fresh parsley.</p>
             <p class="price">$22</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini')">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input" name="quantity[4]"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini')">-</button>
+            <button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini', event)">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input" name="quantity[4]"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini', event)">-</button>
         </div>
 
         <div class="menu-item">
@@ -119,7 +119,7 @@
                 with fresh pomegranate seeds.</p>
             <p class="price">$21</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate')">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input" name="quantity[5]"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate')">-</button>
+            <button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input" name="quantity[5]"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">-</button>
         </div>
 
         <div class="menu-item">
@@ -128,7 +128,7 @@
                 and quinoa, roasted to perfection.</p>
             <p class="price">$20</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Wild Mushroom & Herb Stuffed Portobello')">+</button><input type="number" value = "0" min="0" id="Wild Mushroom & Herb Stuffed Portobello-input" name="quantity[6]"><button onclick="subtractToQuantity('Wild Mushroom & Herb Stuffed Portobello')">-</button>
+            <button onclick="addToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">+</button><input type="number" value = "0" min="0" id="Wild Mushroom & Herb Stuffed Portobello-input" name="quantity[6]"><button onclick="subtractToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">-</button>
         </div>
 
         <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Sides</h2>
@@ -136,7 +136,7 @@
             <h3>Garlic & Herb Roasted Fingerling Potatoes</h3><input type="checkbox" name="menu[7]" value="Garlic & Herb Roasted Fingerling Potatoes">
             <p>Fingerling potatoes roasted with garlic, rosemary, and thyme.</p>
             <p class="price">$11</p>
-            <button onclick="addToQuantity('Garlic & Herb Roasted Fingerling Potatoes')">+</button><input type="number" value = "0" min="0" id="Garlic & Herb Roasted Fingerling Potatoes-input" name="quantity[7]"><button onclick="subtractToQuantity('Garlic & Herb Roasted Fingerling Potatoes')">-</button>
+            <button onclick="addToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">+</button><input type="number" value = "0" min="0" id="Garlic & Herb Roasted Fingerling Potatoes-input" name="quantity[7]"><button onclick="subtractToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
@@ -145,7 +145,7 @@
             <p>A medley of fresh spring greens sautéed with garlic, finished with a
                 drizzle of lemon olive oil.</p>
             <p class="price">$10</p>
-            <button onclick="addToQuantity('Sautéed Spring Greens with Lemon & Olive Oil')">+</button><input type="number" value = "0" min="0" id="Sautéed Spring Greens with Lemon & Olive Oil-input" name="quantity[8]"><button onclick="subtractToQuantity('Sautéed Spring Greens with Lemon & Olive Oil')">-</button>
+            <button onclick="addToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">+</button><input type="number" value = "0" min="0" id="Sautéed Spring Greens with Lemon & Olive Oil-input" name="quantity[8]"><button onclick="subtractToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
@@ -155,7 +155,7 @@
             <p>Roasted Brussels sprouts with a balsamic reduction and toasted
                 hazelnuts.</p>
             <p class="price">$11</p>
-            <button onclick="addToQuantity('Crispy Brussels Sprouts with Balsamic Glaze')">+</button><input type="number" value = "0" min="0" id="Crispy Brussels Sprouts with Balsamic Glaze-input" name="quantity[9]"><button onclick="subtractToQuantity('Crispy Brussels Sprouts with Balsamic Glaze')">-</button>
+            <button onclick="addToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">+</button><input type="number" value = "0" min="0" id="Crispy Brussels Sprouts with Balsamic Glaze-input" name="quantity[9]"><button onclick="subtractToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
@@ -164,7 +164,7 @@
             <h3>Lemon-Glazed Roasted Baby Carrots</h3><input type="checkbox" name="menu[10]" value="Lemon-Glazed Roasted Baby Carrots">
             <p>Roasted baby carrots glazed with lemon and fresh thyme.</p>
             <p class="price">$9</p>
-            <button onclick="addToQuantity('Lemon-Glazed Roasted Baby Carrots')">+</button><input type="number" value = "0" min="0" id="Lemon-Glazed Roasted Baby Carrots-input" name="quantity[10]"><button onclick="subtractToQuantity('Lemon-Glazed Roasted Baby Carrots')">-</button>
+            <button onclick="addToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">+</button><input type="number" value = "0" min="0" id="Lemon-Glazed Roasted Baby Carrots-input" name="quantity[10]"><button onclick="subtractToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
@@ -174,7 +174,7 @@
             <p>A rich chocolate ganache tart topped with fresh raspberries and a
                 dusting of cocoa powder.</p>
             <p class="price">$9</p>
-            <button onclick="addToQuantity('Raspberry-Chocolate Tart')">+</button><input type="number" value = "0" min="0" id="Raspberry-Chocolate Tart-input" name="quantity[11]"><button onclick="subtractToQuantity('Raspberry-Chocolate Tart')">-</button>
+            <button onclick="addToQuantity('Raspberry-Chocolate Tart', event)">+</button><input type="number" value = "0" min="0" id="Raspberry-Chocolate Tart-input" name="quantity[11]"><button onclick="subtractToQuantity('Raspberry-Chocolate Tart', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
@@ -184,7 +184,7 @@
             <p>Silky coconut milk panna cotta with fresh mango puree, topped with
                 toasted coconut flakes.</p>
             <p class="price">$12</p>
-            <button onclick="addToQuantity('Coconut-Mango Panna Cotta')">+</button><input type="number" value = "0" min="0" id="Coconut-Mango Panna Cotta-input" name="quantity[12]"><button onclick="subtractToQuantity('Coconut-Mango Panna Cotta')">-</button>
+            <button onclick="addToQuantity('Coconut-Mango Panna Cotta', event)">+</button><input type="number" value = "0" min="0" id="Coconut-Mango Panna Cotta-input" name="quantity[12]"><button onclick="subtractToQuantity('Coconut-Mango Panna Cotta', event)">-</button>
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
