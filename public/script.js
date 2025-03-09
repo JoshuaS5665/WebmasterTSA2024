@@ -88,17 +88,28 @@ function changeImages(beginning) {
     slideshowContainer.style.borderBottom = "none";
   }
 
-  // Create dots dynamically
+  // Create indicator lines dynamically
   const dotsContainer = document.getElementById("slideshow-dots");
   if (dotsContainer) {
     // Clear any existing content in dots container
     dotsContainer.innerHTML = '';
-
-    // Create new dots
+    
+    // Adjust the container style for line indicators
+    dotsContainer.style.display = 'flex';
+    dotsContainer.style.gap = '15px';
+    dotsContainer.style.border = 'none';
+    dotsContainer.style.outline = 'none';
+    dotsContainer.style.boxShadow = 'none';
+    
+    // Create new line indicators
     for (let i = 0; i < slideshowImages.length; i++) {
       const dot = document.createElement('span');
       dot.className = i === 0 ? 'slideshow-dot active' : 'slideshow-dot';
       dot.setAttribute('data-index', i);
+      dot.style.border = 'none';
+      dot.style.boxShadow = 'none';
+      dot.style.outline = 'none';
+      dot.style.overflow = 'hidden';
       dotsContainer.appendChild(dot);
     }
   }
@@ -114,29 +125,81 @@ function changeImages(beginning) {
     dot.removeAttribute('style');
   });
 
-  // Function to change image with transition
+  // Function to change image with slide transition
   function changeImage(newIndex) {
-    homeImage.classList.add("fade-out");
-
+    // Calculate correct direction for wrapping around
+    let direction;
+    if (newIndex > currentImageIndex) {
+      direction = 1; // Moving forward
+    } else if (newIndex < currentImageIndex) {
+      // Check if we're going from first to last (wrapping backward)
+      if (currentImageIndex === 0 && newIndex === slideshowImages.length - 1) {
+        direction = 1; // Special case: Make it slide forward
+      } else if (currentImageIndex === slideshowImages.length - 1 && newIndex === 0) {
+        direction = 1; // Special case: Make it slide forward when going from last to first
+      } else {
+        direction = -1; // Moving backward
+      }
+    } else {
+      direction = 0; // No change needed
+    }
+    
+    // Create a container for two images to handle the transition
+    const container = homeImage.parentElement;
+    if (!container.querySelector('.next-slide-image')) {
+      // Create a new image element for the next slide
+      const nextImage = document.createElement('img');
+      nextImage.className = 'next-slide-image';
+      nextImage.style.position = 'absolute';
+      nextImage.style.top = '0';
+      nextImage.style.left = '0';
+      nextImage.style.width = '100%';
+      nextImage.style.height = '100%';
+      nextImage.style.objectFit = 'cover';
+      nextImage.style.transform = `translateX(${direction * 100}%)`;
+      nextImage.style.zIndex = '1';
+      nextImage.style.border = 'none';
+      container.appendChild(nextImage);
+    }
+    
+    // Get the next image element
+    const nextImage = container.querySelector('.next-slide-image');
+    
+    // Preload the next image
+    nextImage.src = slideshowImages[newIndex];
+    nextImage.style.transform = `translateX(${direction * 100}%)`;
+    
+    // Update dot navigation
+    dots.forEach((dot, index) => {
+      if (index === newIndex) {
+        dot.classList.add("active");
+      } else {
+        dot.classList.remove("active");
+      }
+    });
+    
+    // Wait a moment to ensure the next image is loaded
     setTimeout(() => {
-      currentImageIndex = newIndex;
-      homeImage.src = slideshowImages[currentImageIndex];
-
-      // Update active dot 
-      dots.forEach((dot, index) => {
-        if (index === currentImageIndex) {
-          dot.classList.add("active");
-          // Don't add any inline styles, let CSS handle it
-        } else {
-          dot.classList.remove("active");
-          // Don't add any inline styles, let CSS handle it
-        }
-      });
-
+      // Slide current image out
+      homeImage.style.transition = "transform 0.5s ease-in-out";
+      homeImage.style.transform = `translateX(${-direction * 100}%)`;
+      
+      // Slide next image in
+      nextImage.style.transition = "transform 0.5s ease-in-out";
+      nextImage.style.transform = "translateX(0)";
+      
+      // After animation completes, make the next image the current one
       setTimeout(() => {
-        homeImage.classList.remove("fade-out");
-      }, 10);
-    }, 250);
+        homeImage.src = slideshowImages[newIndex];
+        homeImage.style.transition = "none";
+        homeImage.style.transform = "translateX(0)";
+        
+        nextImage.style.transition = "none";
+        nextImage.style.transform = `translateX(${direction * 100}%)`;
+        
+        currentImageIndex = newIndex;
+      }, 500);
+    }, 50);
   }
 
   // Set up automatic slideshow
