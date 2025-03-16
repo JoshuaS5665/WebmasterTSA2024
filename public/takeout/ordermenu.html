@@ -66,12 +66,15 @@
     <form method="post" action="/order/payment">
     <div class="menu-section">
         <h2 style="font-family: Rye, serif; color: #32372b;">Starters</h2>
-        <div class="menu-item">
-            <h3>Pea & Mint Soup</h3><input type="checkbox" name="menu[0]" value="Pea & Mint Soup">
+        <div class="menu-item" id="section1">
+            <h3>Pea & Mint Soup</h3><input type="checkbox" name="menu[0]" id="menu[0]" value="Pea & Mint Soup" onclick="handleQuantityInputs('menu[0]', 'section1', event)">
             <p>Fresh English peas with a hint of mint, finished with a drizzle of
                 lemon-infused olive oil.</p>
             <p class="price">$12</p>
+            <!--
             <button onclick="addToQuantity('Pea & Mint Soup', event)">+</button><input type="number" value = "0" min="0" id="Pea & Mint Soup-input" name="quantity[0]"><button onclick="subtractToQuantity('Pea & Mint Soup', event)">-</button>
+            -->
+            
             <!--<button class="add-to-cart" onclick="//addToCart('Garden Fresh Bowl', 18)">Add to Cart</button>-->
         </div>
         

@@ -686,7 +686,8 @@ function addToQuantity(dishName, event){
   let input = document.getElementById(id); 
   let value = parseInt(input.value); 
   value++;
-  input.value = value; 
+  input.value = value;
+  
 }
  /* console.log("Function is running"); 
   let value = parseInt(document.getElementById("input").value); 
@@ -704,7 +705,52 @@ function subtractToQuantity(dishName, event){
   input.value = value; 
 }
 
+function handleQuantityInputs(name, section, event){
+  const checkbox = document.getElementById(name); 
+  const container = document.getElementById(section); 
+  console.log(container); 
+  let input; 
+  const index = parseInt(name.substring(name.length - 2, name.length -1)); 
+  let inputId = `quantity[${index}]`;
+      if(checkbox.checked){
+          //console.log("My checkbox is checked"); 
+          input = document.createElement("div");
+          //input.type="number"; 
+          //input.min = 0; 
+          let addButton = document.createElement("button");
+          addButton.textContent = "+"; 
+          addButton.onclick = `addToQuantity(${checkbox.value}, ${event})`;
+          input.appendChild(addButton); 
 
+          let quantInput = document.createElement("input");
+          quantInput.type = "number";
+          quantInput.min = 0; 
+          quantInput.value = "0"; 
+          quantInput.id=`${checkbox.value}-input`;
+          quantInput.name = `quantity[${index}]`; 
+          input.appendChild(quantInput); 
+
+          let subtractButton = document.createElement("button");
+          subtractButton.textContent = "-"; 
+          //subtractButton.onclick = 
+            //subtractToQuantity(checkbox.value, event); 
+          input.appendChild(subtractButton); 
+          
+          //const index = parseInt(name.substring(name.length - 2, name.length -1)); 
+          input.name = inputId;  
+          input.id = inputId;
+          console.log(`My container is`); 
+          console.log();
+          console.log(input); 
+          container.appendChild(input); 
+      } else{
+          let input = document.getElementById(inputId); 
+          if(input){
+              input.remove(); 
+          }
+      }
+  
+}
 
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
 });*/
