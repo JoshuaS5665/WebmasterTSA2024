@@ -704,6 +704,8 @@ function subtractToQuantity(dishName, event){
   input.value = value; 
 }
 
+
+
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
 });*/
 
