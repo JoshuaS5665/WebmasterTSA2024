@@ -67,7 +67,7 @@
     <div class="menu-section">
         <h2 style="font-family: Rye, serif; color: #32372b;">Starters</h2>
         <div class="menu-item" id="section1">
-            <h3>Pea & Mint Soup</h3><input type="checkbox" name="menu[0]" id="menu[0]" value="Pea & Mint Soup" onclick="handleQuantityInputs('menu[0]', 'section1', event)">
+            <h3>Pea & Mint Soup</h3><input type="checkbox" name="menu[0]" id="menu[0]" value="Pea & Mint Soup" onclick="handleQuantityInputs('menu[0]', 'section1')">
             <p>Fresh English peas with a hint of mint, finished with a drizzle of
                 lemon-infused olive oil.</p>
             <p class="price">$12</p>
@@ -78,96 +78,98 @@
             <!--<button class="add-to-cart" onclick="//addToCart('Garden Fresh Bowl', 18)">Add to Cart</button>-->
         </div>
         
-        <div class="menu-item">
-            <h3>Chilled Cucumber & Avocado Gazpacho</h3><input type="checkbox" name="menu[1]" value="Chilled Cucumber & Avocado Gazpacho">
+        <div class="menu-item" id="section2">
+            <h3>Chilled Cucumber & Avocado Gazpacho</h3><input type="checkbox" name="menu[1]" id="menu[1]" value="Chilled Cucumber & Avocado Gazpacho" onclick="handleQuantityInputs('menu[1]', 'section2')">
             <p>Creamy cucumber and avocado chilled soup, garnished with a sprinkle of
                 smoked paprika.</p>
             <p class="price">$13</p>
-            <button type="button" onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">-</button>
+            <!--<button type="button" onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">-</button>
+            -->
+            
             <!--<button class="add-to-cart" onclick="addToCart('Mushroom Risotto', 22)">Add to Cart</button>-->
         </div>
 
-        <div class="menu-item">
-            <h3>Roasted Beet & Orange Carpaccio</h3><input type="checkbox" name="menu[2]" value="Roasted Beet & Orange Carpaccio">
+        <div class="menu-item" id="section3">
+            <h3>Roasted Beet & Orange Carpaccio</h3><input type="checkbox" name="menu[2]" id="menu[2]" value="Roasted Beet & Orange Carpaccio" onclick="handleQuantityInputs('menu[2]', 'section3')">
             <p>Thinly sliced roasted beets and oranges, topped with vegan feta and
                 pistachio dust.</p>
             <p class="price">$15</p>
-            <button onclick="addToQuantity('Roasted Beet & Orange Carpaccio', event)">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input" name="quantity[2]"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio', event)">-</button>
+            <!--<button onclick="addToQuantity('Roasted Beet & Orange Carpaccio', event)">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input" name="quantity[2]"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio', event)">-</button>-->
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Eggplant', 21)">Add to Cart</button>-->
 
         </div>
 
         <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Main Course</h2>
-        <div class="menu-item">
-            <h3>Lemon & Herb Stuffed Squash Blossoms</h3><input type="checkbox" name="menu[3]" value="Lemon & Herb Stuffed Squash Blossoms">
+        <div class="menu-item" id="section4">
+            <h3>Lemon & Herb Stuffed Squash Blossoms</h3><input type="checkbox" name="menu[3]" id="menu[3]" value="Lemon & Herb Stuffed Squash Blossoms" onclick="handleQuantityInputs('menu[3]', 'section4')">
             <p>Delicate squash blossoms stuffed with lemony herbed tofu ricotta,
                 lightly fried and served with a citrus reduction.</p>
             <p class="price">$24</p>
             <!--<button class="add-to-cart" onclick="addToCart('Crispy Roasted Potatoes', 9)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input" name="quantity[3]"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">-</button>
+            <!--<button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input" name="quantity[3]"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">-</button>-->
         </div>
 
-        <div class="menu-item">
-            <h3>Linguine with Lemon Cream & Zucchini</h3><input type="checkbox" name="menu[4]" value="Linguine with Lemon Cream & Zucchini">
+        <div class="menu-item" id="section5">
+            <h3>Linguine with Lemon Cream & Zucchini</h3><input type="checkbox" name="menu[4]" id="menu[4]" value="Linguine with Lemon Cream & Zucchini" onclick="handleQuantityInputs('menu[4]', 'section5')">
             <p> Zucchini ribbons tossed with linguine in a lemon-infused creamy sauce,
                 finished with fresh parsley.</p>
             <p class="price">$22</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini', event)">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input" name="quantity[4]"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini', event)">-</button>
+            <!--<button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini', event)">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input" name="quantity[4]"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini', event)">-</button>-->
         </div>
 
-        <div class="menu-item">
-            <h3>Charred Eggplant with Mint Yogurt & Pomegranate</h3><input type="checkbox" name="menu[5]" value="Charred Eggplant with Mint Yogurt & Pomegranate">
+        <div class="menu-item" id="section6">
+            <h3>Charred Eggplant with Mint Yogurt & Pomegranate</h3><input type="checkbox" name="menu[5]" id="menu[5]" value="Charred Eggplant with Mint Yogurt & Pomegranate" onclick="handleQuantityInputs('menu[5]', 'section6')">
             <p>Grilled eggplant drizzled with a vegan mint yogurt sauce and topped
                 with fresh pomegranate seeds.</p>
             <p class="price">$21</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input" name="quantity[5]"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">-</button>
+            <!--<button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input" name="quantity[5]"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">-</button>-->
         </div>
 
-        <div class="menu-item">
-            <h3>Wild Mushroom & Herb Stuffed Portobello</h3><input type="checkbox" name="menu[6]" value="Wild Mushroom & Herb Stuffed Portobello">
+        <div class="menu-item" id="section7">
+            <h3>Wild Mushroom & Herb Stuffed Portobello</h3><input type="checkbox" name="menu[6]" id="menu[6]" value="Wild Mushroom & Herb Stuffed Portobello" onclick="handleQuantityInputs('menu[6]', 'section7')">
             <p>Large portobello mushrooms stuffed with wild mushrooms, garlic, herbs,
                 and quinoa, roasted to perfection.</p>
             <p class="price">$20</p>
             <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <button onclick="addToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">+</button><input type="number" value = "0" min="0" id="Wild Mushroom & Herb Stuffed Portobello-input" name="quantity[6]"><button onclick="subtractToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">-</button>
+            <!--<button onclick="addToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">+</button><input type="number" value = "0" min="0" id="Wild Mushroom & Herb Stuffed Portobello-input" name="quantity[6]"><button onclick="subtractToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">-</button>-->
         </div>
 
         <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Sides</h2>
-        <div class="menu-item">
-            <h3>Garlic & Herb Roasted Fingerling Potatoes</h3><input type="checkbox" name="menu[7]" value="Garlic & Herb Roasted Fingerling Potatoes">
+        <div class="menu-item" id="section8">
+            <h3>Garlic & Herb Roasted Fingerling Potatoes</h3><input type="checkbox" name="menu[7]" id="menu[7]" value="Garlic & Herb Roasted Fingerling Potatoes" onclick="handleQuantityInputs('menu[7]', 'section8')">
             <p>Fingerling potatoes roasted with garlic, rosemary, and thyme.</p>
             <p class="price">$11</p>
-            <button onclick="addToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">+</button><input type="number" value = "0" min="0" id="Garlic & Herb Roasted Fingerling Potatoes-input" name="quantity[7]"><button onclick="subtractToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">-</button>
+            <!--<button onclick="addToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">+</button><input type="number" value = "0" min="0" id="Garlic & Herb Roasted Fingerling Potatoes-input" name="quantity[7]"><button onclick="subtractToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">-</button>-->
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
-        <div class="menu-item">
-            <h3>Sautéed Spring Greens with Lemon & Olive Oil</h3><input type="checkbox" name="menu[8]" value="Sautéed Spring Greens with Lemon & Olive Oil">
+        <div class="menu-item" id="section9">
+            <h3>Sautéed Spring Greens with Lemon & Olive Oil</h3><input type="checkbox" name="menu[8]" id="menu[8]" value="Sautéed Spring Greens with Lemon & Olive Oil" onclick="handleQuantityInputs('menu[8]', 'section9')">
             <p>A medley of fresh spring greens sautéed with garlic, finished with a
                 drizzle of lemon olive oil.</p>
             <p class="price">$10</p>
-            <button onclick="addToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">+</button><input type="number" value = "0" min="0" id="Sautéed Spring Greens with Lemon & Olive Oil-input" name="quantity[8]"><button onclick="subtractToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">-</button>
+            <!--<button onclick="addToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">+</button><input type="number" value = "0" min="0" id="Sautéed Spring Greens with Lemon & Olive Oil-input" name="quantity[8]"><button onclick="subtractToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">-</button>-->
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
 
-        <div class="menu-item">
-            <h3>Crispy Brussels Sprouts with Balsamic Glaze</h3><input type="checkbox" name="menu[9]" value="Crispy Brussels Sprouts with Balsamic Glaze">
+        <div class="menu-item" id="section10">
+            <h3>Crispy Brussels Sprouts with Balsamic Glaze</h3><input type="checkbox" name="menu[9]" id="menu[9]" value="Crispy Brussels Sprouts with Balsamic Glaze" onclick="handleQuantityInputs('menu[9]', 'section10')">
             <p>Roasted Brussels sprouts with a balsamic reduction and toasted
                 hazelnuts.</p>
             <p class="price">$11</p>
-            <button onclick="addToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">+</button><input type="number" value = "0" min="0" id="Crispy Brussels Sprouts with Balsamic Glaze-input" name="quantity[9]"><button onclick="subtractToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">-</button>
+            <!--<button onclick="addToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">+</button><input type="number" value = "0" min="0" id="Crispy Brussels Sprouts with Balsamic Glaze-input" name="quantity[9]"><button onclick="subtractToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">-</button>-->
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>
 
-        <div class="menu-item">
-            <h3>Lemon-Glazed Roasted Baby Carrots</h3><input type="checkbox" name="menu[10]" value="Lemon-Glazed Roasted Baby Carrots">
+        <div class="menu-item" id="section11">
+            <h3>Lemon-Glazed Roasted Baby Carrots</h3><input type="checkbox" name="menu[10]" id="menu[10]" value="Lemon-Glazed Roasted Baby Carrots" onclick="handleQuantityInputs('menu[10]', 'section11')">
             <p>Roasted baby carrots glazed with lemon and fresh thyme.</p>
             <p class="price">$9</p>
-            <button onclick="addToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">+</button><input type="number" value = "0" min="0" id="Lemon-Glazed Roasted Baby Carrots-input" name="quantity[10]"><button onclick="subtractToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">-</button>
+            <!--<button onclick="addToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">+</button><input type="number" value = "0" min="0" id="Lemon-Glazed Roasted Baby Carrots-input" name="quantity[10]"><button onclick="subtractToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">-</button>-->
             <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
 
         </div>

@@ -705,7 +705,7 @@ function subtractToQuantity(dishName, event){
   input.value = value; 
 }
 
-function handleQuantityInputs(name, section, event){
+function handleQuantityInputs(name, section){
   const checkbox = document.getElementById(name); 
   const container = document.getElementById(section); 
   console.log(container); 
@@ -719,8 +719,12 @@ function handleQuantityInputs(name, section, event){
           //input.min = 0; 
           let addButton = document.createElement("button");
           addButton.textContent = "+"; 
-          addButton.onclick = `addToQuantity(${checkbox.value}, ${event})`;
+          //addButton.onclick = `addToQuantity(${checkbox.value}, ${event})`; 
+          addButton.addEventListener("click", (event) =>{
+            addToQuantity(checkbox.value, event); 
+          });
           input.appendChild(addButton); 
+          //input.appendChild(addButton); 
 
           let quantInput = document.createElement("input");
           quantInput.type = "number";
@@ -732,6 +736,9 @@ function handleQuantityInputs(name, section, event){
 
           let subtractButton = document.createElement("button");
           subtractButton.textContent = "-"; 
+          subtractButton.addEventListener("click", (event) =>{
+            subtractToQuantity(checkbox.value, event); 
+          })
           //subtractButton.onclick = 
             //subtractToQuantity(checkbox.value, event); 
           input.appendChild(subtractButton); 
@@ -742,6 +749,7 @@ function handleQuantityInputs(name, section, event){
           console.log(`My container is`); 
           console.log();
           console.log(input); 
+          
           container.appendChild(input); 
       } else{
           let input = document.getElementById(inputId); 
