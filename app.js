@@ -1,23 +1,37 @@
 const express = require("express");
 const nodemon = require("nodemon"); 
 const mongoose = require("mongoose"); 
+const menuItem = require("./menuItem.js"); 
 
 //const serverless = require("serverless-http");
 const app = express();
+const dbURI = "mongodb+srv://jshah266507:f10URi$hh!@cluster0.sdpbs.mongodb.net/";
 
+const PORT = 80;
+const path = require("path");
+
+mongoose.connect(dbURI, {useNewURLParser:true, useUnifiedTopology:true})
+.then((result) =>{
+  console.log("The result of the connection was successful");
+  app.listen(PORT, "0.0.0.0", () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+})
+.catch((error) =>{
+  console.log("ERROR! Connection failed!"); 
+  console.log(error); 
+})
 
 //const morgan = require("Morgan");
 //const router = express.Router();
-const PORT = 80;
-const path = require("path");
+
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 //app.use(morgan("dev"));
 
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "/public/views")); 
 
 // Main routes
 app.get("/", (req, res) => {
@@ -117,7 +131,32 @@ app.get("/order/payment", (req, res) =>{
 });
 
 app.post("/order/payment", (req, res) =>{
-  res.sendFile(path.join(__dirname, "/public/takeout/paymentform.html")); 
+
+  const menu = req.body.menu;
+  const quantity = req.body.quantity; 
+  let total = 0; 
+  const promises = menu.map((item, index) =>{
+    return menuItem.findOne({item:item})
+    .then((menuItem) =>{
+        console.log("The price of my item is" + menuItem.cost);
+        total += menuItem.cost * parseInt(quantity[index]);
+    })
+
+    .catch((err) =>{
+        console.log("ERROR IN FINDING ITEM"); 
+    })
+});
+
+console.log(promises); 
+    Promise.all(promises)
+    .then((result) =>{
+        console.log(`The subtotal of my items is \$${total}.\n`); 
+        res.render("paymentform", {myTotal:total}); 
+    })
+    .catch((err) =>{
+        console.log("ERROR. TOTAL CANNOT BE CALCULATED"); 
+    })
+  //res.sendFile(path.join(__dirname, "/public/takeout/paymentform.html")); 
 
 });
 
