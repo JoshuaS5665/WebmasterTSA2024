@@ -525,28 +525,37 @@ function loadCart() {
 }
 
 function updateTotals(subtotal) {
-    const subtotalElem = document.getElementById('subtotal');
-    const taxElem = document.getElementById('tax');
+    //const subtotalElem = document.getElementById('subtotal');
+    //const taxElem = document.getElementById('tax');
+
+    //const mySubtotal = document.getElementById("myTotal").value; 
+    if(isNaN(subtotal) || subtotal === undefined){
+      console.log("Subtotal is not defined"); 
+    }
     const tipElem = document.getElementById('tipAmount');
     const finalTotalElem = document.getElementById('finalTotal');
     
-    if (!subtotalElem) return;
+   // if (!subtotalElem) return;
     
-    const tax = subtotal * 0.07;
+    const tax = (subtotal * 0.07).toFixed(2);
     const currentTip = parseFloat(tipElem.textContent) || 0;
-    const final = subtotal + tax + currentTip;
+    const final = parseFloat(subtotal) + parseFloat(tax) + parseFloat(currentTip);
+    console.log("My subtotal is " + subtotal); 
+    console.log("My tax is " + tax);
+    console.log(final); 
     
-    subtotalElem.textContent = subtotal.toFixed(2);
-    taxElem.textContent = tax.toFixed(2);
+    //subtotalElem.textContent = subtotal.toFixed(2);
+    //taxElem.textContent = tax.toFixed(2);
     finalTotalElem.textContent = final.toFixed(2);
     
-    localStorage.setItem('finalTotal', final.toFixed(2));
+    //localStorage.setItem('finalTotal', final.toFixed(2));
 }
 
 function selectTip(percentage) {
     const buttons = document.querySelectorAll('.tip-btn');
     const customTipDiv = document.querySelector('.custom-tip');
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    const mySubtotal = document.getElementById("myTotal").value; 
+    //const subtotal = parseFloat(document.getElementById('subtotal').textContent);
     
     buttons.forEach(btn => btn.classList.remove('selected'));
     
@@ -562,9 +571,9 @@ function selectTip(percentage) {
         // Find button index based on order in HTML
         const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
         buttons[percentageMap[percentage]].classList.add('selected');
-        const tipAmount = (subtotal * (percentage/100));
+        const tipAmount = (mySubtotal * (percentage/100));
         document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
-        updateTotals(subtotal);
+        updateTotals(mySubtotal);
     }
 }
 
@@ -584,7 +593,7 @@ function removeCartItem(index) {
 function updateCustomTip() {
     const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
     document.getElementById('tipAmount').textContent = customTip.toFixed(2);
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    const subtotal = document.getElementById("myTotal").value;
     updateTotals(subtotal);
 }
 

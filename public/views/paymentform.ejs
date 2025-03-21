@@ -168,6 +168,7 @@
         <div>Tax (7%): $<%=(Math.floor((myTotal*0.07)*100))/100%><!--<span id="tax"></span>--></div>
         <div class="tip-section">
           <div>Tip:</div>
+          <input type="hidden" id="myTotal" value="<%=myTotal%>">
           <div class="tip-buttons">
             <button class="tip-btn" onclick="selectTip(0)">No Tip</button>
             <button class="tip-btn" onclick="selectTip(5)">5%</button>
