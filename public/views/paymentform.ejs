@@ -152,14 +152,20 @@
     <script src="../script.js" type="text/javascript"></script>
 
     <h1 style="text-align: center; font-family: Rye, serif; color: #32372b; margin: 40px 0 20px;">Payment Details</h1>
-
+    <input type="hidden" id ="menuItems" value="<%=menuItems%>">
+    <input type="hidden" id="quantities" value="<%=quantities%>">
     <div class="cart-container">
       <h2 style="text-align: center; font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 30px;">Your Order</h2>
-      <div id="cart-items"></div>
+      <!--<div id="cart-items">-->
+        <ul>
+            <%for(let i = 0; i < menuItems.length; i++){%>
+                <li><%=menuItems[i]%> --- <%=quantities[i]%></li>
+            <%}%>
+        </ul>
+      <!--</div>-->
       <div class="total-section">
         <div>Subtotal: $<%=myTotal%><!--<span id="subtotal"></span>--></div>
         <div>Tax (7%): $<%=(Math.floor((myTotal*0.07)*100))/100%><!--<span id="tax"></span>--></div>
-        <p>My total is <%=myTotal%></p>
         <div class="tip-section">
           <div>Tip:</div>
           <div class="tip-buttons">

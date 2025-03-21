@@ -482,14 +482,32 @@ function removeFromCart(index) {
 }
 
 function loadCart() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    //const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartDiv = document.getElementById('cart-items');
-    let subtotal = 0;
+    const menuItems = document.getElementById("menuItems");
+    const quantities = document.getElementById("quantities"); 
+    //let subtotal = 0;
 
     if (!cartDiv) return;
     cartDiv.innerHTML = '';
 
-    cartItems.forEach((item, index) => {
+    for(let i = 0; i<menuItems.length; i++){
+      if(quantities[i] != 0){
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            <div class="cart-item-details">
+                <h3>${menuItems[i]}</h3>
+                <p>$${quantities[i]}</p>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartDiv.appendChild(itemDiv);
+      }
+
+    }
+
+   /* cartItems.forEach((item, index) => {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
@@ -501,9 +519,9 @@ function loadCart() {
         `;
         cartDiv.appendChild(itemDiv);
         subtotal += item.price;
-    });
+    });*/
 
-    updateTotals(subtotal);
+    //updateTotals(subtotal);
 }
 
 function updateTotals(subtotal) {

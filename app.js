@@ -151,7 +151,7 @@ console.log(promises);
     Promise.all(promises)
     .then((result) =>{
         console.log(`The subtotal of my items is \$${total}.\n`); 
-        res.render("paymentform", {myTotal:total}); 
+        res.render("paymentform", {myTotal:total, menuItems:menu, quantities:quantity}); 
     })
     .catch((err) =>{
         console.log("ERROR. TOTAL CANNOT BE CALCULATED"); 
