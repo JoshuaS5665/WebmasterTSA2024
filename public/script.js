@@ -481,26 +481,34 @@ function removeFromCart(index) {
     loadCart();
 }
 
-function loadCart() {
+function loadCart() { 
     //const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartDiv = document.getElementById('cart-items');
     const menuItems = document.getElementById("menuItems");
+    //console.log((menuItems)); 
+    let menuItemsArray = menuItems.value.split(","); 
+    console.log(menuItemsArray); 
     const quantities = document.getElementById("quantities"); 
+    console.log(quantities); 
+    const quantitiesArray = quantities.value.split(","); 
     //let subtotal = 0;
 
-    if (!cartDiv) return;
-    cartDiv.innerHTML = '';
+    //if (!cartDiv) return;
+    //cartDiv.innerHTML = '';
 
-    for(let i = 0; i<menuItems.length; i++){
-      if(quantities[i] != 0){
+    for(let i = 0; i<menuItemsArray.length; i++){
+      let myQuantity = parseInt(quantitiesArray[i]); 
+      console.log(`My menu item is ${menuItemsArray[i]}
+         and my quantity is ${parseInt(quantitiesArray[i])}`); 
+      if(myQuantity != 0){
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
             <div class="cart-item-details">
-                <h3>${menuItems[i]}</h3>
-                <p>$${quantities[i]}</p>
+                <h3>${menuItemsArray[i]}</h3>
+                <p>$${myQuantity}</p>
             </div>
-            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+            <button class="remove-btn" onclick="removeFromCart(0)">Remove</button>
         `;
         cartDiv.appendChild(itemDiv);
       }
