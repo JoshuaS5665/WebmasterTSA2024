@@ -157,8 +157,9 @@
       <h2 style="text-align: center; font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 30px;">Your Order</h2>
       <div id="cart-items"></div>
       <div class="total-section">
-        <div>Subtotal: $<span id="subtotal"><%=myTotal%></span></div>
-        <div>Tax (7%): $<span id="tax"><%=myTotal*0.07%></span></div>
+        <div>Subtotal: $<%=myTotal%><!--<span id="subtotal"></span>--></div>
+        <div>Tax (7%): $<%=(Math.floor((myTotal*0.07)*100))/100%><!--<span id="tax"></span>--></div>
+        <p>My total is <%=myTotal%></p>
         <div class="tip-section">
           <div>Tip:</div>
           <div class="tip-buttons">
