@@ -134,12 +134,15 @@ app.post("/order/payment", (req, res) =>{
 
   const menu = req.body.menu;
   const quantity = req.body.quantity; 
+  //let orderProperties = {}; 
+  let costArray = []; 
   let total = 0; 
   const promises = menu.map((item, index) =>{
     return menuItem.findOne({item:item})
     .then((menuItem) =>{
         console.log("The price of my item is" + menuItem.cost);
         total += menuItem.cost * parseInt(quantity[index]);
+        costArray.push(menuItem.cost); 
     })
 
     .catch((err) =>{
@@ -151,7 +154,7 @@ console.log(promises);
     Promise.all(promises)
     .then((result) =>{
         console.log(`The subtotal of my items is \$${total}.\n`); 
-        res.render("paymentform", {myTotal:total, menuItems:menu, quantities:quantity}); 
+        res.render("paymentform", {myTotal:total, menuItems:menu, quantities:quantity, costs:costArray}); 
     })
     .catch((err) =>{
         console.log("ERROR. TOTAL CANNOT BE CALCULATED"); 

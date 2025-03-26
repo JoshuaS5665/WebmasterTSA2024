@@ -504,11 +504,12 @@ function loadCart() {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
-            <div class="cart-item-details">
+            <div class="cart-item-details" id="details[${i}]">
                 <h3>${menuItemsArray[i]}</h3>
-                <p>$${myQuantity}</p>
+                <p id="quantityOutput[${i}]">${myQuantity} Items</p>
+                <button class="remove-btn" onclick="changeItem(${i}, '+')">Add</button>
+                <button id="remove-btn" class="remove-btn" onclick="changeItem(${i}, '-')">Remove</button>
             </div>
-            <button class="remove-btn" onclick="removeFromCart(0)">Remove</button>
         `;
         cartDiv.appendChild(itemDiv);
       }
@@ -585,17 +586,56 @@ function selectTip(percentage) {
     }
 }
 
-function removeCartItem(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const removedItem = cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
+function changeItem(index, indicator) {
+    //const cartDiv = document.getElementById('cart-items');
+    //const removedItem = document.getElementById(`details[${index}]`);
+    let quantityOutput = document.getElementById(`quantityOutput[${index}]`); 
+
+    const costs = document.getElementById("costs"); 
+    let costsArray = costs.value.split(","); 
+    const mySubtotal = document.getElementById("myTotal").value;
+
+    const quantities = document.getElementById("quantities"); 
+    const quantitiesArray = quantities.value.split(","); 
+    let myNewQuantity;
+    let newSubtotal; 
+    if(indicator === "+"){
+      myNewQuantity = parseInt(quantityOutput.innerText) + 1; 
+      newSubtotal = parseFloat(mySubtotal) + parseInt(costsArray[index]);
+    } else{
+      if(parseInt(quantityOutput.innerText) > 0){
+      myNewQuantity = parseInt(quantityOutput.innerText) - 1; 
+      newSubtotal = parseFloat(mySubtotal) - parseInt(costsArray[index]);
+      } else{
+        document.getElementById("remove-btn").style.disabled = "true"; 
+      }
+    }
+
+    quantitiesArray[index] = toString(myNewQuantity); 
+    console.log("My new quantity is " + myNewQuantity); 
+    if(myNewQuantity == 1){
+      quantityOutput.innerText = `${myNewQuantity} Item`; 
+    } else{
+      quantityOutput.innerText = `${myNewQuantity} Items`; 
+    }
+    console.log(quantityOutput);
+
+    console.log("My cost is " + costsArray[index]); 
+    document.getElementById("myTotal").value = newSubtotal; 
+
+    const subtotalContainer = document.getElementById("subtotalContainer");
+    subtotalContainer.textContent = `Subtotal: \$${newSubtotal}`; 
+    const taxContainer = document.getElementById("taxContainer");
+    taxContainer.textContent = `Tax (7%): \$${(newSubtotal * 0.07).toFixed(2)}`;
+
+    updateTotals(newSubtotal); 
     
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-    const newSubtotal = subtotal - removedItem[0].price;
-    
-    updateCartDisplay();
-    updateTotals(newSubtotal);
-    loadCart();
+
+    //NEED TO LOOK AT THESE FUNCTIONS!
+
+    //updateCartDisplay();
+    //updateTotals(newSubtotal);
+    //loadCart();
 }
 
 function updateCustomTip() {

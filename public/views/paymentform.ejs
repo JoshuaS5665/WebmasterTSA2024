@@ -154,20 +154,22 @@
     <h1 style="text-align: center; font-family: Rye, serif; color: #32372b; margin: 40px 0 20px;">Payment Details</h1>
     <input type="hidden" id ="menuItems" value="<%=menuItems%>">
     <input type="hidden" id="quantities" value="<%=quantities%>">
+    <input type="hidden" id="costs" value="<%=costs%>">
     <div class="cart-container">
       <h2 style="text-align: center; font-family: 'Bodoni Moda', serif; color: #32372b; margin-bottom: 30px;">Your Order</h2>
       <div id="cart-items">
+        <!--
         <ul>
-            <%for(let i = 0; i < menuItems.length; i++){%>
-                <li><%=menuItems[i]%> --- <%=quantities[i]%></li>
+            <%for(let i = 0; i < costs.length; i++){%>
+                <li>My cost is <%=costs[i]%></li>
             <%}%>
-        </ul>
+        </ul>-->
       </div>
       <div class="total-section">
-        <div>Subtotal: $<%=myTotal%><!--<span id="subtotal"></span>--></div>
-        <div>Tax (7%): $<%=(Math.floor((myTotal*0.07)*100))/100%><!--<span id="tax"></span>--></div>
+        <div id="subtotalContainer">Subtotal: $<%=myTotal%><!--<span id="subtotal"></span>--></div>
+        <div id="taxContainer">Tax (7%): $<%=(Math.floor((myTotal*0.07)*100))/100%><!--<span id="tax"></span>--></div>
         <div class="tip-section">
-          <div>Tip:</div>
+          <div>Please Select a Tip:</div>
           <input type="hidden" id="myTotal" value="<%=myTotal%>">
           <div class="tip-buttons">
             <button class="tip-btn" onclick="selectTip(0)">No Tip</button>
@@ -183,7 +185,7 @@
           </div>
           <div>Tip Amount: $<span id="tipAmount">0.00</span></div>
         </div>
-        <div>Total: $<span id="finalTotal">0.00</span></div>
+        <div>Total: $<span id="finalTotal"><%=(Math.floor((myTotal*1.07)*100))/100%></span></div>
       </div>
 
       <form class="payment-form" onsubmit="validatePayment(event)" method="post"
