@@ -166,7 +166,7 @@
         </ul>-->
       </div>
       <div class="total-section">
-        <div id="subtotalContainer">Subtotal: $<%=myTotal%><!--<span id="subtotal"></span>--></div>
+        <div id="subtotalContainer">Subtotal: $<%=myTotal.toFixed(2)%><!--<span id="subtotal"></span>--></div>
         <div id="taxContainer">Tax (7%): $<%=(Math.floor((myTotal*0.07)*100))/100%><!--<span id="tax"></span>--></div>
         <div class="tip-section">
           <div>Please Select a Tip:</div>
@@ -178,7 +178,7 @@
             <button class="tip-btn" onclick="selectTip(20)">20%</button>
             <button class="tip-btn" onclick="selectTip(25)">25%</button>
             <button class="tip-btn" onclick="selectTip(30)">30%</button>
-            <button class="tip-btn" onclick="selectTip('custom')">Custom</button>
+            <button class="tip-btn" onclick="selectTip('custom')">Custom (in $)</button>
           </div>
           <div class="custom-tip" style="display: none;">
             <input type="number" id="customTipInput" placeholder="Enter custom tip amount" onchange="updateCustomTip()">

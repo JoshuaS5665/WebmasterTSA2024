@@ -508,7 +508,7 @@ function loadCart() {
                 <h3>${menuItemsArray[i]}</h3>
                 <p id="quantityOutput[${i}]">${myQuantity} Items</p>
                 <button class="remove-btn" onclick="changeItem(${i}, '+')">Add</button>
-                <button id="remove-btn" class="remove-btn" onclick="changeItem(${i}, '-')">Remove</button>
+                <button id="remove-btn[${i}]" class="remove-btn" onclick="changeItem(${i}, '-')">Remove</button>
             </div>
         `;
         cartDiv.appendChild(itemDiv);
@@ -600,22 +600,29 @@ function changeItem(index, indicator) {
     let myNewQuantity;
     let newSubtotal; 
     if(indicator === "+"){
+      document.getElementById(`remove-btn[${index}]`).disabled = false;
       myNewQuantity = parseInt(quantityOutput.innerText) + 1; 
       newSubtotal = parseFloat(mySubtotal) + parseInt(costsArray[index]);
     } else{
+      document.getElementById(`remove-btn[${index}]`).disabled = false;
       if(parseInt(quantityOutput.innerText) > 0){
+        document.getElementById(`remove-btn[${index}]`).disabled = false;
       myNewQuantity = parseInt(quantityOutput.innerText) - 1; 
+      console.log("My new quantity is " + myNewQuantity); 
       newSubtotal = parseFloat(mySubtotal) - parseInt(costsArray[index]);
       } else{
-        document.getElementById("remove-btn").style.disabled = "true"; 
+          myNewQuantity = 0; 
+          document.getElementById(`remove-btn[${index}]`).disabled = true;
       }
     }
 
     quantitiesArray[index] = toString(myNewQuantity); 
-    console.log("My new quantity is " + myNewQuantity); 
     if(myNewQuantity == 1){
       quantityOutput.innerText = `${myNewQuantity} Item`; 
+    } else if(myNewQuantity !== undefined){
+      quantityOutput.innerText = `${myNewQuantity} Items`; 
     } else{
+      //myNewQuantity = 0; 
       quantityOutput.innerText = `${myNewQuantity} Items`; 
     }
     console.log(quantityOutput);
@@ -624,7 +631,7 @@ function changeItem(index, indicator) {
     document.getElementById("myTotal").value = newSubtotal; 
 
     const subtotalContainer = document.getElementById("subtotalContainer");
-    subtotalContainer.textContent = `Subtotal: \$${newSubtotal}`; 
+    subtotalContainer.textContent = `Subtotal: \$${newSubtotal.toFixed(2)}`; 
     const taxContainer = document.getElementById("taxContainer");
     taxContainer.textContent = `Tax (7%): \$${(newSubtotal * 0.07).toFixed(2)}`;
 
@@ -747,12 +754,20 @@ function validatePayment(event) {
   } else {
     hideError(securityCodeInput);
   }
-
   if (isValid) {
-    localStorage.removeItem('cart');
-    window.location.href = 'orderconfirmation.html';
+    //localStorage.removeItem('cart');
+    window.location.href = '/order/confirmation';
+    /*fetch("/order/confirmation", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify({message: "Order sent successfully"}) 
+    })
+    .then((response) => response.json())
+    .catch((error) => console.log(error)); */
   }
-  return false;
+  //return false;
 }
 
 function addToQuantity(dishName, event){

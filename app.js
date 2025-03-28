@@ -164,12 +164,14 @@ console.log(promises);
 });
 
 app.post("/order/confirmation", (req, res) =>{
-  console.log("POST req to confirm made"); 
-  res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+  console.log("Order was a success!");  
+  //res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+  //res.redirect("/order/confirmation"); 
 });
 
 app.get("/order/confirmation", (req, res) =>{
-  res.redirect(301, "/order"); 
+  //res.redirect(301, "/order"); 
+  res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
 }); 
 
 // Sources route
