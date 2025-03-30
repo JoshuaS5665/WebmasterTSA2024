@@ -1261,7 +1261,7 @@ function changeItem(index, indicator) {
     const quantities = document.getElementById("quantities"); 
     const quantitiesArray = quantities.value.split(","); 
     let myNewQuantity;
-    let newSubtotal; 
+    let newSubtotal = parseFloat(mySubtotal); 
     if(indicator === "+"){
       document.getElementById(`remove-btn[${index}]`).disabled = false;
       myNewQuantity = parseInt(quantityOutput.innerText) + 1; 
@@ -1471,7 +1471,10 @@ function handleQuantityInputs(name, section){
           //input.type="number"; 
           //input.min = 0; 
           let addButton = document.createElement("button");
-          addButton.textContent = "+"; 
+          addButton.innerHTML = "Add Item"; 
+          addButton.classList.add("menu-control-btn"); 
+          addButton.classList.add("menu-control-btn:hover"); 
+          addButton.style.marginRight = "15px"; 
           //addButton.onclick = `addToQuantity(${checkbox.value}, ${event})`; 
           addButton.addEventListener("click", (event) =>{
             addToQuantity(checkbox.value, event); 
@@ -1485,10 +1488,14 @@ function handleQuantityInputs(name, section){
           quantInput.value = "0"; 
           quantInput.id=`${checkbox.value}-input`;
           quantInput.name = `quantity[${index}]`; 
+          quantInput.classList.add("quantity-menu"); 
           input.appendChild(quantInput); 
 
           let subtractButton = document.createElement("button");
-          subtractButton.textContent = "-"; 
+          subtractButton.innerHTML = "Remove Item"; 
+          subtractButton.classList.add("menu-control-btn");
+          subtractButton.classList.add("menu-control-btn:hover"); 
+          subtractButton.style.marginLeft = "15px"; 
           subtractButton.addEventListener("click", (event) =>{
             subtractToQuantity(checkbox.value, event); 
           })
