@@ -1087,9 +1087,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
-<<<<<<< HEAD
   appearance: textfield; 
-=======
 }
 
 /* Custom checkbox styling to match the site's green theme */
@@ -1126,7 +1124,6 @@ input[type="checkbox"]:checked::after {
 input[type="checkbox"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(50, 55, 43, 0.2);
->>>>>>> smoothpictures
 }
 
 .error-message {

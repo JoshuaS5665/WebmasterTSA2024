@@ -1,5 +1,4 @@
 const express = require("express");
-<<<<<<< HEAD
 //const nodemon = require("nodemon"); 
 const mongoose = require("mongoose"); 
 const menuItem = require("./menuItem.js"); 
@@ -8,12 +7,6 @@ const menuItem = require("./menuItem.js");
 const app = express();
 const dbURI = "mongodb+srv://jshah266507:f10URi$hh!@cluster0.sdpbs.mongodb.net/";
 
-=======
-const morgan = require("morgan");
-const serverless = require("serverless-http");
-const app = express();
-const router = express.Router();
->>>>>>> smoothpictures
 const PORT = 80;
 const path = require("path");
 
@@ -129,7 +122,6 @@ app.get("/reservation/confirmation", (req, res) => {
   );
 });
 
-<<<<<<< HEAD
 app.get("/order", (req, res) =>{
   res.sendFile(path.join(__dirname, "/public/takeout/ordermenu.html")); 
 });
@@ -182,7 +174,6 @@ app.get("/order/confirmation", (req, res) =>{
   res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
 }); 
 
-=======
 // Private Room Reservation routes
 app.get("/reservation/private", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/reservationstart.html"));
@@ -196,7 +187,6 @@ app.get("/reservation/confirmation.html", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/confirmation.html"));
 });
 
->>>>>>> smoothpictures
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));

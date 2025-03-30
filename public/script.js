@@ -563,6 +563,7 @@ function getPeopleInParty() {
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
   window.location.href = "/reservation/bookTable.html";
+  //window.location.href = "/reservation/bookTable.html";
 }
 
 function initializeTimeSlots() {
@@ -620,11 +621,7 @@ function addToCart(itemName, price) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push({name: itemName, price: price});
     localStorage.setItem('cart', JSON.stringify(cart));
-<<<<<<< HEAD
     
-=======
-
->>>>>>> smoothpictures
     // Show on-screen notification
     const notification = document.createElement('div');
     notification.style.position = 'fixed';
@@ -638,15 +635,9 @@ function addToCart(itemName, price) {
     notification.style.zIndex = '1000';
     notification.style.fontFamily = 'Bodoni Moda, serif';
     notification.textContent = 'Added ' + itemName + ' to cart!';
-<<<<<<< HEAD
     
     document.body.appendChild(notification);
     
-=======
-
-    document.body.appendChild(notification);
-
->>>>>>> smoothpictures
     // Remove notification after 2 seconds
     setTimeout(() => {
         notification.style.opacity = '0';
@@ -661,21 +652,13 @@ function addToCart(itemName, price) {
 function updateCartDisplay() {
     const cartDisplay = document.getElementById('current-cart');
     if (!cartDisplay) return;
-<<<<<<< HEAD
     
-=======
-
->>>>>>> smoothpictures
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
         cartDisplay.innerHTML = '<p style="text-align: center;">No items in cart</p>';
         return;
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> smoothpictures
     let html = '<ul style="list-style: none; padding: 0;">';
     cart.forEach((item, index) => {
         html += `
@@ -1161,7 +1144,6 @@ function removeFromCart(index) {
     loadCart();
 }
 
-<<<<<<< HEAD
 function loadCart() { 
     //const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartDiv = document.getElementById('cart-items');
@@ -1198,17 +1180,6 @@ function loadCart() {
     }
 
    /* cartItems.forEach((item, index) => {
-=======
-function loadCart() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartDiv = document.getElementById('cart-items');
-    let subtotal = 0;
-
-    if (!cartDiv) return;
-    cartDiv.innerHTML = '';
-
-    cartItems.forEach((item, index) => {
->>>>>>> smoothpictures
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
@@ -1220,7 +1191,6 @@ function loadCart() {
         `;
         cartDiv.appendChild(itemDiv);
         subtotal += item.price;
-<<<<<<< HEAD
     });*/
 
     //updateTotals(subtotal);
@@ -1251,47 +1221,16 @@ function updateTotals(subtotal) {
     finalTotalElem.textContent = final.toFixed(2);
     
     //localStorage.setItem('finalTotal', final.toFixed(2));
-=======
-    });
-
-    updateTotals(subtotal);
-}
-
-function updateTotals(subtotal) {
-    const subtotalElem = document.getElementById('subtotal');
-    const taxElem = document.getElementById('tax');
-    const tipElem = document.getElementById('tipAmount');
-    const finalTotalElem = document.getElementById('finalTotal');
-
-    if (!subtotalElem) return;
-
-    const tax = subtotal * 0.07;
-    const currentTip = parseFloat(tipElem.textContent) || 0;
-    const final = subtotal + tax + currentTip;
-
-    subtotalElem.textContent = subtotal.toFixed(2);
-    taxElem.textContent = tax.toFixed(2);
-    finalTotalElem.textContent = final.toFixed(2);
-
-    localStorage.setItem('finalTotal', final.toFixed(2));
->>>>>>> smoothpictures
 }
 
 function selectTip(percentage) {
     const buttons = document.querySelectorAll('.tip-btn');
     const customTipDiv = document.querySelector('.custom-tip');
-<<<<<<< HEAD
     const mySubtotal = document.getElementById("myTotal").value; 
     //const subtotal = parseFloat(document.getElementById('subtotal').textContent);
     
     buttons.forEach(btn => btn.classList.remove('selected'));
     
-=======
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-
-    buttons.forEach(btn => btn.classList.remove('selected'));
-
->>>>>>> smoothpictures
     if (percentage === 'custom') {
         customTipDiv.style.display = 'block';
         buttons[6].classList.add('selected');
@@ -1304,7 +1243,6 @@ function selectTip(percentage) {
         // Find button index based on order in HTML
         const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
         buttons[percentageMap[percentage]].classList.add('selected');
-<<<<<<< HEAD
         const tipAmount = (mySubtotal * (percentage/100));
         document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
         updateTotals(mySubtotal);
@@ -1368,35 +1306,12 @@ function changeItem(index, indicator) {
     //updateCartDisplay();
     //updateTotals(newSubtotal);
     //loadCart();
-=======
-        const tipAmount = (subtotal * (percentage/100));
-        document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
-        updateTotals(subtotal);
-    }
-}
-
-function removeCartItem(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const removedItem = cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-    const newSubtotal = subtotal - removedItem[0].price;
-
-    updateCartDisplay();
-    updateTotals(newSubtotal);
-    loadCart();
->>>>>>> smoothpictures
 }
 
 function updateCustomTip() {
     const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
     document.getElementById('tipAmount').textContent = customTip.toFixed(2);
-<<<<<<< HEAD
     const subtotal = document.getElementById("myTotal").value;
-=======
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
->>>>>>> smoothpictures
     updateTotals(subtotal);
 }
 
@@ -1418,11 +1333,7 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = value;
         });
     }
-<<<<<<< HEAD
     
-=======
-
->>>>>>> smoothpictures
     const creditCardInput = document.getElementById('creditCardInput');
     if (creditCardInput) {
         creditCardInput.addEventListener('input', function(e) {
@@ -1466,18 +1377,13 @@ function validatePayment(event) {
   existingErrors.forEach(error => error.remove());
 
   if (!firstNameInput.value.trim()) {
-<<<<<<< HEAD
     showError(firstNameInput, "Please enter your first name");
-=======
-    showError(firstNameInput, "Please enter your first name.");
->>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(firstNameInput);
   }
 
   if (!lastNameInput.value.trim()) {
-<<<<<<< HEAD
     showError(lastNameInput, "Please enter your last name");
     isValid = false;
   } else {
@@ -1486,55 +1392,31 @@ function validatePayment(event) {
 
   if (!phoneInput.value.trim()) {
     showError(phoneInput, "Please enter your phone number");
-=======
-    showError(lastNameInput, "Please enter your last name.");
-    isValid = false;
-  } else {
-    hideError(lastNameInput);
-
-  }
-
-  if (!phoneInput.value.trim()) {
-    showError(phoneInput, "Please enter your phone number.");
->>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(phoneInput);
   }
 
   if (!creditCardInput.value.trim()) {
-<<<<<<< HEAD
     showError(creditCardInput, "Please enter your card number");
-=======
-    showError(creditCardInput, "Please enter your credit card number.");
->>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(creditCardInput);
   }
 
   if (!expdateInput.value.trim()) {
-<<<<<<< HEAD
     showError(expdateInput, "Please enter expiration date");
-=======
-    showError(expdateInput, "Please enter your card expiration date.");
->>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(expdateInput);
   }
 
   if (!securityCodeInput.value.trim()) {
-<<<<<<< HEAD
     showError(securityCodeInput, "Please enter security code");
-=======
-    showError(securityCodeInput, "Please enter your security code.");
->>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(securityCodeInput);
   }
-<<<<<<< HEAD
   if (isValid) {
     //localStorage.removeItem('cart');
     window.location.href = '/order/confirmation';
@@ -1629,14 +1511,213 @@ function handleQuantityInputs(name, section){
           }
       }
   
-=======
+}
+
+function removeFromCart(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    loadCart();
+}
+
+function loadCart() {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartDiv = document.getElementById('cart-items');
+    let subtotal = 0;
+
+    if (!cartDiv) return;
+    cartDiv.innerHTML = '';
+
+    cartItems.forEach((item, index) => {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'cart-item';
+        itemDiv.innerHTML = `
+            <div class="cart-item-details">
+                <h3>${item.name}</h3>
+                <p>$${item.price}</p>
+            </div>
+            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+        `;
+        cartDiv.appendChild(itemDiv);
+        subtotal += item.price;
+    });
+
+    updateTotals(subtotal);
+}
+
+function updateTotals(subtotal) {
+    const subtotalElem = document.getElementById('subtotal');
+    const taxElem = document.getElementById('tax');
+    const tipElem = document.getElementById('tipAmount');
+    const finalTotalElem = document.getElementById('finalTotal');
+
+    if (!subtotalElem) return;
+
+    const tax = subtotal * 0.07;
+    const currentTip = parseFloat(tipElem.textContent) || 0;
+    const final = subtotal + tax + currentTip;
+
+    subtotalElem.textContent = subtotal.toFixed(2);
+    taxElem.textContent = tax.toFixed(2);
+    finalTotalElem.textContent = final.toFixed(2);
+
+    localStorage.setItem('finalTotal', final.toFixed(2));
+}
+
+function selectTip(percentage) {
+    const buttons = document.querySelectorAll('.tip-btn');
+    const customTipDiv = document.querySelector('.custom-tip');
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+
+    buttons.forEach(btn => btn.classList.remove('selected'));
+
+    if (percentage === 'custom') {
+        customTipDiv.style.display = 'block';
+        buttons[6].classList.add('selected');
+        const customInput = document.getElementById('customTipInput');
+        if (customInput.value) {
+            updateCustomTip();
+        }
+    } else {
+        customTipDiv.style.display = 'none';
+        // Find button index based on order in HTML
+        const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
+        buttons[percentageMap[percentage]].classList.add('selected');
+        const tipAmount = (subtotal * (percentage/100));
+        document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
+        updateTotals(subtotal);
+    }
+}
+
+function removeCartItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const removedItem = cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    const newSubtotal = subtotal - removedItem[0].price;
+
+    updateCartDisplay();
+    updateTotals(newSubtotal);
+    loadCart();
+}
+
+function updateCustomTip() {
+    const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
+    document.getElementById('tipAmount').textContent = customTip.toFixed(2);
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    updateTotals(subtotal);
+}
+
+// Credit card input formatting
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneInput = document.getElementById('phoneInput');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length > 0) {
+                if (value.length <= 3) {
+                    value = `(${value}`;
+                } else if (value.length <= 6) {
+                    value = `(${value.slice(0,3)}) ${value.slice(3)}`;
+                } else {
+                    value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
+                }
+            }
+            e.target.value = value;
+        });
+    }
+
+    const creditCardInput = document.getElementById('creditCardInput');
+    if (creditCardInput) {
+        creditCardInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            let formattedValue = '';
+            for (let i = 0; i < value.length; i++) {
+                if (i > 0 && i % 4 === 0) {
+                    formattedValue += ' ';
+                }
+                formattedValue += value[i];
+            }
+            e.target.value = formattedValue;
+        });
+    }
+
+    // Expiration date formatting
+    const expDateInput = document.getElementById('expdateInput');
+    if (expDateInput) {
+        expDateInput.addEventListener('input', function(e) {
+            let value = e.target.value.replace(/\D/g, '');
+            if (value.length >= 2) {
+                value = value.slice(0,2) + '/' + value.slice(2);
+            }
+            e.target.value = value;
+        });
+    }
+});
+
+
+function validatePayment(event) {
+  event.preventDefault();
+  const firstNameInput = document.getElementById("firstNameInput");
+  const lastNameInput = document.getElementById("lastNameInput");
+  const creditCardInput = document.getElementById("creditCardInput");
+  const expdateInput = document.getElementById("expdateInput");
+  const securityCodeInput = document.getElementById("securityCodeInput");
+  let isValid = true;
+
+  // Remove existing error messages
+  const existingErrors = document.querySelectorAll('.error-message');
+  existingErrors.forEach(error => error.remove());
+
+  if (!firstNameInput.value.trim()) {
+    showError(firstNameInput, "Please enter your first name.");
+    isValid = false;
+  } else {
+    hideError(firstNameInput);
+  }
+
+  if (!lastNameInput.value.trim()) {
+    showError(lastNameInput, "Please enter your last name.");
+    isValid = false;
+  } else {
+    hideError(lastNameInput);
+
+  }
+
+  if (!phoneInput.value.trim()) {
+    showError(phoneInput, "Please enter your phone number.");
+    isValid = false;
+  } else {
+    hideError(phoneInput);
+  }
+
+  if (!creditCardInput.value.trim()) {
+    showError(creditCardInput, "Please enter your credit card number.");
+    isValid = false;
+  } else {
+    hideError(creditCardInput);
+  }
+
+  if (!expdateInput.value.trim()) {
+    showError(expdateInput, "Please enter your card expiration date.");
+    isValid = false;
+  } else {
+    hideError(expdateInput);
+  }
+
+  if (!securityCodeInput.value.trim()) {
+    showError(securityCodeInput, "Please enter your security code.");
+    isValid = false;
+  } else {
+    hideError(securityCodeInput);
+  }
 
   if (isValid) {
     localStorage.removeItem('cart');
     window.location.href = 'orderconfirmation.html';
   }
   return false;
->>>>>>> smoothpictures
 }
 
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
@@ -1700,9 +1781,6 @@ window.addEventListener("resize", () => {
     menu.style.transform = "translateX(0)";
     menu.style.width = "50%";
   }
-<<<<<<< HEAD
-});
-=======
 });
 
 // Function to clear all private room reservations
@@ -1714,4 +1792,3 @@ function clearAllReservations() {
     console.log("All reservations cleared from localStorage");
   }
 }
->>>>>>> smoothpictures
