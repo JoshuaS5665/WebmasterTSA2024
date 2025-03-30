@@ -14,6 +14,12 @@ function loadHead(url) {
 }
 
 function smoothPageTransition(e) {
+  // Don't trigger for slideshow navigation arrows
+  if (e.target.classList.contains('slideshow-nav') || 
+      e.target.closest('.slideshow-nav')) {
+    return;
+  }
+
   if (e.target.tagName === "A" && !e.target.hasAttribute("download")) {
     e.preventDefault();
     const content = document.querySelectorAll(
@@ -67,28 +73,193 @@ function markCurrentPage() {
 
 function changeImages(beginning) {
   const homeImage = document.getElementById("homeImage");
-  console.log(homeImage.src);
+  const slideshowImages = [
+    `${beginning}images/homeImage1.jpg`,
+    `${beginning}images/homeImage2.jpg`,
+    `${beginning}images/homeImage3.jpg`
+  ];
 
-  let x = 0;
+  let currentImageIndex = 0;
+  let slideshowInterval;
 
-  setInterval(() => {
-    homeImage.classList.add("fade-out");
-    setTimeout(() => {
-      if (x == 0) {
-        homeImage.src = `${beginning}images/homeImage1.jpg`;
-        x++;
-      } else if (x == 1) {
-        homeImage.src = `${beginning}images/homeImage2.jpg`;
-        x++;
+  // Reset any slideshow container styles that might be causing issues
+  const slideshowContainer = document.querySelector(".slideshow-container");
+  if (slideshowContainer) {
+    slideshowContainer.style.borderBottom = "none";
+  }
+
+  // Create indicator lines dynamically
+  const dotsContainer = document.getElementById("slideshow-dots");
+  if (dotsContainer) {
+    // Clear any existing content in dots container
+    dotsContainer.innerHTML = '';
+    
+    // Adjust the container style for line indicators
+    dotsContainer.style.display = 'flex';
+    dotsContainer.style.gap = '15px';
+    dotsContainer.style.border = 'none';
+    dotsContainer.style.outline = 'none';
+    dotsContainer.style.boxShadow = 'none';
+    
+    // Create new line indicators
+    for (let i = 0; i < slideshowImages.length; i++) {
+      const dot = document.createElement('span');
+      dot.className = i === 0 ? 'slideshow-dot active' : 'slideshow-dot';
+      dot.setAttribute('data-index', i);
+      dot.style.border = 'none';
+      dot.style.boxShadow = 'none';
+      dot.style.outline = 'none';
+      dot.style.overflow = 'hidden';
+      dotsContainer.appendChild(dot);
+    }
+  }
+
+  // Initialize slideshow navigation buttons
+  const prevButton = document.getElementById("slideshow-prev");
+  const nextButton = document.getElementById("slideshow-next");
+  const dots = document.querySelectorAll(".slideshow-dot");
+
+  // Remove all inline styles and let CSS handle the styling
+  dots.forEach(dot => {
+    // Remove any inline styles that might be causing the black line
+    dot.removeAttribute('style');
+  });
+
+  // Function to change image with slide transition
+  function changeImage(newIndex) {
+    // Calculate correct direction for wrapping around
+    let direction;
+    if (newIndex > currentImageIndex) {
+      direction = 1; // Moving forward
+    } else if (newIndex < currentImageIndex) {
+      // Check if we're going from first to last (wrapping backward)
+      if (currentImageIndex === 0 && newIndex === slideshowImages.length - 1) {
+        direction = 1; // Special case: Make it slide forward
+      } else if (currentImageIndex === slideshowImages.length - 1 && newIndex === 0) {
+        direction = 1; // Special case: Make it slide forward when going from last to first
       } else {
-        homeImage.src = `${beginning}images/homeImage3.jpg`;
-        x = 0;
+        direction = -1; // Moving backward
       }
+    } else {
+      direction = 0; // No change needed
+    }
+    
+    // Create a container for two images to handle the transition
+    const container = homeImage.parentElement;
+    if (!container.querySelector('.next-slide-image')) {
+      // Create a new image element for the next slide
+      const nextImage = document.createElement('img');
+      nextImage.className = 'next-slide-image';
+      nextImage.style.position = 'absolute';
+      nextImage.style.top = '0';
+      nextImage.style.left = '0';
+      nextImage.style.width = '100%';
+      nextImage.style.height = '100%';
+      nextImage.style.objectFit = 'cover';
+      nextImage.style.transform = `translateX(${direction * 100}%)`;
+      nextImage.style.zIndex = '1';
+      nextImage.style.border = 'none';
+      container.appendChild(nextImage);
+    }
+    
+    // Get the next image element
+    const nextImage = container.querySelector('.next-slide-image');
+    
+    // Preload the next image
+    nextImage.src = slideshowImages[newIndex];
+    nextImage.style.transform = `translateX(${direction * 100}%)`;
+    
+    // Update dot navigation
+    dots.forEach((dot, index) => {
+      if (index === newIndex) {
+        dot.classList.add("active");
+      } else {
+        dot.classList.remove("active");
+      }
+    });
+    
+    // Wait a moment to ensure the next image is loaded
+    setTimeout(() => {
+      // Slide current image out
+      homeImage.style.transition = "transform 0.5s ease-in-out";
+      homeImage.style.transform = `translateX(${-direction * 100}%)`;
+      
+      // Slide next image in
+      nextImage.style.transition = "transform 0.5s ease-in-out";
+      nextImage.style.transform = "translateX(0)";
+      
+      // After animation completes, make the next image the current one
       setTimeout(() => {
-        homeImage.classList.remove("fade-out");
-      }, 50);
-    }, 500);
-  }, 6000);
+        homeImage.src = slideshowImages[newIndex];
+        homeImage.style.transition = "none";
+        homeImage.style.transform = "translateX(0)";
+        
+        nextImage.style.transition = "none";
+        nextImage.style.transform = `translateX(${direction * 100}%)`;
+        
+        currentImageIndex = newIndex;
+      }, 500);
+    }, 50);
+  }
+
+  // Set up automatic slideshow
+  function startSlideshow() {
+    slideshowInterval = setInterval(() => {
+      let newIndex = (currentImageIndex + 1) % slideshowImages.length;
+      changeImage(newIndex);
+    }, 5000);
+  }
+
+  // Add click handlers for navigation buttons
+  if (prevButton) {
+    prevButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Stop event from bubbling up
+      // Clear the interval and restart it
+      clearInterval(slideshowInterval);
+
+      let newIndex = currentImageIndex - 1;
+      if (newIndex < 0) newIndex = slideshowImages.length - 1;
+
+      changeImage(newIndex);
+      startSlideshow();
+    });
+  }
+
+  if (nextButton) {
+    nextButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Stop event from bubbling up
+      // Clear the interval and restart it
+      clearInterval(slideshowInterval);
+
+      let newIndex = (currentImageIndex + 1) % slideshowImages.length;
+
+      changeImage(newIndex);
+      startSlideshow();
+    });
+  }
+
+  // Add click handlers for dots
+  dots.forEach((dot) => {
+    dot.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Clear the interval and restart it
+      clearInterval(slideshowInterval);
+
+      const index = parseInt(dot.getAttribute("data-index"));
+      if (index !== currentImageIndex) {
+        changeImage(index);
+      }
+
+      startSlideshow();
+    });
+  });
+
+  // Start the slideshow
+  startSlideshow();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -173,6 +344,25 @@ function showError(input, message) {
     const div = document.createElement("div");
     div.className = "error-message";
     div.textContent = message;
+    div.style.animation = "fadeIn 0.3s ease-in";
+
+    // Add professional validation messages
+    if (message.includes("required") || message.includes("enter")) {
+      div.textContent = "This field is required.";
+    } else if (message.includes("valid email")) {
+      div.textContent = "Please enter a valid email address.";
+    } else if (message.includes("phone")) {
+      div.textContent = "Please enter a valid phone number.";
+    } else if (message.includes("credit card") || message.includes("card number")) {
+      div.textContent = "Please provide a valid credit card number.";
+    } else if (message.includes("time")) {
+      div.textContent = "Please select a reservation time.";
+    } else if (message.includes("date")) {
+      div.textContent = "Please select a reservation date.";
+    } else if (message.includes("agree") || message.includes("terms")) {
+      div.textContent = "You must agree to the terms to continue.";
+    }
+
     input.parentNode.insertBefore(div, input.nextSibling);
   }
 }
@@ -296,15 +486,54 @@ function validateReservation() {
 
 function setMinimumDate() {
   const dateInput = document.getElementById("dateInput");
-  const today = new Date().toISOString().split("T")[0];
-  dateInput.setAttribute("min", today);
+  if (!dateInput) return;
+
+  // Clear any existing options except the default one
+  while (dateInput.options.length > 1) {
+    dateInput.remove(1);
+  }
+
+  // Generate dates for the next 30 days
+  const today = new Date();
+
+  for (let i = 0; i < 30; i++) {
+    // Create a new date object for each day to avoid reference issues
+    const date = new Date(today);
+    date.setDate(today.getDate() + i);
+
+    // Skip Mondays since restaurant is closed
+    if (date.getDay() === 1) continue;
+
+    const formattedDate = date.toISOString().split('T')[0];
+    const displayDate = date.toLocaleDateString('en-US', {
+      weekday: 'short',
+      month: 'short', 
+      day: 'numeric'
+    });
+
+    const option = document.createElement('option');
+    option.value = formattedDate;
+    option.textContent = displayDate;
+    dateInput.appendChild(option);
+  }
+
   if (!dateInput.hasListener) {
-    dateInput.addEventListener("input", function () {
+    dateInput.addEventListener("change", function () {
       localStorage.setItem("selectedDate", this.value);
     });
     dateInput.hasListener = true;
   }
+
+  // Fix: Log to console for debugging
+  console.log("Date dropdown populated with", dateInput.options.length - 1, "dates");
 }
+
+// Call the function when the DOM is fully loaded to ensure it runs properly
+document.addEventListener('DOMContentLoaded', function() {
+  if (document.getElementById("dateInput")) {
+    setMinimumDate();
+  }
+});
 
 function openJobInquiries() {
   const form = document.getElementById("jobInquiryForm");
@@ -391,7 +620,11 @@ function addToCart(itemName, price) {
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     cart.push({name: itemName, price: price});
     localStorage.setItem('cart', JSON.stringify(cart));
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> smoothpictures
     // Show on-screen notification
     const notification = document.createElement('div');
     notification.style.position = 'fixed';
@@ -405,9 +638,15 @@ function addToCart(itemName, price) {
     notification.style.zIndex = '1000';
     notification.style.fontFamily = 'Bodoni Moda, serif';
     notification.textContent = 'Added ' + itemName + ' to cart!';
+<<<<<<< HEAD
     
     document.body.appendChild(notification);
     
+=======
+
+    document.body.appendChild(notification);
+
+>>>>>>> smoothpictures
     // Remove notification after 2 seconds
     setTimeout(() => {
         notification.style.opacity = '0';
@@ -422,13 +661,21 @@ function addToCart(itemName, price) {
 function updateCartDisplay() {
     const cartDisplay = document.getElementById('current-cart');
     if (!cartDisplay) return;
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> smoothpictures
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     if (cart.length === 0) {
         cartDisplay.innerHTML = '<p style="text-align: center;">No items in cart</p>';
         return;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> smoothpictures
     let html = '<ul style="list-style: none; padding: 0;">';
     cart.forEach((item, index) => {
         html += `
@@ -469,6 +716,439 @@ function validateTimeSelection(event) {
   return false;
 }
 
+function validatePrivateReservation() {
+  event.preventDefault();
+  const partySize = document.getElementById("partySize");
+  const dateInput = document.getElementById("dateInput");
+  const occasionType = document.getElementById("occasionType");
+  const specialRequests = document.getElementById("specialRequests");
+  let isValid = true;
+
+  if (!partySize.value) {
+    showError(partySize, "Please select the number of guests.");
+    isValid = false;
+  } else {
+    hideError(partySize);
+  }
+
+  if (!dateInput.value) {
+    showError(dateInput, "Please select a reservation date.");
+    isValid = false;
+  } else {
+    hideError(dateInput);
+  }
+
+  if (isValid) {
+    localStorage.setItem("privatePartySize", partySize.value);
+    localStorage.setItem("privateSelectedDate", dateInput.value);
+    localStorage.setItem("privateOccasion", occasionType.value);
+    localStorage.setItem("privateSpecialRequests", specialRequests.value);
+    window.location.href = "picktime.html";
+  }
+  return false;
+}
+
+function initializePrivateTimeSlots() {
+  const select = document.getElementById("privateReservationTime");
+  const reservationDateDisplay = document.getElementById("reservationDate");
+  const partyDetailsDisplay = document.getElementById("partyDetails");
+  const occasionDisplay = document.getElementById("occasionDisplay");
+
+  if (!select) return;
+
+  const date = localStorage.getItem("privateSelectedDate");
+  const partySize = localStorage.getItem("privatePartySize");
+  const occasion = localStorage.getItem("privateOccasion");
+
+  // Display reservation details
+  if (reservationDateDisplay) {
+    // Fix the date offset issue by creating date object correctly
+    const dateObj = new Date(date);
+    // Add timezone offset to fix date display
+    dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
+
+    const formattedDate = dateObj.toLocaleDateString('en-US', {
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+    reservationDateDisplay.textContent = `Date: ${formattedDate}`;
+  }
+
+  if (partyDetailsDisplay) {
+    partyDetailsDisplay.textContent = `Party Size: ${partySize}`;
+  }
+
+  if (occasionDisplay && occasion) {
+    occasionDisplay.textContent = `Occasion: ${occasion}`;
+  }
+
+  if (!date) {
+    console.error("No date selected");
+    return;
+  }
+
+  select.innerHTML = '<option value="">Select time</option>';
+
+  const selectedDay = new Date(date).getDay();
+
+  // Closed on Mondays (day 1)
+  if (selectedDay === 1) {
+    select.innerHTML = '<option value="">Closed on Mondays</option>';
+    return;
+  }
+
+  // Check existing reservations for this date
+  checkExistingReservations(date).then(reservedTimes => {
+    // Available times based on restaurant hours in half-hour increments
+    // Tuesday-Thursday: 3PM-10PM (last reservation at 8PM)
+    // Friday-Sunday: 3PM-11PM (last reservation at 9PM)
+    let startHour = 15; // 3 PM
+    let endHour; 
+
+    if (selectedDay >= 5 || selectedDay === 0) {
+      // Friday-Sunday: 3PM-11PM
+      endHour = 21; // 9 PM is last reservation (ends at 11 PM)
+    } else {
+      // Tuesday-Thursday: 3PM-10PM
+      endHour = 20; // 8 PM is last reservation (ends at 10 PM)
+    }
+
+    // Generate time slots in half-hour increments
+    for (let hour = startHour; hour <= endHour; hour += 0.5) {
+      const intHour = Math.floor(hour);
+      const minutes = hour % 1 === 0 ? "00" : "30";
+      const period = intHour >= 12 ? "PM" : "AM";
+      const displayHour = intHour > 12 ? intHour - 12 : intHour;
+      const timeStr = `${displayHour}:${minutes} ${period}`;
+
+      // Check if this time slot is already reserved
+      const isReserved = reservedTimes.some(reservedTime => {
+        // Convert time strings to comparable values
+        const reservedHour = convertTimeStringToHours(reservedTime);
+        const currentHour = hour;
+
+        // A reservation blocks 2 hours in both directions
+        // Check if current time would overlap with existing reservation
+        // Either: current time is within 2 hours after reserved time
+        // Or: current time is within 2 hours before reserved time (meaning the current reservation would overlap)
+        return (currentHour >= reservedHour && currentHour < reservedHour + 2) || 
+               (currentHour + 2 > reservedHour && currentHour < reservedHour);
+      });
+
+      if (!isReserved) {
+        const option = document.createElement("option");
+        option.value = timeStr;
+        option.textContent = timeStr;
+        select.appendChild(option);
+      }
+    }
+
+    if (select.options.length <= 1) {
+      // Only the default "Select time" option exists
+      const option = document.createElement("option");
+      option.value = "";
+      option.textContent = "No available times for this date";
+      option.disabled = true;
+      select.appendChild(option);
+
+      // Show no availability message
+      const noAvailabilityMessage = document.getElementById("noAvailabilityMessage");
+      if (noAvailabilityMessage) {
+        noAvailabilityMessage.style.display = "block";
+      }
+    } else {
+      // Hide no availability message if there are available times
+      const noAvailabilityMessage = document.getElementById("noAvailabilityMessage");
+      if (noAvailabilityMessage) {
+        noAvailabilityMessage.style.display = "none";
+      }
+    }
+  });
+}
+
+// Helper function to convert time string (like "3:00 PM") to hours (like 15)
+function convertTimeStringToHours(timeStr) {
+  const [timePart, period] = timeStr.split(" ");
+  let [hours, minutes] = timePart.split(":").map(Number);
+
+  if (period === "PM" && hours < 12) {
+    hours += 12;
+  } else if (period === "AM" && hours === 12) {
+    hours = 0;
+  }
+
+  return hours + minutes/60;
+}
+
+// Function to check existing reservations from local storage
+function checkExistingReservations(date) {
+  return new Promise(resolve => {
+    // Get reservations from localStorage
+    const reservations = JSON.parse(localStorage.getItem("privateRoomReservations")) || {};
+    const dateReservations = reservations[date] || [];
+    resolve(dateReservations);
+  });
+}
+
+function validatePrivateTimeSelection(event) {
+  if (event) {
+    event.preventDefault();
+  }
+  const timeSelect = document.getElementById("privateReservationTime");
+  const durationHidden = document.getElementById("durationHours");
+  let isValid = true;
+
+  if (!timeSelect.value) {
+    showError(timeSelect, "Please select a reservation time");
+    isValid = false;
+  } else {
+    hideError(timeSelect);
+  }
+
+  if (isValid) {
+    localStorage.setItem("privateSelectedTime", timeSelect.value);
+    localStorage.setItem("privateDuration", durationHidden.value);
+    window.location.href = "confirmation.html";
+  }
+  return false;
+}
+
+function loadPrivateReservationDetails() {
+  const summaryDiv = document.getElementById("reservationSummary");
+  if (!summaryDiv) return;
+
+  // Add a subtle animation to the summary
+  summaryDiv.style.opacity = "0";
+  summaryDiv.style.transform = "translateY(10px)";
+
+  const date = localStorage.getItem("privateSelectedDate");
+  const time = localStorage.getItem("privateSelectedTime");
+  const partySize = localStorage.getItem("privatePartySize");
+  const occasion = localStorage.getItem("privateOccasion");
+  const requests = localStorage.getItem("privateSpecialRequests");
+
+  if (!date || !time || !partySize) {
+    summaryDiv.innerHTML = "<p>Reservation details not found. Please start over.</p>";
+    return;
+  }
+
+  // Animate the summary with a small delay
+  setTimeout(() => {
+    summaryDiv.style.transition = "all 0.5s ease";
+    summaryDiv.style.opacity = "1";
+    summaryDiv.style.transform = "translateY(0)";
+  }, 200);
+
+  // Fix the date offset issue
+  const dateObj = new Date(date);
+  // Add timezone offset to fix date display
+  dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
+
+  const formattedDate = dateObj.toLocaleDateString('en-US', {
+    weekday: 'long', 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric'
+  });
+
+  // Calculate end time (2 hours after start time)
+  let endTime = "";
+  if (time) {
+    const timeParts = time.match(/(\d+):(\d+) ([AP]M)/);
+    if (timeParts) {
+      let hour = parseInt(timeParts[1]);
+      const minute = parseInt(timeParts[2]);
+      const period = timeParts[3];
+
+      hour = (hour % 12) + (period === "PM" ? 12 : 0);
+      hour = (hour + 2) % 24;
+      const newPeriod = hour >= 12 ? "PM" : "AM";
+      const displayHour = hour % 12 === 0 ? 12 : hour % 12;
+
+      endTime = `${displayHour}:${minute.toString().padStart(2, "0")} ${newPeriod}`;
+    }
+  }
+
+  let html = `
+    <p><strong>Date:</strong> ${formattedDate}</p>
+    <p><strong>Time:</strong> ${time} - ${endTime}</p>
+    <p><strong>Duration:</strong> 2 hours</p>
+    <p><strong>Party Size:</strong> ${partySize}</p>
+  `;
+
+  if (occasion) {
+    html += `<p><strong>Occasion:</strong> ${occasion}</p>`;
+  }
+
+  if (requests) {
+    html += `<p><strong>Special Requests:</strong> ${requests}</p>`;
+  }
+
+  summaryDiv.innerHTML = html;
+}
+
+function finalizePrivateReservation(event) {
+  event.preventDefault();
+
+  // Get form data
+  const firstName = document.getElementById("firstName").value;
+  const lastName = document.getElementById("lastName").value;
+  const email = document.getElementById("email").value;
+  const phone = document.getElementById("phone").value;
+  const termsAgreement = document.getElementById("termsAgreement").checked;
+
+  // Basic validation
+  let isValid = true;
+
+  if (!firstName.trim()) {
+    showError(document.getElementById("firstName"), "Please enter your first name.");
+    isValid = false;
+  } else {
+    hideError(document.getElementById("firstName"));
+  }
+
+  if (!lastName.trim()) {
+    showError(document.getElementById("lastName"), "Please enter your last name.");
+    isValid =false;
+  } else {
+    hideError(document.getElementById("lastName"));
+  }
+
+  if (!email.trim()) {
+    showError(document.getElementById("email"), "Please enter your email address.");
+    isValid = false;
+  } else if (!validateEmail(email.trim())) {
+    showError(document.getElementById("email"), "Please enter a valid email address.");
+    isValid = false;
+  } else {
+    hideError(document.getElementById("email"));
+  }
+
+  if (!phone.trim()) {
+    showError(document.getElementById("phone"), "Please enter your phone number.");
+    isValid = false;
+  } else {
+    hideError(document.getElementById("phone"));
+  }
+
+  if (!termsAgreement) {
+    showError(document.getElementById("termsAgreement").parentNode, "You must agree to the terms to continue.");
+    isValid = false;
+  } else {
+    hideError(document.getElementById("termsAgreement").parentNode);
+  }
+
+  if (isValid) {
+    // Save contact information
+    localStorage.setItem("privateReservationName", `${firstName} ${lastName}`);
+    localStorage.setItem("privateReservationEmail", email);
+    localStorage.setItem("privateReservationPhone", phone);
+
+    // Get reservation details for confirmation display
+    const date = localStorage.getItem("privateSelectedDate");
+    const time = localStorage.getItem("privateSelectedTime");
+    const partySize = localStorage.getItem("privatePartySize");
+
+    // Store the reservation
+    storeReservation(date, time);
+
+    // Fix the date offset issue
+    const dateObj = new Date(date);
+    // Add timezone offset to fix date display
+    dateObj.setMinutes(dateObj.getMinutes() + dateObj.getTimezoneOffset());
+
+    const formattedDate = dateObj.toLocaleDateString('en-US', {
+      weekday: 'long', 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric'
+    });
+
+    // Generate confirmation number
+    const confirmationNumber = `PVR-${Math.floor(100000 + Math.random() * 900000)}`;
+
+    // Create and show confirmation message
+    const formContainer = document.querySelector(".reservationForm3");
+    formContainer.innerHTML = `
+      <div style="text-align: center; padding: 40px;">
+        <h2 style="color: #32372b; margin-bottom: 20px;">Private Dining Reservation Confirmed!</h2>
+
+        <div style="background-color: rgba(50, 55, 43, 0.1); padding: 20px; border-radius: 8px; margin: 20px 0; text-align: left; font-family: 'Bodoni Moda', serif;">
+          <p><strong>Name:</strong> ${firstName} ${lastName}</p>
+          <p><strong>Date:</strong> ${formattedDate}</p>
+          <p><strong>Time:</strong> ${time}</p>
+          <p><strong>Party Size:</strong> ${partySize}</p>
+          <p><strong>Reference #:</strong> ${confirmationNumber}</p>
+        </div>
+
+        <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; margin: 20px 0;">
+          A confirmation has been sent to <strong>${email}</strong>.
+        </p>
+
+        <p style="font-family: 'Bodoni Moda', serif; font-size: 16px; margin: 20px 0; color: #32372b;">
+          For any questions about your reservation, please contact us.
+        </p>
+
+        <button onclick="window.location.href='/'" style="padding: 12px 30px; margin-top: 20px;">Return to Home</button>
+      </div>
+    `;
+
+    // Store reservation data in a more structured way
+    const reservationData = {
+      name: `${firstName} ${lastName}`,
+      email: email,
+      phone: phone,
+      date: date,
+      time: time,
+      partySize: partySize,
+      occasion: localStorage.getItem("privateOccasion") || "Not specified",
+      specialRequests: localStorage.getItem("privateSpecialRequests") || "",
+      confirmationNumber: confirmationNumber,
+      timestamp: new Date().toISOString()
+    };
+
+    // Store reservation history
+    let reservationHistory = JSON.parse(localStorage.getItem("reservationHistory")) || [];
+    reservationHistory.push(reservationData);
+    localStorage.setItem("reservationHistory", JSON.stringify(reservationHistory));
+
+    // Clean up localStorage for form data
+    setTimeout(() => {
+      localStorage.removeItem("privateSelectedDate");
+      localStorage.removeItem("privateSelectedTime");
+      localStorage.removeItem("privatePartySize");
+      localStorage.removeItem("privateOccasion");
+      localStorage.removeItem("privateSpecialRequests");
+      localStorage.removeItem("privateDuration");
+    }, 3000);
+  }
+
+  return false;
+}
+
+// Function to store a reservation time slot
+function storeReservation(date, time) {
+  // Get existing reservations
+  let reservations = JSON.parse(localStorage.getItem("privateRoomReservations")) || {};
+
+  // If this date doesn't exist in reservations, create an array for it
+  if (!reservations[date]) {
+    reservations[date] = [];
+  }
+
+  // Add the reservation time
+  reservations[date].push(time);
+
+  // Save back to localStorage
+  localStorage.setItem("privateRoomReservations", JSON.stringify(reservations));
+
+  // Console log for debugging
+  console.log("Reservation stored:", { date, time });
+  console.log("All reservations:", reservations);
+}
+
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
   window.location.href = "/reservation/bookTable.html";
@@ -481,6 +1161,7 @@ function removeFromCart(index) {
     loadCart();
 }
 
+<<<<<<< HEAD
 function loadCart() { 
     //const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartDiv = document.getElementById('cart-items');
@@ -517,6 +1198,17 @@ function loadCart() {
     }
 
    /* cartItems.forEach((item, index) => {
+=======
+function loadCart() {
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const cartDiv = document.getElementById('cart-items');
+    let subtotal = 0;
+
+    if (!cartDiv) return;
+    cartDiv.innerHTML = '';
+
+    cartItems.forEach((item, index) => {
+>>>>>>> smoothpictures
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
@@ -528,6 +1220,7 @@ function loadCart() {
         `;
         cartDiv.appendChild(itemDiv);
         subtotal += item.price;
+<<<<<<< HEAD
     });*/
 
     //updateTotals(subtotal);
@@ -558,16 +1251,47 @@ function updateTotals(subtotal) {
     finalTotalElem.textContent = final.toFixed(2);
     
     //localStorage.setItem('finalTotal', final.toFixed(2));
+=======
+    });
+
+    updateTotals(subtotal);
+}
+
+function updateTotals(subtotal) {
+    const subtotalElem = document.getElementById('subtotal');
+    const taxElem = document.getElementById('tax');
+    const tipElem = document.getElementById('tipAmount');
+    const finalTotalElem = document.getElementById('finalTotal');
+
+    if (!subtotalElem) return;
+
+    const tax = subtotal * 0.07;
+    const currentTip = parseFloat(tipElem.textContent) || 0;
+    const final = subtotal + tax + currentTip;
+
+    subtotalElem.textContent = subtotal.toFixed(2);
+    taxElem.textContent = tax.toFixed(2);
+    finalTotalElem.textContent = final.toFixed(2);
+
+    localStorage.setItem('finalTotal', final.toFixed(2));
+>>>>>>> smoothpictures
 }
 
 function selectTip(percentage) {
     const buttons = document.querySelectorAll('.tip-btn');
     const customTipDiv = document.querySelector('.custom-tip');
+<<<<<<< HEAD
     const mySubtotal = document.getElementById("myTotal").value; 
     //const subtotal = parseFloat(document.getElementById('subtotal').textContent);
     
     buttons.forEach(btn => btn.classList.remove('selected'));
     
+=======
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+
+    buttons.forEach(btn => btn.classList.remove('selected'));
+
+>>>>>>> smoothpictures
     if (percentage === 'custom') {
         customTipDiv.style.display = 'block';
         buttons[6].classList.add('selected');
@@ -580,6 +1304,7 @@ function selectTip(percentage) {
         // Find button index based on order in HTML
         const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
         buttons[percentageMap[percentage]].classList.add('selected');
+<<<<<<< HEAD
         const tipAmount = (mySubtotal * (percentage/100));
         document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
         updateTotals(mySubtotal);
@@ -643,12 +1368,35 @@ function changeItem(index, indicator) {
     //updateCartDisplay();
     //updateTotals(newSubtotal);
     //loadCart();
+=======
+        const tipAmount = (subtotal * (percentage/100));
+        document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
+        updateTotals(subtotal);
+    }
+}
+
+function removeCartItem(index) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const removedItem = cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+    const newSubtotal = subtotal - removedItem[0].price;
+
+    updateCartDisplay();
+    updateTotals(newSubtotal);
+    loadCart();
+>>>>>>> smoothpictures
 }
 
 function updateCustomTip() {
     const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
     document.getElementById('tipAmount').textContent = customTip.toFixed(2);
+<<<<<<< HEAD
     const subtotal = document.getElementById("myTotal").value;
+=======
+    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+>>>>>>> smoothpictures
     updateTotals(subtotal);
 }
 
@@ -670,7 +1418,11 @@ document.addEventListener('DOMContentLoaded', function() {
             e.target.value = value;
         });
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> smoothpictures
     const creditCardInput = document.getElementById('creditCardInput');
     if (creditCardInput) {
         creditCardInput.addEventListener('input', function(e) {
@@ -714,13 +1466,18 @@ function validatePayment(event) {
   existingErrors.forEach(error => error.remove());
 
   if (!firstNameInput.value.trim()) {
+<<<<<<< HEAD
     showError(firstNameInput, "Please enter your first name");
+=======
+    showError(firstNameInput, "Please enter your first name.");
+>>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(firstNameInput);
   }
 
   if (!lastNameInput.value.trim()) {
+<<<<<<< HEAD
     showError(lastNameInput, "Please enter your last name");
     isValid = false;
   } else {
@@ -729,31 +1486,55 @@ function validatePayment(event) {
 
   if (!phoneInput.value.trim()) {
     showError(phoneInput, "Please enter your phone number");
+=======
+    showError(lastNameInput, "Please enter your last name.");
+    isValid = false;
+  } else {
+    hideError(lastNameInput);
+
+  }
+
+  if (!phoneInput.value.trim()) {
+    showError(phoneInput, "Please enter your phone number.");
+>>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(phoneInput);
   }
 
   if (!creditCardInput.value.trim()) {
+<<<<<<< HEAD
     showError(creditCardInput, "Please enter your card number");
+=======
+    showError(creditCardInput, "Please enter your credit card number.");
+>>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(creditCardInput);
   }
 
   if (!expdateInput.value.trim()) {
+<<<<<<< HEAD
     showError(expdateInput, "Please enter expiration date");
+=======
+    showError(expdateInput, "Please enter your card expiration date.");
+>>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(expdateInput);
   }
 
   if (!securityCodeInput.value.trim()) {
+<<<<<<< HEAD
     showError(securityCodeInput, "Please enter security code");
+=======
+    showError(securityCodeInput, "Please enter your security code.");
+>>>>>>> smoothpictures
     isValid = false;
   } else {
     hideError(securityCodeInput);
   }
+<<<<<<< HEAD
   if (isValid) {
     //localStorage.removeItem('cart');
     window.location.href = '/order/confirmation';
@@ -848,6 +1629,14 @@ function handleQuantityInputs(name, section){
           }
       }
   
+=======
+
+  if (isValid) {
+    localStorage.removeItem('cart');
+    window.location.href = 'orderconfirmation.html';
+  }
+  return false;
+>>>>>>> smoothpictures
 }
 
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
@@ -911,4 +1700,18 @@ window.addEventListener("resize", () => {
     menu.style.transform = "translateX(0)";
     menu.style.width = "50%";
   }
+<<<<<<< HEAD
 });
+=======
+});
+
+// Function to clear all private room reservations
+function clearAllReservations() {
+  if (confirm("u sure?")) {
+    localStorage.removeItem("privateRoomReservations");
+    localStorage.removeItem("reservationHistory");
+    alert("All reservations have been cleared!");
+    console.log("All reservations cleared from localStorage");
+  }
+}
+>>>>>>> smoothpictures

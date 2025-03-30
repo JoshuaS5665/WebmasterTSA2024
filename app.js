@@ -1,4 +1,5 @@
 const express = require("express");
+<<<<<<< HEAD
 //const nodemon = require("nodemon"); 
 const mongoose = require("mongoose"); 
 const menuItem = require("./menuItem.js"); 
@@ -7,6 +8,12 @@ const menuItem = require("./menuItem.js");
 const app = express();
 const dbURI = "mongodb+srv://jshah266507:f10URi$hh!@cluster0.sdpbs.mongodb.net/";
 
+=======
+const morgan = require("morgan");
+const serverless = require("serverless-http");
+const app = express();
+const router = express.Router();
+>>>>>>> smoothpictures
 const PORT = 80;
 const path = require("path");
 
@@ -28,7 +35,7 @@ mongoose.connect(dbURI, {useNewURLParser:true, useUnifiedTopology:true})
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-//app.use(morgan("dev"));
+app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/public/views")); 
@@ -105,7 +112,7 @@ app.get("/mission", (req, res) => {
 
 // Reservation routes
 app.get("/reservation", (req, res) => {
-  res.sendFile(path.join(__dirname, "/public/reservation/reservation.html"));
+  res.sendFile(path.join(__dirname, "/public/reservation/reservationstart.html"));
 });
 
 app.get("/reservationsecond", (req, res) => {
@@ -122,6 +129,7 @@ app.get("/reservation/confirmation", (req, res) => {
   );
 });
 
+<<<<<<< HEAD
 app.get("/order", (req, res) =>{
   res.sendFile(path.join(__dirname, "/public/takeout/ordermenu.html")); 
 });
@@ -174,6 +182,21 @@ app.get("/order/confirmation", (req, res) =>{
   res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
 }); 
 
+=======
+// Private Room Reservation routes
+app.get("/reservation/private", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/reservation/reservationstart.html"));
+});
+
+app.get("/reservation/picktime.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/reservation/picktime.html"));
+});
+
+app.get("/reservation/confirmation.html", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/reservation/confirmation.html"));
+});
+
+>>>>>>> smoothpictures
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));
@@ -184,5 +207,5 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/public/404/404.html"));
 });
 
-//app.use("/.netlify/functions/app", router);
-//module.exports.handler = serverless(app);
+app.use("/.netlify/functions/app", router);
+module.exports.handler = serverless(app);

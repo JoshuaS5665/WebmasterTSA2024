@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Charm:wght@400;700&family=Give+You+Glory&family=Great+Vibes&family=Indie+Flower&family=Libre+Caslon+Display&family=Rye&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flourish | Select Time</title>
+  <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
+  <link href="../style.css" rel="stylesheet" type="text/css" />
+</head>
+<body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html"), initializePrivateTimeSlots()'>
+  <script src="../script.js" type="text/javascript"></script>
+  <div id="header"></div>
+
+  <div class="main-content">
+    <h1 class="great-vibes-regular" style="font-size: 50px; text-align: center; color: #32372b; margin-top: 5vh;">
+      Select Reservation Time
+    </h1>
+    
+    <div class="reservationForm2">
+      <form onsubmit="return validatePrivateTimeSelection(event)">
+        <h2 style="text-align: center; color: #32372b; margin-bottom: 30px;">Choose Available Time</h2>
+        
+        <div style="text-align: center; margin-bottom: 30px; font-family: 'Bodoni Moda', serif; background-color: rgba(50, 55, 43, 0.05); padding: 25px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);">
+          <h3 style="margin-bottom: 20px; color: #32372b; font-size: 22px;">Your Reservation Details</h3>
+          <p id="reservationDate" style="font-size: 18px; margin: 10px 0; padding: 8px; background-color: rgba(255, 255, 255, 0.5); border-radius: 4px;"></p>
+          <p id="partyDetails" style="font-size: 18px; margin: 10px 0; padding: 8px; background-color: rgba(255, 255, 255, 0.5); border-radius: 4px;"></p>
+          <p id="occasionDisplay" style="font-size: 18px; margin: 10px 0; padding: 8px; background-color: rgba(255, 255, 255, 0.5); border-radius: 4px;"></p>
+        </div>
+        
+        <label for="privateReservationTime">Available Times<span class="asterisk">*</span></label>
+        <select id="privateReservationTime" class="form-control" required>
+          <option value="">Select time</option>
+        </select>
+        <div id="noAvailabilityMessage" style="display: none; color: #d63031; margin-top: 10px; font-family: 'Bodoni Moda', serif; text-align: center; padding: 10px; background-color: rgba(214, 48, 49, 0.1); border-radius: 4px;">
+          No time slots are available for this date. Please select another date.
+        </div>
+        
+        <input type="hidden" id="durationHours" value="2">
+        <p style="text-align: center; font-family: 'Bodoni Moda', serif; margin: 15px 0; background-color: rgba(50, 55, 43, 0.05); padding: 10px; border-radius: 5px;">
+          All private room reservations are for a 2-hour dining experience.
+        </p>
+        
+        <div style="text-align: center; margin: 30px 0 20px;">
+          <p>Private room requires a minimum food & drink commitment based on party size.</p>
+          <p>A coordinator will discuss details after your reservation is submitted.</p>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; gap: 20px;">
+          <button type="button" onclick="window.location.href='reservationstart.html'" style="flex: 1;">Back</button>
+          <button type="button" onclick="validatePrivateTimeSelection(event)" style="flex: 1;">Next: Contact Information</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="footer"></div>
+</body>
+</html>
