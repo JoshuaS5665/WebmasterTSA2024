@@ -28,7 +28,7 @@ mongoose.connect(dbURI, {useNewURLParser:true, useUnifiedTopology:true})
 
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
-app.use(morgan("dev"));
+//app.use(morgan("dev"));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/public/views")); 
@@ -197,5 +197,5 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/public/404/404.html"));
 });
 
-app.use("/.netlify/functions/app", router);
-module.exports.handler = serverless(app);
+//app.use("/.netlify/functions/app", router);
+//module.exports.handler = serverless(app);
