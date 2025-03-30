@@ -1624,3 +1624,30 @@ body.menu-open {
     font-size: 18px;
   }
 }
+
+.menu-control-btn {
+  padding: 5px 16px;
+  border: 2px solid #32372b;
+  background: transparent;
+  color: #32372b;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Bodoni Moda', serif;
+  font-weight:bold; 
+  /*margin-left: 15px;*/
+}
+.menu-control-btn:hover {
+  background: #32372b;
+  color: white;
+}
+
+.quantity-menu {
+  /*margin: 15px 0;*/
+  padding: 5px;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-family: 'Bodoni Moda', serif;
+  width: 100px;
+  text-align: center;
+}
