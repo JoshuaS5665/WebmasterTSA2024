@@ -563,7 +563,6 @@ function getPeopleInParty() {
 function bookTable(tableNumber) {
   localStorage.setItem("selectedTable", tableNumber);
   window.location.href = "/reservation/bookTable.html";
-  //window.location.href = "/reservation/bookTable.html";
 }
 
 function initializeTimeSlots() {
@@ -677,6 +676,70 @@ function updateCartDisplay() {
     html += '</ul>';
     cartDisplay.innerHTML = html;
 }
+
+// Add this line to update cart on page load
+document.addEventListener('DOMContentLoaded', updateCartDisplay);
+
+/*function addToCart(itemName, price) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    cart.push({name: itemName, price: price});
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Show on-screen notification
+    const notification = document.createElement('div');
+    notification.style.position = 'fixed';
+    notification.style.top = '20px';
+    notification.style.left = '50%';
+    notification.style.transform = 'translateX(-50%)';
+    notification.style.backgroundColor = '#32372b';
+    notification.style.color = 'white';
+    notification.style.padding = '15px 30px';
+    notification.style.borderRadius = '5px';
+    notification.style.zIndex = '1000';
+    notification.style.fontFamily = 'Bodoni Moda, serif';
+    notification.textContent = 'Added ' + itemName + ' to cart!';
+
+    document.body.appendChild(notification);
+
+    // Remove notification after 2 seconds
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transition = 'opacity 0.5s ease';
+        setTimeout(() => notification.remove(), 500);
+    }, 2000);
+
+    // Update cart display
+    updateCartDisplay();
+}
+
+function updateCartDisplay() {
+    const cartDisplay = document.getElementById('current-cart');
+    if (!cartDisplay) return;
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    if (cart.length === 0) {
+        cartDisplay.innerHTML = '<p style="text-align: center;">No items in cart</p>';
+        return;
+    }
+
+    let html = '<ul style="list-style: none; padding: 0;">';
+    cart.forEach((item, index) => {
+        html += `
+            <li style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0; padding: 8px; border-bottom: 1px solid #eee;">
+                <span>${item.name} - $${item.price}</span>
+                <button onclick="removeFromCart(${index})" 
+                    style="background: #32372b; 
+                    color: white; 
+                    border: none; 
+                    padding: 5px 10px; 
+                    border-radius: 4px; 
+                    cursor: pointer; 
+                    font-family: 'Bodoni Moda', serif;">Remove</button>
+            </li>`;
+    });
+    html += '</ul>';
+    cartDisplay.innerHTML = html;
+}*/
 
 // Add this line to update cart on page load
 document.addEventListener('DOMContentLoaded', updateCartDisplay);
@@ -1144,15 +1207,13 @@ function removeFromCart(index) {
     loadCart();
 }
 
-function loadCart() { 
+function loadCart() {
     //const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
     const cartDiv = document.getElementById('cart-items');
-    const menuItems = document.getElementById("menuItems");
-    //console.log((menuItems)); 
-    let menuItemsArray = menuItems.value.split(","); 
-    console.log(menuItemsArray); 
-    const quantities = document.getElementById("quantities"); 
-    console.log(quantities); 
+    const menuItems = document.getElementById("menuItems"); 
+
+    let menuItemsArray = menuItems.value.split(",");
+    const quantities = document.getElementById("quantities");
     const quantitiesArray = quantities.value.split(","); 
     //let subtotal = 0;
 
@@ -1179,7 +1240,7 @@ function loadCart() {
 
     }
 
-   /* cartItems.forEach((item, index) => {
+    /*cartItems.forEach((item, index) => {
         const itemDiv = document.createElement('div');
         itemDiv.className = 'cart-item';
         itemDiv.innerHTML = `
@@ -1191,13 +1252,14 @@ function loadCart() {
         `;
         cartDiv.appendChild(itemDiv);
         subtotal += item.price;
-    });*/
+    });
 
-    //updateTotals(subtotal);
+    updateTotals(subtotal);*/
 }
 
+
 function updateTotals(subtotal) {
-    //const subtotalElem = document.getElementById('subtotal');
+   //const subtotalElem = document.getElementById('subtotal');
     //const taxElem = document.getElementById('tax');
 
     //const mySubtotal = document.getElementById("myTotal").value; 
@@ -1224,376 +1286,89 @@ function updateTotals(subtotal) {
 }
 
 function selectTip(percentage) {
-    const buttons = document.querySelectorAll('.tip-btn');
-    const customTipDiv = document.querySelector('.custom-tip');
-    const mySubtotal = document.getElementById("myTotal").value; 
-    //const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-    
-    buttons.forEach(btn => btn.classList.remove('selected'));
-    
-    if (percentage === 'custom') {
-        customTipDiv.style.display = 'block';
-        buttons[6].classList.add('selected');
-        const customInput = document.getElementById('customTipInput');
-        if (customInput.value) {
-            updateCustomTip();
-        }
-    } else {
-        customTipDiv.style.display = 'none';
-        // Find button index based on order in HTML
-        const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
-        buttons[percentageMap[percentage]].classList.add('selected');
-        const tipAmount = (mySubtotal * (percentage/100));
-        document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
-        updateTotals(mySubtotal);
-    }
+  const buttons = document.querySelectorAll('.tip-btn');
+  const customTipDiv = document.querySelector('.custom-tip');
+  const mySubtotal = document.getElementById("myTotal").value; 
+  //const subtotal = parseFloat(document.getElementById('subtotal').textContent);
+  
+  buttons.forEach(btn => btn.classList.remove('selected'));
+  
+  if (percentage === 'custom') {
+      customTipDiv.style.display = 'block';
+      buttons[6].classList.add('selected');
+      const customInput = document.getElementById('customTipInput');
+      if (customInput.value) {
+          updateCustomTip();
+      }
+  } else {
+      customTipDiv.style.display = 'none';
+      // Find button index based on order in HTML
+      const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
+      buttons[percentageMap[percentage]].classList.add('selected');
+      const tipAmount = (mySubtotal * (percentage/100));
+      document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
+      updateTotals(mySubtotal);
+  }
 }
+
 
 function changeItem(index, indicator) {
-    //const cartDiv = document.getElementById('cart-items');
-    //const removedItem = document.getElementById(`details[${index}]`);
-    let quantityOutput = document.getElementById(`quantityOutput[${index}]`); 
+  //const cartDiv = document.getElementById('cart-items');
+  //const removedItem = document.getElementById(`details[${index}]`);
+  let quantityOutput = document.getElementById(`quantityOutput[${index}]`); 
 
-    const costs = document.getElementById("costs"); 
-    let costsArray = costs.value.split(","); 
-    const mySubtotal = document.getElementById("myTotal").value;
+  const costs = document.getElementById("costs"); 
+  let costsArray = costs.value.split(","); 
+  const mySubtotal = document.getElementById("myTotal").value;
 
-    const quantities = document.getElementById("quantities"); 
-    const quantitiesArray = quantities.value.split(","); 
-    let myNewQuantity;
-    let newSubtotal = parseFloat(mySubtotal); 
-    if(indicator === "+"){
+  const quantities = document.getElementById("quantities"); 
+  const quantitiesArray = quantities.value.split(","); 
+  let myNewQuantity;
+  let newSubtotal = parseFloat(mySubtotal); 
+  if(indicator === "+"){
+    document.getElementById(`remove-btn[${index}]`).disabled = false;
+    myNewQuantity = parseInt(quantityOutput.innerText) + 1; 
+    newSubtotal = parseFloat(mySubtotal) + parseInt(costsArray[index]);
+  } else{
+    document.getElementById(`remove-btn[${index}]`).disabled = false;
+    if(parseInt(quantityOutput.innerText) > 0){
       document.getElementById(`remove-btn[${index}]`).disabled = false;
-      myNewQuantity = parseInt(quantityOutput.innerText) + 1; 
-      newSubtotal = parseFloat(mySubtotal) + parseInt(costsArray[index]);
+    myNewQuantity = parseInt(quantityOutput.innerText) - 1; 
+    console.log("My new quantity is " + myNewQuantity); 
+    newSubtotal = parseFloat(mySubtotal) - parseInt(costsArray[index]);
     } else{
-      document.getElementById(`remove-btn[${index}]`).disabled = false;
-      if(parseInt(quantityOutput.innerText) > 0){
-        document.getElementById(`remove-btn[${index}]`).disabled = false;
-      myNewQuantity = parseInt(quantityOutput.innerText) - 1; 
-      console.log("My new quantity is " + myNewQuantity); 
-      newSubtotal = parseFloat(mySubtotal) - parseInt(costsArray[index]);
-      } else{
-          myNewQuantity = 0; 
-          document.getElementById(`remove-btn[${index}]`).disabled = true;
-      }
+        myNewQuantity = 0; 
+        document.getElementById(`remove-btn[${index}]`).disabled = true;
     }
-
-    quantitiesArray[index] = toString(myNewQuantity); 
-    if(myNewQuantity == 1){
-      quantityOutput.innerText = `${myNewQuantity} Item`; 
-    } else if(myNewQuantity !== undefined){
-      quantityOutput.innerText = `${myNewQuantity} Items`; 
-    } else{
-      //myNewQuantity = 0; 
-      quantityOutput.innerText = `${myNewQuantity} Items`; 
-    }
-    console.log(quantityOutput);
-
-    console.log("My cost is " + costsArray[index]); 
-    document.getElementById("myTotal").value = newSubtotal; 
-
-    const subtotalContainer = document.getElementById("subtotalContainer");
-    subtotalContainer.textContent = `Subtotal: \$${newSubtotal.toFixed(2)}`; 
-    const taxContainer = document.getElementById("taxContainer");
-    taxContainer.textContent = `Tax (7%): \$${(newSubtotal * 0.07).toFixed(2)}`;
-
-    updateTotals(newSubtotal); 
-    
-
-    //NEED TO LOOK AT THESE FUNCTIONS!
-
-    //updateCartDisplay();
-    //updateTotals(newSubtotal);
-    //loadCart();
-}
-
-function updateCustomTip() {
-    const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
-    document.getElementById('tipAmount').textContent = customTip.toFixed(2);
-    const subtotal = document.getElementById("myTotal").value;
-    updateTotals(subtotal);
-}
-
-// Credit card input formatting
-document.addEventListener('DOMContentLoaded', function() {
-    const phoneInput = document.getElementById('phoneInput');
-    if (phoneInput) {
-        phoneInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 0) {
-                if (value.length <= 3) {
-                    value = `(${value}`;
-                } else if (value.length <= 6) {
-                    value = `(${value.slice(0,3)}) ${value.slice(3)}`;
-                } else {
-                    value = `(${value.slice(0,3)}) ${value.slice(3,6)}-${value.slice(6,10)}`;
-                }
-            }
-            e.target.value = value;
-        });
-    }
-    
-    const creditCardInput = document.getElementById('creditCardInput');
-    if (creditCardInput) {
-        creditCardInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            let formattedValue = '';
-            for (let i = 0; i < value.length; i++) {
-                if (i > 0 && i % 4 === 0) {
-                    formattedValue += ' ';
-                }
-                formattedValue += value[i];
-            }
-            e.target.value = formattedValue;
-        });
-    }
-
-    // Expiration date formatting
-    const expDateInput = document.getElementById('expdateInput');
-    if (expDateInput) {
-        expDateInput.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0,2) + '/' + value.slice(2);
-            }
-            e.target.value = value;
-        });
-    }
-});
-
-
-function validatePayment(event) {
-  event.preventDefault();
-  const firstNameInput = document.getElementById("firstNameInput");
-  const lastNameInput = document.getElementById("lastNameInput");
-  const creditCardInput = document.getElementById("creditCardInput");
-  const expdateInput = document.getElementById("expdateInput");
-  const securityCodeInput = document.getElementById("securityCodeInput");
-  let isValid = true;
-
-  // Remove existing error messages
-  const existingErrors = document.querySelectorAll('.error-message');
-  existingErrors.forEach(error => error.remove());
-
-  if (!firstNameInput.value.trim()) {
-    showError(firstNameInput, "Please enter your first name");
-    isValid = false;
-  } else {
-    hideError(firstNameInput);
   }
 
-  if (!lastNameInput.value.trim()) {
-    showError(lastNameInput, "Please enter your last name");
-    isValid = false;
-  } else {
-    hideError(lastNameInput);
+  quantitiesArray[index] = toString(myNewQuantity); 
+  if(myNewQuantity == 1){
+    quantityOutput.innerText = `${myNewQuantity} Item`; 
+  } else if(myNewQuantity !== undefined){
+    quantityOutput.innerText = `${myNewQuantity} Items`; 
+  } else{
+    //myNewQuantity = 0; 
+    quantityOutput.innerText = `${myNewQuantity} Items`; 
   }
+  console.log(quantityOutput);
 
-  if (!phoneInput.value.trim()) {
-    showError(phoneInput, "Please enter your phone number");
-    isValid = false;
-  } else {
-    hideError(phoneInput);
-  }
+  console.log("My cost is " + costsArray[index]); 
+  document.getElementById("myTotal").value = newSubtotal; 
 
-  if (!creditCardInput.value.trim()) {
-    showError(creditCardInput, "Please enter your card number");
-    isValid = false;
-  } else {
-    hideError(creditCardInput);
-  }
+  const subtotalContainer = document.getElementById("subtotalContainer");
+  subtotalContainer.textContent = `Subtotal: \$${newSubtotal.toFixed(2)}`; 
+  const taxContainer = document.getElementById("taxContainer");
+  taxContainer.textContent = `Tax (7%): \$${(newSubtotal * 0.07).toFixed(2)}`;
 
-  if (!expdateInput.value.trim()) {
-    showError(expdateInput, "Please enter expiration date");
-    isValid = false;
-  } else {
-    hideError(expdateInput);
-  }
-
-  if (!securityCodeInput.value.trim()) {
-    showError(securityCodeInput, "Please enter security code");
-    isValid = false;
-  } else {
-    hideError(securityCodeInput);
-  }
-  if (isValid) {
-    //localStorage.removeItem('cart');
-    window.location.href = '/order/confirmation';
-    /*fetch("/order/confirmation", {
-      method:"POST",
-      headers:{
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({message: "Order sent successfully"}) 
-    })
-    .then((response) => response.json())
-    .catch((error) => console.log(error)); */
-  }
-  //return false;
-}
-
-function addToQuantity(dishName, event){
-  event.preventDefault(); 
-  let id = dishName + "-input"; 
-  let input = document.getElementById(id); 
-  let value = parseInt(input.value); 
-  value++;
-  input.value = value;
+  updateTotals(newSubtotal); 
   
-}
- /* console.log("Function is running"); 
-  let value = parseInt(document.getElementById("input").value); 
-  value++; 
-  document.getElementById("input").value = value; */
 
-function subtractToQuantity(dishName, event){
-  event.preventDefault(); 
-  let id = dishName + "-input"; 
-  let input = document.getElementById(id); 
-  let value = parseInt(input.value); 
-  if(value > 0){
-      value --;
-  }
-  input.value = value; 
-}
+  //NEED TO LOOK AT THESE FUNCTIONS!
 
-function handleQuantityInputs(name, section){
-  const checkbox = document.getElementById(name); 
-  const container = document.getElementById(section); 
-  console.log(container); 
-  let input; 
-  const index = parseInt(name.substring(name.length - 2, name.length -1)); 
-  let inputId = `quantity[${index}]`;
-      if(checkbox.checked){
-          //console.log("My checkbox is checked"); 
-          input = document.createElement("div");
-          //input.type="number"; 
-          //input.min = 0; 
-          let addButton = document.createElement("button");
-          addButton.innerHTML = "Add Item"; 
-          addButton.classList.add("menu-control-btn"); 
-          addButton.classList.add("menu-control-btn:hover"); 
-          addButton.style.marginRight = "15px"; 
-          //addButton.onclick = `addToQuantity(${checkbox.value}, ${event})`; 
-          addButton.addEventListener("click", (event) =>{
-            addToQuantity(checkbox.value, event); 
-          });
-          input.appendChild(addButton); 
-          //input.appendChild(addButton); 
-
-          let quantInput = document.createElement("input");
-          quantInput.type = "number";
-          quantInput.min = 0; 
-          quantInput.value = "0"; 
-          quantInput.id=`${checkbox.value}-input`;
-          quantInput.name = `quantity[${index}]`; 
-          quantInput.classList.add("quantity-menu"); 
-          input.appendChild(quantInput); 
-
-          let subtractButton = document.createElement("button");
-          subtractButton.innerHTML = "Remove Item"; 
-          subtractButton.classList.add("menu-control-btn");
-          subtractButton.classList.add("menu-control-btn:hover"); 
-          subtractButton.style.marginLeft = "15px"; 
-          subtractButton.addEventListener("click", (event) =>{
-            subtractToQuantity(checkbox.value, event); 
-          })
-          //subtractButton.onclick = 
-            //subtractToQuantity(checkbox.value, event); 
-          input.appendChild(subtractButton); 
-          
-          //const index = parseInt(name.substring(name.length - 2, name.length -1)); 
-          input.name = inputId;  
-          input.id = inputId;
-          console.log(`My container is`); 
-          console.log();
-          console.log(input); 
-          
-          container.appendChild(input); 
-      } else{
-          let input = document.getElementById(inputId); 
-          if(input){
-              input.remove(); 
-          }
-      }
-  
-}
-
-function removeFromCart(index) {
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.splice(index, 1);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    loadCart();
-}
-
-function loadCart() {
-    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const cartDiv = document.getElementById('cart-items');
-    let subtotal = 0;
-
-    if (!cartDiv) return;
-    cartDiv.innerHTML = '';
-
-    cartItems.forEach((item, index) => {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'cart-item';
-        itemDiv.innerHTML = `
-            <div class="cart-item-details">
-                <h3>${item.name}</h3>
-                <p>$${item.price}</p>
-            </div>
-            <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
-        `;
-        cartDiv.appendChild(itemDiv);
-        subtotal += item.price;
-    });
-
-    updateTotals(subtotal);
-}
-
-function updateTotals(subtotal) {
-    const subtotalElem = document.getElementById('subtotal');
-    const taxElem = document.getElementById('tax');
-    const tipElem = document.getElementById('tipAmount');
-    const finalTotalElem = document.getElementById('finalTotal');
-
-    if (!subtotalElem) return;
-
-    const tax = subtotal * 0.07;
-    const currentTip = parseFloat(tipElem.textContent) || 0;
-    const final = subtotal + tax + currentTip;
-
-    subtotalElem.textContent = subtotal.toFixed(2);
-    taxElem.textContent = tax.toFixed(2);
-    finalTotalElem.textContent = final.toFixed(2);
-
-    localStorage.setItem('finalTotal', final.toFixed(2));
-}
-
-function selectTip(percentage) {
-    const buttons = document.querySelectorAll('.tip-btn');
-    const customTipDiv = document.querySelector('.custom-tip');
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-
-    buttons.forEach(btn => btn.classList.remove('selected'));
-
-    if (percentage === 'custom') {
-        customTipDiv.style.display = 'block';
-        buttons[6].classList.add('selected');
-        const customInput = document.getElementById('customTipInput');
-        if (customInput.value) {
-            updateCustomTip();
-        }
-    } else {
-        customTipDiv.style.display = 'none';
-        // Find button index based on order in HTML
-        const percentageMap = {0: 0, 5: 1, 10: 2, 20: 3, 25: 4, 30: 5};
-        buttons[percentageMap[percentage]].classList.add('selected');
-        const tipAmount = (subtotal * (percentage/100));
-        document.getElementById('tipAmount').textContent = tipAmount.toFixed(2);
-        updateTotals(subtotal);
-    }
+  //updateCartDisplay();
+  //updateTotals(newSubtotal);
+  //loadCart();
 }
 
 function removeCartItem(index) {
@@ -1610,10 +1385,10 @@ function removeCartItem(index) {
 }
 
 function updateCustomTip() {
-    const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
-    document.getElementById('tipAmount').textContent = customTip.toFixed(2);
-    const subtotal = parseFloat(document.getElementById('subtotal').textContent);
-    updateTotals(subtotal);
+  const customTip = parseFloat(document.getElementById('customTipInput').value) || 0;
+  document.getElementById('tipAmount').textContent = customTip.toFixed(2);
+  const subtotal = document.getElementById("myTotal").value;
+  updateTotals(subtotal);
 }
 
 // Credit card input formatting
@@ -1721,10 +1496,97 @@ function validatePayment(event) {
   }
 
   if (isValid) {
-    localStorage.removeItem('cart');
-    window.location.href = 'orderconfirmation.html';
+    /*localStorage.removeItem('cart');*/
+    window.location.href = '/order/confirmation';
   }
-  return false;
+  //return false;
+}
+
+function addToQuantity(dishName, event){
+  event.preventDefault(); 
+  let id = dishName + "-input"; 
+  let input = document.getElementById(id); 
+  let value = parseInt(input.value); 
+  value++;
+  input.value = value;
+  
+}
+ /* console.log("Function is running"); 
+  let value = parseInt(document.getElementById("input").value); 
+  value++; 
+  document.getElementById("input").value = value; */
+
+function subtractToQuantity(dishName, event){
+  event.preventDefault(); 
+  let id = dishName + "-input"; 
+  let input = document.getElementById(id); 
+  let value = parseInt(input.value); 
+  if(value > 0){
+      value --;
+  }
+  input.value = value; 
+}
+
+function handleQuantityInputs(name, section){
+  const checkbox = document.getElementById(name); 
+  const container = document.getElementById(section); 
+  console.log(container); 
+  let input; 
+  const index = parseInt(name.substring(name.length - 2, name.length -1)); 
+  let inputId = `quantity[${index}]`;
+      if(checkbox.checked){
+          //console.log("My checkbox is checked"); 
+          input = document.createElement("div");
+          //input.type="number"; 
+          //input.min = 0; 
+          let addButton = document.createElement("button");
+          addButton.innerHTML = "Add Item"; 
+          addButton.classList.add("menu-control-btn"); 
+          addButton.classList.add("menu-control-btn:hover"); 
+          addButton.style.marginRight = "15px"; 
+          //addButton.onclick = `addToQuantity(${checkbox.value}, ${event})`; 
+          addButton.addEventListener("click", (event) =>{
+            addToQuantity(checkbox.value, event); 
+          });
+          input.appendChild(addButton); 
+          //input.appendChild(addButton); 
+
+          let quantInput = document.createElement("input");
+          quantInput.type = "number";
+          quantInput.min = 0; 
+          quantInput.value = "0"; 
+          quantInput.id=`${checkbox.value}-input`;
+          quantInput.name = `quantity[${index}]`; 
+          quantInput.classList.add("quantity-menu"); 
+          input.appendChild(quantInput); 
+
+          let subtractButton = document.createElement("button");
+          subtractButton.innerHTML = "Remove Item"; 
+          subtractButton.classList.add("menu-control-btn");
+          subtractButton.classList.add("menu-control-btn:hover"); 
+          subtractButton.style.marginLeft = "15px"; 
+          subtractButton.addEventListener("click", (event) =>{
+            subtractToQuantity(checkbox.value, event); 
+          })
+          //subtractButton.onclick = 
+            //subtractToQuantity(checkbox.value, event); 
+          input.appendChild(subtractButton); 
+          
+          //const index = parseInt(name.substring(name.length - 2, name.length -1)); 
+          input.name = inputId;  
+          input.id = inputId;
+          console.log(`My container is`); 
+          console.log();
+          console.log(input); 
+          
+          container.appendChild(input); 
+      } else{
+          let input = document.getElementById(inputId); 
+          if(input){
+              input.remove(); 
+          }
+      }
+  
 }
 
 /*document.getElementById("submitInquiry").addEventListener("click", ()=>{
