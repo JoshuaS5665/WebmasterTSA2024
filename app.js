@@ -175,15 +175,19 @@ app.get("/order/confirmation", (req, res) =>{
 }); 
 
 // Private Room Reservation routes
-app.get("/reservation/private", (req, res) => {
+app.get("/reservations", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/reservationstart.html"));
 });
 
-app.get("/reservation/picktime.html", (req, res) => {
+app.get("/reservations.html", (req, res) =>{
+  res.redirect(301, "/reservations"); 
+});
+
+app.get("/reservations/times", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/picktime.html"));
 });
 
-app.get("/reservation/confirmation.html", (req, res) => {
+app.get("/reservations/confirmation", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/confirmation.html"));
 });
 

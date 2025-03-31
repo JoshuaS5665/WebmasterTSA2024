@@ -789,7 +789,7 @@ function validatePrivateReservation() {
     localStorage.setItem("privateSelectedDate", dateInput.value);
     localStorage.setItem("privateOccasion", occasionType.value);
     localStorage.setItem("privateSpecialRequests", specialRequests.value);
-    window.location.href = "picktime.html";
+    window.location.href = "/reservations/times";
   }
   return false;
 }
@@ -956,7 +956,7 @@ function validatePrivateTimeSelection(event) {
   if (isValid) {
     localStorage.setItem("privateSelectedTime", timeSelect.value);
     localStorage.setItem("privateDuration", durationHidden.value);
-    window.location.href = "confirmation.html";
+    window.location.href = "/reservations/confirmation";
   }
   return false;
 }
