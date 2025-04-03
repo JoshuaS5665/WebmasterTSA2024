@@ -499,7 +499,7 @@ function setMinimumDate() {
   for (let i = 0; i < 30; i++) {
     // Create a new date object for each day to avoid reference issues
     const date = new Date(today);
-    date.setDate(today.getDate() + i);
+    date.setDate(today.getDate() + 14 + i);
 
     // Skip Mondays since restaurant is closed
     if (date.getDay() === 1) continue;
@@ -840,10 +840,10 @@ function initializePrivateTimeSlots() {
   const selectedDay = new Date(date).getDay();
 
   // Closed on Mondays (day 1)
-  if (selectedDay === 1) {
-    select.innerHTML = '<option value="">Closed on Mondays</option>';
-    return;
-  }
+  //if (selectedDay === 1) {
+    //select.innerHTML = '<option value="">Closed on Mondays</option>';
+    //return;
+  //}
 
   // Check existing reservations for this date
   checkExistingReservations(date).then(reservedTimes => {
