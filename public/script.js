@@ -1141,6 +1141,8 @@ function finalizePrivateReservation(event) {
       </div>
     `;
 
+   
+
     // Store reservation data in a more structured way
     const reservationData = {
       name: `${firstName} ${lastName}`,
@@ -1154,6 +1156,27 @@ function finalizePrivateReservation(event) {
       confirmationNumber: confirmationNumber,
       timestamp: new Date().toISOString()
     };
+
+    fetch("/", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(reservationData),
+    })
+    .then((response) =>{
+      response.json(); 
+    })
+    .then((data) =>{
+      if(data.success === true){
+        console.log("Success!"); 
+      } else{
+        console.log("Data not successful?"); 
+      }
+    })
+    .catch((error) =>{
+      console.log("ERROR!"); 
+    })
 
     // Store reservation history
     let reservationHistory = JSON.parse(localStorage.getItem("reservationHistory")) || [];

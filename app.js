@@ -2,6 +2,8 @@ const express = require("express");
 //const nodemon = require("nodemon"); 
 const mongoose = require("mongoose"); 
 const menuItem = require("./menuItem.js"); 
+const nodemailer = require("nodemailer");
+
 
 //const serverless = require("serverless-http");
 const app = express();
@@ -27,6 +29,7 @@ mongoose.connect(dbURI, {useNewURLParser:true, useUnifiedTopology:true})
 
 
 app.use(express.static("public"));
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 //app.use(morgan("dev"));
 
@@ -189,12 +192,47 @@ app.get("/reservations/times", (req, res) => {
 
 app.get("/reservations/confirmation", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/confirmation.html"));
+
 });
 
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));
 });
+
+app.post("/", (req, res) =>{
+  const {name, email, phone, date, time} = req.body; 
+
+       const html = `<h1>HELLO ${name}</h1>
+            <p>This is your email: ${email}</p>
+            <p>You have a reservation at Flourish on ${date} at time ${time}.!</p>`;
+        const appPassword = "agwc cxbq rehc hhsg"; 
+        const transporter = nodemailer.createTransport({
+            service:"gmail",
+            auth:{
+            user:"flourish.veg.dining@gmail.com",
+            pass:appPassword
+            }
+    
+        });
+    
+        const mailOptions = {
+            from:"jshah266507@gmail.com",
+            to:email,
+            subject:"Nodemailer TEST",
+            html:html
+        }; 
+    
+        transporter.sendMail(mailOptions, (error, info) =>{
+        if(error){
+            console.log(error);
+            res.status(500).json({message:"Error in sending message"}); 
+        } else{
+            console.log(info.response); 
+            res.status(200).json({message:"Message was sent"}); 
+        }
+        });
+})
 
 // Handle 404
 app.use((req, res) => {
