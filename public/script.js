@@ -1142,14 +1142,17 @@ function finalizePrivateReservation(event) {
     `;
 
     let limiter; 
-    if(partySize >= 13){
-      limiter = [12, 19];
-    } else if(partySize >= 9){
-      limiter = [8, 13];
-    } else if(partySize >= 5){
-      limiter = [4, 9]; 
+    if(parseInt(partySize.slice(-2)) >= 13){
+      limiter = [12, 19, 100];
+    } else if(parseInt(partySize.slice(-2)) >= 10){
+      limiter = [8, 13, 80];
+    } else if(parseInt(partySize.slice(-1)) >= 9){
+      limiter = [8, 13, 80]; 
+    }
+    else if(parseInt(partySize.slice(-1)) >= 5){
+      limiter = [4, 9, 60]; 
     } else{
-      limiter = [1, 5]; 
+      limiter = [1, 5, 30]; 
     }
 
    

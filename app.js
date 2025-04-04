@@ -248,12 +248,16 @@ app.post("/", (req, res) =>{
 
         <ul><h2>Please DO NOT:</h2>
             <li>Bring disposable food or beverage items. Flourish is proud to be eco-conscious.</li>
-            <li>Forget to call us if you are running late or need to cancel. (Up to <b>4</b> days before your reservation day, you may cancel for free and receive a full refund. After that, you will not be refunded).</li>
+            <li>Forget to call us if you are running late or need to cancel. (Up to <b>4</b> days before your reservation day, you may cancel for free. After that, based on your individual guest count, you will be charged a flat cancellation fee of \$${limiter[2]}).
+            In the event that the host (you) or a representative fails to show up for the confirmed reservation, the cancellation fee will apply as outlined. </li>
             <li>Bring a guest count outside the range you booked. We allow a grace of ±1 guest.
                 For your reservation in particular, please ensure that between ${limiter[0]} and ${limiter[1]} guests (including yourself) are present. 
             </li>
         </ul>
-
+        <br>
+        <p>If you filled out the "special requests" section of our form, we want to inform you that we have received this information
+        and will be in contact with you to clarify any details to customize your time with us.</p>
+        <br>
         <p>For any questions or concerns, feel free to respond to this email, message us using the aforementioned contact page, or call us directly. 
             We cannot wait to provide a memorable experience for you at Flourish. 
         </p>
