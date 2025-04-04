@@ -201,11 +201,66 @@ app.get("/sources", (req, res) => {
 });
 
 app.post("/", (req, res) =>{
-  const {name, email, phone, date, time} = req.body; 
+  const {name, email, phone, date, time, partySize, confirmationNo, limiter} = req.body; 
 
-       const html = `<h1>HELLO ${name}</h1>
-            <p>This is your email: ${email}</p>
-            <p>You have a reservation at Flourish on ${date} at time ${time}.!</p>`;
+       const html = `<body>
+
+    <style>
+            body {
+            font-family: Bodoni Moda, serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            color: #333;
+        }
+        img {
+            max-width: 150px;
+            display: block;
+            margin-bottom: 20px;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #32372b;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li{
+            margin:15px; 
+        }
+    </style>
+    <p>Hi <strong>${name}</strong>,</p><br>
+        <p>According to our server, you booked a reservation at Flourish for <strong>${partySize}</strong> people on <strong>${date}</strong> 
+            at <strong>${time}.</strong>
+            Thanks for reserving a table with us at Flourish! We can’t wait to welcome you.</p>
+        
+            <br>
+
+        <p>To make your visit as seamless and enjoyable as possible, please keep the following in mind:</p> <br>
+
+        <ul><h2>Please:</h2>
+            <li>Arrive 10-15 minutes before your scheduled reservation to receive access to the room ahead of time.</li>
+            <li>Let us know about any dietary concerns for anyone in your party. (Feel free to give us a call or head to the contact page). <a href="/contact">Contact Link</a></li>
+            <li>Bring your ID as well as this reservation's confirmation number (${confirmationNo}).</li>
+            <li>Enjoy your time in our exclusive private room -- we are here to make this occasion special for you!</li>
+        </ul>
+
+        <ul><h2>Please DO NOT:</h2>
+            <li>Bring disposable food or beverage items. Flourish is proud to be eco-conscious.</li>
+            <li>Forget to call us if you are running late or need to cancel. (Up to <b>4</b> days before your reservation day, you may cancel for free and receive a full refund. After that, you will not be refunded).</li>
+            <li>Bring a guest count outside the range you booked. We allow a grace of ±1 guest.
+                For your reservation in particular, please ensure that between ${limiter[0]} and ${limiter[1]} guests (including yourself) are present. 
+            </li>
+        </ul>
+
+        <p>For any questions or concerns, feel free to respond to this email, message us using the aforementioned contact page, or call us directly. 
+            We cannot wait to provide a memorable experience for you at Flourish. 
+        </p>
+        <p>Sincerely,<br>
+             The Flourish Team
+        </p>
+</body>`;
         const appPassword = "agwc cxbq rehc hhsg"; 
         const transporter = nodemailer.createTransport({
             service:"gmail",
@@ -219,7 +274,7 @@ app.post("/", (req, res) =>{
         const mailOptions = {
             from:"flourish.veg.dining@gmail.com",
             to:email,
-            subject:"Nodemailer TEST",
+            subject:"Your Reservation at Flourish -- You are Booked!",
             html:html
         }; 
     
@@ -232,6 +287,10 @@ app.post("/", (req, res) =>{
             res.status(200).json({message:"Message was sent"}); 
         }
         });
+})
+
+app.get("/emails", (req, res) =>{
+  res.sendFile(path.join(__dirname, "/email-template.html")); 
 })
 
 // Handle 404

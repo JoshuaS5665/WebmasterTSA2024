@@ -1141,6 +1141,17 @@ function finalizePrivateReservation(event) {
       </div>
     `;
 
+    let limiter; 
+    if(partySize >= 13){
+      limiter = [12, 19];
+    } else if(partySize >= 9){
+      limiter = [8, 13];
+    } else if(partySize >= 5){
+      limiter = [4, 9]; 
+    } else{
+      limiter = [1, 5]; 
+    }
+
    
 
     // Store reservation data in a more structured way
@@ -1154,6 +1165,7 @@ function finalizePrivateReservation(event) {
       occasion: localStorage.getItem("privateOccasion") || "Not specified",
       specialRequests: localStorage.getItem("privateSpecialRequests") || "",
       confirmationNumber: confirmationNumber,
+      limiter:limiter,
       timestamp: new Date().toISOString()
     };
 
