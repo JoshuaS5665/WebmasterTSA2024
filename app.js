@@ -217,7 +217,7 @@ app.post("/", (req, res) =>{
         });
     
         const mailOptions = {
-            from:"jshah266507@gmail.com",
+            from:"flourish.veg.dining@gmail.com",
             to:email,
             subject:"Nodemailer TEST",
             html:html
