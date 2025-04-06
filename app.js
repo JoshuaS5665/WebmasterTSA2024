@@ -6,6 +6,7 @@ const menuItem = require("./menuItem.js");
 //const serverless = require("serverless-http");
 const app = express();
 const dbURI = "mongodb+srv://jshah266507:f10URi$hh!@cluster0.sdpbs.mongodb.net/";
+const dbURI = "mongodb+srv://ashtray272727:flourish@cluster0.sdpbs.mongodb.net/";
 
 const PORT = 80;
 const path = require("path");
