@@ -1661,3 +1661,18 @@ function clearAllReservations() {
     console.log("All reservations cleared from localStorage");
   }
 }
+
+function toggleShirtColor(imageId, originalSrc, coloredSrc) {
+  console.log("functionisrunning");
+    const image = document.getElementById(imageId);
+  if (!image) return;
+  // Store the current src to determine which version is showing
+  const currentSrc = image.src;
+  
+  // Toggle between original and colored versions
+  if (currentSrc.includes(originalSrc)) {
+    image.src = coloredSrc;
+  } else {
+    image.src = originalSrc;
+  }
+}
