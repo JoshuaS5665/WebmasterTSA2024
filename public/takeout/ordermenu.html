@@ -63,7 +63,7 @@
         <h3 style="color: #32372b;">Your Cart:</h3>
         <div id="current-cart" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
     </div>-->
-    <form method="post" action="/order/payment">
+    <form method="post" action="/order/payment" onsubmit="return validateOnlineOrder()">
     <div class="menu-section">
         <h2 style="font-family: Rye, serif; color: #32372b;">Starters</h2>
         <div class="menu-item" id="section1">
@@ -204,7 +204,7 @@
 
      <div class="button-group" style="margin: 30px 0;">
         <!--<a href="paymentform.html">Proceed to Payment</a>-->
-        <button type="submit">Proceed to Payment</button>
+        <button type="submit" id="menu-submit">Proceed to Payment</button>
     </div>
     </form>
     <div id="footer"></div>

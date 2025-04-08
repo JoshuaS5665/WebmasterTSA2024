@@ -1502,6 +1502,10 @@ function validatePayment(event) {
   //return false;
 }
 
+const totalSelected = {
+  counter: 0,
+};
+
 function addToQuantity(dishName, event){
   event.preventDefault(); 
   let id = dishName + "-input"; 
@@ -1509,6 +1513,7 @@ function addToQuantity(dishName, event){
   let value = parseInt(input.value); 
   value++;
   input.value = value;
+  totalSelected.counter++; 
   
 }
  /* console.log("Function is running"); 
@@ -1523,6 +1528,7 @@ function subtractToQuantity(dishName, event){
   let value = parseInt(input.value); 
   if(value > 0){
       value --;
+      totalSelected.counter--; 
   }
   input.value = value; 
 }
@@ -1675,4 +1681,15 @@ function toggleShirtColor(imageId, originalSrc, coloredSrc) {
   } else {
     image.src = originalSrc;
   }
+}
+
+function validateOnlineOrder(){
+  const totalCounter = totalSelected.counter; 
+
+  if(totalCounter == 0){
+    showError(document.getElementById("menu-submit"), "You must select a food item to proceed!"); 
+    return false; 
+  }
+
+  return true; 
 }

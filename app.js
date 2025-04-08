@@ -135,9 +135,13 @@ app.post("/order/payment", (req, res) =>{
 
   const menu = req.body.menu;
   const quantity = req.body.quantity; 
+  //console.log(menu.length); 
   //let orderProperties = {}; 
   let costArray = []; 
   let total = 0; 
+  //if(!menu){
+    //return res.status(400).json({message: "Invalid order: You must order something!"}); 
+  //}
   const promises = menu.map((item, index) =>{
     return menuItem.findOne({item:item})
     .then((menuItem) =>{
@@ -195,6 +199,10 @@ app.get("/reservations/confirmation", (req, res) => {
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));
+});
+
+app.get("/merch", (req, res) =>{
+  res.sendFile(path.join(__dirname, "/public/merch/merch.html")); 
 });
 
 // Handle 404
