@@ -205,6 +205,19 @@ app.get("/merch", (req, res) =>{
   res.sendFile(path.join(__dirname, "/public/merch/merch.html")); 
 });
 
+app.post("/merch/payment", (req, res) =>{
+  const merch = req.body.merch; 
+  const merchQuantities = req.body.merchQuantity; 
+  //res.send("My merch is " + merch + " and my quantities are " + merchQuantities);
+  for(let i =0; i<merch.length; i++){
+    console.log(`My merch is ${merch[i]} and my quantity is ${merchQuantities[i]}`); 
+  } 
+});
+
+app.get("/merch/payment", (req, res) =>{
+  res.redirect(301, "/merch"); 
+});
+
 // Handle 404
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/public/404/404.html"));

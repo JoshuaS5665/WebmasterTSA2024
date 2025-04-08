@@ -117,6 +117,19 @@
         grid-template-columns: 1fr;
       }
     }
+
+    table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th, td {
+    border: 1px solid #aaa;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
   </style>
 </head>
 <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'>
@@ -125,11 +138,64 @@
   <h1 class="great-vibes-regular" style="font-size: 50px; text-align: center; color: #32372b; margin-top: 5vh;">
     Merchandise
   </h1>
+<table>
+  <thead>
+    <tr>
+      <th>Size</th>
+      <th>Chest (in Inches)</th>
+      <th>T-Shirt Sleeve (in Inches)</th>
+      <th>Sweater Sleeve (in Inches)</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td>XS</td>
+      <td>31-34</td>
+      <td>14-15</td>
+      <td>32-33</td>
+    </tr>
+    <tr>
+      <td>S</td>
+      <td>34-37</td>
+      <td>15-16</td>
+      <td>33-34</td>
+    </tr>
+    <tr>
+      <td>M</td>
+      <td>38-41</td>
+      <td>16-17</td>
+      <td>34-35</td>
+    </tr>
+    <tr>
+      <td>L</td>
+      <td>42-45</td>
+      <td>17-18</td>
+      <td>35-36</td>
+    </tr>
+    <tr>
+      <td>XL</td>
+      <td>46-49</td>
+      <td>18-19</td>
+      <td>36-37</td>
+    </tr>
+    <tr>
+      <td>XXL</td>
+      <td>50-53</td>
+      <td>19-20</td>
+      <td>37-38</td>
+    </tr>
+  </tbody>
+</table>
+<form method="post" action="/merch/payment">
 
   <div class="merch-container">
     <!-- T-Shirt Card -->
-    <div class="merch-card">
+    <div class="merch-card" id="section1">
       <img src="../images/merchimages/blackshirtflourish.png" alt="Flourish T-Shirt" class="merch-image" id="tshirt-image">
+      <input type="hidden" id="merch[0]" name="merch[0]" value="Black Flourish T-Shirt">
+      <input type="hidden" id="merch[1]" name="merch[1]" value="White Flourish T-Shirt">
       <div class="merch-details">
         <div>
           <h2 class="merch-name">Flourish T-Shirt</h2>
@@ -139,12 +205,20 @@
             <div class="color-option" style="background-color: #FFFFFF; border: 1px solid #000;" onclick="toggleShirtColor('tshirt-image', '../images/merchimages/whiteshirtflourish.png')"></div>
           </div>
         </div>
-        <button class="add-to-cart">Add to Cart</button>
+        <div id="section1-black" class="merchColors">
+          <h4>Black:</h4><br>
+        <button class="add-to-cart" onclick="addToQuantity('section1-black', event)">Add Item</button><input type="number" min="0" value="0" id="section1-black-input" name="merchQuantity[0]" class="quantity-menu"></input><button class="add-to-cart" onclick="subtractToQuantity('section1-black', event)">Remove Item</button>
+        </div>
+        <div id="section1-white" class="merchColors">
+          <h4>White:</h4><br>
+        <button class="add-to-cart" onclick="addToQuantity('section1-white', event)">Add Item</button><input type="number" min="0" value="0" id="section1-white-input" name="merchQuantity[1]" class="quantity-menu"></input><button class="add-to-cart" onclick="subtractToQuantity('section1-white', event)">Remove Item</button>
+        </div>
+        
       </div>
     </div>
 
     <!-- Hoodie Card -->
-    <div class="merch-card">
+    <div class="merch-card" id="section2">
       <img src="../images/merchimages/blacksweatshirtflourish.png" alt="Flourish Hoodie" class="merch-image" id="hoodie-image">
       <div class="merch-details">
         <div>
@@ -155,12 +229,29 @@
             <div class="color-option" style="background-color: #FFFFFF; border: 1px solid #000;" onclick="toggleShirtColor('hoodie-image', '../images/merchimages/whitesweatshirtflourish.png')"></div>
           </div>
         </div>
-        <button class="add-to-cart">Add to Cart</button>
+        <div id="section2-black" class="merchColors">
+          <h4>Black:</h4><br>
+        <button class="add-to-cart" onclick="addToQuantity('section2-black', event)">Add Item</button><input type="number" min="0" id="section2-black-input" value="0" class="quantity-menu"></input><button class="add-to-cart" onclick="subtractToQuantity('section2-black', event)">Remove Item</button>
+        </div>
+        <div id="section2-white" class="merchColors">
+          <h4>White:</h4><br>
+        <button class="add-to-cart" onclick="addToQuantity('section2-white', event)">Add Item</button><input type="number" min="0" id="section2-white-input" value="0" class="quantity-menu"></input><button class="add-to-cart" onclick="subtractToQuantity('section2-white', event)">Remove Item</button>
+        </div>
       </div>
     </div>
-
+<!--
+            <div class="menu-item" id="section2">
+            <h3>Chilled Cucumber & Avocado Gazpacho</h3><input type="checkbox" name="menu[1]" id="menu[1]" value="Chilled Cucumber & Avocado Gazpacho" onclick="handleQuantityInputs('menu[1]', 'section2')">
+            <p>Creamy cucumber and avocado chilled soup, garnished with a sprinkle of
+                smoked paprika.</p>
+            <p class="price">$13</p>
+            <!--<button type="button" onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">-</button>
+            -->
+            
+            <!--<button class="add-to-cart" onclick="addToCart('Mushroom Risotto', 22)">Add to Cart</button>-->
+         <div></div>-->
     <!-- Hat Card -->
-    <div class="merch-card">
+    <div class="merch-card" id="section3">
       <img src="../images/merchimages/blackhatflourish.png" alt="Flourish Hat" class="merch-image" id="hat-image">
       <div class="merch-details">
         <div>
@@ -176,7 +267,7 @@
     </div>
 
     <!-- Bottle Card -->
-    <div class="merch-card">
+    <div class="merch-card" id="section4">
       <img src="../images/merchimages/waterbottleflourish.png" alt="Flourish Water Bottle" class="merch-image" id="bottle-image">
       <div class="merch-details">
         <div>
@@ -187,6 +278,10 @@
       </div>
     </div>
   </div>
+  <div class="button-group" style="margin: 30px 0;">
+    <button type="submit">Proceed to Payment</button>
+  </div>
+</form>
 
   <div id="footer"></div>
 </body>

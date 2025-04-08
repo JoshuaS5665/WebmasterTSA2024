@@ -2009,3 +2009,9 @@ body.menu-open {
   background: #32372b;
   color: white;
 }
+
+.merchColors{
+  display:flex;
+  align-items:center; 
+  justify-content:space-between; 
+}

@@ -1693,3 +1693,7 @@ function validateOnlineOrder(){
 
   return true; 
 }
+
+function handleMerchQuantityInputs(){
+  
+}
