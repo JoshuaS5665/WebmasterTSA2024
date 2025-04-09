@@ -208,20 +208,58 @@ app.get("/merch", (req, res) =>{
 app.post("/merch/payment", (req, res) =>{
   const merch = req.body.merch; 
   const merchQuantities = req.body.merchQuantity; 
+  let total = 0; 
+  let merchQuantArray = []; 
+  const promises = merch.map((item, index) =>{
+    return menuItem.findOne({item:item})
+    .then((myItem) =>{
+      let cost = myItem.cost; 
+      total += parseFloat(cost * merchQuantities[index]); 
+      merchQuantArray[index] = parseInt(merchQuantities[index]); 
+    })
+    .catch((err) =>{
+      throw new Error("The merch item you requested could not be found!"); 
+    })
+  })
+
+  Promise.all(promises)
+  .then(() =>{
+    console.log(`My total is ${total}`); 
+    res.render("merchpaymentform");
+  })
+  .catch((err) =>{
+    throw new Error("Yeah, chat, this isn't working."); 
+  })
   //res.send("My merch is " + merch + " and my quantities are " + merchQuantities);
-  for(let i =0; i<merch.length; i++){
-    console.log(`My merch is ${merch[i]} and my quantity is ${merchQuantities[i]}`); 
-  } 
+
+ 
 });
 
 app.get("/merch/payment", (req, res) =>{
   res.redirect(301, "/merch"); 
 });
 
+/*app.get("/add-item", (req, res) =>{
+  const MenuItem = new menuItem({
+    item:"Flourish Water Bottle",
+    season:"All-Year",
+    type:"Merch",
+    cost:30
+});
+MenuItem.save()
+.then((result) =>{
+    res.send(result);
+})
+.catch((err) =>{
+    console.log("ERROR IN PUSHING TO DATABASE"); 
+})
+})*/
+
 // Handle 404
 app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, "/public/404/404.html"));
 });
+
 
 //app.use("/.netlify/functions/app", router);
 //module.exports.handler = serverless(app);
