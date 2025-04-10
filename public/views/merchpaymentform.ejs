@@ -4,8 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
+    <p>Hello world</p>
+    <input type="hidden" id="merchList" value="<%=items%>"></input>
+    <input type="hidden" id="quantitiesList" value="<%=quantities%>"></input>
+    <input type="hidden" id="total" value = "<%=merchTotal%>"></input>
+    <script src="../script.js"></script>
+    <script>
+
+document.addEventListener("DOMContentLoaded", () =>{
+    const merch = document.getElementById("merchList").value; 
+const quantities = document.getElementById("quantitiesList").value; 
+            handleMerchSizing(merch.split(","), quantities.split(",")); 
+            displayMerchTotal("total"); 
+        });
+</script>
     
+    <div id="merch-container">
+
+    </div>
+
 </body>
 </html>

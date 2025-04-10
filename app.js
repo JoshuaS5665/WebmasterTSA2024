@@ -207,6 +207,8 @@ app.get("/merch", (req, res) =>{
 
 app.post("/merch/payment", (req, res) =>{
   const merch = req.body.merch; 
+  //const merchArray = merch.value.split(",");  
+  console.log("My merch is " + merch); 
   const merchQuantities = req.body.merchQuantity; 
   let total = 0; 
   let merchQuantArray = []; 
@@ -225,7 +227,8 @@ app.post("/merch/payment", (req, res) =>{
   Promise.all(promises)
   .then(() =>{
     console.log(`My total is ${total}`); 
-    res.render("merchpaymentform");
+    res.render("merchpaymentform", {merchTotal: total, items: merch, quantities: merchQuantArray});
+    
   })
   .catch((err) =>{
     throw new Error("Yeah, chat, this isn't working."); 

@@ -1694,6 +1694,45 @@ function validateOnlineOrder(){
   return true; 
 }
 
-function handleMerchQuantityInputs(){
-  
+function handleMerchSizing(itemsList, quantitiesList){
+  console.log("Handle func is RUNNING"); 
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const overallContainer = document.getElementById("merch-container"); 
+  for(let i = 0; i< parseInt(itemsList.length); i++){
+    if(i < 4){
+      for(let j =0; j < parseInt(quantitiesList[i]); j++){
+        const sizingSection = document.createElement("div"); 
+        sizingSection.id = `${itemsList[i]}-sizing-${j+1}`; 
+
+        const header = document.createElement("h3"); 
+        header.innerText = `Select a Size for your ${itemsList[i]} (#${j+1})`; 
+
+        const form = document.createElement("form"); 
+
+        for(let k = 0; k<sizes.length; k++){
+          const label = document.createElement("label"); 
+          label.innerText = sizes[k]; 
+          const input = document.createElement("input"); 
+          input.type="radio"; 
+          input.name = `Sizing-${j}`;
+          input.value = `${sizes[k]}`; 
+          form.appendChild(input); 
+          form.appendChild(label); 
+        }
+        sizingSection.appendChild(header);
+        sizingSection.appendChild(form); 
+        //document.body.appendChild(sizingSection);
+        overallContainer.appendChild(sizingSection); 
+      }
+    }
+  }
+}
+
+function displayMerchTotal(element){
+  const myElement = document.getElementById(element); 
+  const total = document.createElement("p");
+
+  total.innerText = `Your total is \$${myElement.value}.`; 
+  const overallContainer = document.getElementById("merch-container");
+  overallContainer.appendChild(total); 
 }
