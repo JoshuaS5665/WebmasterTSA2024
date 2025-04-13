@@ -2015,3 +2015,18 @@ body.menu-open {
   align-items:center; 
   justify-content:space-between; 
 }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+th, td {
+  border: 1px solid #aaa;
+  padding: 8px;
+  text-align: center;
+  font-family: 'Bodoni Moda', serif;
+      font-size: 16px;
+}
+th {
+  background-color: #f2f2f2;
+}

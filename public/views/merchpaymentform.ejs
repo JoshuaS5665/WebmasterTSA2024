@@ -7,10 +7,61 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <body>
-    <p>Hello world</p>
     <input type="hidden" id="merchList" value="<%=items%>"></input>
     <input type="hidden" id="quantitiesList" value="<%=quantities%>"></input>
-    <input type="hidden" id="total" value = "<%=merchTotal%>"></input>
+    <input type="hidden" id="subtotal" value = "<%=merchTotal%>"></input>
+    <input type="hidden" id="tax" value="<%=(merchTotal * 0.07).toFixed(2)%>"></input>
+    <input type="hidden" id="total" value="<%=(merchTotal * 1.07).toFixed(2)%>"></input>
+    <table>
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Chest (in Inches)</th>
+            <th>T-Shirt Sleeve (in Inches)</th>
+            <th>Sweater Sleeve (in Inches)</th>
+      
+          </tr>
+        </thead>
+      
+        <tbody>
+          <tr>
+            <td>XS</td>
+            <td>31-34</td>
+            <td>14-15</td>
+            <td>32-33</td>
+          </tr>
+          <tr>
+            <td>S</td>
+            <td>34-37</td>
+            <td>15-16</td>
+            <td>33-34</td>
+          </tr>
+          <tr>
+            <td>M</td>
+            <td>38-41</td>
+            <td>16-17</td>
+            <td>34-35</td>
+          </tr>
+          <tr>
+            <td>L</td>
+            <td>42-45</td>
+            <td>17-18</td>
+            <td>35-36</td>
+          </tr>
+          <tr>
+            <td>XL</td>
+            <td>46-49</td>
+            <td>18-19</td>
+            <td>36-37</td>
+          </tr>
+          <tr>
+            <td>XXL</td>
+            <td>50-53</td>
+            <td>19-20</td>
+            <td>37-38</td>
+          </tr>
+        </tbody>
+      </table>
     <script src="../script.js"></script>
     <script>
 
@@ -18,7 +69,9 @@ document.addEventListener("DOMContentLoaded", () =>{
     const merch = document.getElementById("merchList").value; 
 const quantities = document.getElementById("quantitiesList").value; 
             handleMerchSizing(merch.split(","), quantities.split(",")); 
-            displayMerchTotal("total"); 
+            displayMerchTotal("subtotal");
+            displayMerchTotal("tax");
+            displayMerchTotal("total");  
         });
 </script>
     

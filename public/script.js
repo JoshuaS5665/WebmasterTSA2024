@@ -1698,6 +1698,7 @@ function handleMerchSizing(itemsList, quantitiesList){
   console.log("Handle func is RUNNING"); 
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
   const overallContainer = document.getElementById("merch-container"); 
+  let otherCounter = 0; 
   for(let i = 0; i< parseInt(itemsList.length); i++){
     if(i < 4){
       for(let j =0; j < parseInt(quantitiesList[i]); j++){
@@ -1724,15 +1725,46 @@ function handleMerchSizing(itemsList, quantitiesList){
         //document.body.appendChild(sizingSection);
         overallContainer.appendChild(sizingSection); 
       }
+    } else{
+      //let otherCounter = 0;
+      if(i == 4){
+        const header = document.createElement("h3"); 
+        header.innerText = "Your Other Items:";
+        overallContainer.appendChild(header); 
+      }
+      if(parseInt(quantitiesList[i]) != 0){
+        const otherItemHeader = document.createElement("h3");
+      otherItemHeader.innerText = `${itemsList[i]}`;
+
+      const br = document.createElement("br");
+
+      const innerParagraph = document.createElement("p");
+      innerParagraph.innerText = `Your Quantity: ${parseInt(quantitiesList[i])}`; 
+
+      overallContainer.appendChild(otherItemHeader);
+      overallContainer.appendChild(br);
+      overallContainer.appendChild(innerParagraph); 
+      otherCounter++; 
+      }
+      if(i == (parseInt(itemsList.length) - 1) && otherCounter == 0){
+        const noItemHeader = document.createElement("h3");
+        noItemHeader.innerText = `You have no items that require you to select a size!`;
+        overallContainer.appendChild(noItemHeader); 
+      }
     }
+   
   }
 }
 
 function displayMerchTotal(element){
   const myElement = document.getElementById(element); 
   const total = document.createElement("p");
-
-  total.innerText = `Your total is \$${myElement.value}.`; 
+  if(element === "tax"){
+    total.innerText = `Your ${element} (at 7%) is \$${myElement.value}.`; 
+  } else{
+    total.innerText = `Your ${element} is \$${myElement.value}.`; 
+  }
+  
   const overallContainer = document.getElementById("merch-container");
   overallContainer.appendChild(total); 
 }

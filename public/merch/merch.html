@@ -221,6 +221,8 @@
     <!-- Hoodie Card -->
     <div class="merch-card" id="section2">
       <img src="../images/merchimages/blacksweatshirtflourish.png" alt="Flourish Hoodie" class="merch-image" id="hoodie-image">
+      <input type="hidden" id="merch[2]" name="merch[2]" value="Black Flourish Hoodie">
+      <input type="hidden" id="merch[3]" name="merch[3]" value="White Flourish Hoodie">
       <div class="merch-details">
         <div>
           <h2 class="merch-name">Flourish Hoodie</h2>
@@ -232,11 +234,11 @@
         </div>
         <div id="section2-black" class="merchColors">
           <h4>Black:</h4><br>
-        <button class="add-to-cart" onclick="addToQuantity('section2-black', event)">Add Item</button><input type="number" min="0" id="section2-black-input" value="0" class="quantity-menu"></input><button class="add-to-cart" onclick="subtractToQuantity('section2-black', event)">Remove Item</button>
+        <button class="add-to-cart" onclick="addToQuantity('section2-black', event)">Add Item</button><input type="number" min="0" id="section2-black-input" value="0" class="quantity-menu" name="merchQuantity[2]"></input><button class="add-to-cart" onclick="subtractToQuantity('section2-black', event)">Remove Item</button>
         </div>
         <div id="section2-white" class="merchColors">
           <h4>White:</h4><br>
-        <button class="add-to-cart" onclick="addToQuantity('section2-white', event)">Add Item</button><input type="number" min="0" id="section2-white-input" value="0" class="quantity-menu"></input><button class="add-to-cart" onclick="subtractToQuantity('section2-white', event)">Remove Item</button>
+        <button class="add-to-cart" onclick="addToQuantity('section2-white', event)">Add Item</button><input type="number" min="0" id="section2-white-input" value="0" class="quantity-menu" name="merchQuantity[3]"></input><button class="add-to-cart" onclick="subtractToQuantity('section2-white', event)">Remove Item</button>
         </div>
       </div>
     </div>
@@ -254,6 +256,8 @@
     <!-- Hat Card -->
     <div class="merch-card" id="section3">
       <img src="../images/merchimages/blackhatflourish.png" alt="Flourish Hat" class="merch-image" id="hat-image">
+      <input type="hidden" id="merch[4]" name="merch[4]" value="Black Flourish Hat">
+      <input type="hidden" id="merch[5]" name="merch[5]" value="White Flourish Hat">
       <div class="merch-details">
         <div>
           <h2 class="merch-name">Flourish Hat</h2>
@@ -263,19 +267,30 @@
             <div class="color-option" style="background-color: #FFFFFF; border: 1px solid #000;" onclick="toggleShirtColor('hat-image', '../images/merchimages/whitehatflourish.png')"></div>
           </div>
         </div>
-        <button class="add-to-cart">Add to Cart</button>
+        <div id="section3-black" class="merchColors">
+          <h4>Black:</h4><br>
+        <button class="add-to-cart" onclick="addToQuantity('section3-black', event)">Add Item</button><input type="number" min="0" id="section3-black-input" value="0" class="quantity-menu" name="merchQuantity[4]"></input><button class="add-to-cart" onclick="subtractToQuantity('section3-black', event)">Remove Item</button>
+        </div>
+        <div id="section3-white" class="merchColors">
+          <h4>White:</h4><br>
+        <button class="add-to-cart" onclick="addToQuantity('section3-white', event)">Add Item</button><input type="number" min="0" id="section3-white-input" value="0" class="quantity-menu" name="merchQuantity[5]"></input><button class="add-to-cart" onclick="subtractToQuantity('section3-white', event)">Remove Item</button>
+        </div>
+        
       </div>
     </div>
 
     <!-- Bottle Card -->
     <div class="merch-card" id="section4">
       <img src="../images/merchimages/waterbottleflourish.png" alt="Flourish Water Bottle" class="merch-image" id="bottle-image">
+      <input type="hidden" id="merch[6]" name="merch[6]" value="Flourish Water Bottle">
       <div class="merch-details">
         <div>
           <h2 class="merch-name">Flourish Water Bottle</h2>
           <p class="merch-price">$30</p>
         </div>
-        <button class="add-to-cart">Add to Cart</button>
+        <div id="section4-black" class="merchColors">
+        <button class="add-to-cart" onclick="addToQuantity('section4-black', event)">Add Item</button><input type="number" min="0" id="section4-black-input" value="0" class="quantity-menu" name="merchQuantity[6]"></input><button class="add-to-cart" onclick="subtractToQuantity('section4-black', event)">Remove Item</button>
+        </div>
       </div>
     </div>
   </div>
