@@ -174,7 +174,12 @@ app.post("/order/confirmation", (req, res) =>{
 
 app.get("/order/confirmation", (req, res) =>{
   //res.redirect(301, "/order"); 
-  res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+  const from = req.query.from; 
+  if(from && from == "payment"){
+    res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+  } else{
+    res.redirect(301, "/order"); 
+  }
 }); 
 
 // Private Room Reservation routes
@@ -203,7 +208,7 @@ app.get("/sources", (req, res) => {
 app.post("/", (req, res) =>{
   const {name, email, phone, date, time, partySize, confirmationNo, limiter} = req.body; 
 
-       const html = `<body>
+       const html = `<head>
 
     <style>
             body {
@@ -230,6 +235,8 @@ app.post("/", (req, res) =>{
             margin:15px; 
         }
     </style>
+    </head>
+    <body>
     <p>Hi <strong>${name}</strong>,</p><br>
         <p>According to our server, you booked a reservation at Flourish for <strong>${partySize}</strong> people on <strong>${date}</strong> 
             at <strong>${time}.</strong>

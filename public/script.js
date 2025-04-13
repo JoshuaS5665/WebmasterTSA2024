@@ -1535,7 +1535,7 @@ function validatePayment(event) {
 
   if (isValid) {
     /*localStorage.removeItem('cart');*/
-    window.location.href = '/order/confirmation';
+    window.location.href = '/order/confirmation?from=payment';
   }
   //return false;
 }
