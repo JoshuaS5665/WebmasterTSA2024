@@ -1,220 +1,337 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap" rel="stylesheet">
-    <meta name="viewport" content="width=device-width" />
-    <title>Flourish | Order Menu</title>
-    <link href="../style.css" rel="stylesheet" type="text/css" />
-    <style>
-        .menu-section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        .menu-item {
-            background: #fff;
-            border: 2px solid #32372b;
-            padding: 20px;
-            margin: 15px 0;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
-        .menu-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        .menu-item h3 {
-            color: #32372b;
-            font-family: "Rye", serif;
-            margin-bottom: 10px;
-        }
-        .add-to-cart {
-            background: #32372b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: "Bodoni Moda", serif;
-            margin-top: 10px;
-            transition: background 0.3s ease;
-        }
-        .add-to-cart:hover {
-            background: #4a5440;
-        }
-        .price {
-            font-size: 1.2em;
-            color: #32372b;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Flourish | Order Menu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="../style.css" rel="stylesheet" type="text/css" />
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f8f8f8;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    h1.page-heading {
+      text-align: center;
+      padding-top: 40px;
+      font-family: "Bodoni Moda", serif;
+      font-size: 2.5em;
+      color: #32372b;
+    }
+
+    h2 {
+      text-align: center;
+      margin: 60px 0 40px;
+      font-family: "Bodoni Moda", serif;
+      font-size: 2em;
+      color: #32372b;
+      letter-spacing: 0.5px;
+    }
+
+    .menu-section {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .menu-item {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      width: 350px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-bottom: 2px solid #f1f1f1;
+    }
+
+    .menu-item-content {
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    .menu-item h3 {
+      margin: 0 0 12px;
+      font-size: 1.5em;
+      font-family: "Bodoni Moda", serif;
+      color: #32372b;
+    }
+
+    .menu-item p {
+      font-size: 1em;
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.4;
+      text-align: left;
+    }
+
+    .price {
+      font-weight: bold;
+      font-size: 1.1em;
+      color: #32372b;
+      margin-bottom: 12px;
+    }
+
+    .checkbox {
+      margin-top: 15px;
+      transform: scale(1.3);
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: center;
+      margin: 50px 0;
+    }
+
+    form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+button[type="submit"] {
+  background-color: #32372b;
+  color: white;
+  padding: 16px 32px;
+  border: none;
+  font-family: "Bodoni Moda", serif;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+button[type="submit"]:hover {
+  background-color: #4a5440;
+  transform: scale(1.05);
+}
+
+
+    .go-to-merch-button, button[type="submit"] {
+      background-color: #32372b;
+      color: white;
+      padding: 16px 32px;
+      border: none;
+      font-family: "Bodoni Moda", serif;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .go-to-merch-button:hover, button[type="submit"]:hover {
+      background-color: #4a5440;
+      transform: scale(1.05);
+    }
+
+    .menu-item-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      font-family: "Bodoni Moda", serif;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .menu-section {
+        gap: 20px;
+      }
+
+      .menu-item {
+        width: 100%;
+        max-width: 320px;
+      }
+
+      h1.page-heading {
+        font-size: 2em;
+      }
+
+      h2 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
 </head>
 <body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'>
-    <div id="header"></div>
-    <script src="../script.js"></script>
+  <div id="header"></div>
+  <script src="../script.js"></script>
 
-    <h1 style="text-align: center; font-family: Rye, serif; color: #32372b; margin-top: 5vh">ORDER MENU (SPRING SEASON)</h1>
+  <h1 class="page-heading">Order Menu (Spring Season)</h1>
 
-    <div>
-        <img src ="../images/merchadv.png" alt="merchad" class="merchad" style = "max-width: 100vw;">
-    <div class = "button-group" style = "margin: 30px 0;">
-        <button type="button" class="go-to-merch-button" onclick="window.location.href = '../merch/merch.html'">View Merchandise</button>
-    </div>
-</div>
-    <!--
-    <div id="cart-display" style="text-align: right; padding: 20px; max-width: 1200px; margin: 0 auto; font-family: 'Bodoni Moda', serif;">
-        <h3 style="color: #32372b;">Your Cart:</h3>
-        <div id="current-cart" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"></div>
-    </div>-->
-    <form method="post" action="/order/payment" onsubmit="return validateOnlineOrder()">
+  <img src="../images/merchadv.png" alt="merchad" class="merchad" style="max-width: 100vw;">
+  <div class="button-group">
+    <button type="button" class="go-to-merch-button" onclick="window.location.href = '../merch/merch.html'">View Merchandise</button>
+  </div>
+
+  <form method="post" action="/order/payment" onsubmit="return validateOnlineOrder()">
+    <h1 style = "font-family: Bodoni Moda, serif">NOTE: Some items are only available for sit-in customers.</h1>
+    <!-- Starters -->
+    <h2>Starters</h2>
     <div class="menu-section">
-        <h2 style="font-family: Rye, serif; color: #32372b;">Starters</h2>
-        <div class="menu-item" id="section1">
-            <h3>Pea & Mint Soup</h3><input type="checkbox" name="menu[0]" id="menu[0]" value="Pea & Mint Soup" onclick="handleQuantityInputs('menu[0]', 'section1')">
-            <p>Fresh English peas with a hint of mint, finished with a drizzle of
-                lemon-infused olive oil.</p>
-            <p class="price">$12</p>
-            <!--
-            <button onclick="addToQuantity('Pea & Mint Soup', event)">+</button><input type="number" value = "0" min="0" id="Pea & Mint Soup-input" name="quantity[0]"><button onclick="subtractToQuantity('Pea & Mint Soup', event)">-</button>
-            -->
-            
-            <!--<button class="add-to-cart" onclick="//addToCart('Garden Fresh Bowl', 18)">Add to Cart</button>-->
+      <div class="menu-item" id="section1">
+        <img src="../images/menuimages/peaandmintsoup.jpg" alt="Pea & Mint Soup">
+        <div class="menu-item-content">
+          <h3>Pea & Mint Soup</h3>
+          <input type="checkbox" name="menu[0]" id="menu[0]" value="Pea & Mint Soup" onclick="handleQuantityInputs('menu[0]', 'section1')" class="checkbox">
+          <p>Fresh English peas with a hint of mint, finished with a drizzle of lemon-infused olive oil.</p>
+          <p class="price">$12</p>
         </div>
-        
-        <div class="menu-item" id="section2">
-            <h3>Chilled Cucumber & Avocado Gazpacho</h3><input type="checkbox" name="menu[1]" id="menu[1]" value="Chilled Cucumber & Avocado Gazpacho" onclick="handleQuantityInputs('menu[1]', 'section2')">
-            <p>Creamy cucumber and avocado chilled soup, garnished with a sprinkle of
-                smoked paprika.</p>
-            <p class="price">$13</p>
-            <!--<button type="button" onclick="addToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">+</button><input type="number" value = "0" min="0" id="Chilled Cucumber & Avocado Gazpacho-input" name="quantity[1]"><button onclick="subtractToQuantity('Chilled Cucumber & Avocado Gazpacho', event)">-</button>
-            -->
-            
-            <!--<button class="add-to-cart" onclick="addToCart('Mushroom Risotto', 22)">Add to Cart</button>-->
+      </div>
+
+      <div class="menu-item" id="section2">
+        <img src="../images/menuimages/gazpacho.jpg" alt="Chilled Cucumber & Avocado Gazpacho">
+        <div class="menu-item-content">
+          <h3>Chilled Cucumber & Avocado Gazpacho</h3>
+          <input type="checkbox" name="menu[1]" id="menu[1]" value="Chilled Cucumber & Avocado Gazpacho" onclick="handleQuantityInputs('menu[1]', 'section2')" class="checkbox">
+          <p>Creamy cucumber and avocado chilled soup, garnished with a sprinkle of smoked paprika.</p>
+          <p class="price">$13</p>
         </div>
+      </div>
 
-        <div class="menu-item" id="section3">
-            <h3>Roasted Beet & Orange Carpaccio</h3><input type="checkbox" name="menu[2]" id="menu[2]" value="Roasted Beet & Orange Carpaccio" onclick="handleQuantityInputs('menu[2]', 'section3')">
-            <p>Thinly sliced roasted beets and oranges, topped with vegan feta and
-                pistachio dust.</p>
-            <p class="price">$15</p>
-            <!--<button onclick="addToQuantity('Roasted Beet & Orange Carpaccio', event)">+</button><input type="number" value = "0" min="0" id="Roasted Beet & Orange Carpaccio-input" name="quantity[2]"><button onclick="subtractToQuantity('Roasted Beet & Orange Carpaccio', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Grilled Eggplant', 21)">Add to Cart</button>-->
-
+      <div class="menu-item" id="section3">
+        <img src="../images/menuimages/carpaccio.jpg" alt="Roasted Beet & Orange Carpaccio">
+        <div class="menu-item-content">
+          <h3>Roasted Beet & Orange Carpaccio</h3>
+          <input type="checkbox" name="menu[2]" id="menu[2]" value="Roasted Beet & Orange Carpaccio" onclick="handleQuantityInputs('menu[2]', 'section3')" class="checkbox">
+          <p>Thinly sliced roasted beets and oranges, topped with vegan feta and pistachio dust.</p>
+          <p class="price">$15</p>
         </div>
-
-        <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Main Course</h2>
-        <div class="menu-item" id="section4">
-            <h3>Lemon & Herb Stuffed Squash Blossoms</h3><input type="checkbox" name="menu[3]" id="menu[3]" value="Lemon & Herb Stuffed Squash Blossoms" onclick="handleQuantityInputs('menu[3]', 'section4')">
-            <p>Delicate squash blossoms stuffed with lemony herbed tofu ricotta,
-                lightly fried and served with a citrus reduction.</p>
-            <p class="price">$24</p>
-            <!--<button class="add-to-cart" onclick="addToCart('Crispy Roasted Potatoes', 9)">Add to Cart</button>-->
-            <!--<button onclick="addToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">+</button><input type="number" value = "0" min="0" id="Lemon & Herb Stuffed Squash Blossoms-input" name="quantity[3]"><button onclick="subtractToQuantity('Lemon & Herb Stuffed Squash Blossoms', event)">-</button>-->
-        </div>
-
-        <div class="menu-item" id="section5">
-            <h3>Linguine with Lemon Cream & Zucchini</h3><input type="checkbox" name="menu[4]" id="menu[4]" value="Linguine with Lemon Cream & Zucchini" onclick="handleQuantityInputs('menu[4]', 'section5')">
-            <p> Zucchini ribbons tossed with linguine in a lemon-infused creamy sauce,
-                finished with fresh parsley.</p>
-            <p class="price">$22</p>
-            <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <!--<button onclick="addToQuantity('Linguine with Lemon Cream & Zucchini', event)">+</button><input type="number" value = "0" min="0" id="Linguine with Lemon Cream & Zucchini-input" name="quantity[4]"><button onclick="subtractToQuantity('Linguine with Lemon Cream & Zucchini', event)">-</button>-->
-        </div>
-
-        <div class="menu-item" id="section6">
-            <h3>Charred Eggplant with Mint Yogurt & Pomegranate</h3><input type="checkbox" name="menu[5]" id="menu[5]" value="Charred Eggplant with Mint Yogurt & Pomegranate" onclick="handleQuantityInputs('menu[5]', 'section6')">
-            <p>Grilled eggplant drizzled with a vegan mint yogurt sauce and topped
-                with fresh pomegranate seeds.</p>
-            <p class="price">$21</p>
-            <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <!--<button onclick="addToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">+</button><input type="number" value = "0" min="0" id="Charred Eggplant with Mint Yogurt & Pomegranate-input" name="quantity[5]"><button onclick="subtractToQuantity('Charred Eggplant with Mint Yogurt & Pomegranate', event)">-</button>-->
-        </div>
-
-        <div class="menu-item" id="section7">
-            <h3>Wild Mushroom & Herb Stuffed Portobello</h3><input type="checkbox" name="menu[6]" id="menu[6]" value="Wild Mushroom & Herb Stuffed Portobello" onclick="handleQuantityInputs('menu[6]', 'section7')">
-            <p>Large portobello mushrooms stuffed with wild mushrooms, garlic, herbs,
-                and quinoa, roasted to perfection.</p>
-            <p class="price">$20</p>
-            <!--<button class="add-to-cart" onclick="addToCart('Grilled Asparagus', 10)">Add to Cart</button>-->
-            <!--<button onclick="addToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">+</button><input type="number" value = "0" min="0" id="Wild Mushroom & Herb Stuffed Portobello-input" name="quantity[6]"><button onclick="subtractToQuantity('Wild Mushroom & Herb Stuffed Portobello', event)">-</button>-->
-        </div>
-
-        <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Sides</h2>
-        <div class="menu-item" id="section8">
-            <h3>Garlic & Herb Roasted Fingerling Potatoes</h3><input type="checkbox" name="menu[7]" id="menu[7]" value="Garlic & Herb Roasted Fingerling Potatoes" onclick="handleQuantityInputs('menu[7]', 'section8')">
-            <p>Fingerling potatoes roasted with garlic, rosemary, and thyme.</p>
-            <p class="price">$11</p>
-            <!--<button onclick="addToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">+</button><input type="number" value = "0" min="0" id="Garlic & Herb Roasted Fingerling Potatoes-input" name="quantity[7]"><button onclick="subtractToQuantity('Garlic & Herb Roasted Fingerling Potatoes', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
-
-        </div>
-        <div class="menu-item" id="section9">
-            <h3>Sautéed Spring Greens with Lemon & Olive Oil</h3><input type="checkbox" name="menu[8]" id="menu[8]" value="Sautéed Spring Greens with Lemon & Olive Oil" onclick="handleQuantityInputs('menu[8]', 'section9')">
-            <p>A medley of fresh spring greens sautéed with garlic, finished with a
-                drizzle of lemon olive oil.</p>
-            <p class="price">$10</p>
-            <!--<button onclick="addToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">+</button><input type="number" value = "0" min="0" id="Sautéed Spring Greens with Lemon & Olive Oil-input" name="quantity[8]"><button onclick="subtractToQuantity('Sautéed Spring Greens with Lemon & Olive Oil', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
-
-        </div>
-
-        <div class="menu-item" id="section10">
-            <h3>Crispy Brussels Sprouts with Balsamic Glaze</h3><input type="checkbox" name="menu[9]" id="menu[9]" value="Crispy Brussels Sprouts with Balsamic Glaze" onclick="handleQuantityInputs('menu[9]', 'section10')">
-            <p>Roasted Brussels sprouts with a balsamic reduction and toasted
-                hazelnuts.</p>
-            <p class="price">$11</p>
-            <!--<button onclick="addToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">+</button><input type="number" value = "0" min="0" id="Crispy Brussels Sprouts with Balsamic Glaze-input" name="quantity[9]"><button onclick="subtractToQuantity('Crispy Brussels Sprouts with Balsamic Glaze', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
-
-        </div>
-
-        <div class="menu-item" id="section11">
-            <h3>Lemon-Glazed Roasted Baby Carrots</h3><input type="checkbox" name="menu[10]" id="menu[10]" value="Lemon-Glazed Roasted Baby Carrots" onclick="handleQuantityInputs('menu[10]', 'section11')">
-            <p>Roasted baby carrots glazed with lemon and fresh thyme.</p>
-            <p class="price">$9</p>
-            <!--<button onclick="addToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">+</button><input type="number" value = "0" min="0" id="Lemon-Glazed Roasted Baby Carrots-input" name="quantity[10]"><button onclick="subtractToQuantity('Lemon-Glazed Roasted Baby Carrots', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
-
-        </div>
-        <h2 style="font-family: Rye, serif; color: #32372b; margin-top: 30px;">Desserts</h2>
-        <div class="menu-item" id="section12">
-            <h3>Raspberry-Chocolate Tart</h3><input type="checkbox" name="menu[11]" id="menu[11]" value="Raspberry-Chocolate Tart" onclick="handleQuantityInputs('menu[11]', 'section12')">
-            <p>A rich chocolate ganache tart topped with fresh raspberries and a
-                dusting of cocoa powder.</p>
-            <p class="price">$9</p>
-            <!--<button onclick="addToQuantity('Raspberry-Chocolate Tart', event)">+</button><input type="number" value = "0" min="0" id="Raspberry-Chocolate Tart-input" name="quantity[11]"><button onclick="subtractToQuantity('Raspberry-Chocolate Tart', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
-
-        </div>
-
-        <div class="menu-item" id="section13">
-            <h3>Coconut-Mango Panna Cotta</h3><input type="checkbox" name="menu[12]" id="menu[12]" value="Coconut-Mango Panna Cotta" onclick="handleQuantityInputs('menu[12]', 'section13')">
-            <p>Silky coconut milk panna cotta with fresh mango puree, topped with
-                toasted coconut flakes.</p>
-            <p class="price">$12</p>
-            <!--<button onclick="addToQuantity('Coconut-Mango Panna Cotta', event)">+</button><input type="number" value = "0" min="0" id="Coconut-Mango Panna Cotta-input" name="quantity[12]"><button onclick="subtractToQuantity('Coconut-Mango Panna Cotta', event)">-</button>-->
-            <!--<button class="add-to-cart" onclick="addToCart('Minted Watermelon Cooler', 8)">Add to Cart</button>-->
-
-        </div>
+      </div>
     </div>
 
-    <!--
-    <div>
-            <img src ="../images/merchadv.png" alt="merchad" class="merchad" style = "max-width: 100vw;">
-        <div class = "button-group" style = "margin: 30px 0;">
-            <button type="button" class="go-to-merch-button" onclick="window.location.href = '../merch/merch.html'">View Merchandise</button>
+    <!-- Main Course -->
+    <h2>Main Course</h2>
+    <div class="menu-section">
+      <div class="menu-item" id="section4">
+        <img src="../images/menuimages/squashblossom.png" alt="Lemon & Herb Stuffed Squash Blossoms">
+        <div class="menu-item-content">
+          <h3>Lemon & Herb Stuffed Squash Blossoms</h3>
+          <input type="checkbox" name="menu[3]" id="menu[3]" value="Lemon & Herb Stuffed Squash Blossoms" onclick="handleQuantityInputs('menu[3]', 'section4')" class="checkbox">
+          <p>Delicate squash blossoms stuffed with lemony herbed tofu ricotta, lightly fried and served with a citrus reduction.</p>
+          <p class="price">$24</p>
         </div>
-    </div>-->
+      </div>
 
-     <div class="button-group" style="margin: 30px 0;">
-        <!--<a href="paymentform.html">Proceed to Payment</a>-->
-        <button type="submit" id="menu-submit">Proceed to Payment</button>
+      <div class="menu-item" id="section5">
+        <img src="../images/menuimages/linguine.png" alt="Linguine with Lemon Cream & Zucchini">
+        <div class="menu-item-content">
+          <h3>Linguine with Lemon Cream & Zucchini</h3>
+          <input type="checkbox" name="menu[4]" id="menu[4]" value="Linguine with Lemon Cream & Zucchini" onclick="handleQuantityInputs('menu[4]', 'section5')" class="checkbox">
+          <p>Zucchini ribbons tossed with linguine in a lemon-infused creamy sauce, finished with fresh parsley.</p>
+          <p class="price">$22</p>
+        </div>
+      </div>
+
+      <div class="menu-item" id="section6">
+        <img src="../images/menuimages/eggplant.jpg" alt="Charred Eggplant with Mint Yogurt & Pomegranate">
+        <div class="menu-item-content">
+          <h3>Charred Eggplant with Mint Yogurt & Pomegranate</h3>
+          <input type="checkbox" name="menu[5]" id="menu[5]" value="Charred Eggplant with Mint Yogurt & Pomegranate" onclick="handleQuantityInputs('menu[5]', 'section6')" class="checkbox">
+          <p>Grilled eggplant drizzled with a vegan mint yogurt sauce and topped with fresh pomegranate seeds.</p>
+          <p class="price">$21</p>
+        </div>
+      </div>
     </div>
-    </form>
-    <div id="footer"></div>
+
+    <!-- Sides -->
+    <h2>Sides</h2>
+    <div class="menu-section">
+      <div class="menu-item" id="section7">
+        <img src="../images/menuimages/fingerlingpotatoes.jpg" alt="Garlic & Herb Roasted Fingerling Potatoes">
+        <div class="menu-item-content">
+          <h3>Garlic & Herb Roasted Fingerling Potatoes</h3>
+          <input type="checkbox" name="menu[6]" id="menu[6]" value="Garlic & Herb Roasted Fingerling Potatoes" onclick="handleQuantityInputs('menu[6]', 'section7')" class="checkbox">
+          <p>Fingerling potatoes roasted with garlic, rosemary, and thyme.</p>
+          <p class="price">$11</p>
+        </div>
+      </div>
+
+      <div class="menu-item" id="section8">
+        <img src="../images/menuimages/sauteedgreens.jpg" alt="Sautéed Spring Greens with Lemon & Olive Oil">
+        <div class="menu-item-content">
+          <h3>Sautéed Spring Greens with Lemon & Olive Oil</h3>
+          <input type="checkbox" name="menu[7]" id="menu[7]" value="Sautéed Spring Greens with Lemon & Olive Oil" onclick="handleQuantityInputs('menu[7]', 'section8')" class="checkbox">
+          <p>A medley of fresh spring greens sautéed with garlic, finished with a drizzle of lemon olive oil.</p>
+          <p class="price">$10</p>
+        </div>
+      </div>
+
+      <div class="menu-item" id="section9">
+        <img src="../images/menuimages/brusselssprouts.jpg" alt="Crispy Brussels Sprouts with Balsamic Glaze">
+        <div class="menu-item-content">
+          <h3>Crispy Brussels Sprouts with Balsamic Glaze</h3>
+          <input type="checkbox" name="menu[8]" id="menu[8]" value="Crispy Brussels Sprouts with Balsamic Glaze" onclick="handleQuantityInputs('menu[8]', 'section9')" class="checkbox">
+          <p>Roasted Brussels sprouts with a balsamic reduction and toasted hazelnuts.</p>
+          <p class="price">$11</p>
+        </div>
+      </div>
+
+      <div class="menu-item" id="section10">
+        <img src="../images/menuimages/carrots.jpg" alt="Lemon-Glazed Roasted Baby Carrots">
+        <div class="menu-item-content">
+          <h3>Lemon-Glazed Roasted Baby Carrots</h3>
+          <input type="checkbox" name="menu[9]" id="menu[9]" value="Lemon-Glazed Roasted Baby Carrots" onclick="handleQuantityInputs('menu[9]', 'section10')" class="checkbox">
+          <p>Roasted baby carrots glazed with lemon and fresh thyme.</p>
+          <p class="price">$9</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desserts -->
+    <h2>Desserts</h2>
+    <div class="menu-section">
+      <div class="menu-item" id="section12">
+        <img src="../images/menuimages/raspberrytart.jpg" alt="Raspberry-Chocolate Tart">
+        <div class="menu-item-content">
+          <h3>Raspberry-Chocolate Tart</h3>
+          <input type="checkbox" name="menu[11]" id="menu[11]" value="Raspberry-Chocolate Tart" onclick="handleQuantityInputs('menu[11]', 'section12')" class="checkbox">
+          <p>A rich chocolate ganache tart topped with fresh raspberries and a dusting of cocoa powder.</p>
+          <p class="price">$9</p>
+        </div>
+      </div>
+
+      <div class="menu-item" id="section13">
+        <img src="../images/menuimages/pannacotta.png" alt="Coconut-Mango Panna Cotta">
+        <div class="menu-item-content">
+          <h3>Coconut-Mango Panna Cotta</h3>
+          <input type="checkbox" name="menu[12]" id="menu[12]" value="Coconut-Mango Panna Cotta" onclick="handleQuantityInputs('menu[12]', 'section13')" class="checkbox">
+          <p>Silky coconut milk panna cotta with fresh mango puree, topped with toasted coconut flakes.</p>
+          <p class="price">$12</p>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" style = "align-items: center;">Submit Order</button>
+  </form>
+
+  <div id="footer"></div>
 </body>
 </html>

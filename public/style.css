@@ -326,16 +326,6 @@ main {
   text-align: center;
 }
 
-.title {
-  color: #FFFFFF;
-  font-family: Baskerville, serif;
-  font-size: 4rem;
-  position: relative;
-  /*top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);*/
-}
-
 .subscript {
   color: #000000;
   font-family: "Brush Script MT", cursive;
@@ -2029,4 +2019,52 @@ th, td {
 }
 th {
   background-color: #f2f2f2;
+}
+
+.page-heading {
+  font-weight: 400;
+  font-family: "Great Vibes", cursive;
+  font-size: 60px;
+  color: #32372b;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-top: 5vh;
+}
+
+.size-section {
+  margin-bottom: 40px;
+  font-family: 'Bodoni Moda', serif;
+  color: #32372b;
+}
+
+.size-section h3 {
+  margin-bottom: 12px;
+  font-size: 20px;
+  color: #32372b;
+}
+
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.size-options input[type="radio"] {
+  display: none;
+}
+
+.size-options label {
+  padding: 10px 16px;
+  border: 2px solid #32372b;
+  border-radius: 6px;
+  background-color: white;
+  color: #32372b;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-options input[type="radio"]:checked + label {
+  background-color: #32372b;
+  color: white;
 }

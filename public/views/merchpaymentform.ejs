@@ -1,83 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../style.css">
+  <meta charset="UTF-8" />
+  <title>Flourish | Merch Payment</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900&family=Rye&display=swap" rel="stylesheet" />
+
+  <!-- Site Styles -->
+  <link rel="stylesheet" href="../style.css" type="text/css" />
+
+  <style>
+    .size-button-label {
+  cursor: pointer;
+}
+
+.size-button {
+  display: inline-block;
+  padding: 10px 16px;
+  border: 2px solid #32372b;
+  border-radius: 4px;
+  font-family: 'Bodoni Moda', serif;
+  color: #32372b;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.size-button:hover {
+  background-color: #f5f5f5;
+}
+
+.size-button.active {
+  background-color: #32372b;
+  color: white;
+  border-color: #32372b;
+}
+
+    .payment-form {
+        margin-top: 30px;
+        display: grid;
+        gap: 20px;
+        font-family: 'Bodoni Moda', serif;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .form-group label {
+        color: #32372b;
+        font-size: 16px;
+      }
+      .form-group input {
+        padding: 12px;
+        border: 2px solid #32372b;
+        border-radius: 4px;
+        font-family: 'Bodoni Moda', serif;
+      }
+      .submit-btn {
+        padding: 15px;
+        background: transparent;
+        border: 2px solid #32372b;
+        color: #32372b;
+        font-family: 'Bodoni Moda', serif;
+        font-size: 18px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+      }
+      .submit-btn:hover {
+        background: #32372b;
+        color: white;
+      }
+    body {
+      background-color: #f7f6f2;
+      font-family: 'Bodoni Moda', serif;
+      color: #32372b;
+      margin: 0;
+      padding: 0;
+    }
+    .cart-container {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .cart-container h2 {
+      font-size: 28px;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 30px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    table th, table td {
+      padding: 12px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table thead {
+      background-color: #e2e0d5;
+      font-weight: bold;
+    }
+
+    .size-section {
+      align-items: center;
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      border: 2px solid #32372b;
+      border-radius: 10px;
+      background-color: #f2f1ec;
+    }
+
+    .size-section h3 {
+      margin-bottom: 12px;
+      font-size: 20px;
+      font-family: 'Bodoni Moda', serif;
+    }
+
+    .size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.size-options input[type="radio"] {
+  display: none;
+}
+
+.size-options label {
+  text-align: center;
+  align-items: center;
+  padding: 10px 16px;
+  border: 2px solid #32372b;
+  border-radius: 6px;
+  background-color: white;
+  color: #32372b;
+  font-size: 16px;
+  font-family: 'Bodoni Moda', serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.size-options input[type="radio"]:checked + label {
+  background-color: #32372b;
+  color: white;
+}
+
+  </style>
 </head>
-<body>
-    <input type="hidden" id="merchList" value="<%=items%>"></input>
-    <input type="hidden" id="quantitiesList" value="<%=quantities%>"></input>
-    <input type="hidden" id="subtotal" value = "<%=merchTotal%>"></input>
-    <input type="hidden" id="tax" value="<%=(merchTotal * 0.07).toFixed(2)%>"></input>
-    <input type="hidden" id="total" value="<%=(merchTotal * 1.07).toFixed(2)%>"></input>
+
+<body onload='loadHead("../partials/head.html"), loadFooter("../partials/footer.html")'>
+  <div id="header"></div>
+
+  <!-- Hidden Data Inputs -->
+  <input type="hidden" id="merchList" value="<%= items %>">
+  <input type="hidden" id="quantitiesList" value="<%= quantities %>">
+  <input type="hidden" id="subtotal" value="<%= merchTotal %>">
+  <input type="hidden" id="tax" value="<%=(merchTotal * 0.07).toFixed(2)%>">
+  <input type="hidden" id="total" value="<%=(merchTotal * 1.07).toFixed(2)%>">
+
+  <h1 class="page-heading">Merchandise Payment</h1>
+
+  <div class="cart-container">
+    <h2>Sizing Chart</h2>
     <table>
-        <thead>
-          <tr>
-            <th>Size</th>
-            <th>Chest (in Inches)</th>
-            <th>T-Shirt Sleeve (in Inches)</th>
-            <th>Sweater Sleeve (in Inches)</th>
-      
-          </tr>
-        </thead>
-      
-        <tbody>
-          <tr>
-            <td>XS</td>
-            <td>31-34</td>
-            <td>14-15</td>
-            <td>32-33</td>
-          </tr>
-          <tr>
-            <td>S</td>
-            <td>34-37</td>
-            <td>15-16</td>
-            <td>33-34</td>
-          </tr>
-          <tr>
-            <td>M</td>
-            <td>38-41</td>
-            <td>16-17</td>
-            <td>34-35</td>
-          </tr>
-          <tr>
-            <td>L</td>
-            <td>42-45</td>
-            <td>17-18</td>
-            <td>35-36</td>
-          </tr>
-          <tr>
-            <td>XL</td>
-            <td>46-49</td>
-            <td>18-19</td>
-            <td>36-37</td>
-          </tr>
-          <tr>
-            <td>XXL</td>
-            <td>50-53</td>
-            <td>19-20</td>
-            <td>37-38</td>
-          </tr>
-        </tbody>
-      </table>
-    <script src="../script.js"></script>
-    <script>
+      <thead>
+        <tr>
+          <th>Size</th>
+          <th>Chest (in Inches)</th>
+          <th>T-Shirt Sleeve</th>
+          <th>Sweater Sleeve</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>XS</td><td>31-34</td><td>14-15</td><td>32-33</td></tr>
+        <tr><td>S</td><td>34-37</td><td>15-16</td><td>33-34</td></tr>
+        <tr><td>M</td><td>38-41</td><td>16-17</td><td>34-35</td></tr>
+        <tr><td>L</td><td>42-45</td><td>17-18</td><td>35-36</td></tr>
+        <tr><td>XL</td><td>46-49</td><td>18-19</td><td>36-37</td></tr>
+        <tr><td>XXL</td><td>50-53</td><td>19-20</td><td>37-38</td></tr>
+      </tbody>
+    </table>
 
-document.addEventListener("DOMContentLoaded", () =>{
-    const merch = document.getElementById("merchList").value; 
-const quantities = document.getElementById("quantitiesList").value; 
-            handleMerchSizing(merch.split(","), quantities.split(",")); 
-            displayMerchTotal("subtotal");
-            displayMerchTotal("tax");
-            displayMerchTotal("total");  
-        });
-</script>
-    
-    <div id="merch-container">
+    <div id="merch-container"></div>
+  </div>
 
-    </div>
+  <form class="payment-form" style = "margin-right: 20%; margin-left:20%" onsubmit="validatePayment(event)" method="post"
+      action="/merch/merch.html">
+        <div class="form-group">
+          <label for="firstNameInput">First Name<span class="asterisk">*</span></label>
+          <input type="text" id="firstNameInput" placeholder = "John">
+        </div>
+        <div class="form-group">
+          <label for="lastNameInput">Last Name<span class="asterisk">*</span></label>
+          <input type="text" id="lastNameInput" placeholder = "Doe">
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Phone Number<span class="asterisk">*</span></label>
+          <input type="tel" id="phoneInput" maxlength = "14" placeholder="(123) 456-7890">
+        </div>
+        <div class="form-group">
+          <label for="creditCardInput">Card Number<span class="asterisk">*</span></label>
+          <input type="text" id="creditCardInput" maxlength = "19" placeholder="1234 5678 9012 3456">
+        </div>
+        <div class="form-group">
+          <label for="expdateInput">Expiration Date<span class="asterisk">*</span></label>
+          <input type="text" id="expdateInput" maxlength = "5" placeholder="01/23">
+        </div>
+        <div class="form-group">
+          <label for="securityCodeInput">Security Code<span class="asterisk">*</span></label>
+          <input type="text" id="securityCodeInput"  maxlength="4" placeholder = "1234">
+        </div>
+        <button type="submit" class="submit-btn" style = "margin-bottom: 20px">Complete Order</button>
+      </form>
 
+
+  <div id="footer"></div>
+
+  <script src="../script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const merch = document.getElementById("merchList").value;
+      const quantities = document.getElementById("quantitiesList").value;
+      handleMerchSizing(merch.split(","), quantities.split(","));
+      displayMerchTotal("subtotal");
+      displayMerchTotal("tax");
+      displayMerchTotal("total");
+    });
+  </script>
 </body>
 </html>

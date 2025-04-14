@@ -1691,70 +1691,77 @@ function validateOnlineOrder(){
     return false; 
   }
 
-  return true; 
+  return true;
 }
 
-function handleMerchSizing(itemsList, quantitiesList){
-  console.log("Handle func is RUNNING"); 
+function handleMerchSizing(itemsList, quantitiesList) {
+  console.log("Handle func is RUNNING");
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-  const overallContainer = document.getElementById("merch-container"); 
-  let otherCounter = 0; 
-  for(let i = 0; i< parseInt(itemsList.length); i++){
-    if(i < 4){
-      for(let j =0; j < parseInt(quantitiesList[i]); j++){
-        const sizingSection = document.createElement("div"); 
-        sizingSection.id = `${itemsList[i]}-sizing-${j+1}`; 
+  const overallContainer = document.getElementById("merch-container");
+  let otherCounter = 0;
 
-        const header = document.createElement("h3"); 
-        header.innerText = `Select a Size for your ${itemsList[i]} (#${j+1})`; 
+  for (let i = 0; i < parseInt(itemsList.length); i++) {
+    if (i < 4) {
+      for (let j = 0; j < parseInt(quantitiesList[i]); j++) {
+        const sizingSection = document.createElement("div");
+        sizingSection.id = `${itemsList[i]}-sizing-${j + 1}`;
+        sizingSection.classList.add("size-section");
 
-        const form = document.createElement("form"); 
+        const header = document.createElement("h3");
+        header.innerText = `Select a Size for your ${itemsList[i]} (#${j + 1})`;
 
-        for(let k = 0; k<sizes.length; k++){
-          const label = document.createElement("label"); 
-          label.innerText = sizes[k]; 
-          const input = document.createElement("input"); 
-          input.type="radio"; 
-          input.name = `Sizing-${j}`;
-          input.value = `${sizes[k]}`; 
-          form.appendChild(input); 
-          form.appendChild(label); 
-        }
+        const form = document.createElement("form");
+        form.classList.add("size-options");
+
+        sizes.forEach((size, k) => {
+          const inputId = `sizing-${i}-${j}-${k}`;
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `Sizing-${i}-${j}`;
+          input.id = inputId;
+          input.value = size;
+          input.required = true;
+
+          const label = document.createElement("label");
+          label.htmlFor = inputId;
+          label.innerText = size;
+
+          form.appendChild(input);
+          form.appendChild(label);
+        });
+
         sizingSection.appendChild(header);
-        sizingSection.appendChild(form); 
-        //document.body.appendChild(sizingSection);
-        overallContainer.appendChild(sizingSection); 
+        sizingSection.appendChild(form);
+        overallContainer.appendChild(sizingSection);
       }
-    } else{
-      //let otherCounter = 0;
-      if(i == 4){
-        const header = document.createElement("h3"); 
+    } else {
+      if (i === 4) {
+        const header = document.createElement("h3");
         header.innerText = "Your Other Items:";
-        overallContainer.appendChild(header); 
+        overallContainer.appendChild(header);
       }
-      if(parseInt(quantitiesList[i]) != 0){
+
+      if (parseInt(quantitiesList[i]) !== 0) {
         const otherItemHeader = document.createElement("h3");
-      otherItemHeader.innerText = `${itemsList[i]}`;
+        otherItemHeader.innerText = `${itemsList[i]}`;
 
-      const br = document.createElement("br");
+        const innerParagraph = document.createElement("p");
+        innerParagraph.innerText = `Your Quantity: ${parseInt(quantitiesList[i])}`;
 
-      const innerParagraph = document.createElement("p");
-      innerParagraph.innerText = `Your Quantity: ${parseInt(quantitiesList[i])}`; 
-
-      overallContainer.appendChild(otherItemHeader);
-      overallContainer.appendChild(br);
-      overallContainer.appendChild(innerParagraph); 
-      otherCounter++; 
+        overallContainer.appendChild(otherItemHeader);
+        overallContainer.appendChild(innerParagraph);
+        otherCounter++;
       }
-      if(i == (parseInt(itemsList.length) - 1) && otherCounter == 0){
+
+      if (i === parseInt(itemsList.length) - 1 && otherCounter === 0) {
         const noItemHeader = document.createElement("h3");
         noItemHeader.innerText = `You have no items that require you to select a size!`;
-        overallContainer.appendChild(noItemHeader); 
+        overallContainer.appendChild(noItemHeader);
       }
     }
-   
   }
 }
+
 
 function displayMerchTotal(element){
   const myElement = document.getElementById(element); 
