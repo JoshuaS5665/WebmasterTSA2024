@@ -1828,3 +1828,16 @@ function displayMerchTotal(element){
   const overallContainer = document.getElementById("merch-container");
   overallContainer.appendChild(total); 
 }
+
+function validateMerchOrder(){
+  let quantInputs = document.getElementsByClassName("quantity-menu");
+  let total = 0;
+  Array.from(quantInputs).forEach((input, index) =>{
+    total += parseInt(input.value); 
+  });
+
+  if(total == 0){
+    showError(document.getElementById("merchSubmitDiv"), "You must select at least one item to continue!"); 
+    return false; 
+  }
+}
