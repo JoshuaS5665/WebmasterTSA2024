@@ -1797,9 +1797,12 @@ function handleMerchSizing(itemsList, quantitiesList) {
       if (parseInt(quantitiesList[i]) !== 0) {
         const otherItemHeader = document.createElement("h3");
         otherItemHeader.innerText = `${itemsList[i]}`;
+        otherItemHeader.style.display = "inline"; 
 
         const innerParagraph = document.createElement("p");
-        innerParagraph.innerText = `Your Quantity: ${parseInt(quantitiesList[i])}`;
+        innerParagraph.innerText = `(Your Quantity: ${parseInt(quantitiesList[i])})`;
+        innerParagraph.style.display = "inline"; 
+        innerParagraph.style.marginLeft = "8%"; 
 
         overallContainer.appendChild(otherItemHeader);
         overallContainer.appendChild(innerParagraph);
@@ -1819,13 +1822,19 @@ function handleMerchSizing(itemsList, quantitiesList) {
 function displayMerchTotal(element){
   const myElement = document.getElementById(element); 
   const total = document.createElement("p");
+  const overallContainer = document.getElementById("merch-container");
   if(element === "tax"){
+    
     total.innerText = `Your ${element} (at 7%) is \$${myElement.value}.`; 
-  } else{
+  } else if(element==="subtotal"){
+    const header = document.createElement("h3");
+    header.innerText = "Your Payment Details: ";
+    overallContainer.appendChild(header); 
+    total.innerText = `Your ${element} is \$${myElement.value}.`; 
+  }else{
     total.innerText = `Your ${element} is \$${myElement.value}.`; 
   }
   
-  const overallContainer = document.getElementById("merch-container");
   overallContainer.appendChild(total); 
 }
 
