@@ -1688,13 +1688,15 @@ function validateOnlineOrder(){
   let totalCounter = 0; 
   for(let i = 1; i < 12; i++){
     const item = document.getElementById(`menu[${i}]`);
-    if(item && item.value != ""){
+    //console.log(i + "My item is" + item.value); 
+    if(item && item.checked){
       totalCounter ++; 
     }
   }
   console.log("my total counter is " + totalCounter); 
   if(totalCounter == 0){
     showError(document.getElementById("menu-submit"), "You must select a food item to proceed!");
+    //window.location.href = "/order"; 
     return false; 
   }
 
