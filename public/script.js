@@ -1704,6 +1704,7 @@ function validateOnlineOrder(){
 
 }
 
+
 function handleMerchSizing(itemsList, quantitiesList) {
   console.log("Handle func is RUNNING");
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
