@@ -1141,6 +1141,22 @@ function finalizePrivateReservation(event) {
       </div>
     `;
 
+    let limiter; 
+    if(parseInt(partySize.slice(-2)) >= 13){
+      limiter = [12, 19, 100];
+    } else if(parseInt(partySize.slice(-2)) >= 10){
+      limiter = [8, 13, 80];
+    } else if(parseInt(partySize.slice(-1)) >= 9){
+      limiter = [8, 13, 80]; 
+    }
+    else if(parseInt(partySize.slice(-1)) >= 5){
+      limiter = [4, 9, 60]; 
+    } else{
+      limiter = [1, 5, 30]; 
+    }
+
+   
+
     // Store reservation data in a more structured way
     const reservationData = {
       name: `${firstName} ${lastName}`,
@@ -1152,8 +1168,30 @@ function finalizePrivateReservation(event) {
       occasion: localStorage.getItem("privateOccasion") || "Not specified",
       specialRequests: localStorage.getItem("privateSpecialRequests") || "",
       confirmationNumber: confirmationNumber,
+      limiter:limiter,
       timestamp: new Date().toISOString()
     };
+
+    fetch("/", {
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json"
+      },
+      body:JSON.stringify(reservationData),
+    })
+    .then((response) =>{
+      response.json(); 
+    })
+    .then((data) =>{
+      if(data.success === true){
+        console.log("Success!"); 
+      } else{
+        console.log("Data not successful?"); 
+      }
+    })
+    .catch((error) =>{
+      console.log("ERROR!"); 
+    })
 
     // Store reservation history
     let reservationHistory = JSON.parse(localStorage.getItem("reservationHistory")) || [];
@@ -1497,7 +1535,7 @@ function validatePayment(event) {
 
   if (isValid) {
     /*localStorage.removeItem('cart');*/
-    window.location.href = '/order/confirmation';
+    window.location.href = '/order/confirmation?from=payment';
   }
   //return false;
 }

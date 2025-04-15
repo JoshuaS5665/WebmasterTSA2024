@@ -2,6 +2,8 @@ const express = require("express");
 //const nodemon = require("nodemon"); 
 const mongoose = require("mongoose"); 
 const menuItem = require("./menuItem.js"); 
+const nodemailer = require("nodemailer");
+
 
 //const serverless = require("serverless-http");
 const app = express();
@@ -27,6 +29,7 @@ mongoose.connect(dbURI, {useNewURLParser:true, useUnifiedTopology:true})
 
 
 app.use(express.static("public"));
+app.use(express.json()); 
 app.use(express.urlencoded({ extended: true }));
 //app.use(morgan("dev"));
 
@@ -171,7 +174,12 @@ app.post("/order/confirmation", (req, res) =>{
 
 app.get("/order/confirmation", (req, res) =>{
   //res.redirect(301, "/order"); 
-  res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+  const from = req.query.from; 
+  if(from && from == "payment"){
+    res.sendFile(path.join(__dirname, "/public/takeout/orderconfirmation.html"));
+  } else{
+    res.redirect(301, "/order"); 
+  }
 }); 
 
 // Private Room Reservation routes
@@ -189,12 +197,92 @@ app.get("/reservations/times", (req, res) => {
 
 app.get("/reservations/confirmation", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/reservation/confirmation.html"));
+
 });
 
 // Sources route
 app.get("/sources", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/requirements/sources.html"));
 });
+
+app.post("/", (req, res) =>{
+  const {name, email, phone, date, time, partySize, confirmationNumber, limiter} = req.body; 
+
+       const html = `
+    <body style="font-family: Bodoni Moda, serif;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            color: #333;">
+    <p>Hi <strong>${name}</strong>,</p><br>
+        <p>According to our server, you booked a reservation at Flourish for <strong>${partySize}</strong> people on <strong>${date}</strong> 
+            at <strong>${time}.</strong>
+            Thanks for reserving a table with us at Flourish! We can’t wait to welcome you.</p>
+        
+            <br>
+
+        <p>To make your visit as seamless and enjoyable as possible, please keep the following in mind:</p> <br>
+
+        <ul style="padding-left: 20px;"><h2 style="margin-top: 20px;
+            color: #32372b;">Please:</h2>
+            <li style=" margin:15px; ">Arrive 10-15 minutes before your scheduled reservation to receive access to the room ahead of time.</li>
+            <li style=" margin:15px; ">Let us know about any dietary concerns for anyone in your party. (Feel free to give us a call or head to the contact page). <a href="/contact">Contact Link</a></li>
+            <li style=" margin:15px; ">Bring your ID as well as this reservation's confirmation number (${confirmationNumber}).</li>
+            <li style=" margin:15px; ">Enjoy your time in our exclusive private room -- we are here to make this occasion special for you!</li>
+        </ul>
+
+        <ul style="padding-left: 20px;"><h2 style="margin-top: 20px;
+            color: #32372b;">Please DO NOT:</h2>
+            <li style=" margin:15px; ">Bring disposable food or beverage items. Flourish is proud to be eco-conscious.</li>
+            <li style=" margin:15px; ">Forget to call us if you are running late or need to cancel. (Up to <b>4</b> days before your reservation day, you may cancel for free. After that, based on your individual guest count, you will be charged a flat cancellation fee of \$${limiter[2]}).
+            In the event that the host (you) or a representative fails to show up for the confirmed reservation, the cancellation fee will apply as outlined. </li>
+            <li style=" margin:15px; ">Bring a guest count outside the range you booked. We allow a grace of ±1 guest.
+                For your reservation in particular, please ensure that between ${limiter[0]} and ${limiter[1]} guests (including yourself) are present. 
+            </li>
+        </ul>
+        <br>
+        <p>If you filled out the "special requests" section of our form, we want to inform you that we have received this information
+        and will be in contact with you to clarify any details to customize your time with us.</p>
+        <br>
+        <p>For any questions or concerns, feel free to respond to this email, message us using the aforementioned contact page, or call us directly. 
+            We cannot wait to provide a memorable experience for you at Flourish. 
+        </p>
+        <p>Sincerely,<br>
+             The Flourish Team
+        </p>
+</body>`;
+        const appPassword = "agwc cxbq rehc hhsg"; 
+        const transporter = nodemailer.createTransport({
+            service:"gmail",
+            auth:{
+            user:"flourish.veg.dining@gmail.com",
+            pass:appPassword
+            }
+    
+        });
+    
+        const mailOptions = {
+            from:"flourish.veg.dining@gmail.com",
+            to:email,
+            subject:"Your Reservation at Flourish -- You are Booked!",
+            html:html
+        }; 
+    
+        transporter.sendMail(mailOptions, (error, info) =>{
+        if(error){
+            console.log(error);
+            res.status(500).json({message:"Error in sending message"}); 
+        } else{
+            console.log(info.response); 
+            res.status(200).json({message:"Message was sent"}); 
+        }
+        });
+})
+
+app.get("/emails", (req, res) =>{
+  res.sendFile(path.join(__dirname, "/email-template.html")); 
+})
 
 // Handle 404
 app.use((req, res) => {
