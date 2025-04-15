@@ -1540,6 +1540,10 @@ function validatePayment(event) {
   //return false;
 }
 
+const totalSelected = {
+  counter: 0,
+};
+
 function addToQuantity(dishName, event){
   event.preventDefault(); 
   let id = dishName + "-input"; 
@@ -1547,6 +1551,7 @@ function addToQuantity(dishName, event){
   let value = parseInt(input.value); 
   value++;
   input.value = value;
+  totalSelected.counter++; 
   
 }
  /* console.log("Function is running"); 
@@ -1561,6 +1566,7 @@ function subtractToQuantity(dishName, event){
   let value = parseInt(input.value); 
   if(value > 0){
       value --;
+      totalSelected.counter--; 
   }
   input.value = value; 
 }
@@ -1673,6 +1679,7 @@ function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
   menu.classList.remove("visible");
   document.body.classList.remove("menu-open");
+  window.location.href = `/`; 
 }
 
 window.addEventListener("resize", () => {
@@ -1698,4 +1705,121 @@ function clearAllReservations() {
     alert("All reservations have been cleared!");
     console.log("All reservations cleared from localStorage");
   }
+}
+
+function toggleShirtColor(imageId, originalSrc, coloredSrc) {
+  console.log("functionisrunning");
+    const image = document.getElementById(imageId);
+  if (!image) return;
+  // Store the current src to determine which version is showing
+  const currentSrc = image.src;
+  
+  // Toggle between original and colored versions
+  if (currentSrc.includes(originalSrc)) {
+    image.src = coloredSrc;
+  } else {
+    image.src = originalSrc;
+  }
+}
+
+function validateOnlineOrder(){
+  let totalCounter = 0; 
+  for(let i = 1; i < 12; i++){
+    const item = document.getElementById(`menu[${i}]`);
+    //console.log(i + "My item is" + item.value); 
+    if(item && item.checked){
+      totalCounter ++; 
+    }
+  }
+  console.log("my total counter is " + totalCounter); 
+  if(totalCounter == 0){
+    showError(document.getElementById("menu-submit"), "You must select a food item to proceed!");
+    //window.location.href = "/order"; 
+    return false; 
+  }
+
+  return true; 
+
+}
+
+function handleMerchSizing(itemsList, quantitiesList) {
+  console.log("Handle func is RUNNING");
+  const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const overallContainer = document.getElementById("merch-container");
+  let otherCounter = 0;
+
+  for (let i = 0; i < parseInt(itemsList.length); i++) {
+    if (i < 4) {
+      for (let j = 0; j < parseInt(quantitiesList[i]); j++) {
+        const sizingSection = document.createElement("div");
+        sizingSection.id = `${itemsList[i]}-sizing-${j + 1}`;
+        sizingSection.classList.add("size-section");
+
+        const header = document.createElement("h3");
+        header.innerText = `Select a Size for your ${itemsList[i]} (#${j + 1})`;
+
+        const form = document.createElement("form");
+        form.classList.add("size-options");
+
+        sizes.forEach((size, k) => {
+          const inputId = `sizing-${i}-${j}-${k}`;
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = `Sizing-${i}-${j}`;
+          input.id = inputId;
+          input.value = size;
+          input.required = true;
+
+          const label = document.createElement("label");
+          label.htmlFor = inputId;
+          label.innerText = size;
+
+          form.appendChild(input);
+          form.appendChild(label);
+        });
+
+        sizingSection.appendChild(header);
+        sizingSection.appendChild(form);
+        overallContainer.appendChild(sizingSection);
+      }
+    } else {
+      if (i === 4) {
+        const header = document.createElement("h3");
+        header.innerText = "Your Other Items:";
+        overallContainer.appendChild(header);
+      }
+
+      if (parseInt(quantitiesList[i]) !== 0) {
+        const otherItemHeader = document.createElement("h3");
+        otherItemHeader.innerText = `${itemsList[i]}`;
+
+        const innerParagraph = document.createElement("p");
+        innerParagraph.innerText = `Your Quantity: ${parseInt(quantitiesList[i])}`;
+
+        overallContainer.appendChild(otherItemHeader);
+        overallContainer.appendChild(innerParagraph);
+        otherCounter++;
+      }
+
+      if (i === parseInt(itemsList.length) - 1 && otherCounter === 0) {
+        const noItemHeader = document.createElement("h3");
+        noItemHeader.innerText = `You have no items that require you to select a size!`;
+        overallContainer.appendChild(noItemHeader);
+      }
+    }
+  }
+}
+
+
+function displayMerchTotal(element){
+  const myElement = document.getElementById(element); 
+  const total = document.createElement("p");
+  if(element === "tax"){
+    total.innerText = `Your ${element} (at 7%) is \$${myElement.value}.`; 
+  } else{
+    total.innerText = `Your ${element} is \$${myElement.value}.`; 
+  }
+  
+  const overallContainer = document.getElementById("merch-container");
+  overallContainer.appendChild(total); 
 }
