@@ -138,7 +138,9 @@ app.get("/order/payment", (req, res) =>{
   res.redirect(301, "/order"); 
 });
 
-app.post("/order/payment", (req, res) =>{
+app.post("/order/payment", (req, res) => {
+  //const menu = Array.isArray(req.body.menu) ? req.body.menu : [req.body.menu];
+  //const quantity = Array.isArray(req.body.quantity) ? req.body.quantity : [req.body.quantity];
 
   const menu = req.body.menu;
   const quantity = req.body.quantity; 
@@ -155,26 +157,24 @@ app.post("/order/payment", (req, res) =>{
     .then((menuItem) =>{
         console.log("The price of my item is" + menuItem.cost);
         total += menuItem.cost * parseInt(quantity[index]);
-        costArray.push(menuItem.cost); 
-    })
+        costArray.push(menuItem.cost);
+      })
+      .catch((err) => {
+        console.log("ERROR IN FINDING ITEM");
+      });
+  });
 
-    .catch((err) =>{
-        console.log("ERROR IN FINDING ITEM"); 
+  console.log(promises);
+  Promise.all(promises)
+    .then((result) => {
+      console.log(`The subtotal of my items is \$${total}.\n`);
+      res.render("paymentform", { myTotal: total, menuItems: menu, quantities: quantity, costs: costArray });
     })
+    .catch((err) => {
+      console.log("ERROR. TOTAL CANNOT BE CALCULATED");
+    });
 });
 
-console.log(promises); 
-    Promise.all(promises)
-    .then((result) =>{
-        console.log(`The subtotal of my items is \$${total}.\n`); 
-        res.render("paymentform", {myTotal:total, menuItems:menu, quantities:quantity, costs:costArray}); 
-    })
-    .catch((err) =>{
-        console.log("ERROR. TOTAL CANNOT BE CALCULATED"); 
-    })
-  //res.sendFile(path.join(__dirname, "/public/takeout/paymentform.html")); 
-
-});
 
 app.post("/order/confirmation", (req, res) =>{
   console.log("Order was a success!");  
