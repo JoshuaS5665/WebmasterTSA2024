@@ -131,42 +131,42 @@ app.get("/order/payment", (req, res) =>{
   res.redirect(301, "/order"); 
 });
 
-app.post("/order/payment", (req, res) =>{
+app.post("/order/payment", (req, res) => {
+  const menu = Array.isArray(req.body.menu) ? req.body.menu : [req.body.menu];
+  const quantity = Array.isArray(req.body.quantity) ? req.body.quantity : [req.body.quantity];
 
-  const menu = req.body.menu;
-  const quantity = req.body.quantity; 
-  //console.log(menu.length); 
-  //let orderProperties = {}; 
-  let costArray = []; 
-  let total = 0; 
-  //if(!menu){
-    //return res.status(400).json({message: "Invalid order: You must order something!"}); 
-  //}
-  const promises = menu.map((item, index) =>{
-    return menuItem.findOne({item:item})
-    .then((menuItem) =>{
+  console.log(menu);
+  let orderProperties = {};
+  let costArray = [];
+  let total = 0;
+
+  if (!menu || menu.length === 0) {
+    return res.status(400).json({ message: "Invalid order: You must order something!" });
+  }
+
+  const promises = menu.map((item, index) => {
+    return menuItem.findOne({ item: item })
+      .then((menuItem) => {
         console.log("The price of my item is" + menuItem.cost);
         total += menuItem.cost * parseInt(quantity[index]);
-        costArray.push(menuItem.cost); 
-    })
+        costArray.push(menuItem.cost);
+      })
+      .catch((err) => {
+        console.log("ERROR IN FINDING ITEM");
+      });
+  });
 
-    .catch((err) =>{
-        console.log("ERROR IN FINDING ITEM"); 
+  console.log(promises);
+  Promise.all(promises)
+    .then((result) => {
+      console.log(`The subtotal of my items is \$${total}.\n`);
+      res.render("paymentform", { myTotal: total, menuItems: menu, quantities: quantity, costs: costArray });
     })
+    .catch((err) => {
+      console.log("ERROR. TOTAL CANNOT BE CALCULATED");
+    });
 });
 
-console.log(promises); 
-    Promise.all(promises)
-    .then((result) =>{
-        console.log(`The subtotal of my items is \$${total}.\n`); 
-        res.render("paymentform", {myTotal:total, menuItems:menu, quantities:quantity, costs:costArray}); 
-    })
-    .catch((err) =>{
-        console.log("ERROR. TOTAL CANNOT BE CALCULATED"); 
-    })
-  //res.sendFile(path.join(__dirname, "/public/takeout/paymentform.html")); 
-
-});
 
 app.post("/order/confirmation", (req, res) =>{
   console.log("Order was a success!");  

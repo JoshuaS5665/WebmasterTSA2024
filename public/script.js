@@ -1684,7 +1684,16 @@ function toggleShirtColor(imageId, originalSrc, coloredSrc) {
 }
 
 function validateOnlineOrder(){
+  // Check if totalSelected exists and if it has a counter property
+  if (typeof totalSelected === 'undefined' || typeof totalSelected.counter === 'undefined') {
+    console.log("Error: totalSelected or totalSelected.counter is not defined");
+    showError(document.getElementById("menu-submit"), "There was an issue with your selection data.");
+    return false;
+  }
+
   const totalCounter = totalSelected.counter; 
+  console.log("Validate online function is running"); 
+  console.log("my counter is " + totalCounter);
 
   if(totalCounter == 0){
     showError(document.getElementById("menu-submit"), "You must select a food item to proceed!"); 
@@ -1693,6 +1702,7 @@ function validateOnlineOrder(){
 
   return true;
 }
+
 
 function handleMerchSizing(itemsList, quantitiesList) {
   console.log("Handle func is RUNNING");
