@@ -1641,6 +1641,7 @@ function closethreebarmenu() {
   const menu = document.getElementById("threebarmenu");
   menu.classList.remove("visible");
   document.body.classList.remove("menu-open");
+  window.location.href = `/`; 
 }
 
 window.addEventListener("resize", () => {
@@ -1684,14 +1685,21 @@ function toggleShirtColor(imageId, originalSrc, coloredSrc) {
 }
 
 function validateOnlineOrder(){
-  const totalCounter = totalSelected.counter; 
-
+  let totalCounter = 0; 
+  for(let i = 1; i < 12; i++){
+    const item = document.getElementById(`menu[${i}]`);
+    if(item && item.value != ""){
+      totalCounter ++; 
+    }
+  }
+  console.log("my total counter is " + totalCounter); 
   if(totalCounter == 0){
-    showError(document.getElementById("menu-submit"), "You must select a food item to proceed!"); 
+    showError(document.getElementById("menu-submit"), "You must select a food item to proceed!");
     return false; 
   }
 
-  return true;
+  return true; 
+
 }
 
 function handleMerchSizing(itemsList, quantitiesList) {

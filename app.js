@@ -48,6 +48,10 @@ app.get("/faqs", (req, res) => {
   res.sendFile(path.join(__dirname, "/public/faq/faqs.html"));
 });
 
+app.get("/faqs#", (req, res) =>{
+  res.sendFile(path.join(__dirname, "/public/faq/faqs.html"));
+});
+
 app.get("/faqs.html", (req, res) => {
   res.redirect(301, "/faqs");
 });
@@ -135,13 +139,14 @@ app.post("/order/payment", (req, res) =>{
 
   const menu = req.body.menu;
   const quantity = req.body.quantity; 
-  //console.log(menu.length); 
+  console.log(`My menu stuff is ${menu}`); 
   //let orderProperties = {}; 
   let costArray = []; 
   let total = 0; 
   //if(!menu){
     //return res.status(400).json({message: "Invalid order: You must order something!"}); 
   //}
+
   const promises = menu.map((item, index) =>{
     return menuItem.findOne({item:item})
     .then((menuItem) =>{
