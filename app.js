@@ -293,18 +293,18 @@ app.post("/", (req, res) =>{
 
         <ul style="padding-left: 20px;"><h2 style="margin-top: 20px;
             color: #32372b;">Please:</h2>
-            <li style=" margin:15px; ">Arrive 10-15 minutes before your scheduled reservation to receive access to the room ahead of time.</li>
-            <li style=" margin:15px; ">Let us know about any dietary concerns for anyone in your party. (Feel free to give us a call or head to the contact page). <a href="/contact">Contact Link</a></li>
-            <li style=" margin:15px; ">Bring your ID as well as this reservation's confirmation number (${confirmationNumber}).</li>
-            <li style=" margin:15px; ">Enjoy your time in our exclusive private room -- we are here to make this occasion special for you!</li>
+            <li style=" margin:15px; color: #32372b;">Arrive 10-15 minutes before your scheduled reservation to receive access to the room ahead of time.</li>
+            <li style=" margin:15px; color: #32372b;">Let us know about any dietary concerns for anyone in your party. (Feel free to give us a call or head to the contact page). <a href="3.146.166.139/contact">Contact Link</a></li>
+            <li style=" margin:15px; color: #32372b;">Bring your ID as well as this reservation's confirmation number (${confirmationNumber}).</li>
+            <li style=" margin:15px; color: #32372b;">Enjoy your time in our exclusive private room -- we are here to make this occasion special for you!</li>
         </ul>
 
         <ul style="padding-left: 20px;"><h2 style="margin-top: 20px;
             color: #32372b;">Please DO NOT:</h2>
-            <li style=" margin:15px; ">Bring disposable food or beverage items. Flourish is proud to be eco-conscious.</li>
-            <li style=" margin:15px; ">Forget to call us if you are running late or need to cancel. (Up to <b>4</b> days before your reservation day, you may cancel for free. After that, based on your individual guest count, you will be charged a flat cancellation fee of \$${limiter[2]}).
+            <li style=" margin:15px; color: #32372b;">Bring disposable food or beverage items. Flourish is proud to be eco-conscious.</li>
+            <li style=" margin:15px; color: #32372b;">Forget to call us if you are running late or need to cancel. (Up to <b>4</b> days before your reservation day, you may cancel for free. After that, based on your individual guest count for this reservation, you will be charged a flat cancellation fee of \$${limiter[2]}).
             In the event that the host (you) or a representative fails to show up for the confirmed reservation, the cancellation fee will apply as outlined. </li>
-            <li style=" margin:15px; ">Bring a guest count outside the range you booked. We allow a grace of ±1 guest.
+            <li style=" margin:15px; color: #32372b;">Bring a guest count outside the range you booked. We allow a grace of ±1 guest.
                 For your reservation in particular, please ensure that between ${limiter[0]} and ${limiter[1]} guests (including yourself) are present. 
             </li>
         </ul>
