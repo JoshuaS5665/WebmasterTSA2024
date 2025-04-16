@@ -281,44 +281,122 @@ app.post("/", (req, res) =>{
     <meta charset="UTF-8">
     <title>Flourish Reservation Confirmation</title>
     <style>
-      body { font-family: Arial, sans-serif; color: #000; margin: 0; padding: 30px; font-size: 1.2em; }
-      h2 { margin-top: 30px; color: #000; font-size: 1.3em; }
-      ul { padding-left: 20px; }
-      li { margin-bottom: 10px; }
-      a { color: #000; text-decoration: underline; }
-      .strong-text { font-weight: bold; }
-      .confirmation-number { font-weight: bold; }
-      p { margin-bottom: 15px; }
+      body {
+        font-family: 'Times New Roman', serif;
+        color: #333333;
+        max-width: 600px;
+        margin: auto;
+        padding: 40px;
+        line-height: 1.8;
+      }
+
+      h2 {
+      font-size: 1.3em;
+        color: #000000;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+        color: #4b5c3a;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      p {
+        font-size: 1.1em;
+        margin-bottom: 20px;
+        color: #000000;
+      }
+
+      ul {
+        font-size: 1.1em;
+        margin-left: 20px;
+        margin-bottom: 20px;
+        color: #000000;
+      }
+
+      li {
+        margin-bottom: 12px;
+        color: #000000;
+      }
+
+      .strong-text {
+        font-weight: bold;
+        color: #4b5c3a;
+      }
+
+      .confirmation-number {
+        font-weight: bold;
+        color: #4b5c3a;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 1.1em;
+        text-align: center;
+        color: #555555;
+      }
+
+      a {
+        color: #4b5c3a;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .divider {
+        border-top: 2px solid #4b5c3a;
+        margin: 20px 0;
+      }
+
     </style>
   </head>
   <body>
-    <p>Hi <strong>${name}</strong>,</p>
+    <h1>Reservation Confirmation at Flourish</h1>
 
-    <p>You’ve booked a reservation at <strong>Flourish</strong> for <strong>${partySize}</strong> people on <strong>${date}</strong> at <strong>${time}</strong>. Thank you!</p>
+    <p>Hi <strong class="strong-text">${name}</strong>,</p>
 
-    <p><strong>Do:</strong></p>
+    <p>Thank you for choosing <strong class="strong-text">Flourish</strong> for your upcoming visit. We are pleased to confirm your reservation for <strong class="strong-text">${partySize}</strong> people on <strong class="strong-text">${date}</strong> at <strong class="strong-text">${time}</strong>.</p>
+
+    <div class="divider"></div>
+
+    <h2>Important Information:</h2>
+
     <ul>
-      <li>Arrive 10–15 minutes early.</li>
-      <li>Notify us of dietary concerns via <a href="/contact">contact us</a>.</li>
-      <li>Bring your ID and confirmation number: <span class="confirmation-number">${confirmationNumber}</span>.</li>
+      <li>Arrive 10–15 minutes early to gain access to your reserved table.</li>
+      <li>Notify us of any dietary restrictions via our <a href="3.146.166.139/contact">contact page</a>.</li>
+      <li>Bring your ID and reservation confirmation number: <span class="confirmation-number">${confirmationNumber}</span>.</li>
+      <li>We look forward to providing a special experience for you at Flourish.</li>
     </ul>
 
-    <p><strong>Do NOT:</strong></p>
+    <div class="divider"></div>
+
+    <h2>Do Not Forget:</h2>
+
     <ul>
-      <li>Bring disposable food or drinks.</li>
-      <li>Forget to call if late or cancel (free up to 4 days before; after, a fee of $${limiter[2]} applies).</li>
-      <li>Bring more or fewer guests than booked (±1 guest allowed).</li>
+      <li>Flourish is eco-conscious; please refrain from bringing disposable food or drinks.</li>
+      <li>If you're running late or need to cancel, call us. Cancellations are free up to <strong>4</strong> days in advance. After that, a cancellation fee of <strong>$${limiter[2]}</strong> will apply based on your guest count. No-shows will also be charged.</li>
+      <li>Ensure your guest count is within <strong class="strong-text">${limiter[0]}</strong> to <strong class="strong-text">${limiter[1]}</strong> guests (including yourself).</li>
     </ul>
 
-    <p>If you included special requests, we’ve received them and will reach out for any clarifications.</p>
+    <div class="divider"></div>
 
-    <p>For questions or concerns, reply here, visit <a href="/contact">our contact page</a>, or call us.</p>
+    <p>If you've provided special requests, we will review them and contact you if needed.</p>
 
-    <p>We look forward to welcoming you at Flourish!</p>
+    <p>If you have any questions, please feel free to reply to this email, visit our <a href="/contact">contact page</a>, or call us directly. We can’t wait to make your experience memorable!</p>
 
-    <p><strong>The Flourish Team</strong></p>
+    <div class="footer">
+      <p>Warmly,</p>
+      <p><strong class="strong-text">The Flourish Team</strong></p>
+    </div>
   </body>
 </html>`;
+
 
 
   

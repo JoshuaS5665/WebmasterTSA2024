@@ -1130,7 +1130,7 @@ function finalizePrivateReservation(event) {
         </div>
 
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; margin: 20px 0;">
-          A confirmation has been sent to <strong>${email}</strong>.
+          A confirmation has been sent to <strong>${email}</strong>. Please check your spam folder as well.
         </p>
 
         <p style="font-family: 'Bodoni Moda', serif; font-size: 16px; margin: 20px 0; color: #32372b;">
