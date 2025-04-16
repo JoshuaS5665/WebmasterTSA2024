@@ -1130,7 +1130,7 @@ function finalizePrivateReservation(event) {
         </div>
 
         <p style="font-family: 'Bodoni Moda', serif; font-size: 18px; margin: 20px 0;">
-          A confirmation has been sent to <strong>${email}</strong>.
+          A confirmation has been sent to <strong>${email}</strong>. Please check your spam folder as well.
         </p>
 
         <p style="font-family: 'Bodoni Moda', serif; font-size: 16px; margin: 20px 0; color: #32372b;">
@@ -1722,24 +1722,28 @@ function toggleShirtColor(imageId, originalSrc, coloredSrc) {
   }
 }
 
-function validateOnlineOrder(){
-  let totalCounter = 0; 
-  for(let i = 1; i < 12; i++){
-    const item = document.getElementById(`menu[${i}]`);
-    //console.log(i + "My item is" + item.value); 
-    if(item && item.checked){
-      totalCounter ++; 
-    }
+function validateOnlineOrder() {
+  let isValid = true;
+  
+  // Select all menu checkboxes (assuming names begin with "menu")
+  const checkboxes = document.querySelectorAll('input[type="checkbox"][name^="menu"]');
+  
+  // Determine if at least one checkbox is checked
+  let itemSelected = Array.from(checkboxes).some(checkbox => checkbox.checked);
+  
+  // Get the element to show the error message. (We've designated the div with id "menu-submit" for this purpose.)
+  const menuSubmitDiv = document.getElementById("menu-submit");
+  
+  // If no item has been selected, use showError() to display an error message.
+  if (!itemSelected) {
+    showError(menuSubmitDiv, "Please select at least one item to continue.");
+    isValid = false;
+  } else {
+    // If an item is selected, remove any error messages.
+    hideError(menuSubmitDiv);
   }
-  console.log("my total counter is " + totalCounter); 
-  if(totalCounter == 0){
-    showError(document.getElementById("menu-submit"), "You must select a food item to proceed!");
-    //window.location.href = "/order"; 
-    return false; 
-  }
-
-  return true; 
-
+  
+  return isValid;
 }
 
 
@@ -1793,9 +1797,12 @@ function handleMerchSizing(itemsList, quantitiesList) {
       if (parseInt(quantitiesList[i]) !== 0) {
         const otherItemHeader = document.createElement("h3");
         otherItemHeader.innerText = `${itemsList[i]}`;
+        otherItemHeader.style.display = "inline"; 
 
         const innerParagraph = document.createElement("p");
-        innerParagraph.innerText = `Your Quantity: ${parseInt(quantitiesList[i])}`;
+        innerParagraph.innerText = `(Your Quantity: ${parseInt(quantitiesList[i])})`;
+        innerParagraph.style.display = "inline"; 
+        innerParagraph.style.marginLeft = "8%"; 
 
         overallContainer.appendChild(otherItemHeader);
         overallContainer.appendChild(innerParagraph);
@@ -1815,12 +1822,31 @@ function handleMerchSizing(itemsList, quantitiesList) {
 function displayMerchTotal(element){
   const myElement = document.getElementById(element); 
   const total = document.createElement("p");
+  const overallContainer = document.getElementById("merch-container");
   if(element === "tax"){
+    
     total.innerText = `Your ${element} (at 7%) is \$${myElement.value}.`; 
-  } else{
+  } else if(element==="subtotal"){
+    const header = document.createElement("h3");
+    header.innerText = "Your Payment Details: ";
+    overallContainer.appendChild(header); 
+    total.innerText = `Your ${element} is \$${myElement.value}.`; 
+  }else{
     total.innerText = `Your ${element} is \$${myElement.value}.`; 
   }
   
-  const overallContainer = document.getElementById("merch-container");
   overallContainer.appendChild(total); 
+}
+
+function validateMerchOrder(){
+  let quantInputs = document.getElementsByClassName("quantity-menu");
+  let total = 0;
+  Array.from(quantInputs).forEach((input, index) =>{
+    total += parseInt(input.value); 
+  });
+
+  if(total == 0){
+    showError(document.getElementById("merchSubmitDiv"), "You must select at least one item to continue!"); 
+    return false; 
+  }
 }
