@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Flourish | Order Menu</title>
+  <link rel="icon" type="image/x-icon" href="../../images/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@500;700&family=Open+Sans&display=swap" rel="stylesheet">
   <link href="../style.css" rel="stylesheet" type="text/css" />
   <style>
@@ -191,7 +192,7 @@ button[type="submit"]:hover {
     <button type="button" class="go-to-merch-button" onclick="window.location.href = '../merch/merch.html'">View Merchandise</button>
   </div>
 
-  <form method="post" action="/order/payment" onsubmit=" validateOnlineOrder()">
+  <form method="post" action="/order/payment" onsubmit=" return validateOnlineOrder()">
     <h1 style = "font-family: Bodoni Moda, serif">NOTE: Some items are only available for sit-in customers.</h1>
     <!-- Starters -->
     <h2>Starters</h2>

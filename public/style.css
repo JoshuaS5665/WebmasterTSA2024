@@ -1119,7 +1119,8 @@ input[type="checkbox"]:focus {
 .error-message {
   color: #32372b;
   font-size: 14px;
-  margin-top: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   font-family: "Bodoni Moda", serif;
   background-color: rgba(50, 55, 43, 0.2);
   padding: 8px 12px;
